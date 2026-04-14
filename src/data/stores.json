@@ -1,0 +1,27 @@
+[
+  {
+    "id": "continente",
+    "name": "Continente",
+    "website": "https://www.continente.pt",
+    "themeColor": "#1b6ca8"
+  },
+  {
+    "id": "pingo-doce",
+    "name": "Pingo Doce",
+    "website": "https://www.pingodoce.pt",
+    "themeColor": "#2f7f3a"
+  },
+  {
+    "id": "intermarche",
+    "name": "Intermarché",
+    "website": "https://www.intermarche.pt",
+    "themeColor": "#cc3b2f"
+  },
+  {
+    "id": "apolonia",
+    "name": "Apolónia",
+    "website": "https://www.apolonia.com",
+    "themeColor": "#7a5b2f"
+  }
+]
+

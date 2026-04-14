@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cabaz">
+  <rect width="64" height="64" rx="16" fill="#f4f0e8" />
+  <path
+    d="M18 24h28l-3.4 24a4 4 0 0 1-4 3.4H25.4a4 4 0 0 1-4-3.4L18 24Z"
+    fill="#c96f3b"
+    stroke="#22313f"
+    stroke-width="2"
+  />
+  <path
+    d="M24 24a8 8 0 0 1 16 0"
+    fill="none"
+    stroke="#22313f"
+    stroke-linecap="round"
+    stroke-width="3"
+  />
+  <path d="M26 33h12M26 40h12M42 33h-4M42 40h-4" stroke="#f4f0e8" stroke-linecap="round" stroke-width="3" />
+</svg>
+
