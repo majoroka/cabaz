@@ -136,10 +136,7 @@ a {
   align-items: center;
   overflow: hidden;
   padding: 42px 38px 78px;
-  background:
-    linear-gradient(90deg, rgba(21, 30, 46, 0.98) 0%, rgba(21, 30, 46, 0.88) 48%, rgba(21, 30, 46, 0.7) 100%),
-    radial-gradient(circle at 80% 20%, rgba(70, 156, 142, 0.32), transparent 34%),
-    linear-gradient(135deg, #1c2638 0%, #314056 100%);
+  background: #151e2e;
   color: #ffffff;
 }
 
@@ -147,15 +144,11 @@ a {
   content: "";
   position: absolute;
   pointer-events: none;
-}
-
-.hero::before {
   inset: 0;
-  opacity: 0.22;
+  z-index: 1;
   background:
-    linear-gradient(90deg, transparent 0 16%, rgba(255, 255, 255, 0.16) 16% 17%, transparent 17% 100%),
-    linear-gradient(0deg, transparent 0 62%, rgba(255, 255, 255, 0.2) 62% 63%, transparent 63% 100%);
-  background-size: 180px 110px;
+    linear-gradient(90deg, rgba(21, 30, 46, 0.96) 0%, rgba(21, 30, 46, 0.82) 46%, rgba(21, 30, 46, 0.44) 100%),
+    radial-gradient(circle at 82% 22%, rgba(70, 156, 142, 0.26), transparent 34%);
 }
 
 .hero > div {
@@ -166,13 +159,13 @@ a {
 
 .hero-produce {
   position: absolute;
-  z-index: 1;
-  right: clamp(-86px, 3vw, 52px);
-  bottom: -54px;
-  width: min(42vw, 520px);
-  min-width: 360px;
-  opacity: 0.9;
-  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.28));
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.72;
   pointer-events: none;
 }
 
@@ -763,10 +756,8 @@ textarea {
   }
 
   .hero-produce {
-    right: -170px;
-    bottom: -62px;
-    min-width: 330px;
-    opacity: 0.42;
+    object-position: 68% center;
+    opacity: 0.52;
   }
 
   .dashboard-body {
