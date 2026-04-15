@@ -176,6 +176,14 @@ export function createApp(rootElement) {
     state.editingItemId = null;
   }
 
+  function closeCustomSelects(exceptSelect = null) {
+    rootElement.querySelectorAll("[data-custom-select]").forEach((select) => {
+      if (select !== exceptSelect) {
+        select.classList.remove("custom-select-open");
+      }
+    });
+  }
+
   function upsertBasketItem(formData) {
     const normalizedName = String(formData.get("name") || "").trim();
 
@@ -316,6 +324,49 @@ export function createApp(rootElement) {
     const itemId = target.dataset.itemId;
     const importTarget = target.dataset.target;
 
+    if (action === "toggle-custom-select") {
+      const customSelect = target.closest("[data-custom-select]");
+
+      if (customSelect instanceof HTMLElement) {
+        const isOpen = customSelect.classList.contains("custom-select-open");
+        closeCustomSelects(customSelect);
+        customSelect.classList.toggle("custom-select-open", !isOpen);
+      }
+
+      return;
+    }
+
+    if (action === "select-custom-option") {
+      const customSelect = target.closest("[data-custom-select]");
+      const selectName = target.dataset.selectName;
+      const selectValue = target.dataset.selectValue || "";
+      const selectLabel = target.dataset.selectLabel || "";
+      const filterName = target.dataset.filterName;
+
+      if (customSelect instanceof HTMLElement) {
+        const hiddenInput = selectName ? customSelect.querySelector('input[type="hidden"]') : null;
+        const triggerLabel = customSelect.querySelector(".custom-select-trigger span");
+
+        if (hiddenInput instanceof HTMLInputElement) {
+          hiddenInput.value = selectValue;
+        }
+
+        if (triggerLabel instanceof HTMLElement) {
+          triggerLabel.textContent = selectLabel;
+        }
+
+        customSelect.classList.remove("custom-select-open");
+      }
+
+      if (filterName === "category" || filterName === "store") {
+        clearMessages();
+        state.filters[filterName] = selectValue;
+        render();
+      }
+
+      return;
+    }
+
     if (action === "edit-item" && itemId) {
       state.editingItemId = itemId;
       setNotice("Modo de edição ativo.");
@@ -373,16 +424,17 @@ export function createApp(rootElement) {
 
   rootElement.addEventListener("pointerout", (event) => {
     const target = event.target;
+    const customSelect = target instanceof HTMLElement ? target.closest("[data-custom-select]") : null;
 
-    if (!(target instanceof HTMLSelectElement) || target.dataset.closeOnLeave !== "true") {
+    if (!(customSelect instanceof HTMLElement)) {
       return;
     }
 
-    if (event.relatedTarget instanceof Node && target.contains(event.relatedTarget)) {
+    if (event.relatedTarget instanceof Node && customSelect.contains(event.relatedTarget)) {
       return;
     }
 
-    target.blur();
+    customSelect.classList.remove("custom-select-open");
   });
 
   rootElement.addEventListener("change", async (event) => {

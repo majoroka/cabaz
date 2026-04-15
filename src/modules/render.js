@@ -14,7 +14,63 @@ function renderFlash(state) {
   return "";
 }
 
+function renderDropdown({ label, name, value, options, filterName }) {
+  const selectedOption = options.find((option) => option.value === value) || options[0];
+
+  return `
+    <div class="field">
+      <span class="field-label">${escapeHtml(label)}</span>
+      <div class="custom-select" data-custom-select>
+        ${
+          name
+            ? `<input type="hidden" name="${escapeHtml(name)}" value="${escapeHtml(
+                selectedOption?.value || ""
+              )}" />`
+            : ""
+        }
+        <button type="button" class="custom-select-trigger" data-action="toggle-custom-select">
+          <span>${escapeHtml(selectedOption?.label || "")}</span>
+        </button>
+        <div class="custom-select-menu">
+          ${options
+            .map(
+              (option) => `
+                <button
+                  type="button"
+                  class="custom-select-option ${option.value === value ? "custom-select-option-selected" : ""}"
+                  data-action="select-custom-option"
+                  data-select-name="${escapeHtml(name || "")}"
+                  data-select-value="${escapeHtml(option.value)}"
+                  data-select-label="${escapeHtml(option.label)}"
+                  data-filter-name="${escapeHtml(filterName || "")}"
+                >
+                  ${escapeHtml(option.label)}
+                </button>
+              `
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderBasketForm(editingItem, categories, stores, brands) {
+  const storeOptions = [
+    {
+      value: "",
+      label: "Todos os supermercados"
+    },
+    ...stores.map((store) => ({
+      value: store.id,
+      label: store.name
+    }))
+  ];
+  const categoryOptions = categories.map((category) => ({
+    value: category.id,
+    label: category.name
+  }));
+
   return `
     <section class="panel-card">
       <div class="section-heading">
@@ -33,35 +89,18 @@ function renderBasketForm(editingItem, categories, stores, brands) {
             editingItem?.name || ""
           )}" />
         </label>
-        <label>
-          <span>Supermercado</span>
-          <select name="preferredStore" data-close-on-leave="true">
-            <option value="">Todos os supermercados</option>
-            ${stores
-              .map(
-                (store) => `
-                  <option value="${escapeHtml(store.id)}" ${
-                    editingItem?.preferredStore === store.id ? "selected" : ""
-                  }>${escapeHtml(store.name)}</option>
-                `
-              )
-              .join("")}
-          </select>
-        </label>
-        <label>
-          <span>Categoria</span>
-          <select name="category" required data-close-on-leave="true">
-            ${categories
-              .map(
-                (category) => `
-                  <option value="${escapeHtml(category.id)}" ${
-                    editingItem?.category === category.id ? "selected" : ""
-                  }>${escapeHtml(category.name)}</option>
-                `
-              )
-              .join("")}
-          </select>
-        </label>
+        ${renderDropdown({
+          label: "Supermercado",
+          name: "preferredStore",
+          value: editingItem?.preferredStore || "",
+          options: storeOptions
+        })}
+        ${renderDropdown({
+          label: "Categoria",
+          name: "category",
+          value: editingItem?.category || "sem_categoria",
+          options: categoryOptions
+        })}
         <label>
           <span>Marca</span>
           <input
@@ -211,6 +250,27 @@ function renderImports(state) {
 }
 
 function renderFilters(filters, categories, stores) {
+  const categoryOptions = [
+    {
+      value: "all",
+      label: "Todas"
+    },
+    ...categories.map((category) => ({
+      value: category.id,
+      label: category.name
+    }))
+  ];
+  const storeOptions = [
+    {
+      value: "all",
+      label: "Todos"
+    },
+    ...stores.map((store) => ({
+      value: store.id,
+      label: store.name
+    }))
+  ];
+
   return `
     <section class="toolbar panel-card">
       <div class="section-heading">
@@ -229,36 +289,18 @@ function renderFilters(filters, categories, stores) {
             data-filter="search"
           />
         </label>
-        <label>
-          <span>Categoria</span>
-          <select data-filter="category" data-close-on-leave="true">
-            <option value="all">Todas</option>
-            ${categories
-              .map(
-                (category) => `
-                  <option value="${escapeHtml(category.id)}" ${
-                    filters.category === category.id ? "selected" : ""
-                  }>${escapeHtml(category.name)}</option>
-                `
-              )
-              .join("")}
-          </select>
-        </label>
-        <label>
-          <span>Supermercado</span>
-          <select data-filter="store" data-close-on-leave="true">
-            <option value="all">Todos</option>
-            ${stores
-              .map(
-                (store) => `
-                  <option value="${escapeHtml(store.id)}" ${
-                    filters.store === store.id ? "selected" : ""
-                  }>${escapeHtml(store.name)}</option>
-                `
-              )
-              .join("")}
-          </select>
-        </label>
+        ${renderDropdown({
+          label: "Categoria",
+          value: filters.category,
+          options: categoryOptions,
+          filterName: "category"
+        })}
+        ${renderDropdown({
+          label: "Supermercado",
+          value: filters.store,
+          options: storeOptions,
+          filterName: "store"
+        })}
         <label class="checkbox-row">
           <input type="checkbox" data-filter="bestOnly" ${filters.bestOnly ? "checked" : ""} />
           <span>Mostrar apenas o melhor resultado por item</span>
