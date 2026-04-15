@@ -497,6 +497,7 @@ export function renderApp({ state, viewModel }) {
               Acompanhe preços, pesquise produtos e compare supermercados numa interface simples.
             </p>
           </div>
+          <img class="hero-produce" src="./hero-produce.svg" alt="" aria-hidden="true" />
         </header>
         <div class="dashboard-body">
           ${renderFlash(state)}

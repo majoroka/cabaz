@@ -143,8 +143,7 @@ a {
   color: #ffffff;
 }
 
-.hero::before,
-.hero::after {
+.hero::before {
   content: "";
   position: absolute;
   pointer-events: none;
@@ -159,23 +158,22 @@ a {
   background-size: 180px 110px;
 }
 
-.hero::after {
-  right: 46px;
-  top: 24px;
-  width: 360px;
-  height: 165px;
-  border-radius: 22px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 22px),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 72px);
-  transform: rotate(-8deg);
-}
-
 .hero > div {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 620px;
+}
+
+.hero-produce {
+  position: absolute;
+  z-index: 1;
+  right: clamp(-86px, 3vw, 52px);
+  bottom: -54px;
+  width: min(42vw, 520px);
+  min-width: 360px;
+  opacity: 0.9;
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.28));
+  pointer-events: none;
 }
 
 .hero h1 {
@@ -764,9 +762,11 @@ textarea {
     padding: 34px 20px 68px;
   }
 
-  .hero::after {
-    right: -120px;
-    opacity: 0.5;
+  .hero-produce {
+    right: -170px;
+    bottom: -62px;
+    min-width: 330px;
+    opacity: 0.42;
   }
 
   .dashboard-body {
