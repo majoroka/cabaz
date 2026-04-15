@@ -6,9 +6,9 @@ import {
   buildComparisonRows,
   enrichResults,
   filterBasketItems,
-  getBasketCategories,
   getDashboardSummary
 } from "../utils/calculations.js";
+import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
 import { slugify, uniqueValues } from "../utils/helpers.js";
 import { validateBasketJson, validateResultsJson, validateStoresJson } from "../utils/validation.js";
 import { renderApp } from "./render.js";
@@ -115,7 +115,7 @@ function createInitialState() {
 
 function getViewModel(state) {
   const filteredItems = filterBasketItems(state.basket, state.filters);
-  const categories = getBasketCategories(state.basket);
+  const categories = getCategoryOptions();
   const aggregates = aggregateTotalsByStore({
     basket: state.basket,
     results: state.results,
@@ -185,7 +185,7 @@ export function createApp(rootElement) {
       name: normalizedName,
       quantity: Math.max(1, Number.parseInt(String(formData.get("quantity") || "1"), 10) || 1),
       preferredStore: String(formData.get("preferredStore") || "").trim(),
-      category: String(formData.get("category") || "Sem categoria").trim() || "Sem categoria",
+      category: normalizeCategoryId(formData.get("category")),
       preferredBrand: String(formData.get("preferredBrand") || "").trim(),
       notes: String(formData.get("notes") || "").trim()
     };

@@ -22,7 +22,7 @@ Exemplo:
     "name": "Leite meio-gordo",
     "quantity": 6,
     "preferredStore": "continente",
-    "category": "Laticínios",
+    "category": "lacteos_ovos",
     "preferredBrand": "Mimosa",
     "notes": "Embalagens de 1 L"
   }
@@ -35,9 +35,31 @@ Campos:
 - `name`: nome do item no cabaz
 - `quantity`: quantidade pretendida
 - `preferredStore`: supermercado preferido ou filtro específico para esse item, opcional
-- `category`: categoria de navegação e filtro
+- `category`: ID normalizado da categoria de navegação e filtro
 - `preferredBrand`: preferência opcional
 - `notes`: observações opcionais
+
+### Categorias normalizadas
+
+| ID | Categoria |
+| --- | --- |
+| `mercearia` | Mercearia |
+| `fruta_legumes` | Fruta e Legumes |
+| `talho` | Talho |
+| `peixaria` | Peixaria |
+| `charcutaria_queijos` | Charcutaria e Queijos |
+| `lacteos_ovos` | Laticínios e Ovos |
+| `padaria_pastelaria` | Padaria e Pastelaria |
+| `congelados` | Congelados |
+| `bebidas` | Bebidas |
+| `snacks_doces` | Snacks e Doces |
+| `refeicoes_prontas` | Refeições Prontas |
+| `bio_saudavel` | Bio e Saudável |
+| `higiene_beleza` | Higiene e Beleza |
+| `limpeza_casa` | Limpeza da Casa |
+| `bebe` | Bebé |
+| `animais` | Animais |
+| `casa_cozinha` | Casa e Cozinha |
 
 ## 2. Lojas
 

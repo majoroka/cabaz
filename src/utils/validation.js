@@ -1,4 +1,5 @@
 import { isPlainObject, slugify } from "./helpers.js";
+import { normalizeCategoryId } from "./categories.js";
 
 function normalizeEnvelope(data, propertyName) {
   if (Array.isArray(data)) {
@@ -32,7 +33,7 @@ export function validateBasketJson(data) {
       name: item.name.trim(),
       quantity: Math.max(1, Number.parseInt(item.quantity, 10) || 1),
       preferredStore: String(item.preferredStore || "").trim(),
-      category: String(item.category || "Sem categoria").trim(),
+      category: normalizeCategoryId(item.category),
       preferredBrand: String(item.preferredBrand || "").trim(),
       notes: String(item.notes || "").trim()
     };

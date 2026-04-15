@@ -1,4 +1,4 @@
-import { uniqueValues } from "./helpers.js";
+import { getCategoryName } from "./categories.js";
 
 const UNIT_MULTIPLIERS = {
   g: { baseUnit: "kg", factor: 0.001 },
@@ -48,16 +48,12 @@ function pickPrimaryResult(results) {
   })[0];
 }
 
-export function getBasketCategories(basket) {
-  return uniqueValues(basket.map((item) => item.category)).sort((left, right) => left.localeCompare(right));
-}
-
 export function filterBasketItems(basket, filters) {
   const searchValue = filters.search.trim().toLowerCase();
 
   return basket.filter((item) => {
     const matchesCategory = filters.category === "all" || item.category === filters.category;
-    const haystack = [item.name, item.category, item.preferredBrand, item.notes]
+    const haystack = [item.name, item.category, getCategoryName(item.category), item.preferredBrand, item.notes]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();

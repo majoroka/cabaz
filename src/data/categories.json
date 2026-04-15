@@ -1,0 +1,71 @@
+[
+  {
+    "id": "mercearia",
+    "name": "Mercearia"
+  },
+  {
+    "id": "fruta_legumes",
+    "name": "Fruta e Legumes"
+  },
+  {
+    "id": "talho",
+    "name": "Talho"
+  },
+  {
+    "id": "peixaria",
+    "name": "Peixaria"
+  },
+  {
+    "id": "charcutaria_queijos",
+    "name": "Charcutaria e Queijos"
+  },
+  {
+    "id": "lacteos_ovos",
+    "name": "Laticínios e Ovos"
+  },
+  {
+    "id": "padaria_pastelaria",
+    "name": "Padaria e Pastelaria"
+  },
+  {
+    "id": "congelados",
+    "name": "Congelados"
+  },
+  {
+    "id": "bebidas",
+    "name": "Bebidas"
+  },
+  {
+    "id": "snacks_doces",
+    "name": "Snacks e Doces"
+  },
+  {
+    "id": "refeicoes_prontas",
+    "name": "Refeições Prontas"
+  },
+  {
+    "id": "bio_saudavel",
+    "name": "Bio e Saudável"
+  },
+  {
+    "id": "higiene_beleza",
+    "name": "Higiene e Beleza"
+  },
+  {
+    "id": "limpeza_casa",
+    "name": "Limpeza da Casa"
+  },
+  {
+    "id": "bebe",
+    "name": "Bebé"
+  },
+  {
+    "id": "animais",
+    "name": "Animais"
+  },
+  {
+    "id": "casa_cozinha",
+    "name": "Casa e Cozinha"
+  }
+]
+

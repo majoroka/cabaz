@@ -1,5 +1,6 @@
 import { formatCurrency, formatDate, formatSize, formatUnitPrice } from "../utils/formatters.js";
 import { escapeHtml } from "../utils/helpers.js";
+import { getCategoryName } from "../utils/categories.js";
 
 function renderFlash(state) {
   if (state.error) {
@@ -49,14 +50,17 @@ function renderBasketForm(editingItem, categories, stores) {
         </label>
         <label>
           <span>Categoria</span>
-          <input
-            name="category"
-            type="text"
-            list="category-options"
-            placeholder="Ex.: Mercearia"
-            required
-            value="${escapeHtml(editingItem?.category || "")}"
-          />
+          <select name="category" required>
+            ${categories
+              .map(
+                (category) => `
+                  <option value="${escapeHtml(category.id)}" ${
+                    editingItem?.category === category.id ? "selected" : ""
+                  }>${escapeHtml(category.name)}</option>
+                `
+              )
+              .join("")}
+          </select>
         </label>
         <label>
           <span>Marca</span>
@@ -80,9 +84,6 @@ function renderBasketForm(editingItem, categories, stores) {
           <button type="button" class="button button-muted" data-action="clear-edit">Limpar</button>
         </div>
       </form>
-      <datalist id="category-options">
-        ${categories.map((category) => `<option value="${escapeHtml(category)}"></option>`).join("")}
-      </datalist>
     </section>
   `;
 }
@@ -121,7 +122,7 @@ function renderBasketList(basket, stores) {
               <article class="basket-item">
                 <div>
                   <h3>${escapeHtml(item.name)}</h3>
-                  <p>${escapeHtml(item.category)} · ${escapeHtml(String(item.quantity))} un.</p>
+                  <p>${escapeHtml(getCategoryName(item.category))} · ${escapeHtml(String(item.quantity))} un.</p>
                   ${
                     item.preferredStore || item.preferredBrand || item.notes
                       ? `<small>${escapeHtml(
@@ -231,9 +232,9 @@ function renderFilters(filters, categories, stores) {
             ${categories
               .map(
                 (category) => `
-                  <option value="${escapeHtml(category)}" ${
-                    filters.category === category ? "selected" : ""
-                  }>${escapeHtml(category)}</option>
+                  <option value="${escapeHtml(category.id)}" ${
+                    filters.category === category.id ? "selected" : ""
+                  }>${escapeHtml(category.name)}</option>
                 `
               )
               .join("")}
@@ -389,7 +390,7 @@ function renderTable(rows) {
                     <tr class="missing-row">
                       <td>
                         <strong>${escapeHtml(row.basketItem.name)}</strong>
-                        <small>${escapeHtml(row.basketItem.category)} · ${escapeHtml(
+                        <small>${escapeHtml(getCategoryName(row.basketItem.category))} · ${escapeHtml(
                           String(row.basketItem.quantity)
                         )} un.</small>
                       </td>
@@ -402,7 +403,7 @@ function renderTable(rows) {
                   <tr class="${row.isBest ? "best-row" : ""}">
                     <td>
                       <strong>${escapeHtml(row.basketItem.name)}</strong>
-                      <small>${escapeHtml(row.basketItem.category)} · ${escapeHtml(
+                      <small>${escapeHtml(getCategoryName(row.basketItem.category))} · ${escapeHtml(
                         String(row.basketItem.quantity)
                       )} un.</small>
                     </td>

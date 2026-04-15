@@ -3,7 +3,7 @@
     "id": "leite-meio-gordo",
     "name": "Leite meio-gordo",
     "quantity": 6,
-    "category": "Laticínios",
+    "category": "lacteos_ovos",
     "preferredBrand": "Mimosa",
     "notes": "Embalagens de 1 L"
   },
@@ -11,7 +11,7 @@
     "id": "arroz-agulha",
     "name": "Arroz agulha",
     "quantity": 2,
-    "category": "Mercearia",
+    "category": "mercearia",
     "preferredBrand": "Cigala",
     "notes": "Pacotes de 1 kg"
   },
@@ -19,7 +19,7 @@
     "id": "massa-esparguete",
     "name": "Massa esparguete",
     "quantity": 2,
-    "category": "Mercearia",
+    "category": "mercearia",
     "preferredBrand": "Milaneza",
     "notes": "Pacotes de 500 g"
   },
@@ -27,7 +27,7 @@
     "id": "peito-frango",
     "name": "Peito de frango",
     "quantity": 1,
-    "category": "Talho",
+    "category": "talho",
     "preferredBrand": "",
     "notes": "Em bandeja de 1 kg"
   },
@@ -35,7 +35,7 @@
     "id": "ovos-classe-m",
     "name": "Ovos classe M",
     "quantity": 1,
-    "category": "Frescos",
+    "category": "lacteos_ovos",
     "preferredBrand": "",
     "notes": "Dúzia"
   },
@@ -43,7 +43,7 @@
     "id": "banana-madeira",
     "name": "Banana da Madeira",
     "quantity": 2,
-    "category": "Fruta",
+    "category": "fruta_legumes",
     "preferredBrand": "",
     "notes": "1 kg por unidade"
   },
@@ -51,7 +51,7 @@
     "id": "azeite-virgem-extra",
     "name": "Azeite virgem extra",
     "quantity": 1,
-    "category": "Mercearia",
+    "category": "mercearia",
     "preferredBrand": "Gallo",
     "notes": "Garrafa de 750 ml"
   },
@@ -59,7 +59,7 @@
     "id": "atum-azeite",
     "name": "Atum em azeite",
     "quantity": 4,
-    "category": "Conservas",
+    "category": "mercearia",
     "preferredBrand": "Bom Petisco",
     "notes": "Latas de 120 g"
   },
@@ -67,7 +67,7 @@
     "id": "detergente-loica",
     "name": "Detergente loiça",
     "quantity": 1,
-    "category": "Limpeza",
+    "category": "limpeza_casa",
     "preferredBrand": "Fairy",
     "notes": "Frasco de 700 ml"
   },
@@ -75,9 +75,8 @@
     "id": "papel-higienico",
     "name": "Papel higiénico",
     "quantity": 1,
-    "category": "Higiene do lar",
+    "category": "limpeza_casa",
     "preferredBrand": "Renova",
     "notes": "Pack de 12 rolos"
   }
 ]
-
