@@ -412,8 +412,11 @@ textarea {
 }
 
 .modal-card {
+  display: flex;
+  flex-direction: column;
   width: min(1120px, calc(100vw - 2rem));
   max-height: min(760px, calc(100vh - 2rem));
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -444,7 +447,8 @@ textarea {
 }
 
 .modal-card .table-wrapper {
-  max-height: calc(100vh - 12rem);
+  flex: 1;
+  min-height: 0;
   overflow: auto;
 }
 
