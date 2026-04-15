@@ -341,7 +341,6 @@ export function createApp(rootElement) {
       const selectName = target.dataset.selectName;
       const selectValue = target.dataset.selectValue || "";
       const selectLabel = target.dataset.selectLabel || "";
-      const filterName = target.dataset.filterName;
 
       if (customSelect instanceof HTMLElement) {
         const hiddenInput = selectName ? customSelect.querySelector('input[type="hidden"]') : null;
@@ -356,12 +355,6 @@ export function createApp(rootElement) {
         }
 
         customSelect.classList.remove("custom-select-open");
-      }
-
-      if (filterName === "category" || filterName === "store") {
-        clearMessages();
-        state.filters[filterName] = selectValue;
-        render();
       }
 
       return;
@@ -401,27 +394,6 @@ export function createApp(rootElement) {
     }
   });
 
-  rootElement.addEventListener("input", (event) => {
-    const target = event.target;
-
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-
-    const filterName = target.dataset.filter;
-
-    if (!filterName) {
-      return;
-    }
-
-    clearMessages();
-
-    if (filterName === "search" && target instanceof HTMLInputElement) {
-      state.filters.search = target.value;
-      render();
-    }
-  });
-
   rootElement.addEventListener("pointerout", (event) => {
     const target = event.target;
     const customSelect = target instanceof HTMLElement ? target.closest("[data-custom-select]") : null;
@@ -439,25 +411,6 @@ export function createApp(rootElement) {
 
   rootElement.addEventListener("change", async (event) => {
     const target = event.target;
-
-    if (target instanceof HTMLElement && target.dataset.filter) {
-      clearMessages();
-
-      if (target.dataset.filter === "category" && target instanceof HTMLSelectElement) {
-        state.filters.category = target.value;
-      }
-
-      if (target.dataset.filter === "store" && target instanceof HTMLSelectElement) {
-        state.filters.store = target.value;
-      }
-
-      if (target.dataset.filter === "bestOnly" && target instanceof HTMLInputElement) {
-        state.filters.bestOnly = target.checked;
-      }
-
-      render();
-      return;
-    }
 
     if (target instanceof HTMLInputElement && target.dataset.importType) {
       await importJsonFile(target.files?.[0], target.dataset.importType);

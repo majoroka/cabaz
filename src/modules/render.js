@@ -14,7 +14,7 @@ function renderFlash(state) {
   return "";
 }
 
-function renderDropdown({ label, name, value, options, filterName }) {
+function renderDropdown({ label, name, value, options }) {
   const selectedOption = options.find((option) => option.value === value) || options[0];
 
   return `
@@ -42,7 +42,6 @@ function renderDropdown({ label, name, value, options, filterName }) {
                   data-select-name="${escapeHtml(name || "")}"
                   data-select-value="${escapeHtml(option.value)}"
                   data-select-label="${escapeHtml(option.label)}"
-                  data-filter-name="${escapeHtml(filterName || "")}"
                 >
                   ${escapeHtml(option.label)}
                 </button>
@@ -249,67 +248,6 @@ function renderImports(state) {
   `;
 }
 
-function renderFilters(filters, categories, stores) {
-  const categoryOptions = [
-    {
-      value: "all",
-      label: "Todas"
-    },
-    ...categories.map((category) => ({
-      value: category.id,
-      label: category.name
-    }))
-  ];
-  const storeOptions = [
-    {
-      value: "all",
-      label: "Todos"
-    },
-    ...stores.map((store) => ({
-      value: store.id,
-      label: store.name
-    }))
-  ];
-
-  return `
-    <section class="toolbar panel-card">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Filtros</p>
-          <h2>Comparação atual</h2>
-        </div>
-      </div>
-      <div class="toolbar-grid">
-        <label>
-          <span>Pesquisar item</span>
-          <input
-            type="search"
-            placeholder="Ex.: leite, atum, limpeza"
-            value="${escapeHtml(filters.search)}"
-            data-filter="search"
-          />
-        </label>
-        ${renderDropdown({
-          label: "Categoria",
-          value: filters.category,
-          options: categoryOptions,
-          filterName: "category"
-        })}
-        ${renderDropdown({
-          label: "Supermercado",
-          value: filters.store,
-          options: storeOptions,
-          filterName: "store"
-        })}
-        <label class="checkbox-row">
-          <input type="checkbox" data-filter="bestOnly" ${filters.bestOnly ? "checked" : ""} />
-          <span>Mostrar apenas o melhor resultado por item</span>
-        </label>
-      </div>
-    </section>
-  `;
-}
-
 function renderSummaryCards(summary) {
   return `
     <section class="summary-grid">
@@ -504,7 +442,6 @@ export function renderApp({ state, viewModel }) {
           ${renderImports(state)}
         </aside>
         <section class="content">
-          ${renderFilters(state.filters, viewModel.categories, state.stores)}
           ${renderSummaryCards(viewModel.summary)}
           ${renderStoreTotals(viewModel.aggregates)}
           ${renderTable(viewModel.rows)}
