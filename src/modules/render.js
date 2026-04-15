@@ -13,7 +13,7 @@ function renderFlash(state) {
   return "";
 }
 
-function renderBasketForm(editingItem, categories) {
+function renderBasketForm(editingItem, categories, stores) {
   return `
     <section class="panel-card">
       <div class="section-heading">
@@ -25,33 +25,41 @@ function renderBasketForm(editingItem, categories) {
       </div>
       <form id="basket-form" class="stack-form">
         <input type="hidden" name="id" value="${escapeHtml(editingItem?.id || "")}" />
+        <input type="hidden" name="quantity" value="${escapeHtml(String(editingItem?.quantity || 1))}" />
         <label>
           <span>Nome</span>
           <input name="name" type="text" placeholder="Ex.: Leite meio-gordo" required value="${escapeHtml(
             editingItem?.name || ""
           )}" />
         </label>
-        <div class="form-grid">
-          <label>
-            <span>Quantidade</span>
-            <input name="quantity" type="number" min="1" step="1" required value="${escapeHtml(
-              String(editingItem?.quantity || 1)
-            )}" />
-          </label>
-          <label>
-            <span>Categoria</span>
-            <input
-              name="category"
-              type="text"
-              list="category-options"
-              placeholder="Ex.: Mercearia"
-              required
-              value="${escapeHtml(editingItem?.category || "")}"
-            />
-          </label>
-        </div>
         <label>
-          <span>Marca preferida</span>
+          <span>Supermercado</span>
+          <select name="preferredStore">
+            <option value="">Todos os supermercados</option>
+            ${stores
+              .map(
+                (store) => `
+                  <option value="${escapeHtml(store.id)}" ${
+                    editingItem?.preferredStore === store.id ? "selected" : ""
+                  }>${escapeHtml(store.name)}</option>
+                `
+              )
+              .join("")}
+          </select>
+        </label>
+        <label>
+          <span>Categoria</span>
+          <input
+            name="category"
+            type="text"
+            list="category-options"
+            placeholder="Ex.: Mercearia"
+            required
+            value="${escapeHtml(editingItem?.category || "")}"
+          />
+        </label>
+        <label>
+          <span>Marca</span>
           <input
             name="preferredBrand"
             type="text"
@@ -67,7 +75,7 @@ function renderBasketForm(editingItem, categories) {
         </label>
         <div class="button-row">
           <button type="submit" class="button button-primary">
-            ${editingItem ? "Guardar item" : "Adicionar ao cabaz"}
+            ${editingItem ? "Guardar item" : "Adicionar"}
           </button>
           <button type="button" class="button button-muted" data-action="clear-edit">Limpar</button>
         </div>
@@ -79,7 +87,11 @@ function renderBasketForm(editingItem, categories) {
   `;
 }
 
-function renderBasketList(basket) {
+function getStoreName(stores, storeId) {
+  return stores.find((store) => store.id === storeId)?.name || storeId;
+}
+
+function renderBasketList(basket, stores) {
   if (basket.length === 0) {
     return `
       <section class="panel-card">
@@ -111,9 +123,15 @@ function renderBasketList(basket) {
                   <h3>${escapeHtml(item.name)}</h3>
                   <p>${escapeHtml(item.category)} · ${escapeHtml(String(item.quantity))} un.</p>
                   ${
-                    item.preferredBrand || item.notes
+                    item.preferredStore || item.preferredBrand || item.notes
                       ? `<small>${escapeHtml(
-                          [item.preferredBrand, item.notes].filter(Boolean).join(" · ")
+                          [
+                            item.preferredStore ? getStoreName(stores, item.preferredStore) : "",
+                            item.preferredBrand,
+                            item.notes
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")
                         )}</small>`
                       : ""
                   }
@@ -440,8 +458,8 @@ export function renderApp({ state, viewModel }) {
       ${renderFlash(state)}
       <main class="layout">
         <aside class="sidebar">
-          ${renderBasketForm(viewModel.editingItem, viewModel.categories)}
-          ${renderBasketList(state.basket)}
+          ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores)}
+          ${renderBasketList(state.basket, state.stores)}
           ${renderImports(state)}
         </aside>
         <section class="content">
@@ -454,4 +472,3 @@ export function renderApp({ state, viewModel }) {
     </div>
   `;
 }
-

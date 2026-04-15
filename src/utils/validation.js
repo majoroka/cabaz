@@ -31,6 +31,7 @@ export function validateBasketJson(data) {
       id: item.id || slugify(item.name),
       name: item.name.trim(),
       quantity: Math.max(1, Number.parseInt(item.quantity, 10) || 1),
+      preferredStore: String(item.preferredStore || "").trim(),
       category: String(item.category || "Sem categoria").trim(),
       preferredBrand: String(item.preferredBrand || "").trim(),
       notes: String(item.notes || "").trim()

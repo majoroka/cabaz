@@ -4,6 +4,7 @@
       "id": "iogurte-natural",
       "name": "Iogurte natural",
       "quantity": 4,
+      "preferredStore": "continente",
       "category": "Laticínios",
       "preferredBrand": "Nestlé",
       "notes": "Unidades de 125 g"
@@ -12,10 +13,10 @@
       "id": "cafe-moido",
       "name": "Café moído",
       "quantity": 1,
+      "preferredStore": "",
       "category": "Mercearia",
       "preferredBrand": "Delta",
       "notes": "Pacote de 250 g"
     }
   ]
 }
-

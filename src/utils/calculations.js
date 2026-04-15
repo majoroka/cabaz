@@ -75,6 +75,16 @@ export function getVisibleStoreIds(stores, filters) {
   return stores.some((store) => store.id === filters.store) ? [filters.store] : [];
 }
 
+function getStoreIdsForItem(stores, filters, item) {
+  const visibleStoreIds = getVisibleStoreIds(stores, filters);
+
+  if (!item.preferredStore) {
+    return visibleStoreIds;
+  }
+
+  return visibleStoreIds.includes(item.preferredStore) ? [item.preferredStore] : [];
+}
+
 export function selectBestResult(results) {
   const available = results.filter((result) => result.inStock);
 
@@ -92,11 +102,11 @@ export function selectBestResult(results) {
 }
 
 export function buildComparisonRows({ basket, results, stores, filters }) {
-  const storeIds = getVisibleStoreIds(stores, filters);
   const basketItems = filterBasketItems(basket, filters);
   const rows = [];
 
   basketItems.forEach((item) => {
+    const storeIds = getStoreIdsForItem(stores, filters, item);
     const matches = results.filter(
       (result) => result.basketItemId === item.id && storeIds.includes(result.store)
     );
@@ -152,6 +162,11 @@ export function aggregateTotalsByStore({ basket, results, stores, filters }) {
 
       const summary = basketItems.reduce(
         (accumulator, item) => {
+          if (item.preferredStore && item.preferredStore !== storeId) {
+            accumulator.missingCount += 1;
+            return accumulator;
+          }
+
           const matches = results.filter(
             (result) => result.store === storeId && result.basketItemId === item.id
           );
@@ -211,4 +226,3 @@ export function getDashboardSummary(aggregates, basketItemCount) {
     spread: priciest.total - cheapest.total
   };
 }
-

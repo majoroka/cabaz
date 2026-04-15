@@ -21,6 +21,7 @@ Exemplo:
     "id": "leite-meio-gordo",
     "name": "Leite meio-gordo",
     "quantity": 6,
+    "preferredStore": "continente",
     "category": "Laticínios",
     "preferredBrand": "Mimosa",
     "notes": "Embalagens de 1 L"
@@ -33,6 +34,7 @@ Campos:
 - `id`: identificador estável do item
 - `name`: nome do item no cabaz
 - `quantity`: quantidade pretendida
+- `preferredStore`: supermercado preferido ou filtro específico para esse item, opcional
 - `category`: categoria de navegação e filtro
 - `preferredBrand`: preferência opcional
 - `notes`: observações opcionais
@@ -102,4 +104,3 @@ Campos principais:
 - O frontend não depende da origem dos dados, apenas do formato JSON.
 - Um scraper local futuro pode gerar estes ficheiros para uma pasta partilhada, e a app limita-se a importá-los e apresentá-los.
 - Se um ficheiro de resultados contiver lojas não definidas em `stores`, a app cria uma representação mínima dessas lojas para não ocultar os dados importados.
-

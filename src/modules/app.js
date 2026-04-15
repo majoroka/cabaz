@@ -184,6 +184,7 @@ export function createApp(rootElement) {
       id: String(formData.get("id") || "").trim() || slugify(normalizedName),
       name: normalizedName,
       quantity: Math.max(1, Number.parseInt(String(formData.get("quantity") || "1"), 10) || 1),
+      preferredStore: String(formData.get("preferredStore") || "").trim(),
       category: String(formData.get("category") || "Sem categoria").trim() || "Sem categoria",
       preferredBrand: String(formData.get("preferredBrand") || "").trim(),
       notes: String(formData.get("notes") || "").trim()
