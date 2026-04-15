@@ -379,53 +379,6 @@ function renderSummaryCards(summary) {
   `;
 }
 
-function renderStoreTotals(aggregates) {
-  if (aggregates.length === 0) {
-    return `
-      <section class="panel-card">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Totais por supermercado</p>
-            <h2>Sem totais calculáveis</h2>
-          </div>
-        </div>
-        <p class="empty-state">Carregue dados ou ajuste os filtros para ver estimativas por loja.</p>
-      </section>
-    `;
-  }
-
-  const highestCoverage = aggregates[0].coverage;
-  const cheapestId = aggregates.find((entry) => entry.coverage === highestCoverage)?.store.id;
-
-  return `
-    <section class="panel-card">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Totais por supermercado</p>
-          <h2>Estimativa do cabaz</h2>
-        </div>
-      </div>
-      <div class="store-total-grid">
-        ${aggregates
-          .map(
-            (entry) => `
-              <article class="store-total-card ${entry.store.id === cheapestId ? "store-total-card-best" : ""}">
-                <div class="store-total-heading">
-                  <h3>${escapeHtml(entry.store.name)}</h3>
-                  ${entry.store.id === cheapestId ? '<span class="status-tag">Melhor total</span>' : ""}
-                </div>
-                <strong>${formatCurrency(entry.total)}</strong>
-                <p>${entry.itemCount} itens com preço · ${entry.missingCount} em falta</p>
-                <small>Cobertura ${(entry.coverage * 100).toFixed(0)}%</small>
-              </article>
-            `
-          )
-          .join("")}
-      </div>
-    </section>
-  `;
-}
-
 function renderTable(rows) {
   if (rows.length === 0) {
     return `
@@ -542,7 +495,6 @@ export function renderApp({ state, viewModel }) {
         </aside>
         <section class="content">
           ${renderSummaryCards(viewModel.summary)}
-          ${renderStoreTotals(viewModel.aggregates)}
           ${renderTable(viewModel.rows)}
         </section>
       </main>

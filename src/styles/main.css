@@ -74,7 +74,6 @@ a {
 .hero-card,
 .panel-card,
 .summary-card,
-.store-total-card,
 .flash {
   border: 1px solid var(--border);
   background: var(--surface);
@@ -95,7 +94,6 @@ a {
 
 .hero-card p,
 .summary-card p,
-.store-total-card p,
 .help-text,
 .empty-state,
 .source-label,
@@ -156,7 +154,6 @@ small {
 }
 
 .section-heading h2,
-.store-total-card h3,
 .basket-item h3 {
   margin: 0.15rem 0 0;
   font-size: 1.05rem;
@@ -171,7 +168,6 @@ small {
 .form-grid,
 .source-grid,
 .summary-grid,
-.store-total-grid,
 .button-row {
   display: grid;
   gap: 0.85rem;
@@ -188,10 +184,6 @@ small {
 .source-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 1rem;
-}
-
-.store-total-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .button-row {
@@ -336,13 +328,11 @@ textarea {
 }
 
 .summary-card,
-.store-total-card,
 .source-card {
   padding: 1rem;
 }
 
-.summary-card strong,
-.store-total-card strong {
+.summary-card strong {
   display: block;
   margin: 0.4rem 0 0.3rem;
   font-size: 1.65rem;
@@ -402,20 +392,8 @@ textarea {
   margin-top: 0.45rem;
 }
 
-.store-total-card-best,
 .best-row td {
   background: rgba(243, 250, 242, 0.92);
-}
-
-.store-total-card-best {
-  border-color: rgba(47, 127, 58, 0.28);
-}
-
-.store-total-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
 }
 
 .comparison-panel {
@@ -539,7 +517,6 @@ textarea {
   .panel-card,
   .summary-card,
   .hero-card,
-  .store-total-card,
   .flash {
     border-radius: 18px;
   }
@@ -562,8 +539,7 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .summary-card strong,
-  .store-total-card strong {
+  .summary-card strong {
     font-size: 1.35rem;
   }
 }
