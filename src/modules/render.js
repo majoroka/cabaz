@@ -120,6 +120,7 @@ function renderBasketForm(editingItem, categories, stores, brands) {
           <button type="submit" class="button button-primary">
             ${editingItem ? "Guardar item" : "Adicionar"}
           </button>
+          <button type="button" class="button" data-action="search-products">Pesquisar</button>
           <button type="button" class="button button-muted" data-action="clear-edit">Limpar</button>
         </div>
       </form>
@@ -127,6 +128,88 @@ function renderBasketForm(editingItem, categories, stores, brands) {
         ${brands.map((brand) => `<option value="${escapeHtml(brand)}"></option>`).join("")}
       </datalist>
     </section>
+  `;
+}
+
+function renderProductSearchModal(productSearch) {
+  if (!productSearch.isOpen) {
+    return "";
+  }
+
+  return `
+    <div class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="product-search-title">
+      <section class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Pesquisa de produtos</p>
+            <h2 id="product-search-title">Resultados para “${escapeHtml(productSearch.query)}”</h2>
+          </div>
+          <button type="button" class="button button-small button-muted" data-action="close-product-search">
+            Fechar
+          </button>
+        </div>
+        ${
+          productSearch.rows.length === 0
+            ? `<p class="empty-state">Não foram encontrados produtos com esse termo nos dados carregados.</p>`
+            : `
+              <div class="table-wrapper">
+                <table class="comparison-table product-search-table">
+                  <thead>
+                    <tr>
+                      <th>Ação</th>
+                      <th>Supermercado</th>
+                      <th>Produto</th>
+                      <th>Preço</th>
+                      <th>Formato</th>
+                      <th>Preço unitário</th>
+                      <th>Estado</th>
+                      <th>Atualizado</th>
+                      <th>Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${productSearch.rows
+                      .map(
+                        (row) => `
+                          <tr>
+                            <td>
+                              <button
+                                type="button"
+                                class="button button-small button-primary"
+                                data-action="add-search-result"
+                                data-result-id="${escapeHtml(row.result.id)}"
+                              >
+                                Adicionar
+                              </button>
+                            </td>
+                            <td>${escapeHtml(row.store?.name || row.result.store)}</td>
+                            <td>
+                              <strong>${escapeHtml(row.result.matchedName)}</strong>
+                              <small>${escapeHtml(row.basketItem?.name || "Produto encontrado")}</small>
+                            </td>
+                            <td><strong>${formatCurrency(row.result.price)}</strong></td>
+                            <td>${escapeHtml(formatSize(row.result.size, row.result.sizeUnit))}</td>
+                            <td>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</td>
+                            <td>${row.result.inStock ? "Disponível" : "Indisponível"}</td>
+                            <td>${escapeHtml(formatDate(row.result.lastUpdated))}</td>
+                            <td>
+                              ${
+                                row.result.url
+                                  ? `<a href="${escapeHtml(row.result.url)}" target="_blank" rel="noreferrer">Abrir</a>`
+                                  : '<span class="muted">n/d</span>'
+                              }
+                            </td>
+                          </tr>
+                        `
+                      )
+                      .join("")}
+                  </tbody>
+                </table>
+              </div>
+            `
+        }
+      </section>
+    </div>
   `;
 }
 
@@ -435,6 +518,7 @@ export function renderApp({ state, viewModel }) {
         </div>
       </header>
       ${renderFlash(state)}
+      ${renderProductSearchModal(viewModel.productSearch)}
       <main class="layout">
         <aside class="sidebar">
           ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores, viewModel.brands)}
