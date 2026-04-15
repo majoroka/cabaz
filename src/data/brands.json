@@ -1,94 +1,988 @@
 [
-  "Agros",
-  "Alpro",
-  "Amanhecer",
-  "Auchan",
-  "Aveleda",
-  "Barilla",
-  "Becel",
-  "Ben & Jerry's",
-  "Bom Petisco",
-  "Bonduelle",
-  "Buondi",
-  "Cem Porcento",
-  "Cerealis",
-  "Cigala",
-  "Coca-Cola",
-  "Compal",
-  "Continente",
-  "Coviran",
-  "Cuétara",
-  "Danone",
-  "Delta",
-  "Dodot",
-  "Dove",
-  "Dr. Oetker",
-  "Ecover",
-  "Elvive",
-  "Espiga",
-  "Fairy",
-  "Fanta",
-  "Ferbar",
-  "Fula",
-  "Gallo",
-  "Garnier",
-  "Gresso",
-  "Guloso",
-  "Heinz",
-  "Iglo",
-  "Intermarché",
-  "Izidoro",
-  "Johnson's",
-  "Knorr",
-  "L'Oréal",
-  "Lactogal",
-  "Lactovit",
-  "Lidl",
-  "Limiano",
-  "Luso",
-  "Maggi",
-  "Matinal",
-  "Mercadona",
-  "Meu Super",
-  "Milaneza",
-  "Mimosa",
-  "Minipreço",
-  "Nacional",
-  "Nescafé",
-  "Nestlé",
-  "Nivea",
-  "Nova Açores",
-  "Oliveira da Serra",
-  "Oral-B",
-  "Origens",
-  "Panzani",
-  "Pedras",
-  "Pepsi",
-  "Persil",
-  "Pingo Doce",
-  "PorSi",
-  "Président",
-  "Prozis",
-  "Quaker",
-  "Ramirez",
-  "Renova",
-  "Rexona",
-  "Rummo",
-  "Sanex",
-  "Schweppes",
-  "Sidul",
-  "Skip",
-  "Somat",
-  "SPAR",
-  "Super Bock",
-  "Tenório",
-  "Terra Nostra",
-  "Tide",
-  "Torres",
-  "Ucal",
-  "Vanish",
-  "Vaqueiro",
-  "Vigor",
-  "Vileda",
-  "Yoggi"
+  {
+    "name": "A Vaca que Ri",
+    "brandType": "transversal",
+    "aliases": [
+      "A VACA QUE RI"
+    ]
+  },
+  {
+    "name": "Actimel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Activia",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Agros",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Água do Luso",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ajax",
+    "brandType": "transversal"
+  },
+  {
+    "name": "All Seasons",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Alpro",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Amanhecer",
+    "brandType": "private_label",
+    "store": "amanhecer"
+  },
+  {
+    "name": "Aptamil",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Área Viva",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Artiach",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Asia Green Garden",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Auchan",
+    "brandType": "private_label",
+    "store": "auchan"
+  },
+  {
+    "name": "Aurada",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Ausonia",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Aveleda",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Axe",
+    "brandType": "transversal"
+  },
+  {
+    "name": "B!",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Babybel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Barilla",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Barissimo",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Becel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bellasan",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Belvita",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ben & Jerry's",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bicentury",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bio",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Biscotto",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Bledina",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bom Petisco",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bom Sucesso",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bon-Ri",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Bonduelle",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bosque Verde",
+    "brandType": "private_label",
+    "store": "mercadona"
+  },
+  {
+    "name": "Branca de Neve",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Bref",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Buitoni",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Buondi",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Cachet",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Calvé",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Captain's Life",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Carlsberg",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Casta Fina",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Castelões",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Cem Por Cento",
+    "brandType": "transversal",
+    "aliases": [
+      "Cem Porcento"
+    ]
+  },
+  {
+    "name": "Cerealis",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Cerelac",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ceres",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Chocapic",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Cien",
+    "brandType": "private_label",
+    "store": "lidl"
+  },
+  {
+    "name": "Cif",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Cigala",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Coca-Cola",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Colgate",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Comfort",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Compal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Compy",
+    "brandType": "private_label",
+    "store": "mercadona"
+  },
+  {
+    "name": "Condi",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Contemporal",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Continente",
+    "brandType": "private_label",
+    "store": "continente"
+  },
+  {
+    "name": "Continente É",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Continente Gourmet",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Corn Flakes",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Coviran",
+    "brandType": "private_label",
+    "store": "coviran"
+  },
+  {
+    "name": "Cuétara",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Danacol",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Danone",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Danonino",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Deliplus",
+    "brandType": "private_label",
+    "store": "mercadona"
+  },
+  {
+    "name": "Delta",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Dodot",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Dove",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Dr. Oetker",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ecover",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Elmex",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Elvive",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Espiga",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Evax",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fácil & Bom",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Fairy",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fanta",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Felix",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ferbar",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ferrero Rocher",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Findus",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Finish",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fitness",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Friskies",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Frize",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fructis",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fula",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Fumadinho",
+    "brandType": "private_label",
+    "store": "lidl"
+  },
+  {
+    "name": "Gallo",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Garnier",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Gelatelli",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Gillette",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Go Natural",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Gourmet",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Gresso",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Gullón",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Guloso",
+    "brandType": "transversal"
+  },
+  {
+    "name": "H&S",
+    "brandType": "transversal",
+    "aliases": [
+      "Head & Shoulders"
+    ]
+  },
+  {
+    "name": "Häagen-Dazs",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Hacendado",
+    "brandType": "private_label",
+    "store": "mercadona"
+  },
+  {
+    "name": "Harpic",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Heineken",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Heinz",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Hellmann's",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Iglo",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Intermarché",
+    "brandType": "private_label",
+    "store": "intermarche"
+  },
+  {
+    "name": "Iswari",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Izidoro",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Johnson's",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Kellogg's",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Knorr",
+    "brandType": "transversal"
+  },
+  {
+    "name": "L'Oréal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "L'Oréal Paris",
+    "brandType": "transversal",
+    "aliases": [
+      "Loreal Paris"
+    ]
+  },
+  {
+    "name": "La Cocinera",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lactogal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lactovit",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lidl",
+    "brandType": "private_label",
+    "store": "lidl"
+  },
+  {
+    "name": "Limiano",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lindahls",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lindt",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lipton",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lipton Ice Tea",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Luso",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Lysol",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Maggi",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Maizena",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Marca Continente",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Matinal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "McCain",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Mercadona",
+    "brandType": "private_label",
+    "store": "mercadona"
+  },
+  {
+    "name": "Meu Super",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Milaneza",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Milbona",
+    "brandType": "private_label",
+    "store": "lidl"
+  },
+  {
+    "name": "Mimosa",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Minipreço",
+    "brandType": "private_label",
+    "store": "minipreco"
+  },
+  {
+    "name": "Monchique",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Monster",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Moser Roth",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "MyLabel",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Nacional",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nenuco",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nescafé",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nesquik",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nestea",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nestlé",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nestum",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nivea",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nova Açores",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nutella",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Nutribén",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Oikos",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Oliveira da Serra",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Oral-B",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Oreo",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Origens",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Palmolive",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pantagruel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pantene",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Panzani",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Parmalat",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Parmareggio",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pedigree",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pedras",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pepsi",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Persil",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pescanova",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Philadelphia",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Pingo Doce",
+    "brandType": "private_label",
+    "store": "pingo-doce"
+  },
+  {
+    "name": "Planta",
+    "brandType": "transversal"
+  },
+  {
+    "name": "PôrSi",
+    "brandType": "private_label",
+    "store": "intermarche",
+    "aliases": [
+      "PorSi"
+    ]
+  },
+  {
+    "name": "Président",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Provamel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Prozis",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Purina",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Quaker",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ramirez",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Red Bull",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Regina",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Reina",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Renova",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Rexona",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Royal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Royal Canin",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Rummo",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sagres",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Saludães",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sanex",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Schweppes",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Scottex",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Selecção Continente",
+    "brandType": "private_label",
+    "store": "meu-super"
+  },
+  {
+    "name": "Sensodyne",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sheba",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Shoyce",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sidul",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Skip",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Solevita",
+    "brandType": "private_label",
+    "store": "lidl"
+  },
+  {
+    "name": "Somat",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sonasol",
+    "brandType": "transversal"
+  },
+  {
+    "name": "SPAR",
+    "brandType": "private_label",
+    "store": "spar"
+  },
+  {
+    "name": "Special K",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sprite",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sumol",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sun Snacks",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Super Bock",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Surf",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Sweet Valley",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Sweet-Land",
+    "brandType": "private_label",
+    "store": "aldi"
+  },
+  {
+    "name": "Tampax",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Tenório",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Terra Nostra",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Tetley",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Tide",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Toblerone",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Torres",
+    "brandType": "transversal"
+  },
+  {
+    "name": "TUC",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ucal",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vanish",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vaqueiro",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vernel",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vigor",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vileda",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Vitalis",
+    "brandType": "transversal"
+  },
+  {
+    "name": "WC Pato",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Whiskas",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Wilkinson",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Yoggi",
+    "brandType": "transversal"
+  },
+  {
+    "name": "Ziploc",
+    "brandType": "transversal"
+  }
 ]
