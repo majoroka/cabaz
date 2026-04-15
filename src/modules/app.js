@@ -8,6 +8,7 @@ import {
   filterBasketItems,
   getDashboardSummary
 } from "../utils/calculations.js";
+import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
 import { slugify, uniqueValues } from "../utils/helpers.js";
 import { validateBasketJson, validateResultsJson, validateStoresJson } from "../utils/validation.js";
@@ -125,6 +126,10 @@ function getViewModel(state) {
   const summary = getDashboardSummary(aggregates, filteredItems.length);
 
   return {
+    brands: getBrandOptions({
+      basket: state.basket,
+      results: state.results
+    }),
     categories,
     editingItem: state.basket.find((item) => item.id === state.editingItemId) || null,
     aggregates,

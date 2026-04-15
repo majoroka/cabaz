@@ -94,6 +94,7 @@ Exemplo:
     "basketItemId": "leite-meio-gordo",
     "store": "continente",
     "matchedName": "Leite Meio Gordo Mimosa 1 L",
+    "brand": "Mimosa",
     "price": 0.95,
     "size": 1,
     "sizeUnit": "L",
@@ -112,6 +113,7 @@ Campos principais:
 - `basketItemId`: relação com o item do cabaz
 - `store`: identificador da loja
 - `matchedName`: nome do produto encontrado
+- `brand`: marca detetada, opcional
 - `price`: preço do produto
 - `size`: quantidade base da embalagem
 - `sizeUnit`: unidade da embalagem (`g`, `kg`, `mL`, `L`, `un`)

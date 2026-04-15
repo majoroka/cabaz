@@ -105,6 +105,7 @@ export function validateResultsJson(data) {
       basketItemId: String(result.basketItemId).trim(),
       store: String(result.store).trim(),
       matchedName: String(result.matchedName).trim(),
+      brand: String(result.brand || "").trim(),
       price,
       size: result.size === null || result.size === undefined ? null : Number(result.size),
       sizeUnit: result.sizeUnit ? String(result.sizeUnit).trim() : null,

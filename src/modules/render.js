@@ -14,7 +14,7 @@ function renderFlash(state) {
   return "";
 }
 
-function renderBasketForm(editingItem, categories, stores) {
+function renderBasketForm(editingItem, categories, stores, brands) {
   return `
     <section class="panel-card">
       <div class="section-heading">
@@ -67,6 +67,7 @@ function renderBasketForm(editingItem, categories, stores) {
           <input
             name="preferredBrand"
             type="text"
+            list="brand-options"
             placeholder="Opcional"
             value="${escapeHtml(editingItem?.preferredBrand || "")}"
           />
@@ -84,6 +85,9 @@ function renderBasketForm(editingItem, categories, stores) {
           <button type="button" class="button button-muted" data-action="clear-edit">Limpar</button>
         </div>
       </form>
+      <datalist id="brand-options">
+        ${brands.map((brand) => `<option value="${escapeHtml(brand)}"></option>`).join("")}
+      </datalist>
     </section>
   `;
 }
@@ -453,7 +457,7 @@ export function renderApp({ state, viewModel }) {
       ${renderFlash(state)}
       <main class="layout">
         <aside class="sidebar">
-          ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores)}
+          ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores, viewModel.brands)}
           ${renderBasketList(state.basket, state.stores)}
           ${renderImports(state)}
         </aside>

@@ -4,6 +4,7 @@
       "basketItemId": "iogurte-natural",
       "store": "continente",
       "matchedName": "Iogurte Natural Nestlé 4 x 125 g",
+      "brand": "Nestlé",
       "price": 1.99,
       "size": 500,
       "sizeUnit": "g",
@@ -18,6 +19,7 @@
       "basketItemId": "cafe-moido",
       "store": "pingo-doce",
       "matchedName": "Café Moído Delta 250 g",
+      "brand": "Delta",
       "price": 3.49,
       "size": 250,
       "sizeUnit": "g",
@@ -30,4 +32,3 @@
     }
   ]
 }
-
