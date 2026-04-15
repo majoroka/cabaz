@@ -71,6 +71,19 @@ function removeStoredJson(storageKey) {
   window.localStorage.removeItem(storageKey);
 }
 
+function createUniqueId(baseValue, existingIds) {
+  const baseId = slugify(baseValue) || "item";
+  let candidateId = baseId;
+  let suffix = 2;
+
+  while (existingIds.has(candidateId)) {
+    candidateId = `${baseId}-${suffix}`;
+    suffix += 1;
+  }
+
+  return candidateId;
+}
+
 function createFallbackStoresFromResults(results, stores) {
   const knownIds = new Set(stores.map((store) => store.id));
   const missingStoreIds = uniqueValues(
@@ -295,11 +308,15 @@ export function createApp(rootElement) {
       existingBasketItem?.name ||
       String(formData.get("name") || "").trim() ||
       result.matchedName;
+    const existingBasketIds = new Set(state.basket.map((item) => item.id));
+    const itemId = existingBasketIds.has(result.basketItemId)
+      ? createUniqueId(`${result.matchedName}-${result.store}`, existingBasketIds)
+      : result.basketItemId || createUniqueId(name, existingBasketIds);
     const notes =
       String(formData.get("notes") || "").trim() ||
       `Produto encontrado: ${result.matchedName}`;
     const item = {
-      id: result.basketItemId || slugify(name),
+      id: itemId,
       name,
       quantity: Math.max(1, Number.parseInt(String(formData.get("quantity") || "1"), 10) || 1),
       preferredStore: result.store,
@@ -319,6 +336,16 @@ export function createApp(rootElement) {
       state.basket.splice(existingIndex, 1, item);
     } else {
       state.basket.unshift(item);
+    }
+
+    if (item.id !== result.basketItemId) {
+      const resultIds = new Set(state.results.map((entry) => entry.id));
+      state.results.unshift({
+        ...result,
+        id: createUniqueId(`${result.store}-${item.id}`, resultIds),
+        basketItemId: item.id
+      });
+      persistJson(STORAGE_KEYS.results, state.results);
     }
 
     persistJson(STORAGE_KEYS.basket, state.basket);
