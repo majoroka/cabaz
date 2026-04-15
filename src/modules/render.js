@@ -81,12 +81,22 @@ function renderBasketForm(editingItem, categories, stores, brands) {
       </div>
       <form id="basket-form" class="stack-form">
         <input type="hidden" name="id" value="${escapeHtml(editingItem?.id || "")}" />
-        <input type="hidden" name="quantity" value="${escapeHtml(String(editingItem?.quantity || 1))}" />
         <label>
           <span>Nome</span>
           <input name="name" type="text" placeholder="Ex.: Leite meio-gordo" required value="${escapeHtml(
             editingItem?.name || ""
           )}" />
+        </label>
+        <label>
+          <span>Quantidade</span>
+          <input
+            name="quantity"
+            type="number"
+            min="1"
+            step="1"
+            required
+            value="${escapeHtml(String(editingItem?.quantity || 1))}"
+          />
         </label>
         ${renderDropdown({
           label: "Supermercado",
@@ -143,6 +153,7 @@ function renderProductSearchModal(productSearch) {
           <div>
             <p class="eyebrow">Pesquisa de produtos</p>
             <h2 id="product-search-title">Resultados para “${escapeHtml(productSearch.query)}”</h2>
+            <p class="modal-subtitle">Quantidade pretendida: ${escapeHtml(String(productSearch.quantity))}</p>
           </div>
           <button type="button" class="button button-small button-muted" data-action="close-product-search">
             Fechar
@@ -159,7 +170,9 @@ function renderProductSearchModal(productSearch) {
                       <th>Ação</th>
                       <th>Supermercado</th>
                       <th>Produto</th>
+                      <th>Quantidade</th>
                       <th>Preço</th>
+                      <th>Total estimado</th>
                       <th>Formato</th>
                       <th>Preço unitário</th>
                       <th>Estado</th>
@@ -187,7 +200,9 @@ function renderProductSearchModal(productSearch) {
                               <strong>${escapeHtml(row.result.matchedName)}</strong>
                               <small>${escapeHtml(row.basketItem?.name || "Produto encontrado")}</small>
                             </td>
+                            <td>${escapeHtml(String(productSearch.quantity))}</td>
                             <td><strong>${formatCurrency(row.result.price)}</strong></td>
+                            <td><strong>${formatCurrency(row.lineTotal)}</strong></td>
                             <td>${escapeHtml(formatSize(row.result.size, row.result.sizeUnit))}</td>
                             <td>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</td>
                             <td>${row.result.inStock ? "Disponível" : "Indisponível"}</td>

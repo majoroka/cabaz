@@ -30,6 +30,7 @@ const DEFAULT_FILTERS = {
 const EMPTY_PRODUCT_SEARCH = {
   isOpen: false,
   query: "",
+  quantity: 1,
   resultIds: []
 };
 
@@ -150,7 +151,8 @@ function getViewModel(state) {
       return {
         result,
         store: state.stores.find((store) => store.id === result.store) || null,
-        basketItem: state.basket.find((item) => item.id === result.basketItemId) || null
+        basketItem: state.basket.find((item) => item.id === result.basketItemId) || null,
+        lineTotal: result.price * state.productSearch.quantity
       };
     })
     .filter(Boolean);
@@ -231,6 +233,7 @@ export function createApp(rootElement) {
 
     const formData = new FormData(form);
     const query = String(formData.get("name") || "").trim();
+    const quantity = Math.max(1, Number.parseInt(String(formData.get("quantity") || "1"), 10) || 1);
     const normalizedQuery = normalizeSearchText(query);
 
     if (!normalizedQuery) {
@@ -268,6 +271,7 @@ export function createApp(rootElement) {
     state.productSearch = {
       isOpen: true,
       query,
+      quantity,
       resultIds: matches.map((result) => result.id)
     };
     clearMessages();

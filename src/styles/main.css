@@ -456,8 +456,13 @@ textarea {
   margin: 0.15rem 0 0;
 }
 
+.modal-subtitle {
+  margin: 0.45rem 0 0;
+  color: var(--text-soft);
+}
+
 .product-search-table {
-  min-width: 980px;
+  min-width: 1120px;
 }
 
 .modal-card .table-wrapper {
