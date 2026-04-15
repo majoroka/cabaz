@@ -370,7 +370,7 @@ function renderSummaryCards(summary) {
         <strong>${formatCurrency(summary.cheapestTotal)}</strong>
         <p>Estimativa com base no preço por item e quantidade pedida.</p>
       </article>
-      <article class="summary-card">
+      <article class="summary-card summary-card-featured">
         <span class="summary-label">Diferença mais barata vs. mais cara</span>
         <strong>${formatCurrency(summary.spread)}</strong>
         <p>Comparação entre lojas com a mesma cobertura de itens.</p>
@@ -475,29 +475,52 @@ function renderTable(rows) {
 
 export function renderApp({ state, viewModel }) {
   return `
-    <div class="shell">
-      <header class="hero">
-        <div>
-          <p class="eyebrow">Ferramenta utilitária</p>
-          <h1>Cabaz</h1>
-          <p class="hero-copy">
-            Compare preços do mesmo cabaz entre supermercados em Portugal.
-          </p>
-        </div>
-      </header>
-      ${renderFlash(state)}
-      ${renderProductSearchModal(viewModel.productSearch)}
-      <main class="layout">
-        <aside class="sidebar">
-          ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores, viewModel.brands)}
-          ${renderBasketList(state.basket, state.stores)}
-          ${renderImports(state)}
-        </aside>
-        <section class="content">
+    <div class="app-shell">
+      <aside class="app-nav" aria-label="Navegação principal">
+        <a class="brand" href="#" aria-label="Cabaz">
+          <span class="brand-mark">C</span>
+          <span>Cabaz</span>
+        </a>
+        <nav class="nav-list">
+          <a class="nav-link nav-link-active" href="#dashboard">Painel</a>
+          <a class="nav-link" href="#comparison">Comparação</a>
+          <a class="nav-link" href="#basket-form">Produtos</a>
+          <a class="nav-link" href="#basket">Cabaz</a>
+          <a class="nav-link" href="#data">Dados</a>
+        </nav>
+      </aside>
+      <div class="app-main" id="dashboard">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Ferramenta utilitária</p>
+            <h1>Compare o seu cabaz</h1>
+            <p class="hero-copy">
+              Acompanhe preços, pesquise produtos e compare supermercados numa interface simples.
+            </p>
+          </div>
+        </header>
+        <div class="dashboard-body">
+          ${renderFlash(state)}
+          ${renderProductSearchModal(viewModel.productSearch)}
           ${renderSummaryCards(viewModel.summary)}
-          ${renderTable(viewModel.rows)}
-        </section>
-      </main>
+          <main class="layout">
+            <section class="content">
+              ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores, viewModel.brands)}
+              <div id="comparison">
+                ${renderTable(viewModel.rows)}
+              </div>
+            </section>
+            <aside class="sidebar">
+              <div id="basket">
+                ${renderBasketList(state.basket, state.stores)}
+              </div>
+              <div id="data">
+                ${renderImports(state)}
+              </div>
+            </aside>
+          </main>
+        </div>
+      </div>
     </div>
   `;
 }
