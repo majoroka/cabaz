@@ -445,14 +445,8 @@ export function renderApp({ state, viewModel }) {
           <p class="eyebrow">Ferramenta utilitária</p>
           <h1>Cabaz</h1>
           <p class="hero-copy">
-            Compare preços do mesmo cabaz entre supermercados em Portugal com dados JSON locais,
-            mock ou importados.
+            Compare preços do mesmo cabaz entre supermercados em Portugal.
           </p>
-        </div>
-        <div class="hero-card">
-          <span class="hero-kicker">Frontend estático</span>
-          <strong>Preparado para GitHub Pages</strong>
-          <p>Sem backend, sem APIs privadas e pronto para receber exportações futuras de scraping local.</p>
         </div>
       </header>
       ${renderFlash(state)}

@@ -54,10 +54,6 @@ a {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: 2.2fr 1fr;
-  gap: 1.25rem;
-  align-items: end;
   margin-bottom: 1.25rem;
 }
 

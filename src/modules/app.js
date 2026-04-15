@@ -104,7 +104,7 @@ function createInitialState() {
     stores,
     filters: { ...DEFAULT_FILTERS },
     editingItemId: null,
-    notice: storedBasket ? "Cabaz recuperado do armazenamento local." : "Demo pronta a usar.",
+    notice: storedBasket ? "Cabaz recuperado do armazenamento local." : "",
     error: "",
     sources: {
       results: storedResults ? "Ficheiro importado" : "Exemplo local",
