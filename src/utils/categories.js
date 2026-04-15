@@ -20,7 +20,7 @@ export function normalizeCategoryId(value) {
   const rawValue = String(value || "").trim();
 
   if (!rawValue) {
-    return "mercearia";
+    return "sem_categoria";
   }
 
   if (categories.some((category) => category.id === rawValue)) {

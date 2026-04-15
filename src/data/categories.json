@@ -1,5 +1,9 @@
 [
   {
+    "id": "sem_categoria",
+    "name": "Sem categoria"
+  },
+  {
     "id": "mercearia",
     "name": "Mercearia"
   },
@@ -68,4 +72,3 @@
     "name": "Casa e Cozinha"
   }
 ]
-

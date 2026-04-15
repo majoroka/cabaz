@@ -35,7 +35,7 @@ function renderBasketForm(editingItem, categories, stores) {
         </label>
         <label>
           <span>Supermercado</span>
-          <select name="preferredStore">
+          <select name="preferredStore" data-close-on-leave="true">
             <option value="">Todos os supermercados</option>
             ${stores
               .map(
@@ -50,7 +50,7 @@ function renderBasketForm(editingItem, categories, stores) {
         </label>
         <label>
           <span>Categoria</span>
-          <select name="category" required>
+          <select name="category" required data-close-on-leave="true">
             ${categories
               .map(
                 (category) => `
@@ -227,7 +227,7 @@ function renderFilters(filters, categories, stores) {
         </label>
         <label>
           <span>Categoria</span>
-          <select data-filter="category">
+          <select data-filter="category" data-close-on-leave="true">
             <option value="all">Todas</option>
             ${categories
               .map(
@@ -242,7 +242,7 @@ function renderFilters(filters, categories, stores) {
         </label>
         <label>
           <span>Supermercado</span>
-          <select data-filter="store">
+          <select data-filter="store" data-close-on-leave="true">
             <option value="all">Todos</option>
             ${stores
               .map(

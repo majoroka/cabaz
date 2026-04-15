@@ -43,6 +43,7 @@ Campos:
 
 | ID | Categoria |
 | --- | --- |
+| `sem_categoria` | Sem categoria |
 | `mercearia` | Mercearia |
 | `fruta_legumes` | Fruta e Legumes |
 | `talho` | Talho |

@@ -366,6 +366,20 @@ export function createApp(rootElement) {
     }
   });
 
+  rootElement.addEventListener("pointerout", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLSelectElement) || target.dataset.closeOnLeave !== "true") {
+      return;
+    }
+
+    if (event.relatedTarget instanceof Node && target.contains(event.relatedTarget)) {
+      return;
+    }
+
+    target.blur();
+  });
+
   rootElement.addEventListener("change", async (event) => {
     const target = event.target;
 
