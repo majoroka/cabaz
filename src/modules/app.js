@@ -33,6 +33,7 @@ const EMPTY_PRODUCT_SEARCH = {
   quantity: 1,
   resultIds: []
 };
+const MESSAGE_TIMEOUT_MS = 4000;
 
 function cloneValue(value) {
   return JSON.parse(JSON.stringify(value));
@@ -134,7 +135,7 @@ function createInitialState() {
     filters: { ...DEFAULT_FILTERS },
     productSearch: { ...EMPTY_PRODUCT_SEARCH },
     editingItemId: null,
-    notice: storedBasket ? "Cabaz recuperado do armazenamento local." : "",
+    notice: "",
     error: "",
     sources: {
       results: storedResults ? "Ficheiro importado" : "Exemplo local",
@@ -198,6 +199,7 @@ export function createApp(rootElement) {
   }
 
   const state = createInitialState();
+  let messageTimeoutId = null;
 
   function render() {
     rootElement.innerHTML = renderApp({
@@ -206,17 +208,38 @@ export function createApp(rootElement) {
     });
   }
 
+  function cancelMessageDismiss() {
+    if (messageTimeoutId) {
+      window.clearTimeout(messageTimeoutId);
+      messageTimeoutId = null;
+    }
+  }
+
+  function scheduleMessageDismiss() {
+    cancelMessageDismiss();
+
+    messageTimeoutId = window.setTimeout(() => {
+      state.error = "";
+      state.notice = "";
+      messageTimeoutId = null;
+      render();
+    }, MESSAGE_TIMEOUT_MS);
+  }
+
   function setNotice(message) {
     state.notice = message;
     state.error = "";
+    scheduleMessageDismiss();
   }
 
   function setError(message) {
     state.error = message;
     state.notice = "";
+    scheduleMessageDismiss();
   }
 
   function clearMessages() {
+    cancelMessageDismiss();
     state.error = "";
     state.notice = "";
   }
