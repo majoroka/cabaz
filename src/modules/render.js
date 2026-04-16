@@ -543,17 +543,17 @@ export function renderApp({ state, viewModel }) {
                 />
               </svg>
             </span>
-            <input
-              type="text"
-              name="postalCode"
-              form="hero-search-form"
-              inputmode="numeric"
-              autocomplete="postal-code"
-              list="postal-code-options"
-              value="${escapeHtml(viewModel.catalogSearch.postalCode)}"
-              placeholder="Qual o teu CP"
-              aria-label="Código postal"
-            />
+                <input
+                  type="text"
+                  name="postalCode"
+                  form="hero-search-form"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  list="postal-code-options"
+                  value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"
+                  placeholder="Qual o teu CP"
+                  aria-label="Código postal"
+                />
           </label>
           <div class="hero-inner">
             <h1>COMPARE O SEU CABAZ</h1>

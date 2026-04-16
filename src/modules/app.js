@@ -542,7 +542,11 @@ export function createApp(rootElement) {
     if (event.target instanceof HTMLFormElement && event.target.id === "hero-search-form") {
       event.preventDefault();
       const formData = new FormData(event.target);
-      const postalCode = normalizePostalCodeInput(String(formData.get("postalCode") || "").trim());
+      const rawPostalValue = String(formData.get("postalCode") || "").trim();
+      const postalCode =
+        state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
+          ? state.catalogSearch.postalCode
+          : normalizePostalCodeInput(rawPostalValue);
 
       if (postalCode) {
         try {
@@ -687,7 +691,7 @@ export function createApp(rootElement) {
   rootElement.addEventListener("input", async (event) => {
     const target = event.target;
 
-    if (
+      if (
       target instanceof HTMLInputElement &&
       (target.name === "query" || target.name === "postalCode") &&
       (target.closest("#hero-search-form") || target.form?.id === "hero-search-form")
@@ -697,13 +701,17 @@ export function createApp(rootElement) {
       }
 
       if (target.name === "postalCode") {
-        const normalizedPostalCode = normalizePostalCodeInput(target.value);
+        const rawPostalValue = target.value.trim();
+        const normalizedPostalCode = normalizePostalCodeInput(rawPostalValue);
 
-        state.catalogSearch.postalCode = normalizedPostalCode;
-        state.catalogSearch.postalLabel = "";
+        if (rawPostalValue !== state.catalogSearch.postalLabel) {
+          state.catalogSearch.postalCode = normalizedPostalCode;
+          state.catalogSearch.postalLabel = "";
+        }
+
         state.catalogSearch.postalSuggestions = [];
 
-        if (target.value !== normalizedPostalCode) {
+        if (!state.catalogSearch.postalLabel && target.value !== normalizedPostalCode) {
           target.value = normalizedPostalCode;
         }
 
@@ -716,12 +724,16 @@ export function createApp(rootElement) {
               state.catalogSearch.postalCode = exactMatch.code;
               state.catalogSearch.postalLabel = exactMatch.label;
               state.catalogSearch.postalSuggestions = [];
+              target.value = exactMatch.label;
             } else {
               state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
             }
           } catch {
             state.catalogSearch.postalSuggestions = [];
           }
+        } else if (!normalizedPostalCode) {
+          state.catalogSearch.postalCode = "";
+          state.catalogSearch.postalLabel = "";
         }
 
         syncPostalCodeSuggestions();
