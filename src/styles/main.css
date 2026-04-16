@@ -777,58 +777,6 @@ textarea {
   overflow: hidden;
 }
 
-.modal-backdrop {
-  position: fixed;
-  z-index: 80;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  background: rgba(21, 30, 46, 0.42);
-  backdrop-filter: blur(8px);
-}
-
-.modal-card {
-  display: flex;
-  flex-direction: column;
-  width: min(1120px, calc(100vw - 2rem));
-  max-height: min(760px, calc(100vh - 2rem));
-  min-height: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: #ffffff;
-  box-shadow: 0 26px 80px rgba(22, 32, 48, 0.24);
-  padding: 1.15rem;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: start;
-  margin-bottom: 1rem;
-}
-
-.modal-header h2 {
-  margin: 0.15rem 0 0;
-}
-
-.modal-subtitle {
-  margin: 0.45rem 0 0;
-  color: var(--text-soft);
-}
-
-.product-search-table {
-  min-width: 1120px;
-}
-
-.modal-card .table-wrapper {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-}
-
 .table-wrapper {
   overflow-x: auto;
 }
@@ -998,10 +946,6 @@ textarea {
   .catalog-filters,
   .catalog-results-grid {
     grid-template-columns: 1fr;
-  }
-
-  .modal-header {
-    display: grid;
   }
 
   .basket-item {
