@@ -211,18 +211,24 @@ a {
 }
 
 .hero-location-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 3;
   display: grid;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 8px;
+  max-height: 216px;
+  overflow-y: auto;
 }
 
 .hero-location-option {
   display: grid;
-  gap: 4px;
+  gap: 2px;
   width: 100%;
-  padding: 12px 16px;
+  padding: 8px 14px 9px;
   border: 1px solid rgba(31, 42, 57, 0.14);
-  border-radius: 24px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.92);
   color: #1f2a39;
   text-align: left;
@@ -231,13 +237,15 @@ a {
 }
 
 .hero-location-option strong {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1.15;
 }
 
 .hero-location-option span {
   color: #6f8197;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  line-height: 1.1;
 }
 
 .hero-location-icon {
