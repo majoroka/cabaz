@@ -127,11 +127,12 @@ a {
 
 .hero {
   position: relative;
-  min-height: 238px;
+  min-height: 312px;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  padding: 42px 38px 78px;
+  padding: 44px 38px 56px;
   background: #151e2e;
   color: #ffffff;
 }
@@ -147,10 +148,13 @@ a {
     radial-gradient(circle at 82% 22%, rgba(70, 156, 142, 0.26), transparent 34%);
 }
 
-.hero > div {
+.hero-inner {
   position: relative;
   z-index: 2;
-  max-width: 620px;
+  width: min(100%, 920px);
+  display: grid;
+  justify-items: center;
+  text-align: center;
 }
 
 .hero-produce {
@@ -166,18 +170,89 @@ a {
 }
 
 .hero h1 {
-  margin: 0.2rem 0 0;
-  font-size: clamp(2rem, 4vw, 2.9rem);
-  line-height: 1;
-  letter-spacing: -0.045em;
+  margin: 0;
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 0.98;
+  letter-spacing: 0.08em;
+  font-weight: 800;
 }
 
 .hero-copy {
-  max-width: 44rem;
-  margin: 0.85rem 0 0;
+  max-width: 54rem;
+  margin: 0.7rem 0 0;
   color: rgba(255, 255, 255, 0.78);
-  font-size: 1.08rem;
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
   line-height: 1.45;
+}
+
+.hero-search {
+  width: min(100%, 742px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+  padding: 10px 12px 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 18px 40px rgba(13, 20, 34, 0.18);
+}
+
+.hero-search-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #71839a;
+}
+
+.hero-search-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero-search input {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  color: #54657d;
+  font-size: clamp(1.05rem, 2vw, 1.12rem);
+  box-shadow: none;
+}
+
+.hero-search input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+.hero-search-button {
+  min-width: 144px;
+  border: 0;
+  border-radius: 999px;
+  background: #3e9a74;
+  color: #ffffff;
+  padding: 0.92rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hero-search-button:hover {
+  transform: translateY(-1px);
+  background: #348463;
+}
+
+.hero-search-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(62, 154, 116, 0.18);
 }
 
 .dashboard-body {
@@ -747,8 +822,8 @@ textarea {
   }
 
   .hero {
-    min-height: 220px;
-    padding: 34px 20px 68px;
+    min-height: 280px;
+    padding: 34px 20px 48px;
   }
 
   .hero-produce {
@@ -769,6 +844,26 @@ textarea {
 @media (max-width: 640px) {
   .hero h1 {
     font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-search {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .hero-search-icon {
+    display: none;
+  }
+
+  .hero-search input {
+    text-align: center;
+  }
+
+  .hero-search-button {
+    width: 100%;
+    min-width: 0;
   }
 
   .panel-card,

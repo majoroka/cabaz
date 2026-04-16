@@ -492,12 +492,23 @@ export function renderApp({ state, viewModel }) {
       </aside>
       <div class="app-main" id="dashboard">
         <header class="hero">
-          <div>
-            <p class="eyebrow">Ferramenta utilitária</p>
-            <h1>Compare o seu cabaz</h1>
+          <div class="hero-inner">
+            <h1>COMPARE O SEU CABAZ</h1>
             <p class="hero-copy">
-              Acompanhe preços, pesquise produtos e compare supermercados numa interface simples.
+              Acompanhe preços, pesquise produtos e compare preços entre lojas
             </p>
+            <div class="hero-search" role="search" aria-label="Pesquisa principal">
+              <span class="hero-search-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M10.5 4.5A6 6 0 1 0 16.5 10.5A6 6 0 0 0 10.5 4.5ZM3 10.5A7.5 7.5 0 1 1 16.05 15.55L21 20.5L19.5 22L14.55 17.05A7.5 7.5 0 0 1 3 10.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <input type="search" placeholder="O que procura hoje?" aria-label="Pesquisar" />
+              <button type="button" class="hero-search-button">Procurar</button>
+            </div>
           </div>
           <img class="hero-produce" src="./hero-produce.svg" alt="" aria-hidden="true" />
         </header>
