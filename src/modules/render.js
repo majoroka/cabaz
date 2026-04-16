@@ -534,32 +534,33 @@ export function renderApp({ state, viewModel }) {
       </aside>
       <div class="app-main" id="dashboard">
         <header class="hero">
+          <label class="hero-location">
+            <span class="hero-location-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.44 12 21.5 12 21.5C12 21.5 19 14.44 19 9.5C19 5.63 15.87 2.5 12 2.5ZM12 12.5C10.34 12.5 9 11.16 9 9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5C15 11.16 13.66 12.5 12 12.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <input
+              type="text"
+              name="postalCode"
+              form="hero-search-form"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              list="postal-code-options"
+              value="${escapeHtml(viewModel.catalogSearch.postalCode)}"
+              placeholder="Qual o teu CP"
+              aria-label="Código postal"
+            />
+          </label>
           <div class="hero-inner">
             <h1>COMPARE O SEU CABAZ</h1>
             <p class="hero-copy">
               Acompanhe preços, pesquise produtos e compare preços entre lojas
             </p>
             <form id="hero-search-form" class="hero-search-shell" role="search" aria-label="Pesquisa principal">
-              <label class="hero-location">
-                <span class="hero-location-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false">
-                    <path
-                      d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.44 12 21.5 12 21.5C12 21.5 19 14.44 19 9.5C19 5.63 15.87 2.5 12 2.5ZM12 12.5C10.34 12.5 9 11.16 9 9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5C15 11.16 13.66 12.5 12 12.5Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <input
-                  type="text"
-                  name="postalCode"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  list="postal-code-options"
-                  value="${escapeHtml(viewModel.catalogSearch.postalCode)}"
-                  placeholder="Qual o teu CP"
-                  aria-label="Código postal"
-                />
-              </label>
               <div class="hero-search">
                 <span class="hero-search-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false">

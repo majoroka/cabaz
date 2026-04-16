@@ -690,7 +690,7 @@ export function createApp(rootElement) {
     if (
       target instanceof HTMLInputElement &&
       (target.name === "query" || target.name === "postalCode") &&
-      target.closest("#hero-search-form")
+      (target.closest("#hero-search-form") || target.form?.id === "hero-search-form")
     ) {
       if (target.name === "query") {
         state.catalogSearch.query = target.value;

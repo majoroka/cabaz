@@ -186,19 +186,21 @@ a {
 }
 
 .hero-search-shell {
-  width: min(100%, 1420px);
-  display: grid;
-  gap: 1.35rem;
+  width: min(100%, 742px);
   margin-top: 1.85rem;
 }
 
 .hero-location {
-  width: fit-content;
-  display: inline-grid;
+  position: absolute;
+  top: 46px;
+  left: 46px;
+  z-index: 2;
+  width: 214px;
+  display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 8px;
-  min-width: 220px;
+  min-width: 0;
   padding: 10px 16px 10px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.96);
@@ -926,12 +928,17 @@ textarea {
   }
 
   .hero-search-shell {
-    width: min(100%, 860px);
+    width: min(100%, 742px);
   }
 
   .hero-produce {
     object-position: 68% center;
     opacity: 0.52;
+  }
+
+  .hero-location {
+    top: 30px;
+    left: 20px;
   }
 
   .dashboard-body {
@@ -961,8 +968,9 @@ textarea {
   }
 
   .hero-location {
-    min-width: 0;
+    position: static;
     width: 100%;
+    margin-bottom: 1rem;
   }
 
   .hero-search-icon {
