@@ -131,7 +131,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 44px 38px 56px;
   background: #151e2e;
   color: #ffffff;
