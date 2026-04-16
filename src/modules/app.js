@@ -308,6 +308,10 @@ export function createApp(rootElement) {
     });
   }
 
+  function resetCatalogSearch() {
+    state.catalogSearch = cloneValue(DEFAULT_CATALOG_SEARCH);
+  }
+
   function runCatalogSearch(query) {
     const normalizedQuery = normalizeSearchText(query);
 
@@ -593,6 +597,24 @@ export function createApp(rootElement) {
     if (target instanceof HTMLInputElement && target.dataset.importType) {
       await importJsonFile(target.files?.[0], target.dataset.importType);
       target.value = "";
+    }
+  });
+
+  rootElement.addEventListener("input", (event) => {
+    const target = event.target;
+
+    if (
+      target instanceof HTMLInputElement &&
+      target.name === "query" &&
+      target.closest("#hero-search-form")
+    ) {
+      state.catalogSearch.query = target.value;
+
+      if (target.value.trim() === "" && state.catalogSearch.executedQuery) {
+        clearMessages();
+        resetCatalogSearch();
+        render();
+      }
     }
   });
 
