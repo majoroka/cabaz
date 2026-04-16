@@ -150,9 +150,9 @@ export function getPostalCodeSuggestions(index, value, limit = 50) {
   return index.records
     .filter(
       (record) =>
-        record.normalizedLabel.startsWith(normalizedText) ||
-        record.normalizedPostalArea.startsWith(normalizedText) ||
-        record.normalizedStreets.some((street) => street.startsWith(normalizedText))
+        record.normalizedLabel.includes(normalizedText) ||
+        record.normalizedPostalArea.includes(normalizedText) ||
+        record.normalizedStreets.some((street) => street.includes(normalizedText))
     )
     .slice(0, limit);
 }
