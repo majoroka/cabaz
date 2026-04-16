@@ -11,6 +11,12 @@ import {
 import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
 import { slugify, uniqueValues } from "../utils/helpers.js";
+import {
+  createPostalCodeIndex,
+  findPostalCodeRecord,
+  getPostalCodeSuggestions,
+  normalizePostalCodeInput
+} from "../utils/postalCodes.js";
 import { validateBasketJson, validateResultsJson, validateStoresJson } from "../utils/validation.js";
 import { renderApp } from "./render.js";
 
@@ -29,6 +35,9 @@ const DEFAULT_FILTERS = {
 
 const DEFAULT_CATALOG_SEARCH = {
   query: "",
+  postalCode: "",
+  postalLabel: "",
+  postalSuggestions: [],
   executedQuery: "",
   resultIds: [],
   filters: {
@@ -252,12 +261,31 @@ export function createApp(rootElement) {
 
   const state = createInitialState();
   let messageTimeoutId = null;
+  let postalCodeIndex = null;
+  let postalCodeLoadPromise = null;
 
   function render() {
     rootElement.innerHTML = renderApp({
       state,
       viewModel: getViewModel(state)
     });
+  }
+
+  function syncPostalCodeSuggestions() {
+    const datalist = rootElement.querySelector("#postal-code-options");
+
+    if (!(datalist instanceof HTMLDataListElement)) {
+      return;
+    }
+
+    datalist.replaceChildren(
+      ...state.catalogSearch.postalSuggestions.map((record) => {
+        const option = document.createElement("option");
+        option.value = record.code;
+        option.textContent = record.label;
+        return option;
+      })
+    );
   }
 
   function cancelMessageDismiss() {
@@ -309,7 +337,34 @@ export function createApp(rootElement) {
   }
 
   function resetCatalogSearch() {
-    state.catalogSearch = cloneValue(DEFAULT_CATALOG_SEARCH);
+    state.catalogSearch = {
+      ...cloneValue(DEFAULT_CATALOG_SEARCH),
+      postalCode: state.catalogSearch.postalCode,
+      postalLabel: state.catalogSearch.postalLabel
+    };
+  }
+
+  async function ensurePostalCodeIndex() {
+    if (postalCodeIndex) {
+      return postalCodeIndex;
+    }
+
+    if (!postalCodeLoadPromise) {
+      postalCodeLoadPromise = fetch(`${import.meta.env.BASE_URL}data/codigos_postais_portugal.txt`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Não foi possível carregar a base de códigos postais.");
+          }
+
+          return response.text();
+        })
+        .then((text) => {
+          postalCodeIndex = createPostalCodeIndex(text);
+          return postalCodeIndex;
+        });
+    }
+
+    return postalCodeLoadPromise;
   }
 
   function runCatalogSearch(query) {
@@ -342,9 +397,11 @@ export function createApp(rootElement) {
     });
 
     state.catalogSearch = {
+      ...state.catalogSearch,
       query,
       executedQuery: query,
       resultIds: matches.map((result) => result.id),
+      postalSuggestions: [],
       filters: {
         ...DEFAULT_CATALOG_SEARCH.filters
       }
@@ -474,7 +531,7 @@ export function createApp(rootElement) {
     render();
   }
 
-  rootElement.addEventListener("submit", (event) => {
+  rootElement.addEventListener("submit", async (event) => {
     if (event.target instanceof HTMLFormElement && event.target.id === "basket-form") {
       event.preventDefault();
       clearMessages();
@@ -485,6 +542,33 @@ export function createApp(rootElement) {
     if (event.target instanceof HTMLFormElement && event.target.id === "hero-search-form") {
       event.preventDefault();
       const formData = new FormData(event.target);
+      const postalCode = normalizePostalCodeInput(String(formData.get("postalCode") || "").trim());
+
+      if (postalCode) {
+        try {
+          const index = await ensurePostalCodeIndex();
+          const postalRecord = findPostalCodeRecord(index, postalCode);
+
+          if (!postalRecord) {
+            setError("Introduza um código postal válido no formato 0000-000.");
+            render();
+            return;
+          }
+
+          state.catalogSearch.postalCode = postalRecord.code;
+          state.catalogSearch.postalLabel = postalRecord.label;
+          state.catalogSearch.postalSuggestions = [];
+        } catch (error) {
+          setError(error.message || "Não foi possível validar o código postal.");
+          render();
+          return;
+        }
+      } else {
+        state.catalogSearch.postalCode = "";
+        state.catalogSearch.postalLabel = "";
+        state.catalogSearch.postalSuggestions = [];
+      }
+
       runCatalogSearch(String(formData.get("query") || "").trim());
     }
   });
@@ -600,17 +684,43 @@ export function createApp(rootElement) {
     }
   });
 
-  rootElement.addEventListener("input", (event) => {
+  rootElement.addEventListener("input", async (event) => {
     const target = event.target;
 
     if (
       target instanceof HTMLInputElement &&
-      target.name === "query" &&
+      (target.name === "query" || target.name === "postalCode") &&
       target.closest("#hero-search-form")
     ) {
-      state.catalogSearch.query = target.value;
+      if (target.name === "query") {
+        state.catalogSearch.query = target.value;
+      }
 
-      if (target.value.trim() === "" && state.catalogSearch.executedQuery) {
+      if (target.name === "postalCode") {
+        const normalizedPostalCode = normalizePostalCodeInput(target.value);
+
+        state.catalogSearch.postalCode = normalizedPostalCode;
+        state.catalogSearch.postalLabel = "";
+        state.catalogSearch.postalSuggestions = [];
+
+        if (target.value !== normalizedPostalCode) {
+          target.value = normalizedPostalCode;
+        }
+
+        if (normalizedPostalCode.replace(/\D/g, "").length >= 4) {
+          try {
+            const index = await ensurePostalCodeIndex();
+            state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
+          } catch {
+            state.catalogSearch.postalSuggestions = [];
+          }
+        }
+
+        syncPostalCodeSuggestions();
+        return;
+      }
+
+      if (target.name === "query" && target.value.trim() === "" && state.catalogSearch.executedQuery) {
         clearMessages();
         resetCatalogSearch();
         render();

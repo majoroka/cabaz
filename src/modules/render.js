@@ -539,23 +539,54 @@ export function renderApp({ state, viewModel }) {
             <p class="hero-copy">
               Acompanhe preços, pesquise produtos e compare preços entre lojas
             </p>
-            <form id="hero-search-form" class="hero-search" role="search" aria-label="Pesquisa principal">
-              <span class="hero-search-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path
-                    d="M10.5 4.5A6 6 0 1 0 16.5 10.5A6 6 0 0 0 10.5 4.5ZM3 10.5A7.5 7.5 0 1 1 16.05 15.55L21 20.5L19.5 22L14.55 17.05A7.5 7.5 0 0 1 3 10.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              <input
-                type="search"
-                name="query"
-                value="${escapeHtml(viewModel.catalogSearch.query)}"
-                placeholder="O que procura hoje?"
-                aria-label="Pesquisar"
-              />
-              <button type="submit" class="hero-search-button">Procurar</button>
+            <form id="hero-search-form" class="hero-search-shell" role="search" aria-label="Pesquisa principal">
+              <label class="hero-location">
+                <span class="hero-location-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path
+                      d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.44 12 21.5 12 21.5C12 21.5 19 14.44 19 9.5C19 5.63 15.87 2.5 12 2.5ZM12 12.5C10.34 12.5 9 11.16 9 9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5C15 11.16 13.66 12.5 12 12.5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  name="postalCode"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  list="postal-code-options"
+                  value="${escapeHtml(viewModel.catalogSearch.postalCode)}"
+                  placeholder="Qual o teu CP"
+                  aria-label="Código postal"
+                />
+              </label>
+              <div class="hero-search">
+                <span class="hero-search-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path
+                      d="M10.5 4.5A6 6 0 1 0 16.5 10.5A6 6 0 0 0 10.5 4.5ZM3 10.5A7.5 7.5 0 1 1 16.05 15.55L21 20.5L19.5 22L14.55 17.05A7.5 7.5 0 0 1 3 10.5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="search"
+                  name="query"
+                  value="${escapeHtml(viewModel.catalogSearch.query)}"
+                  placeholder="O que procura hoje?"
+                  aria-label="Pesquisar"
+                />
+                <button type="submit" class="hero-search-button">Procurar</button>
+              </div>
+              <datalist id="postal-code-options">
+                ${viewModel.catalogSearch.postalSuggestions
+                  .map(
+                    (record) => `
+                      <option value="${escapeHtml(record.code)}">${escapeHtml(record.label)}</option>
+                    `
+                  )
+                  .join("")}
+              </datalist>
             </form>
           </div>
           <img class="hero-produce" src="./hero-produce.svg" alt="" aria-hidden="true" />
