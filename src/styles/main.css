@@ -127,6 +127,7 @@ a {
 
 .hero {
   position: relative;
+  z-index: 2;
   min-height: 312px;
   display: flex;
   align-items: center;
@@ -194,8 +195,9 @@ a {
   position: absolute;
   top: 46px;
   left: 46px;
-  z-index: 2;
-  width: 214px;
+  z-index: 5;
+  width: fit-content;
+  max-width: min(360px, calc(100vw - 92px));
 }
 
 .hero-location {
@@ -204,7 +206,9 @@ a {
   align-items: center;
   gap: 8px;
   min-width: 0;
-  padding: 10px 16px 10px 14px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 8px 14px 8px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 14px 28px rgba(13, 20, 34, 0.12);
@@ -214,12 +218,15 @@ a {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  right: 0;
+  right: auto;
   z-index: 3;
   display: grid;
   gap: 8px;
   max-height: 216px;
   overflow-y: auto;
+  min-width: 100%;
+  width: max-content;
+  max-width: min(360px, calc(100vw - 40px));
 }
 
 .hero-location-option {
@@ -263,11 +270,14 @@ a {
 }
 
 .hero-location input {
+  width: auto;
+  min-width: 8ch;
+  max-width: 24ch;
   border: 0;
   background: transparent;
   padding: 0;
   color: #1f2a39;
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   box-shadow: none;
 }
 
@@ -347,6 +357,8 @@ a {
 }
 
 .dashboard-body {
+  position: relative;
+  z-index: 1;
   padding: 0 30px 42px;
 }
 
@@ -1012,6 +1024,7 @@ textarea {
     position: static;
     width: 100%;
     margin-bottom: 1rem;
+    max-width: none;
   }
 
   .hero-search-icon {

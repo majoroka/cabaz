@@ -534,8 +534,8 @@ export function renderApp({ state, viewModel }) {
       </aside>
       <div class="app-main" id="dashboard">
         <header class="hero">
-          <div class="hero-location-shell">
-            <label class="hero-location">
+	          <div class="hero-location-shell">
+	            <label class="hero-location">
               <span class="hero-location-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
@@ -544,17 +544,26 @@ export function renderApp({ state, viewModel }) {
                   />
                 </svg>
               </span>
-              <input
-                type="search"
-                name="postalCode"
-                form="hero-search-form"
-                inputmode="search"
-                autocomplete="postal-code"
-                value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"
-                placeholder="Qual a tua localidade ou CP"
-                aria-label="Código postal ou localidade"
-              />
-            </label>
+	              <input
+	                type="search"
+	                name="postalCode"
+	                form="hero-search-form"
+	                inputmode="search"
+	                autocomplete="postal-code"
+	                size="${Math.max(
+	                  14,
+	                  Math.min(
+	                    28,
+	                    (viewModel.catalogSearch.postalLabel ||
+	                      viewModel.catalogSearch.postalCode ||
+	                      "CP ou localidade").length
+	                  )
+	                )}"
+	                value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"
+	                placeholder="CP ou localidade"
+	                aria-label="Código postal ou localidade"
+	              />
+	            </label>
             <div class="hero-location-suggestions">
               ${viewModel.catalogSearch.postalSuggestions
                 .map(
