@@ -482,9 +482,12 @@ export function renderApp({ state, viewModel }) {
           <span>Cabaz</span>
         </a>
         <nav class="nav-list">
-          <a class="nav-link nav-link-active" href="#dashboard">Painel</a>
-          <a class="nav-link" href="#comparison">Comparação</a>
-          <a class="nav-link" href="#basket-form">Produtos</a>
+          <span class="nav-link nav-link-active">Painel</span>
+          <span class="nav-link">Lojas</span>
+          <span class="nav-link">Categorias</span>
+          <span class="nav-link">Marcas</span>
+          <span class="nav-link">Cabaz</span>
+          <span class="nav-link">Comparação</span>
         </nav>
       </aside>
       <div class="app-main" id="dashboard">
