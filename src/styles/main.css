@@ -410,6 +410,11 @@ label {
   gap: 0.42rem;
 }
 
+.filter-field {
+  display: grid;
+  gap: 0.42rem;
+}
+
 label span,
 .field-label {
   color: #384356;
@@ -609,6 +614,100 @@ textarea {
   color: rgba(255, 255, 255, 0.74);
 }
 
+.catalog-panel {
+  padding-bottom: 24px;
+}
+
+.catalog-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 22px 24px 0;
+}
+
+.catalog-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 20px 24px 0;
+}
+
+.catalog-result-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fbfcfe;
+}
+
+.catalog-result-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.catalog-result-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.catalog-result-top strong {
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+}
+
+.catalog-store {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.catalog-result-meta {
+  margin: -6px 0 0;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.catalog-result-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin: 0;
+}
+
+.catalog-result-details div {
+  margin: 0;
+}
+
+.catalog-result-details dt {
+  margin: 0 0 4px;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.catalog-result-details dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.catalog-result-link {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
 .source-card {
   border-radius: var(--radius-md);
   background: var(--surface-muted);
@@ -790,6 +889,10 @@ textarea {
   .sidebar {
     position: static;
   }
+
+  .catalog-results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 860px) {
@@ -839,6 +942,10 @@ textarea {
     gap: 14px;
     margin-top: -34px;
   }
+
+  .catalog-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -887,7 +994,9 @@ textarea {
   }
 
   .button-row,
-  .source-grid {
+  .source-grid,
+  .catalog-filters,
+  .catalog-results-grid {
     grid-template-columns: 1fr;
   }
 

@@ -33,6 +33,17 @@ const EMPTY_PRODUCT_SEARCH = {
   quantity: 1,
   resultIds: []
 };
+const DEFAULT_CATALOG_SEARCH = {
+  query: "",
+  executedQuery: "",
+  resultIds: [],
+  filters: {
+    store: "all",
+    category: "all",
+    brand: "all",
+    sort: "price-asc"
+  }
+};
 const MESSAGE_TIMEOUT_MS = 4000;
 
 function cloneValue(value) {
@@ -45,6 +56,10 @@ function normalizeSearchText(value) {
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
+}
+
+function sortByLabel(items) {
+  return [...items].sort((left, right) => left.label.localeCompare(right.label, "pt"));
 }
 
 function loadStoredJson(storageKey, validator) {
@@ -133,6 +148,7 @@ function createInitialState() {
     results: enrichResults(baseResults),
     stores,
     filters: { ...DEFAULT_FILTERS },
+    catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
     productSearch: { ...EMPTY_PRODUCT_SEARCH },
     editingItemId: null,
     notice: "",
@@ -170,6 +186,76 @@ function getViewModel(state) {
       };
     })
     .filter(Boolean);
+  const catalogSearchRecords = state.catalogSearch.resultIds
+    .map((resultId) => {
+      const result = state.results.find((entry) => entry.id === resultId);
+
+      if (!result) {
+        return null;
+      }
+
+      const store = state.stores.find((entry) => entry.id === result.store) || null;
+      const basketItem = state.basket.find((item) => item.id === result.basketItemId) || null;
+      const brand = result.brand || basketItem?.preferredBrand || "";
+      const categoryId = basketItem?.category || "sem_categoria";
+
+      return {
+        result,
+        store,
+        basketItem,
+        brand,
+        categoryId,
+        categoryName: getCategoryOptions().find((category) => category.id === categoryId)?.name || "Sem categoria"
+      };
+    })
+    .filter(Boolean);
+  const catalogFilterOptions = {
+    stores: sortByLabel(
+      uniqueValues(catalogSearchRecords.map((entry) => entry.store?.id)).map((storeId) => ({
+        value: storeId,
+        label: state.stores.find((store) => store.id === storeId)?.name || storeId
+      }))
+    ),
+    categories: sortByLabel(
+      uniqueValues(catalogSearchRecords.map((entry) => entry.categoryId)).map((categoryId) => ({
+        value: categoryId,
+        label: categories.find((category) => category.id === categoryId)?.name || categoryId
+      }))
+    ),
+    brands: sortByLabel(
+      uniqueValues(catalogSearchRecords.map((entry) => entry.brand)).map((brand) => ({
+        value: brand,
+        label: brand
+      }))
+    )
+  };
+  const visibleCatalogRecords = catalogSearchRecords
+    .filter((entry) => {
+      const matchesStore =
+        state.catalogSearch.filters.store === "all" || entry.store?.id === state.catalogSearch.filters.store;
+      const matchesCategory =
+        state.catalogSearch.filters.category === "all" ||
+        entry.categoryId === state.catalogSearch.filters.category;
+      const matchesBrand =
+        state.catalogSearch.filters.brand === "all" || entry.brand === state.catalogSearch.filters.brand;
+
+      return matchesStore && matchesCategory && matchesBrand;
+    })
+    .sort((left, right) => {
+      if (state.catalogSearch.filters.sort === "price-desc") {
+        return right.result.price - left.result.price;
+      }
+
+      if (state.catalogSearch.filters.sort === "name-asc") {
+        return left.result.matchedName.localeCompare(right.result.matchedName, "pt");
+      }
+
+      if (state.catalogSearch.filters.sort === "name-desc") {
+        return right.result.matchedName.localeCompare(left.result.matchedName, "pt");
+      }
+
+      return left.result.price - right.result.price;
+    });
 
   return {
     brands: getBrandOptions({
@@ -188,6 +274,12 @@ function getViewModel(state) {
     productSearch: {
       ...state.productSearch,
       rows: productSearchRows
+    },
+    catalogSearch: {
+      ...state.catalogSearch,
+      resultCount: catalogSearchRecords.length,
+      rows: visibleCatalogRecords,
+      options: catalogFilterOptions
     },
     summary
   };
@@ -258,6 +350,47 @@ export function createApp(rootElement) {
 
   function closeProductSearch() {
     state.productSearch = { ...EMPTY_PRODUCT_SEARCH };
+  }
+
+  function runCatalogSearch(query) {
+    const normalizedQuery = normalizeSearchText(query);
+
+    if (!normalizedQuery) {
+      setError("Escreva um termo de pesquisa.");
+      render();
+      return;
+    }
+
+    const matches = state.results.filter((result) => {
+      const basketItem = state.basket.find((item) => item.id === result.basketItemId);
+      const store = state.stores.find((entry) => entry.id === result.store);
+      const haystack = normalizeSearchText(
+        [
+          result.matchedName,
+          result.brand,
+          basketItem?.name,
+          basketItem?.preferredBrand,
+          basketItem?.notes,
+          basketItem?.category,
+          store?.name
+        ]
+          .filter(Boolean)
+          .join(" ")
+      );
+
+      return haystack.includes(normalizedQuery);
+    });
+
+    state.catalogSearch = {
+      query,
+      executedQuery: query,
+      resultIds: matches.map((result) => result.id),
+      filters: {
+        ...DEFAULT_CATALOG_SEARCH.filters
+      }
+    };
+    clearMessages();
+    render();
   }
 
   function searchProductsFromForm() {
@@ -505,6 +638,13 @@ export function createApp(rootElement) {
       event.preventDefault();
       clearMessages();
       upsertBasketItem(new FormData(event.target));
+      return;
+    }
+
+    if (event.target instanceof HTMLFormElement && event.target.id === "hero-search-form") {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      runCatalogSearch(String(formData.get("query") || "").trim());
     }
   });
 
@@ -622,6 +762,12 @@ export function createApp(rootElement) {
 
   rootElement.addEventListener("change", async (event) => {
     const target = event.target;
+
+    if (target instanceof HTMLSelectElement && target.closest("#catalog-filters-form")) {
+      state.catalogSearch.filters[target.name] = target.value;
+      render();
+      return;
+    }
 
     if (target instanceof HTMLInputElement && target.dataset.importType) {
       await importJsonFile(target.files?.[0], target.dataset.importType);

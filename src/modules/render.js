@@ -14,6 +14,25 @@ function renderFlash(state) {
   return "";
 }
 
+function renderSelectField({ label, name, value, options }) {
+  return `
+    <label class="filter-field">
+      <span>${escapeHtml(label)}</span>
+      <select name="${escapeHtml(name)}">
+        ${options
+          .map(
+            (option) => `
+              <option value="${escapeHtml(option.value)}" ${option.value === value ? "selected" : ""}>
+                ${escapeHtml(option.label)}
+              </option>
+            `
+          )
+          .join("")}
+      </select>
+    </label>
+  `;
+}
+
 function renderDropdown({ label, name, value, options }) {
   const selectedOption = options.find((option) => option.value === value) || options[0];
 
@@ -379,6 +398,117 @@ function renderSummaryCards(summary) {
   `;
 }
 
+function renderCatalogSearchResults(catalogSearch) {
+  if (!catalogSearch.executedQuery) {
+    return "";
+  }
+
+  const storeOptions = [
+    { value: "all", label: "Todas" },
+    ...catalogSearch.options.stores
+  ];
+  const categoryOptions = [
+    { value: "all", label: "Todas" },
+    ...catalogSearch.options.categories
+  ];
+  const brandOptions = [
+    { value: "all", label: "Todas" },
+    ...catalogSearch.options.brands
+  ];
+  const sortOptions = [
+    { value: "price-asc", label: "Preço mais baixo" },
+    { value: "price-desc", label: "Preço mais alto" },
+    { value: "name-asc", label: "A-Z" },
+    { value: "name-desc", label: "Z-A" }
+  ];
+
+  return `
+    <section class="panel-card catalog-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Resultados da pesquisa</p>
+          <h2>Pesquisa por “${escapeHtml(catalogSearch.executedQuery)}”</h2>
+        </div>
+        <span class="status-tag">${escapeHtml(String(catalogSearch.rows.length))} produtos</span>
+      </div>
+      <form id="catalog-filters-form" class="catalog-filters">
+        ${renderSelectField({
+          label: "Lojas",
+          name: "store",
+          value: catalogSearch.filters.store,
+          options: storeOptions
+        })}
+        ${renderSelectField({
+          label: "Categorias",
+          name: "category",
+          value: catalogSearch.filters.category,
+          options: categoryOptions
+        })}
+        ${renderSelectField({
+          label: "Marcas",
+          name: "brand",
+          value: catalogSearch.filters.brand,
+          options: brandOptions
+        })}
+        ${renderSelectField({
+          label: "Ordenar por",
+          name: "sort",
+          value: catalogSearch.filters.sort,
+          options: sortOptions
+        })}
+      </form>
+      ${
+        catalogSearch.rows.length === 0
+          ? `<p class="empty-state">Não existem produtos visíveis com os filtros atuais.</p>`
+          : `
+            <div class="catalog-results-grid">
+              ${catalogSearch.rows
+                .map(
+                  (entry) => `
+                    <article class="catalog-result-card">
+                      <div class="catalog-result-top">
+                        <span class="catalog-store">${escapeHtml(entry.store?.name || entry.result.store)}</span>
+                        <strong>${formatCurrency(entry.result.price)}</strong>
+                      </div>
+                      <h3>${escapeHtml(entry.result.matchedName)}</h3>
+                      <p class="catalog-result-meta">
+                        ${escapeHtml(entry.categoryName)}
+                        ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
+                      </p>
+                      <dl class="catalog-result-details">
+                        <div>
+                          <dt>Formato</dt>
+                          <dd>${escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit))}</dd>
+                        </div>
+                        <div>
+                          <dt>Preço unitário</dt>
+                          <dd>${escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit))}</dd>
+                        </div>
+                        <div>
+                          <dt>Estado</dt>
+                          <dd>${entry.result.inStock ? "Disponível" : "Indisponível"}</dd>
+                        </div>
+                        <div>
+                          <dt>Atualizado</dt>
+                          <dd>${escapeHtml(formatDate(entry.result.lastUpdated))}</dd>
+                        </div>
+                      </dl>
+                      ${
+                        entry.result.url
+                          ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
+                          : ""
+                      }
+                    </article>
+                  `
+                )
+                .join("")}
+            </div>
+          `
+      }
+    </section>
+  `;
+}
+
 function renderTable(rows) {
   if (rows.length === 0) {
     return `
@@ -497,7 +627,7 @@ export function renderApp({ state, viewModel }) {
             <p class="hero-copy">
               Acompanhe preços, pesquise produtos e compare preços entre lojas
             </p>
-            <div class="hero-search" role="search" aria-label="Pesquisa principal">
+            <form id="hero-search-form" class="hero-search" role="search" aria-label="Pesquisa principal">
               <span class="hero-search-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
@@ -506,9 +636,15 @@ export function renderApp({ state, viewModel }) {
                   />
                 </svg>
               </span>
-              <input type="search" placeholder="O que procura hoje?" aria-label="Pesquisar" />
-              <button type="button" class="hero-search-button">Procurar</button>
-            </div>
+              <input
+                type="search"
+                name="query"
+                value="${escapeHtml(viewModel.catalogSearch.query)}"
+                placeholder="O que procura hoje?"
+                aria-label="Pesquisar"
+              />
+              <button type="submit" class="hero-search-button">Procurar</button>
+            </form>
           </div>
           <img class="hero-produce" src="./hero-produce.svg" alt="" aria-hidden="true" />
         </header>
@@ -517,7 +653,7 @@ export function renderApp({ state, viewModel }) {
           ${renderProductSearchModal(viewModel.productSearch)}
           ${renderSummaryCards(viewModel.summary)}
           <main class="layout">
-            <section class="content"></section>
+            <section class="content">${renderCatalogSearchResults(viewModel.catalogSearch)}</section>
           </main>
         </div>
       </div>
