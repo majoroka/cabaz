@@ -506,12 +506,7 @@ export function renderApp({ state, viewModel }) {
           ${renderProductSearchModal(viewModel.productSearch)}
           ${renderSummaryCards(viewModel.summary)}
           <main class="layout">
-            <section class="content">
-              ${renderBasketForm(viewModel.editingItem, viewModel.categories, state.stores, viewModel.brands)}
-              <div id="comparison">
-                ${renderTable(viewModel.rows)}
-              </div>
-            </section>
+            <section class="content"></section>
           </main>
         </div>
       </div>
