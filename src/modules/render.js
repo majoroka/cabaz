@@ -478,7 +478,7 @@ export function renderApp({ state, viewModel }) {
     <div class="app-shell">
       <aside class="app-nav" aria-label="Navegação principal">
         <a class="brand" href="#" aria-label="Cabaz">
-          <span class="brand-mark">C</span>
+          <img class="brand-mark" src="./favicon_io/apple-touch-icon.png" alt="" aria-hidden="true" />
           <span>Cabaz</span>
         </a>
         <nav class="nav-list">
