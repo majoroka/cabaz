@@ -485,7 +485,6 @@ export function renderApp({ state, viewModel }) {
           <a class="nav-link nav-link-active" href="#dashboard">Painel</a>
           <a class="nav-link" href="#comparison">Comparação</a>
           <a class="nav-link" href="#basket-form">Produtos</a>
-          <a class="nav-link" href="#basket">Cabaz</a>
         </nav>
       </aside>
       <div class="app-main" id="dashboard">
@@ -510,11 +509,6 @@ export function renderApp({ state, viewModel }) {
                 ${renderTable(viewModel.rows)}
               </div>
             </section>
-            <aside class="sidebar">
-              <div id="basket">
-                ${renderBasketList(state.basket, state.stores)}
-              </div>
-            </aside>
           </main>
         </div>
       </div>
