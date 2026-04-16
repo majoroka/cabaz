@@ -551,12 +551,12 @@ export function renderApp({ state, viewModel }) {
 	                inputmode="search"
 	                autocomplete="postal-code"
 	                size="${Math.max(
-	                  14,
+	                  16,
 	                  Math.min(
-	                    28,
+	                    32,
 	                    (viewModel.catalogSearch.postalLabel ||
 	                      viewModel.catalogSearch.postalCode ||
-	                      "CP ou localidade").length
+	                      "CP ou localidade").length + 3
 	                  )
 	                )}"
 	                value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"

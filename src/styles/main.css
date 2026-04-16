@@ -197,18 +197,18 @@ a {
   left: 46px;
   z-index: 5;
   width: fit-content;
-  max-width: min(360px, calc(100vw - 92px));
+  max-width: min(440px, calc(100vw - 92px));
 }
 
 .hero-location {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
   width: fit-content;
   max-width: 100%;
-  padding: 8px 14px 8px 12px;
+  padding: 7px 16px 7px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 14px 28px rgba(13, 20, 34, 0.12);
@@ -271,13 +271,14 @@ a {
 
 .hero-location input {
   width: auto;
-  min-width: 8ch;
-  max-width: 24ch;
+  min-width: 9ch;
+  max-width: min(32ch, calc(100vw - 170px));
   border: 0;
   background: transparent;
-  padding: 0;
+  padding: 0 1.9rem 0 0;
   color: #1f2a39;
-  font-size: 0.94rem;
+  font-size: 0.88rem;
+  line-height: 1.1;
   box-shadow: none;
 }
 
