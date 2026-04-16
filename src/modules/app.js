@@ -1,13 +1,7 @@
 import basketExample from "../data/basket.example.json";
 import resultsExample from "../data/results.example.json";
 import storesExample from "../data/stores.json";
-import {
-  aggregateTotalsByStore,
-  buildComparisonRows,
-  enrichResults,
-  filterBasketItems,
-  getDashboardSummary
-} from "../utils/calculations.js";
+import { enrichResults } from "../utils/calculations.js";
 import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
 import { slugify, uniqueValues } from "../utils/helpers.js";
@@ -24,13 +18,6 @@ const STORAGE_KEYS = {
   basket: "cabaz:basket",
   results: "cabaz:results",
   stores: "cabaz:stores"
-};
-
-const DEFAULT_FILTERS = {
-  store: "all",
-  category: "all",
-  bestOnly: false,
-  search: ""
 };
 
 const DEFAULT_CATALOG_SEARCH = {
@@ -137,7 +124,6 @@ function createInitialState() {
     basket: storedBasket || cloneValue(basketExample),
     results: enrichResults(baseResults),
     stores,
-    filters: { ...DEFAULT_FILTERS },
     catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
     editingItemId: null,
     notice: "",
@@ -150,15 +136,7 @@ function createInitialState() {
 }
 
 function getViewModel(state) {
-  const filteredItems = filterBasketItems(state.basket, state.filters);
   const categories = getCategoryOptions();
-  const aggregates = aggregateTotalsByStore({
-    basket: state.basket,
-    results: state.results,
-    stores: state.stores,
-    filters: state.filters
-  });
-  const summary = getDashboardSummary(aggregates, filteredItems.length);
   const catalogSearchRecords = state.catalogSearch.resultIds
     .map((resultId) => {
       const result = state.results.find((entry) => entry.id === resultId);
@@ -237,20 +215,18 @@ function getViewModel(state) {
     }),
     categories,
     editingItem: state.basket.find((item) => item.id === state.editingItemId) || null,
-    aggregates,
-    rows: buildComparisonRows({
-      basket: state.basket,
-      results: state.results,
-      stores: state.stores,
-      filters: state.filters
-    }),
     catalogSearch: {
       ...state.catalogSearch,
       resultCount: catalogSearchRecords.length,
       rows: visibleCatalogRecords,
       options: catalogFilterOptions
     },
-    summary
+    summary: {
+      basketItemCount: null,
+      cheapestStore: null,
+      cheapestTotal: null,
+      spread: null
+    }
   };
 }
 
@@ -530,7 +506,6 @@ export function createApp(rootElement) {
     state.basket = cloneValue(basketExample);
     state.results = enrichResults(cloneValue(resultsExample));
     state.stores = createFallbackStoresFromResults(state.results, cloneValue(storesExample));
-    state.filters = { ...DEFAULT_FILTERS };
     state.sources.results = "Exemplo local";
     state.sources.stores = "Exemplo local";
     removeStoredJson(STORAGE_KEYS.results);

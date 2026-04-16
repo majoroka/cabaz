@@ -282,29 +282,23 @@ function renderSummaryCards(summary) {
     <section class="summary-grid">
       <article class="summary-card">
         <span class="summary-label">Itens em análise</span>
-        <strong>${escapeHtml(String(summary.basketItemCount))}</strong>
-        <p>Itens visíveis após os filtros aplicados.</p>
+        <strong>${summary.basketItemCount == null ? "—" : escapeHtml(String(summary.basketItemCount))}</strong>
+        <p>Será preenchido quando adicionar produtos ao cabaz.</p>
       </article>
       <article class="summary-card">
         <span class="summary-label">Supermercado mais barato</span>
-        <strong>${escapeHtml(summary.cheapestStore?.store.name || "n/d")}</strong>
-        <p>
-          ${
-            summary.cheapestStore
-              ? `${summary.cheapestStore.itemCount}/${summary.basketItemCount} itens encontrados`
-              : "Sem dados suficientes para comparar."
-          }
-        </p>
+        <strong>${escapeHtml(summary.cheapestStore?.store.name || "—")}</strong>
+        <p>Será calculado quando existir um cabaz ativo para comparação.</p>
       </article>
       <article class="summary-card">
         <span class="summary-label">Total mais baixo</span>
-        <strong>${formatCurrency(summary.cheapestTotal)}</strong>
-        <p>Estimativa com base no preço por item e quantidade pedida.</p>
+        <strong>${summary.cheapestTotal == null ? "—" : formatCurrency(summary.cheapestTotal)}</strong>
+        <p>Será calculado quando existir um cabaz ativo para comparação.</p>
       </article>
       <article class="summary-card summary-card-featured">
         <span class="summary-label">Diferença mais barata vs. mais cara</span>
-        <strong>${formatCurrency(summary.spread)}</strong>
-        <p>Comparação entre lojas com a mesma cobertura de itens.</p>
+        <strong>${summary.spread == null ? "—" : formatCurrency(summary.spread)}</strong>
+        <p>Será calculada quando existir um cabaz ativo para comparação.</p>
       </article>
     </section>
   `;
