@@ -1,3 +1,11 @@
+function normalizeLookupText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 export function normalizePostalCodeInput(value) {
   const digits = String(value || "")
     .replace(/\D/g, "")
@@ -39,7 +47,8 @@ export function createPostalCodeIndex(rawText) {
 
     const record = {
       code,
-      label: postalLabel
+      label: postalLabel,
+      normalizedLabel: normalizeLookupText(postalLabel)
     };
 
     lookup.set(code, record);
@@ -57,19 +66,37 @@ export function createPostalCodeIndex(rawText) {
 
 export function findPostalCodeRecord(index, value) {
   const normalized = normalizePostalCodeInput(value);
+  const exactCodeMatch = index.lookup.get(normalized);
 
-  return index.lookup.get(normalized) || null;
+  if (exactCodeMatch) {
+    return exactCodeMatch;
+  }
+
+  const normalizedText = normalizeLookupText(value);
+
+  if (!normalizedText) {
+    return null;
+  }
+
+  return [...index.lookup.values()].find((record) => record.normalizedLabel === normalizedText) || null;
 }
 
 export function getPostalCodeSuggestions(index, value, limit = 8) {
   const normalized = normalizePostalCodeInput(value);
+  const normalizedText = normalizeLookupText(value);
   const digits = normalized.replace(/\D/g, "");
 
-  if (digits.length < 4) {
+  if (!digits && normalizedText.length < 2) {
     return [];
   }
 
-  const candidates = index.byPrefix4.get(digits.slice(0, 4)) || [];
+  if (digits.length >= 4) {
+    const candidates = index.byPrefix4.get(digits.slice(0, 4)) || [];
 
-  return candidates.filter((record) => record.code.startsWith(normalized)).slice(0, limit);
+    return candidates.filter((record) => record.code.startsWith(normalized)).slice(0, limit);
+  }
+
+  return [...index.lookup.values()]
+    .filter((record) => record.normalizedLabel.startsWith(normalizedText))
+    .slice(0, limit);
 }

@@ -534,27 +534,46 @@ export function renderApp({ state, viewModel }) {
       </aside>
       <div class="app-main" id="dashboard">
         <header class="hero">
-          <label class="hero-location">
-            <span class="hero-location-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path
-                  d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.44 12 21.5 12 21.5C12 21.5 19 14.44 19 9.5C19 5.63 15.87 2.5 12 2.5ZM12 12.5C10.34 12.5 9 11.16 9 9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5C15 11.16 13.66 12.5 12 12.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-                <input
-                  type="text"
-                  name="postalCode"
-                  form="hero-search-form"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  list="postal-code-options"
-                  value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"
-                  placeholder="Qual o teu CP"
-                  aria-label="Código postal"
-                />
-          </label>
+          <div class="hero-location-shell">
+            <label class="hero-location">
+              <span class="hero-location-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.44 12 21.5 12 21.5C12 21.5 19 14.44 19 9.5C19 5.63 15.87 2.5 12 2.5ZM12 12.5C10.34 12.5 9 11.16 9 9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5C15 11.16 13.66 12.5 12 12.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <input
+                type="search"
+                name="postalCode"
+                form="hero-search-form"
+                inputmode="search"
+                autocomplete="postal-code"
+                value="${escapeHtml(viewModel.catalogSearch.postalLabel || viewModel.catalogSearch.postalCode)}"
+                placeholder="Qual a tua localidade ou CP"
+                aria-label="Código postal ou localidade"
+              />
+            </label>
+            <div class="hero-location-suggestions">
+              ${viewModel.catalogSearch.postalSuggestions
+                .map(
+                  (record) => `
+                    <button
+                      type="button"
+                      class="hero-location-option"
+                      data-action="select-postal-suggestion"
+                      data-postal-code="${escapeHtml(record.code)}"
+                      data-postal-label="${escapeHtml(record.label)}"
+                    >
+                      <strong>${escapeHtml(record.label)}</strong>
+                      <span>${escapeHtml(record.code)}</span>
+                    </button>
+                  `
+                )
+                .join("")}
+            </div>
+          </div>
           <div class="hero-inner">
             <h1>COMPARE O SEU CABAZ</h1>
             <p class="hero-copy">
@@ -579,15 +598,6 @@ export function renderApp({ state, viewModel }) {
                 />
                 <button type="submit" class="hero-search-button">Procurar</button>
               </div>
-              <datalist id="postal-code-options">
-                ${viewModel.catalogSearch.postalSuggestions
-                  .map(
-                    (record) => `
-                      <option value="${escapeHtml(record.code)}">${escapeHtml(record.label)}</option>
-                    `
-                  )
-                  .join("")}
-              </datalist>
             </form>
           </div>
           <img class="hero-produce" src="./hero-produce.svg" alt="" aria-hidden="true" />

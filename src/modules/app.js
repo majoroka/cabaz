@@ -272,18 +272,28 @@ export function createApp(rootElement) {
   }
 
   function syncPostalCodeSuggestions() {
-    const datalist = rootElement.querySelector("#postal-code-options");
+    const suggestionsContainer = rootElement.querySelector(".hero-location-suggestions");
 
-    if (!(datalist instanceof HTMLDataListElement)) {
+    if (!(suggestionsContainer instanceof HTMLElement)) {
       return;
     }
 
-    datalist.replaceChildren(
+    suggestionsContainer.replaceChildren(
       ...state.catalogSearch.postalSuggestions.map((record) => {
-        const option = document.createElement("option");
-        option.value = record.code;
-        option.textContent = record.label;
-        return option;
+        const button = document.createElement("button");
+        const label = document.createElement("strong");
+        const code = document.createElement("span");
+
+        button.type = "button";
+        button.className = "hero-location-option";
+        button.dataset.action = "select-postal-suggestion";
+        button.dataset.postalCode = record.code;
+        button.dataset.postalLabel = record.label;
+        label.textContent = record.label;
+        code.textContent = record.code;
+        button.append(label, code);
+
+        return button;
       })
     );
   }
@@ -543,18 +553,17 @@ export function createApp(rootElement) {
       event.preventDefault();
       const formData = new FormData(event.target);
       const rawPostalValue = String(formData.get("postalCode") || "").trim();
-      const postalCode =
-        state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
-          ? state.catalogSearch.postalCode
-          : normalizePostalCodeInput(rawPostalValue);
 
-      if (postalCode) {
+      if (rawPostalValue) {
         try {
           const index = await ensurePostalCodeIndex();
-          const postalRecord = findPostalCodeRecord(index, postalCode);
+          const postalRecord =
+            state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
+              ? findPostalCodeRecord(index, state.catalogSearch.postalCode)
+              : findPostalCodeRecord(index, rawPostalValue);
 
           if (!postalRecord) {
-            setError("Introduza um código postal válido no formato 0000-000.");
+            setError("Selecione uma localidade ou introduza um código postal válido.");
             render();
             return;
           }
@@ -624,6 +633,21 @@ export function createApp(rootElement) {
       return;
     }
 
+    if (action === "select-postal-suggestion" && target.dataset.postalCode && target.dataset.postalLabel) {
+      state.catalogSearch.postalCode = target.dataset.postalCode;
+      state.catalogSearch.postalLabel = target.dataset.postalLabel;
+      state.catalogSearch.postalSuggestions = [];
+
+      const postalInput = rootElement.querySelector('input[name="postalCode"]');
+
+      if (postalInput instanceof HTMLInputElement) {
+        postalInput.value = target.dataset.postalLabel;
+      }
+
+      syncPostalCodeSuggestions();
+      return;
+    }
+
     if (action === "edit-item" && itemId) {
       state.editingItemId = itemId;
       setNotice("Modo de edição ativo.");
@@ -663,7 +687,7 @@ export function createApp(rootElement) {
     const customSelect = target instanceof HTMLElement ? target.closest("[data-custom-select]") : null;
 
     if (!(customSelect instanceof HTMLElement)) {
-      return;
+        return;
     }
 
     if (event.relatedTarget instanceof Node && customSelect.contains(event.relatedTarget)) {
@@ -691,7 +715,7 @@ export function createApp(rootElement) {
   rootElement.addEventListener("input", async (event) => {
     const target = event.target;
 
-      if (
+    if (
       target instanceof HTMLInputElement &&
       (target.name === "query" || target.name === "postalCode") &&
       (target.closest("#hero-search-form") || target.form?.id === "hero-search-form")
@@ -703,19 +727,21 @@ export function createApp(rootElement) {
       if (target.name === "postalCode") {
         const rawPostalValue = target.value.trim();
         const normalizedPostalCode = normalizePostalCodeInput(rawPostalValue);
+        const rawDigits = rawPostalValue.replace(/\D/g, "");
+        const looksLikePostalCode = rawDigits.length > 0;
 
         if (rawPostalValue !== state.catalogSearch.postalLabel) {
-          state.catalogSearch.postalCode = normalizedPostalCode;
+          state.catalogSearch.postalCode = looksLikePostalCode ? normalizedPostalCode : "";
           state.catalogSearch.postalLabel = "";
         }
 
         state.catalogSearch.postalSuggestions = [];
 
-        if (!state.catalogSearch.postalLabel && target.value !== normalizedPostalCode) {
+        if (!state.catalogSearch.postalLabel && looksLikePostalCode && target.value !== normalizedPostalCode) {
           target.value = normalizedPostalCode;
         }
 
-        if (normalizedPostalCode.replace(/\D/g, "").length >= 4) {
+        if (looksLikePostalCode && normalizedPostalCode.replace(/\D/g, "").length >= 4) {
           try {
             const index = await ensurePostalCodeIndex();
             const exactMatch = findPostalCodeRecord(index, normalizedPostalCode);
@@ -728,6 +754,13 @@ export function createApp(rootElement) {
             } else {
               state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
             }
+          } catch {
+            state.catalogSearch.postalSuggestions = [];
+          }
+        } else if (rawPostalValue.length >= 2) {
+          try {
+            const index = await ensurePostalCodeIndex();
+            state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, rawPostalValue);
           } catch {
             state.catalogSearch.postalSuggestions = [];
           }
