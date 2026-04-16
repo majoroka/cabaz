@@ -710,7 +710,15 @@ export function createApp(rootElement) {
         if (normalizedPostalCode.replace(/\D/g, "").length >= 4) {
           try {
             const index = await ensurePostalCodeIndex();
-            state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
+            const exactMatch = findPostalCodeRecord(index, normalizedPostalCode);
+
+            if (exactMatch) {
+              state.catalogSearch.postalCode = exactMatch.code;
+              state.catalogSearch.postalLabel = exactMatch.label;
+              state.catalogSearch.postalSuggestions = [];
+            } else {
+              state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
+            }
           } catch {
             state.catalogSearch.postalSuggestions = [];
           }
