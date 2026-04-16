@@ -574,11 +574,13 @@ export function renderApp({ state, viewModel }) {
                       data-action="select-postal-suggestion"
                       data-postal-code="${escapeHtml(record.code)}"
                       data-postal-label="${escapeHtml(record.label)}"
-                    >
-                      <strong>${escapeHtml(record.label)}</strong>
-                      <span>${escapeHtml(record.code)}</span>
-                    </button>
-                  `
+	                    >
+	                      <strong>${escapeHtml(record.label)}</strong>
+	                      <span>${escapeHtml(
+	                        [record.code, record.streets?.[0]].filter(Boolean).join(" · ")
+	                      )}</span>
+	                    </button>
+	                  `
                 )
                 .join("")}
             </div>

@@ -290,7 +290,7 @@ export function createApp(rootElement) {
         button.dataset.postalCode = record.code;
         button.dataset.postalLabel = record.label;
         label.textContent = record.label;
-        code.textContent = record.code;
+        code.textContent = [record.code, record.streets?.[0]].filter(Boolean).join(" · ");
         button.append(label, code);
 
         return button;
@@ -563,7 +563,7 @@ export function createApp(rootElement) {
               : findPostalCodeRecord(index, rawPostalValue);
 
           if (!postalRecord) {
-            setError("Selecione uma localidade ou introduza um código postal válido.");
+            setError("Selecione uma localidade, rua ou introduza um código postal válido.");
             render();
             return;
           }

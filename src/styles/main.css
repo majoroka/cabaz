@@ -127,7 +127,6 @@ a {
 
 .hero {
   position: relative;
-  z-index: 2;
   min-height: 312px;
   display: flex;
   align-items: center;
@@ -195,7 +194,7 @@ a {
   position: absolute;
   top: 46px;
   left: 46px;
-  z-index: 5;
+  z-index: 12;
   width: fit-content;
   max-width: min(440px, calc(100vw - 92px));
 }
@@ -219,7 +218,7 @@ a {
   top: calc(100% + 8px);
   left: 0;
   right: auto;
-  z-index: 3;
+  z-index: 13;
   display: grid;
   gap: 8px;
   max-height: 216px;
@@ -359,7 +358,6 @@ a {
 
 .dashboard-body {
   position: relative;
-  z-index: 1;
   padding: 0 30px 42px;
 }
 
