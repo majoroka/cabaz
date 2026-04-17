@@ -92,16 +92,20 @@ Fechar o contrato dos JSON que o frontend vai consumir.
 
 ### Entregáveis
 
-- [ ] `metadata.json`
-- [ ] `stores.json`
-- [ ] `store-locations.json`
-- [ ] `catalog-products.json`
-- [ ] `comparison-groups.json`
-- [ ] `offers.json`
+- [x] proposta inicial de `metadata.json`
+- [x] proposta inicial de `stores.json`
+- [x] proposta inicial de `store-locations.json`
+- [x] proposta inicial de `catalog-products.json`
+- [x] proposta inicial de `comparison-groups.json`
+- [x] proposta inicial de `offers.json`
+- [ ] validação final do contrato de ficheiros
+- [ ] validação final dos campos mínimos e opcionais
 
 ### Intervenção necessária do utilizador
 
 - validar o modelo final antes de existir scraper real
+- confirmar se quer manter `comparison-groups.json` como ficheiro próprio
+- confirmar se a primeira versão já deve incluir imagens em `offers.json`
 
 ## Sprint 3: Localização e lojas reais
 

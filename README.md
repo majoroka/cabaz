@@ -129,6 +129,7 @@ Exemplos de importação:
 - [ARQUITETURA.md](./ARQUITETURA.md)
 - [ROADMAP.md](./ROADMAP.md)
 - [docs/catalogo-canonico-sprint-1.md](./docs/catalogo-canonico-sprint-1.md)
+- [docs/modelo-dados-publicados-sprint-2.md](./docs/modelo-dados-publicados-sprint-2.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados
