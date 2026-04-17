@@ -175,14 +175,19 @@ Expandir a cobertura sem perder qualidade.
 
 ### Entregáveis
 
-- [ ] novas lojas
-- [ ] novas categorias
-- [ ] histórico por snapshots
-- [ ] melhoria do matching
+- [x] proposta inicial de ordem de expansão
+- [x] proposta inicial de novas lojas
+- [x] proposta inicial de novas categorias
+- [x] proposta inicial de histórico por snapshots
+- [x] proposta inicial de evolução do matching
+- [x] validação inicial do concelho de Silves como primeira área de expansão
+- [ ] validação final da ordem de expansão
+- [ ] validação final das prioridades de lojas e regiões
 
 ### Intervenção necessária do utilizador
 
-- priorizar lojas e categorias seguintes
+- validar a proposta documentada do Sprint 6
+- confirmar a ordem de expansão recomendada a partir do concelho de Silves
 
 ## Fora de âmbito neste repositório
 
@@ -195,9 +200,9 @@ Expandir a cobertura sem perder qualidade.
 
 ## Próximos passos imediatos
 
-1. Fechar a validação do documento do Sprint 4.
-2. Confirmar a loja/localização piloto no plano de dados reais.
-3. Avançar para o Sprint 5 com o pipeline MVP.
+1. Fechar a validação do documento do Sprint 5.
+2. Fechar a validação do documento do Sprint 6 com o concelho de Silves como primeira área de escala.
+3. Decidir como arrancar a primeira publicação real de dados.
 
 ## Regra de gestão do roadmap
 

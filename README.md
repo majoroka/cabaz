@@ -133,6 +133,7 @@ Exemplos de importação:
 - [docs/localizacao-lojas-reais-sprint-3.md](./docs/localizacao-lojas-reais-sprint-3.md)
 - [docs/regras-matching-sprint-4.md](./docs/regras-matching-sprint-4.md)
 - [docs/pipeline-mvp-sprint-5.md](./docs/pipeline-mvp-sprint-5.md)
+- [docs/escala-controlada-sprint-6.md](./docs/escala-controlada-sprint-6.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados
