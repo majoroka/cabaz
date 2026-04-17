@@ -20,6 +20,7 @@ const STORAGE_KEYS = {
   stores: "cabaz:stores"
 };
 
+const DEFAULT_SECTION = "painel";
 const DEFAULT_CATALOG_SEARCH = {
   query: "",
   postalCode: "",
@@ -124,6 +125,7 @@ function createInitialState() {
     basket: storedBasket || cloneValue(basketExample),
     results: enrichResults(baseResults),
     stores,
+    currentSection: DEFAULT_SECTION,
     catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
     editingItemId: null,
     notice: "",
@@ -209,6 +211,8 @@ function getViewModel(state) {
     });
 
   return {
+    currentSection: state.currentSection,
+    stores: state.stores,
     brands: getBrandOptions({
       basket: state.basket,
       results: state.results
@@ -392,6 +396,7 @@ export function createApp(rootElement) {
         ...DEFAULT_CATALOG_SEARCH.filters
       }
     };
+    state.currentSection = DEFAULT_SECTION;
     clearMessages();
     render();
   }
@@ -620,6 +625,13 @@ export function createApp(rootElement) {
       }
 
       syncPostalCodeSuggestions();
+      return;
+    }
+
+    if (action === "set-section" && target.dataset.section) {
+      state.currentSection = target.dataset.section;
+      clearMessages();
+      render();
       return;
     }
 

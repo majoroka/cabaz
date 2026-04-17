@@ -2,6 +2,30 @@ import { formatCurrency, formatDate, formatSize, formatUnitPrice } from "../util
 import { escapeHtml } from "../utils/helpers.js";
 import { getCategoryName } from "../utils/categories.js";
 
+const NAV_ITEMS = [
+  { id: "painel", label: "Painel" },
+  { id: "lojas", label: "Lojas" },
+  { id: "categorias", label: "Categorias" },
+  { id: "marcas", label: "Marcas" },
+  { id: "cabaz", label: "Cabaz" },
+  { id: "comparacao", label: "Comparação" }
+];
+
+const STORE_LOGO_MAP = {
+  aldi: "aldi.png",
+  amanhecer: "amanhecer.png",
+  apolonia: "apolonia.png",
+  auchan: "auchan.png",
+  continente: "continente.png",
+  coviran: "coviran.png",
+  intermarche: "intermarche.png",
+  lidl: "lidl.png",
+  mercadona: "mercadona.png",
+  "meu-super": "meusuper.png",
+  "pingo-doce": "pingodoce.png",
+  spar: "spar.png"
+};
+
 function renderFlash(state) {
   if (state.error) {
     return `<div class="flash flash-error">${escapeHtml(state.error)}</div>`;
@@ -304,6 +328,64 @@ function renderSummaryCards(summary) {
   `;
 }
 
+function getStoreLogoFilename(storeId) {
+  return STORE_LOGO_MAP[storeId] || null;
+}
+
+function renderStoresDirectory(stores) {
+  return `
+    <section class="panel-card stores-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Lojas</p>
+          <h2>Lojas suportadas</h2>
+        </div>
+      </div>
+      <div class="stores-grid">
+        ${stores
+          .map((store) => {
+            const logoFilename = getStoreLogoFilename(store.id);
+            const logoMarkup = logoFilename
+              ? `<img src="./lojas/${escapeHtml(logoFilename)}" alt="${escapeHtml(store.name)}" loading="lazy" />`
+              : `<span class="store-logo-fallback">${escapeHtml(store.name)}</span>`;
+
+            return `
+              <a
+                class="store-link-card"
+                href="${escapeHtml(store.website || "#")}"
+                target="_blank"
+                rel="noreferrer noopener"
+                ${store.website ? "" : 'aria-disabled="true"'}
+              >
+                <span class="store-logo-box">
+                  ${logoMarkup}
+                </span>
+                <strong>${escapeHtml(store.name)}</strong>
+              </a>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderComingSoonSection(title) {
+  return `
+    <section class="panel-card section-placeholder">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${escapeHtml(title)}</p>
+          <h2>Em preparação</h2>
+        </div>
+      </div>
+      <div class="section-placeholder-body">
+        <p>Esta área será implementada de seguida.</p>
+      </div>
+    </section>
+  `;
+}
+
 function renderCatalogSearchResults(catalogSearch) {
   if (!catalogSearch.executedQuery) {
     return "";
@@ -509,6 +591,30 @@ function renderTable(rows) {
   `;
 }
 
+function renderMainSection(viewModel) {
+  if (viewModel.currentSection === "lojas") {
+    return renderStoresDirectory(viewModel.stores);
+  }
+
+  if (viewModel.currentSection === "categorias") {
+    return renderComingSoonSection("Categorias");
+  }
+
+  if (viewModel.currentSection === "marcas") {
+    return renderComingSoonSection("Marcas");
+  }
+
+  if (viewModel.currentSection === "cabaz") {
+    return renderComingSoonSection("Cabaz");
+  }
+
+  if (viewModel.currentSection === "comparacao") {
+    return renderComingSoonSection("Comparação");
+  }
+
+  return renderCatalogSearchResults(viewModel.catalogSearch);
+}
+
 export function renderApp({ state, viewModel }) {
   return `
     <div class="app-shell">
@@ -518,12 +624,18 @@ export function renderApp({ state, viewModel }) {
           <span>Cabaz</span>
         </a>
         <nav class="nav-list">
-          <span class="nav-link nav-link-active">Painel</span>
-          <span class="nav-link">Lojas</span>
-          <span class="nav-link">Categorias</span>
-          <span class="nav-link">Marcas</span>
-          <span class="nav-link">Cabaz</span>
-          <span class="nav-link">Comparação</span>
+          ${NAV_ITEMS.map(
+            (item) => `
+              <button
+                type="button"
+                class="nav-link ${viewModel.currentSection === item.id ? "nav-link-active" : ""}"
+                data-action="set-section"
+                data-section="${escapeHtml(item.id)}"
+              >
+                ${escapeHtml(item.label)}
+              </button>
+            `
+          ).join("")}
         </nav>
       </aside>
       <div class="app-main" id="dashboard">
@@ -611,7 +723,7 @@ export function renderApp({ state, viewModel }) {
           ${renderFlash(state)}
           ${renderSummaryCards(viewModel.summary)}
           <main class="layout">
-            <section class="content">${renderCatalogSearchResults(viewModel.catalogSearch)}</section>
+            <section class="content">${renderMainSection(viewModel)}</section>
           </main>
         </div>
       </div>

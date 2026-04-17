@@ -98,12 +98,18 @@ a {
 .nav-link {
   display: flex;
   align-items: center;
+  width: 100%;
   min-height: 46px;
   padding: 0 18px;
+  border: 0;
   border-radius: 12px;
+  background: transparent;
   color: #4b5668;
   font-size: 0.95rem;
   font-weight: 700;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   transition:
     background 0.18s ease,
     color 0.18s ease,
@@ -720,6 +726,78 @@ textarea {
   padding-bottom: 24px;
 }
 
+.stores-panel {
+  padding-bottom: 24px;
+}
+
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.store-link-card {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  padding: 20px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fbfcfe;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.store-link-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(62, 145, 133, 0.22);
+  box-shadow: var(--shadow-sm);
+}
+
+.store-link-card strong {
+  font-size: 0.96rem;
+  text-align: center;
+}
+
+.store-logo-box {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 18px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(31, 42, 57, 0.08);
+}
+
+.store-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.store-logo-fallback {
+  color: #4b5668;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.section-placeholder-body {
+  padding: 24px;
+}
+
+.section-placeholder-body p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 .catalog-filters {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -943,6 +1021,10 @@ textarea {
   .catalog-results-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .stores-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 860px) {
@@ -997,6 +1079,12 @@ textarea {
     padding: 0 14px 28px;
   }
 
+  .stores-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 18px 14px 0;
+  }
+
   .summary-grid {
     gap: 14px;
     margin-top: -34px;
@@ -1024,6 +1112,10 @@ textarea {
     width: 100%;
     margin-bottom: 1rem;
     max-width: none;
+  }
+
+  .stores-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-search-icon {
