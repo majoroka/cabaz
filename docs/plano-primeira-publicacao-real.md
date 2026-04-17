@@ -201,7 +201,13 @@ Para arrancar a execução desta fase, o utilizador terá de intervir em três p
 
 ## Próximo passo recomendado
 
-O próximo passo prático deve ser preparar o material de publicação inicial:
+O próximo passo prático deve ser preencher a primeira publicação manual de ofertas:
+
+1. usar o template `examples/published/offers.continente-bom-dia-armacao-de-pera.template.json`
+2. validar manualmente os 10 produtos piloto
+3. copiar o resultado final para `public/data/offers.json`
+
+O material estrutural de publicação inicial já está preparado:
 
 1. `catalog-products.json`
 2. `comparison-groups.json`

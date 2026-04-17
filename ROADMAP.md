@@ -200,6 +200,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] plano operacional inicial da primeira publicação real
 - [x] definição da loja Continente piloto no concelho de Silves
 - [x] materialização inicial dos ficheiros publicados mínimos
+- [x] template manual inicial para `offers.json`
 - [ ] primeira publicação real de dados
 - [ ] validação manual com dados reais no frontend
 - [ ] remoção do fallback automático para mocks após publicação real estável
