@@ -357,6 +357,7 @@ Exemplo:
 - bloqueadores explícitos por produto
 - revisão manual para a zona intermédia
 - nada de equivalência automática entre marca própria e marca nacional
+- a fase inicial deve ser testada com uma base pequena antes de qualquer expansão
 
 ## Intervenção necessária do utilizador
 
@@ -366,6 +367,16 @@ Para fechar o Sprint 4, o utilizador deve validar:
 2. se concorda com revisão manual entre `0.60` e `0.79`
 3. se concorda com a regra de bloqueio por variante, tamanho e pack
 4. se concorda com estas regras iniciais para os 10 produtos piloto
+
+## Validação do Sprint 4
+
+Decisões já confirmadas:
+
+- matching conservador
+- revisão manual entre `0.60` e `0.79`
+- bloqueio por variante, tamanho e pack
+- aceitação das regras iniciais para os 10 produtos piloto
+- fase inicial testada com base pequena antes de expansão
 
 ## Critério para dar o Sprint 4 como fechado
 

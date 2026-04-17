@@ -139,13 +139,13 @@ Definir como uma oferta scraped é associada a um produto canónico.
 - [x] proposta inicial de tokens bloqueadores
 - [x] proposta inicial de `confidenceScore`
 - [x] proposta inicial de política de revisão manual
-- [ ] validação final das regras gerais
-- [ ] validação final das regras dos 10 produtos piloto
+- [x] validação final das regras gerais
+- [x] validação final das regras dos 10 produtos piloto
 
 ### Intervenção necessária do utilizador
 
-- validar a proposta documentada do Sprint 4
-- confirmar se concorda com matching conservador e com a zona de revisão manual
+- nenhuma pendência estrutural no Sprint 4
+- a próxima intervenção do utilizador deve acontecer no Sprint 5
 
 ## Sprint 5: Pipeline MVP
 
