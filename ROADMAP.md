@@ -189,6 +189,25 @@ Expandir a cobertura sem perder qualidade.
 - validar a proposta documentada do Sprint 6
 - confirmar a ordem de expansão recomendada a partir do concelho de Silves
 
+## Fase operacional seguinte: Primeira publicação real
+
+### Objetivo
+
+Passar da definição conceptual para a primeira publicação real de dados com âmbito mínimo.
+
+### Entregáveis
+
+- [x] plano operacional inicial da primeira publicação real
+- [ ] definição da loja Continente piloto no concelho de Silves
+- [ ] materialização dos ficheiros publicados mínimos
+- [ ] primeira publicação real de dados
+- [ ] validação manual com dados reais no frontend
+
+### Intervenção necessária do utilizador
+
+- confirmar a loja piloto concreta
+- validar a primeira publicação real quando existir
+
 ## Fora de âmbito neste repositório
 
 - [ ] backend próprio
@@ -202,7 +221,8 @@ Expandir a cobertura sem perder qualidade.
 
 1. Fechar a validação do documento do Sprint 5.
 2. Fechar a validação do documento do Sprint 6 com o concelho de Silves como primeira área de escala.
-3. Decidir como arrancar a primeira publicação real de dados.
+3. Confirmar a loja piloto concreta para arrancar a primeira publicação real.
+4. Preparar os ficheiros publicados mínimos para integração com dados reais.
 
 ## Regra de gestão do roadmap
 
