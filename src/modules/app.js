@@ -11,6 +11,7 @@ import {
   getPostalCodeSuggestions,
   normalizePostalCodeInput
 } from "../utils/postalCodes.js";
+import { loadPublishedData } from "../utils/publishedData.js";
 import { validateBasketJson, validateResultsJson, validateStoresJson } from "../utils/validation.js";
 import { renderApp } from "./render.js";
 
@@ -123,6 +124,7 @@ function createInitialState() {
 
   return {
     basket: storedBasket || cloneValue(basketExample),
+    catalogProducts: [],
     results: enrichResults(baseResults),
     stores,
     currentSection: DEFAULT_SECTION,
@@ -149,13 +151,15 @@ function getViewModel(state) {
 
       const store = state.stores.find((entry) => entry.id === result.store) || null;
       const basketItem = state.basket.find((item) => item.id === result.basketItemId) || null;
-      const brand = result.brand || basketItem?.preferredBrand || "";
-      const categoryId = basketItem?.category || "sem_categoria";
+      const catalogProduct = state.catalogProducts.find((item) => item.id === result.basketItemId) || null;
+      const brand = result.brand || basketItem?.preferredBrand || catalogProduct?.preferredBrand || "";
+      const categoryId = basketItem?.category || catalogProduct?.category || "sem_categoria";
 
       return {
         result,
         store,
         basketItem,
+        catalogProduct,
         brand,
         categoryId,
         categoryName: getCategoryOptions().find((category) => category.id === categoryId)?.name || "Sem categoria"
@@ -368,15 +372,19 @@ export function createApp(rootElement) {
 
     const matches = state.results.filter((result) => {
       const basketItem = state.basket.find((item) => item.id === result.basketItemId);
+      const catalogProduct = state.catalogProducts.find((item) => item.id === result.basketItemId);
       const store = state.stores.find((entry) => entry.id === result.store);
       const haystack = normalizeSearchText(
         [
           result.matchedName,
           result.brand,
           basketItem?.name,
+          catalogProduct?.name,
           basketItem?.preferredBrand,
+          catalogProduct?.preferredBrand,
           basketItem?.notes,
           basketItem?.category,
+          catalogProduct?.category,
           store?.name
         ]
           .filter(Boolean)
@@ -476,6 +484,7 @@ export function createApp(rootElement) {
       }
 
       if (kind === "results") {
+        state.catalogProducts = [];
         state.results = enrichResults(validation.data);
         state.stores = createFallbackStoresFromResults(state.results, state.stores);
         persistJson(STORAGE_KEYS.results, validation.data);
@@ -497,6 +506,7 @@ export function createApp(rootElement) {
   }
 
   function loadExampleData() {
+    state.catalogProducts = [];
     state.results = enrichResults(cloneValue(resultsExample));
     state.stores = createFallbackStoresFromResults(state.results, cloneValue(storesExample));
     state.sources.results = "Exemplo local";
@@ -509,6 +519,7 @@ export function createApp(rootElement) {
 
   function resetDemo() {
     state.basket = cloneValue(basketExample);
+    state.catalogProducts = [];
     state.results = enrichResults(cloneValue(resultsExample));
     state.stores = createFallbackStoresFromResults(state.results, cloneValue(storesExample));
     state.sources.results = "Exemplo local";
@@ -519,6 +530,27 @@ export function createApp(rootElement) {
     resetEditor();
     setNotice("Demo reposta com os valores iniciais.");
     render();
+  }
+
+  async function bootstrapPublishedData() {
+    const isUsingImportedResults = state.sources.results === "Ficheiro importado";
+    const isUsingImportedStores = state.sources.stores === "Ficheiro importado";
+
+    try {
+      const publishedData = await loadPublishedData(import.meta.env.BASE_URL);
+
+      state.catalogProducts = publishedData.catalogProducts;
+
+      if (publishedData.offers.length > 0 && !isUsingImportedResults && !isUsingImportedStores) {
+        state.results = enrichResults(publishedData.offers);
+        state.stores = createFallbackStoresFromResults(state.results, publishedData.stores);
+        state.sources.results = "Publicação local";
+        state.sources.stores = "Publicação local";
+        render();
+      }
+    } catch {
+      state.catalogProducts = [];
+    }
   }
 
   rootElement.addEventListener("submit", async (event) => {
@@ -769,4 +801,5 @@ export function createApp(rootElement) {
   });
 
   render();
+  bootstrapPublishedData();
 }
