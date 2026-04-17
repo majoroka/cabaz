@@ -131,6 +131,7 @@ Exemplos de importação:
 - [docs/catalogo-canonico-sprint-1.md](./docs/catalogo-canonico-sprint-1.md)
 - [docs/modelo-dados-publicados-sprint-2.md](./docs/modelo-dados-publicados-sprint-2.md)
 - [docs/localizacao-lojas-reais-sprint-3.md](./docs/localizacao-lojas-reais-sprint-3.md)
+- [docs/regras-matching-sprint-4.md](./docs/regras-matching-sprint-4.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados

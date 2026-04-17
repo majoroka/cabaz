@@ -134,16 +134,18 @@ Definir como uma oferta scraped é associada a um produto canónico.
 
 ### Entregáveis
 
-- [ ] aliases
-- [ ] tokens obrigatórios
-- [ ] tokens bloqueadores
-- [ ] modelo de `confidenceScore`
-- [ ] política de revisão manual para casos cinzentos
+- [x] proposta inicial de aliases e normalização
+- [x] proposta inicial de tokens obrigatórios
+- [x] proposta inicial de tokens bloqueadores
+- [x] proposta inicial de `confidenceScore`
+- [x] proposta inicial de política de revisão manual
+- [ ] validação final das regras gerais
+- [ ] validação final das regras dos 10 produtos piloto
 
 ### Intervenção necessária do utilizador
 
-- validar casos ambíguos
-- decidir se o matching deve ser mais conservador ou mais permissivo
+- validar a proposta documentada do Sprint 4
+- confirmar se concorda com matching conservador e com a zona de revisão manual
 
 ## Sprint 5: Pipeline MVP
 
@@ -191,10 +193,9 @@ Expandir a cobertura sem perder qualidade.
 
 ## Próximos passos imediatos
 
-1. Fechar a validação do documento do Sprint 1.
-2. Selecionar os primeiros produtos da loja piloto.
-3. Fechar o contrato final dos JSON publicados.
-4. Preparar o Sprint 2 com o modelo de dados publicado.
+1. Fechar a validação do documento do Sprint 4.
+2. Confirmar a loja/localização piloto no plano de dados reais.
+3. Avançar para o Sprint 5 com o pipeline MVP.
 
 ## Regra de gestão do roadmap
 
