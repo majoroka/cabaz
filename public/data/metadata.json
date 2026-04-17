@@ -5,19 +5,19 @@
   "country": "PT",
   "publicationStatus": "seed",
   "storesPublished": 1,
-  "storeLocationsPublished": 0,
+  "storeLocationsPublished": 1,
   "offersPublished": 0,
   "catalogProductsPublished": 24,
   "comparisonGroupsPublished": 24,
   "notes": [
     "Seed inicial de dados publicados para integracao futura com pipeline real.",
-    "A loja Continente piloto concreta no concelho de Silves continua pendente de confirmacao."
+    "A loja piloto confirmada para esta fase e o Continente Bom Dia Armacao de Pera."
   ],
   "sources": [
     {
       "storeId": "continente",
-      "status": "pending_store_selection",
-      "lastUpdated": null
+      "status": "pilot_store_confirmed",
+      "lastUpdated": "2026-04-17T00:00:00Z"
     }
   ]
 }

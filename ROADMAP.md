@@ -198,14 +198,14 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 ### Entregáveis
 
 - [x] plano operacional inicial da primeira publicação real
-- [ ] definição da loja Continente piloto no concelho de Silves
+- [x] definição da loja Continente piloto no concelho de Silves
 - [x] materialização inicial dos ficheiros publicados mínimos
 - [ ] primeira publicação real de dados
 - [ ] validação manual com dados reais no frontend
 
 ### Intervenção necessária do utilizador
 
-- confirmar a loja piloto concreta
+- confirmar coordenadas da loja piloto, se quisermos ativar proximidade geográfica exata já nesta fase
 - validar a primeira publicação real quando existir
 
 ## Fora de âmbito neste repositório
@@ -221,8 +221,8 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 1. Fechar a validação do documento do Sprint 5.
 2. Fechar a validação do documento do Sprint 6 com o concelho de Silves como primeira área de escala.
-3. Confirmar a loja piloto concreta para arrancar a primeira publicação real.
-4. Preparar os ficheiros publicados mínimos para integração com dados reais.
+3. Preencher coordenadas da loja piloto para ativar proximidade geográfica exata.
+4. Preparar a primeira publicação real de ofertas.
 
 ## Regra de gestão do roadmap
 

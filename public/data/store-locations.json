@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "locationId": "continente-bom-dia-armacao-de-pera",
+    "storeId": "continente",
+    "name": "Continente Bom Dia Armação de Pêra",
+    "address": "Avenida General Humberto Delgado",
+    "postalCode": "8365-138",
+    "locality": "Armação de Pêra",
+    "municipality": "Silves",
+    "lat": null,
+    "lng": null,
+    "active": true,
+    "notes": "Loja piloto confirmada pelo utilizador. Coordenadas geograficas ainda por preencher."
+  }
+]

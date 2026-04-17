@@ -183,9 +183,9 @@ Esta fase pode ser dada como bem-sucedida quando:
 
 Para arrancar a execução desta fase, o utilizador terá de intervir em três pontos:
 
-1. confirmar qual é a loja Continente piloto a usar no concelho de Silves
-2. validar manualmente a primeira publicação real quando existir
-3. decidir quando passamos dos 10 produtos piloto para os 24 produtos iniciais
+1. validar manualmente a primeira publicação real quando existir
+2. decidir quando passamos dos 10 produtos piloto para os 24 produtos iniciais
+3. confirmar as coordenadas da loja piloto se quisermos ativar proximidade geográfica real nesta fase
 
 ## Próximo passo recomendado
 
@@ -197,3 +197,14 @@ O próximo passo prático deve ser preparar o material de publicação inicial:
 4. `store-locations.json`
 
 Mesmo que ainda usem dados manuais ou semi-manuais, estes ficheiros já permitem começar a testar a integração real com o frontend.
+
+## Loja piloto já confirmada
+
+A primeira loja piloto confirmada para esta fase é:
+
+- `Continente Bom Dia Armação de Pêra`
+- `Avenida General Humberto Delgado`
+- `8365-138 Armação de Pêra`
+- concelho de `Silves`
+
+Enquanto as coordenadas não forem preenchidas, esta loja pode já ser usada como referência de publicação, ficando a proximidade geográfica exata para o passo seguinte.
