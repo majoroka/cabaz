@@ -21,6 +21,7 @@ const STORE_LOGO_MAP = {
   intermarche: "intermarche.png",
   lidl: "lidl.png",
   mercadona: "mercadona.png",
+  minipreco: "minipreco.png",
   "meu-super": "meusuper.png",
   "pingo-doce": "pingodoce.png",
   spar: "spar.png"
