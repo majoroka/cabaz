@@ -2,109 +2,187 @@
 
 ## Estado atual
 
-O projeto já tem uma base funcional de frontend estático pronta para desenvolvimento incremental e publicação em GitHub Pages.
+O projeto está numa fase de definição de produto e UX/UI, com frontend estático funcional e preparado para evolução incremental. A estratégia de dados reais já foi alinhada: este repositório mantém a interface e a leitura de JSON publicados; a recolha real deve acontecer num pipeline separado.
 
-## Funcionalidades implementadas
+## O que está efetivamente pronto
 
 ### Base técnica
 
 - [x] scaffold com Vite
-- [x] build de produção com `npm run build`
 - [x] arranque local com `npm run dev`
-- [x] configuração de `base path` para GitHub Pages
-- [x] workflow GitHub Actions para deploy automático
-- [x] favicon, título da página e metadados básicos
+- [x] build com `npm run build`
+- [x] deploy para GitHub Pages
+- [x] branding base e favicon
+- [x] documentação inicial do projeto
 
-### Gestão de cabaz
+### Interface atual
 
-- [x] adicionar item ao cabaz
-- [x] editar item existente
-- [x] remover item
-- [x] campos `name`, `quantity`, `category`, `preferredBrand` e `notes`
-- [x] persistência do cabaz em `localStorage`
+- [x] barra lateral com secções principais
+- [x] hero com pesquisa principal
+- [x] campo de localização com pesquisa por CP, localidade e rua
+- [x] cards de resumo em estado neutro
+- [x] pesquisa principal com resultados na área principal
+- [x] secção `Lojas` com logos e links externos
+- [x] estados vazios para secções ainda não implementadas
 
-### Comparação e filtros
+### Dados e suporte técnico
 
-- [x] filtro por supermercado
-- [x] filtro por categoria
-- [x] pesquisa textual
-- [x] alternância entre todos os resultados e melhor resultado por item
-- [x] destaque visual do melhor preço por item
-- [x] cálculo do total estimado por supermercado
-- [x] destaque do supermercado com total mais baixo
+- [x] dados mock locais
+- [x] importação manual de JSON
+- [x] validação mínima de estruturas importadas
+- [x] pesquisa por base local de códigos postais
+- [x] estrutura documental preparada para evolução do pipeline
 
-### Dados
+## O que já não deve ser considerado funcionalidade ativa
 
-- [x] dados mock realistas para cabaz, resultados e lojas
-- [x] estrutura preparada para futura exportação por scraper local
-- [x] botão para carregar dados de exemplo
-- [x] botão para repor demo
-- [x] importação manual de ficheiros JSON
-- [x] validação mínima com mensagens de erro amigáveis
+Estas partes existiram em fases anteriores, mas não devem ser tomadas como produto ativo da interface atual:
 
-### Interface
+- comparação final por cabaz completo
+- gestão visível do cabaz na área principal
+- cálculo real dos cards de resumo
+- totais finais por supermercado na UI principal
 
-- [x] dashboard com cartões resumo
-- [x] área de gestão do cabaz
-- [x] tabela principal de comparação
-- [x] layout responsivo para desktop e mobile
-- [x] estados vazios úteis
+Se voltarem, devem regressar por desenho novo e não por reaproveitamento implícito.
 
-### Documentação
+## Estratégia de evolução
 
-- [x] README em português europeu
-- [x] documentação do formato de dados
-- [x] exemplos de ficheiros importáveis
-- [x] documento de arquitetura
-- [x] roadmap funcional
+O projeto deve avançar em sprints curtos, com validação funcional no fim de cada fase.
 
-## Próximas funcionalidades recomendadas
+## Sprint 1: Catálogo canónico inicial
 
-### Curto prazo
+### Objetivo
 
-- [ ] suportar importação de um ficheiro único com `basket`, `results` e `stores`
-- [ ] permitir exportar o estado atual para JSON
-- [ ] adicionar ordenação na tabela por preço, loja e data de atualização
-- [ ] mostrar indicadores de cobertura por item e por supermercado
-- [ ] destacar confiança baixa de matching
-- [ ] melhorar feedback visual durante importação de ficheiros
+Definir o núcleo mínimo para arrancar com dados reais comparáveis.
 
-### Médio prazo
+### Entregáveis
 
-- [ ] guardar filtros e preferências de visualização em `localStorage`
-- [ ] criar modo de comparação por cabaz completo vs. por item individual
-- [ ] permitir duplicar itens do cabaz
-- [ ] suportar agrupamento por categoria na tabela
-- [ ] adicionar testes unitários aos utilitários
-- [ ] adicionar linting e formatação automática
+- [ ] lista inicial de produtos canónicos
+- [ ] grupos de comparação
+- [ ] regras de marca própria vs. marca nacional
+- [ ] política de packs e tamanhos
+- [ ] campos obrigatórios de catálogo
 
-### Longo prazo
+### Proposta atual
 
-- [ ] criar adaptadores para múltiplos formatos de ficheiros gerados por scrapers
-- [ ] suportar histórico de atualizações por produto
-- [ ] permitir múltiplos cabazes guardados localmente
-- [ ] criar métricas de qualidade de matching
-- [ ] introduzir comparação temporal de preços
+Arrancar com um catálogo curto e conservador, focado em produtos embalados:
+
+- laticínios e ovos
+- mercearia
+- pequeno-almoço e snacks
+- bebidas
+- limpeza essencial
+
+### Intervenção necessária do utilizador
+
+- validar a lista inicial de produtos
+- decidir o nível de rigor da comparação
+- decidir se a fase inicial inclui equivalência entre marca própria e marca nacional
+
+## Sprint 2: Modelo de dados publicado
+
+### Objetivo
+
+Fechar o contrato dos JSON que o frontend vai consumir.
+
+### Entregáveis
+
+- [ ] `metadata.json`
+- [ ] `stores.json`
+- [ ] `store-locations.json`
+- [ ] `catalog-products.json`
+- [ ] `comparison-groups.json`
+- [ ] `offers.json`
+
+### Intervenção necessária do utilizador
+
+- validar o modelo final antes de existir scraper real
+
+## Sprint 3: Localização e lojas reais
+
+### Objetivo
+
+Preparar a lógica de proximidade com base em lojas físicas e código postal.
+
+### Entregáveis
+
+- [ ] definição das lojas piloto
+- [ ] definição das localizações piloto
+- [ ] regra de escolha das lojas mais próximas
+
+### Intervenção necessária do utilizador
+
+- escolher as primeiras localidades/zonas de teste
+
+## Sprint 4: Regras de matching
+
+### Objetivo
+
+Definir como uma oferta scraped é associada a um produto canónico.
+
+### Entregáveis
+
+- [ ] aliases
+- [ ] tokens obrigatórios
+- [ ] tokens bloqueadores
+- [ ] modelo de `confidenceScore`
+- [ ] política de revisão manual para casos cinzentos
+
+### Intervenção necessária do utilizador
+
+- validar casos ambíguos
+- decidir se o matching deve ser mais conservador ou mais permissivo
+
+## Sprint 5: Pipeline MVP
+
+### Objetivo
+
+Montar a primeira versão funcional de dados reais, com âmbito controlado.
+
+### Entregáveis
+
+- [ ] 1 supermercado
+- [ ] 1 localização
+- [ ] 10 a 20 produtos
+- [ ] geração de JSON publicados
+- [ ] validação manual dos resultados
+
+### Intervenção necessária do utilizador
+
+- testar resultados reais e validar utilidade prática
+
+## Sprint 6: Escala controlada
+
+### Objetivo
+
+Expandir a cobertura sem perder qualidade.
+
+### Entregáveis
+
+- [ ] novas lojas
+- [ ] novas categorias
+- [ ] histórico por snapshots
+- [ ] melhoria do matching
+
+### Intervenção necessária do utilizador
+
+- priorizar lojas e categorias seguintes
 
 ## Fora de âmbito neste repositório
 
 - [ ] backend próprio
-- [ ] scraping real de supermercados
-- [ ] integrações com APIs privadas
-- [ ] autenticação de utilizadores
-- [ ] sincronização remota de dados
+- [ ] scraping real dentro do frontend
+- [ ] chamadas diretas do browser aos supermercados
+- [ ] APIs privadas
+- [ ] autenticação
+- [ ] sincronização remota de utilizadores
 
-## Critérios para considerar a v1 completa
+## Próximos passos imediatos
 
-- [ ] importação e exportação de dados sem fricção
-- [ ] testes mínimos para lógica crítica
-- [ ] tabela com ordenação robusta
-- [ ] documentação estabilizada do contrato JSON
-- [ ] deploy público validado em GitHub Pages
+1. Fechar o Sprint 1 com a lista inicial de produtos canónicos.
+2. Traduzir essa lista para grupos de comparação.
+3. Registar as regras mínimas de matching por produto.
+4. Só depois fechar o contrato final dos JSON.
 
-## Notas de gestão
+## Regra de gestão do roadmap
 
-- Este roadmap deve ser atualizado sempre que uma funcionalidade muda de estado.
-- O documento serve para distinguir claramente o que já está pronto do que ainda é intenção.
-- Sempre que surgir uma nova necessidade, deve ficar registada aqui antes de se espalhar pelo README ou por issues soltas.
-
+Sempre que uma secção da UI seja removida, redesenhada ou colocada em pausa, o roadmap deve ser corrigido de imediato para evitar documentação enganadora.

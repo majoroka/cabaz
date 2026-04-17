@@ -2,37 +2,240 @@
 
 ## Objetivo
 
-O Cabaz é uma aplicação web estática para comparar preços de um cabaz de compras entre supermercados em Portugal. O projeto foi desenhado para correr em GitHub Pages, sem backend e sem dependência de APIs privadas.
+O Cabaz é uma aplicação web estática para comparação de preços de supermercados em Portugal. O frontend deve continuar compatível com GitHub Pages e a recolha de dados reais deve acontecer fora desta app.
 
-## Princípios de arquitetura
+## Princípios
 
 - frontend estático puro
-- dados desacoplados da interface
-- importação de JSON local como fonte principal
-- compatibilidade com futura geração de dados por scraper local externo
-- código modular e simples, sem framework desnecessária
-- persistência local apenas para preferências e cabaz do utilizador
+- sem backend neste repositório
+- sem scraping no browser
+- separação clara entre interface, dados publicados e pipeline de recolha
+- dados consumidos a partir de JSON versionado e estável
+- evolução incremental por sprints
+
+## Arquitetura-alvo
+
+O projeto deve evoluir para três camadas distintas:
+
+### 1. Frontend estático
+
+Este repositório.
+
+Responsabilidades:
+
+- apresentar pesquisa, filtros e comparação
+- ler ficheiros JSON já preparados
+- persistir preferências e estado local no browser
+- não fazer scraping nem lógica pesada de matching
+
+### 2. Pipeline de dados
+
+Projeto separado, fora deste repositório.
+
+Responsabilidades:
+
+- recolha por loja
+- normalização de dados
+- deduplicação
+- matching para catálogo canónico
+- validação
+- publicação dos JSON finais consumidos pela app
+
+### 3. Artefactos publicados
+
+Ficheiros JSON finais servidos pelo frontend estático.
+
+Responsabilidades:
+
+- representar o estado atual dos dados
+- expor catálogo, lojas, localizações e ofertas
+- manter histórico por snapshots
+
+## Estrutura recomendada de dados publicados
+
+```text
+public/data/
+  metadata.json
+  stores.json
+  store-locations.json
+  catalog-products.json
+  comparison-groups.json
+  offers.json
+  basket-templates.json
+  snapshots/
+    YYYY-MM-DD/
+      metadata.json
+      offers.json
+```
+
+## Modelo de dados alvo
+
+### `metadata.json`
+
+Metadados da publicação:
+
+- `schemaVersion`
+- `generatedAt`
+- `currency`
+- `country`
+- `storesPublished`
+- `offersPublished`
+- `catalogProductsPublished`
+- estado por fonte
+
+### `stores.json`
+
+Lista de insígnias:
+
+- `storeId`
+- `name`
+- `website`
+- `logo`
+- `active`
+
+### `store-locations.json`
+
+Lojas físicas e cobertura geográfica:
+
+- `locationId`
+- `storeId`
+- `name`
+- `address`
+- `postalCode`
+- `locality`
+- `lat`
+- `lng`
+- `active`
+
+### `catalog-products.json`
+
+Catálogo canónico:
+
+- `productId`
+- `canonicalName`
+- `comparisonGroup`
+- `categoryId`
+- `brand`
+- `isPrivateLabel`
+- `size`
+- `sizeUnit`
+- `packCount`
+- `requiredTokens`
+- `blockedTokens`
+- `aliases`
+- `active`
+
+### `comparison-groups.json`
+
+Agrupadores de comparação entre variantes equivalentes:
+
+- `comparisonGroupId`
+- `label`
+- `categoryId`
+- `rules`
+
+### `offers.json`
+
+Ofertas concretas publicadas para consumo da app:
+
+- `offerId`
+- `storeId`
+- `locationId`
+- `productId`
+- `scrapedName`
+- `brand`
+- `categoryId`
+- `price`
+- `size`
+- `sizeUnit`
+- `unitPrice`
+- `unit`
+- `currency`
+- `url`
+- `image`
+- `inStock`
+- `confidenceScore`
+- `lastUpdated`
+
+## Pipeline de dados recomendada
+
+Sequência lógica:
+
+1. `collect`
+2. `normalize`
+3. `dedupe`
+4. `match`
+5. `enrich`
+6. `validate`
+7. `publish`
+8. `snapshot`
+
+### Regras importantes
+
+- o frontend nunca lê dados raw
+- a app só consome ficheiros publicados e validados
+- falhas de uma loja não devem apagar os últimos dados válidos
+- snapshots devem permitir histórico e auditoria
+
+## Matching: linha orientadora
+
+O matching deve ser conservador e baseado em:
+
+- nome normalizado
+- marca
+- tamanho e unidade
+- aliases
+- tokens obrigatórios
+- tokens bloqueadores
+- `confidenceScore`
+
+Estados esperados:
+
+- `matched`
+- `possible_match`
+- `unmatched`
+
+## Catálogo canónico inicial
+
+A primeira fase de dados reais deve começar com um catálogo curto e controlado, focado em produtos embalados e de comparação simples.
+
+Categorias prioritárias:
+
+- laticínios e ovos
+- mercearia
+- pequeno-almoço e snacks
+- bebidas
+- limpeza essencial
+
+Produtos fora da primeira fase:
+
+- frescos ao peso
+- charcutaria ao corte
+- refeições prontas
+- produtos com variantes muito ambíguas
+
+## Arquitetura atual do frontend
 
 ## Stack
 
 - Vite
 - JavaScript vanilla com módulos ES
-- CSS global modularizado por responsabilidade
-- `localStorage` para persistência do cabaz e fontes importadas
+- CSS global
+- `localStorage`
 
 ## Estrutura de pastas
 
 ```text
 .
-├── .github/workflows/   # workflow de deploy para GitHub Pages
+├── .github/workflows/   # deploy para GitHub Pages
 ├── docs/                # documentação funcional e de formatos
-├── examples/            # exemplos de ficheiros JSON importáveis
+├── examples/            # exemplos de ficheiros JSON
 ├── public/              # assets públicos
 ├── src/
 │   ├── data/            # dados mock de exemplo
-│   ├── modules/         # montagem da app e rendering
-│   ├── styles/          # estilos globais
-│   └── utils/           # cálculos, helpers, validação, formatação
+│   ├── modules/         # app e rendering
+│   ├── styles/          # CSS global
+│   └── utils/           # helpers, formatação, validação
 ├── ARQUITETURA.md
 ├── ROADMAP.md
 ├── README.md
@@ -41,210 +244,72 @@ O Cabaz é uma aplicação web estática para comparar preços de um cabaz de co
 └── vite.config.js
 ```
 
-## Camadas da aplicação
+## Módulos principais
 
-### 1. Bootstrap
+### `src/modules/app.js`
 
-Responsável por arrancar a aplicação e carregar os estilos.
+Responsável por:
 
-- `src/main.js`
+- criar e gerir o estado da app
+- carregar dados mock e dados guardados
+- tratar eventos da interface
+- gerir pesquisa principal
+- gerir navegação entre secções
+- importar JSON
 
-Função:
-
-- importar CSS global
-- montar a app no elemento `#app`
-
-### 2. Orquestração de estado
-
-Responsável por gerir o estado da app no browser.
-
-- `src/modules/app.js`
-
-Responsabilidades:
-
-- criar o estado inicial
-- ler e escrever em `localStorage`
-- gerir filtros
-- gerir criação, edição e remoção de itens do cabaz
-- importar ficheiros JSON
-- acionar validação
-- recalcular a vista e re-renderizar
-
-Modelo de estado atual:
+Estado relevante atual:
 
 - `basket`
 - `results`
 - `stores`
-- `filters`
+- `currentSection`
+- `catalogSearch`
 - `editingItemId`
 - `notice`
 - `error`
 - `sources`
 
-## 3. Rendering
+### `src/modules/render.js`
 
-Responsável por construir a interface HTML a partir do estado.
+Responsável por:
 
-- `src/modules/render.js`
+- render da barra lateral
+- render do hero
+- render dos cards de resumo
+- render da pesquisa principal
+- render da secção `Lojas`
+- render de estados vazios e mensagens
 
-Responsabilidades:
+### `src/utils/`
 
-- render do cabeçalho
-- render do formulário do cabaz
-- render da lista de itens
-- render dos filtros
-- render dos cartões resumo
-- render dos totais por supermercado
-- render da tabela de comparação
-- render de mensagens de erro e estado vazio
+Responsável por:
 
-## 4. Utilitários de domínio
+- enriquecimento de resultados
+- validação de JSON
+- helpers e formatters
+- pesquisa por código postal e localidade
 
-Responsáveis por lógica reutilizável sem acoplamento à UI.
+## Interface atual
 
-### `src/utils/calculations.js`
+Áreas principais:
 
-- cálculo de preço unitário
-- enriquecimento dos resultados importados
-- filtragem de itens
-- escolha do melhor preço
-- agregação de totais por supermercado
-- cálculo de resumo do dashboard
+- barra lateral
+- hero
+- mensagens
+- cards de resumo
+- área principal
 
-### `src/utils/validation.js`
+Secções atualmente previstas na navegação:
 
-- validação da estrutura de `basket`
-- validação da estrutura de `results`
-- validação da estrutura de `stores`
-- normalização mínima de dados importados
+- `Painel`
+- `Lojas`
+- `Categorias`
+- `Marcas`
+- `Cabaz`
+- `Comparação`
 
-### `src/utils/formatters.js`
+Neste momento, apenas `Painel` e `Lojas` têm superfície útil visível.
 
-- formatação de moeda
-- formatação de datas
-- formatação de tamanhos e preço unitário
+## Decisão estrutural
 
-### `src/utils/helpers.js`
-
-- `slugify`
-- `escapeHtml`
-- deduplicação e helpers genéricos
-
-## 5. Dados
-
-### Dados mock
-
-Os ficheiros em `src/data/` representam a fonte de dados de demonstração.
-
-- `basket.example.json`
-- `results.example.json`
-- `stores.json`
-
-Estes ficheiros servem dois objetivos:
-
-- alimentar a demo inicial da app
-- funcionar como referência de formato para futuros exportadores
-
-### Dados importados
-
-A app aceita importação manual de:
-
-- cabaz
-- resultados
-- lojas
-
-Os dados importados substituem o estado atual correspondente e podem ser persistidos localmente.
-
-## Fluxo de dados
-
-### Inicialização
-
-1. carregar dados guardados em `localStorage`, se existirem
-2. caso não existam, usar os ficheiros mock em `src/data/`
-3. enriquecer resultados para garantir campos derivados
-4. renderizar a interface
-
-### Atualização do cabaz
-
-1. utilizador submete formulário
-2. app valida e normaliza os campos
-3. estado do cabaz é atualizado
-4. `localStorage` é atualizado
-5. interface é re-renderizada
-
-### Importação de JSON
-
-1. utilizador escolhe ficheiro
-2. app lê o conteúdo localmente no browser
-3. conteúdo é convertido para JSON
-4. validador adequado verifica estrutura mínima
-5. estado correspondente é substituído
-6. interface é re-renderizada
-
-### Cálculo da comparação
-
-1. aplicar filtros ao cabaz
-2. selecionar resultados relevantes por item e por loja
-3. escolher correspondência principal por loja
-4. identificar melhor preço disponível por item
-5. agregar totais por supermercado
-6. construir cartões resumo e tabela final
-
-## Persistência
-
-Persistência local atual:
-
-- `cabaz:basket`
-- `cabaz:results`
-- `cabaz:stores`
-
-Objetivo:
-
-- manter o cabaz do utilizador entre sessões
-- permitir que dados importados continuem disponíveis sem backend
-
-Não existe persistência remota nesta fase.
-
-## Compatibilidade com GitHub Pages
-
-Decisões relevantes:
-
-- sem backend
-- sem rotas do lado do servidor
-- assets gerados por build estática do Vite
-- `base path` configurado em `vite.config.js` para suportar subpath de repositório
-- deploy automático por GitHub Actions
-
-## Integração futura com scraper local
-
-O scraper não deve viver neste frontend.
-
-Separação proposta:
-
-- repositório ou script local independente gera ficheiros JSON
-- frontend importa ou consome esses ficheiros estáticos
-- contrato entre as duas partes é o formato documentado em `docs/data-format.md`
-
-Vantagens:
-
-- frontend continua publicável em GitHub Pages
-- scraping pode evoluir com dependências próprias
-- falhas no scraping não afetam a arquitetura da UI
-- testes e manutenção ficam mais simples
-
-## Decisões assumidas nesta versão
-
-- JavaScript vanilla em vez de React, para reduzir peso e complexidade
-- rendering por templates string, suficiente para a dimensão atual do projeto
-- uma única árvore de estado central em memória
-- validação leve no cliente, focada em estrutura e legibilidade de erro
-
-## Pontos de evolução natural
-
-- separar renderização por componentes menores
-- adicionar testes unitários para utilitários
-- suportar importação de um único ficheiro envelope com `basket`, `results` e `stores`
-- acrescentar ordenação e paginação na tabela
-- guardar preferências de filtros no browser
-- introduzir camada de adaptadores para múltiplas versões de formato JSON
-
+Este repositório deve continuar a ser o frontend e a documentação do projeto. O scraping real, a normalização e a publicação dos dados devem viver num projeto separado.
