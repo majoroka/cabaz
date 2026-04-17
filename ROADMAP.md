@@ -98,14 +98,13 @@ Fechar o contrato dos JSON que o frontend vai consumir.
 - [x] proposta inicial de `catalog-products.json`
 - [x] proposta inicial de `comparison-groups.json`
 - [x] proposta inicial de `offers.json`
-- [ ] validação final do contrato de ficheiros
-- [ ] validação final dos campos mínimos e opcionais
+- [x] validação final do contrato de ficheiros
+- [x] validação final dos campos mínimos e opcionais
 
 ### Intervenção necessária do utilizador
 
-- validar o modelo final antes de existir scraper real
-- confirmar se quer manter `comparison-groups.json` como ficheiro próprio
-- confirmar se a primeira versão já deve incluir imagens em `offers.json`
+- nenhuma pendência estrutural no Sprint 2
+- a próxima intervenção do utilizador deve acontecer no Sprint 3
 
 ## Sprint 3: Localização e lojas reais
 
@@ -115,13 +114,17 @@ Preparar a lógica de proximidade com base em lojas físicas e código postal.
 
 ### Entregáveis
 
-- [ ] definição das lojas piloto
-- [ ] definição das localizações piloto
-- [ ] regra de escolha das lojas mais próximas
+- [x] proposta inicial de loja piloto
+- [x] proposta inicial de localidade/zona piloto
+- [x] proposta inicial de regra de proximidade
+- [ ] validação final da insígnia piloto
+- [ ] validação final da zona/localidade piloto
+- [ ] validação final da regra `top 1` vs. múltiplas lojas
 
 ### Intervenção necessária do utilizador
 
-- escolher as primeiras localidades/zonas de teste
+- validar a proposta documentada do Sprint 3
+- confirmar se concorda com a insígnia piloto, zona piloto e regra de proximidade
 
 ## Sprint 4: Regras de matching
 

@@ -328,6 +328,7 @@ Adicionar:
 - `store-locations.json` entra logo na primeira versão do modelo
 - `comparison-groups.json` existe como ficheiro próprio
 - `offers.json` é o ponto único de leitura da comparação no frontend
+- `offers.json` deve incluir `image` logo na primeira versão
 - histórico é opcional no início, mas a estrutura já fica prevista
 
 ## Intervenção necessária do utilizador
@@ -338,6 +339,40 @@ Para fechar o Sprint 2, o utilizador deve validar:
 2. se quer manter `comparison-groups.json` separado de `catalog-products.json`
 3. se quer manter `store-locations.json` já na primeira versão
 4. se o modelo inicial deve publicar logo imagens e URLs, ou apenas URLs
+
+## Validação do Sprint 2
+
+Decisões já confirmadas:
+
+- manter `comparison-groups.json` como ficheiro próprio
+- manter `store-locations.json` logo na primeira versão
+- publicar `image` e `url` em `offers.json` desde a fase inicial
+
+## Justificação destas decisões
+
+### `comparison-groups.json`
+
+Deve manter-se separado porque:
+
+- desacopla o catálogo canónico das regras de comparação
+- permite ajustar grupos sem reescrever produtos
+- facilita evolução futura para múltiplos produtos no mesmo grupo
+
+### `store-locations.json`
+
+Deve entrar já na primeira versão porque:
+
+- a lógica de proximidade faz parte do produto
+- evita refazer o contrato de dados mais tarde
+- permite que a app evolua desde cedo para escolha de lojas reais e não apenas insígnias
+
+### `image` em `offers.json`
+
+Deve entrar já porque:
+
+- é útil para UX futura
+- evita mudanças posteriores no contrato dos dados
+- o custo adicional do campo é aceitável na fase inicial
 
 ## Critério para dar o Sprint 2 como fechado
 
