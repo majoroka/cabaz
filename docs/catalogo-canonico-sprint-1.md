@@ -12,6 +12,8 @@ Definir o primeiro núcleo de produtos comparáveis para arrancar com dados reai
 - a marca é tratada como atributo do produto, não como identidade principal do grupo
 - não existe equivalência automática entre marca própria e marca nacional na primeira fase
 - packs e tamanhos diferentes não devem ser considerados equivalentes por defeito
+- os 24 produtos definidos abaixo são suficientes para a fase inicial de testes
+- depois da fase inicial, o catálogo deve ser alargado progressivamente para cobrir um espetro muito mais amplo de produtos
 
 ## Categorias iniciais
 
@@ -153,6 +155,38 @@ Antes de fechar o Sprint 1, o utilizador deve validar:
 2. se quer manter o sprint limitado a 24 produtos
 3. se quer manter a fase inicial sem equivalência automática entre marca própria e marca nacional
 4. quais os produtos que considera prioritários para a primeira loja piloto
+
+## Validação do Sprint 1
+
+Decisões já confirmadas:
+
+- manter os 24 produtos na fase inicial de testes
+- manter a fase inicial sem equivalência automática entre marca própria e marca nacional
+- aceitar a lista atual como base de arranque
+- alargar o catálogo numa fase posterior, depois de validar o modelo com dados reais
+
+## Produtos prioritários para a primeira loja piloto
+
+Seleção recomendada para a primeira loja piloto:
+
+1. `leite-meio-gordo-1l`
+2. `arroz-agulha-1kg`
+3. `massa-esparguete-500g`
+4. `atum-em-azeite-pack-3`
+5. `azeite-virgem-extra-750ml`
+6. `polpa-tomate-500g`
+7. `grao-de-bico-cozido-540g`
+8. `bolachas-maria-200g`
+9. `agua-mineral-1-5l`
+10. `detergente-loica-750ml`
+
+### Critério desta escolha
+
+- produtos embalados e estáveis
+- nomes normalmente previsíveis nas lojas
+- tamanhos fáceis de normalizar
+- baixo risco de ambiguidade semântica
+- cobertura de várias categorias sem aumentar demasiado a complexidade
 
 ## Critério para dar o Sprint 1 como fechado
 

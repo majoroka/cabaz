@@ -60,8 +60,9 @@ Definir o núcleo mínimo para arrancar com dados reais comparáveis.
 - [x] proposta inicial de grupos de comparação
 - [x] política inicial de packs e tamanhos
 - [x] decisão inicial de matching conservador
-- [ ] validação final do catálogo inicial
-- [ ] validação final da política de marca própria vs. marca nacional
+- [x] validação final do catálogo inicial
+- [x] validação final da política de marca própria vs. marca nacional
+- [x] seleção inicial de produtos para a primeira loja piloto
 
 ### Estado atual do sprint
 
@@ -76,13 +77,12 @@ Existe já uma proposta de Sprint 1 documentada em:
 - sem frescos nesta fase
 - sem equivalência automática entre marca própria e marca nacional
 - grupos de comparação estritos
+- primeira seleção piloto já definida
 
 ### Intervenção necessária do utilizador
 
-- validar a lista inicial de produtos
-- confirmar se quer manter o sprint nos 24 produtos iniciais
-- confirmar se a fase inicial fica sem equivalência automática entre marca própria e marca nacional
-- indicar quais os produtos prioritários para a primeira loja piloto
+- nenhuma pendência estrutural no Sprint 1
+- a próxima intervenção do utilizador deve acontecer no Sprint 2 ou na escolha da primeira loja piloto
 
 ## Sprint 2: Modelo de dados publicado
 
