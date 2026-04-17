@@ -186,6 +186,15 @@ Para fechar o Sprint 3, o utilizador deve validar:
 3. se concorda que a fase MVP use apenas a loja mais próxima (`top 1`)
 4. se prefere manter a primeira expansão dentro do Algarve central antes de alargar a outras zonas
 
+## Validação do Sprint 3
+
+Decisões já confirmadas:
+
+- `Continente` como primeira insígnia piloto
+- `Armação de Pêra` como primeira localidade piloto
+- fase MVP com apenas a loja mais próxima (`top 1`)
+- primeira expansão ainda dentro do Algarve central
+
 ## Critério para dar o Sprint 3 como fechado
 
 O Sprint 3 fica fechado quando:

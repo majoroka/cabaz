@@ -117,14 +117,14 @@ Preparar a lógica de proximidade com base em lojas físicas e código postal.
 - [x] proposta inicial de loja piloto
 - [x] proposta inicial de localidade/zona piloto
 - [x] proposta inicial de regra de proximidade
-- [ ] validação final da insígnia piloto
-- [ ] validação final da zona/localidade piloto
-- [ ] validação final da regra `top 1` vs. múltiplas lojas
+- [x] validação final da insígnia piloto
+- [x] validação final da zona/localidade piloto
+- [x] validação final da regra `top 1` vs. múltiplas lojas
 
 ### Intervenção necessária do utilizador
 
-- validar a proposta documentada do Sprint 3
-- confirmar se concorda com a insígnia piloto, zona piloto e regra de proximidade
+- nenhuma pendência estrutural no Sprint 3
+- a próxima intervenção do utilizador deve acontecer no Sprint 4
 
 ## Sprint 4: Regras de matching
 
