@@ -171,6 +171,18 @@ Esta fase pode ser dada como bem-sucedida quando:
 4. o matching não apresentar erros óbvios
 5. a proximidade estiver coerente com a loja real selecionada para `Armação de Pêra`
 
+## Política para os mocks atuais
+
+Os dados mock existentes servem apenas como mecanismo de transição e desenvolvimento.
+
+Assim que existir uma publicação real estável com cobertura mínima aceitável:
+
+1. o frontend deve passar a privilegiar apenas os dados publicados
+2. o fallback automático para mocks deve ser removido
+3. a demo deve ficar, no máximo, como ferramenta manual de teste isolada
+
+Ou seja: os mocks não devem continuar a mascarar falhas depois de a fase real arrancar.
+
 ## O que ainda não entra nesta fase
 
 - várias insígnias em paralelo

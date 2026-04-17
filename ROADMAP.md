@@ -202,6 +202,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] materialização inicial dos ficheiros publicados mínimos
 - [ ] primeira publicação real de dados
 - [ ] validação manual com dados reais no frontend
+- [ ] remoção do fallback automático para mocks após publicação real estável
 
 ### Intervenção necessária do utilizador
 
