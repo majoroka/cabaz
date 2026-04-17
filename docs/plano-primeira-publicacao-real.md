@@ -185,7 +185,7 @@ Para arrancar a execução desta fase, o utilizador terá de intervir em três p
 
 1. validar manualmente a primeira publicação real quando existir
 2. decidir quando passamos dos 10 produtos piloto para os 24 produtos iniciais
-3. confirmar as coordenadas da loja piloto se quisermos ativar proximidade geográfica real nesta fase
+3. confirmar a janela de validacao manual assim que existirem ofertas reais publicadas
 
 ## Próximo passo recomendado
 
@@ -206,5 +206,6 @@ A primeira loja piloto confirmada para esta fase é:
 - `Avenida General Humberto Delgado`
 - `8365-138 Armação de Pêra`
 - concelho de `Silves`
+- coordenadas: `37.1066761`, `-8.3624628`
 
-Enquanto as coordenadas não forem preenchidas, esta loja pode já ser usada como referência de publicação, ficando a proximidade geográfica exata para o passo seguinte.
+Esta loja já pode ser usada como referência de publicação e como base para proximidade geográfica real na fase MVP.

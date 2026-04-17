@@ -205,7 +205,6 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 ### Intervenção necessária do utilizador
 
-- confirmar coordenadas da loja piloto, se quisermos ativar proximidade geográfica exata já nesta fase
 - validar a primeira publicação real quando existir
 
 ## Fora de âmbito neste repositório
@@ -221,8 +220,8 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 1. Fechar a validação do documento do Sprint 5.
 2. Fechar a validação do documento do Sprint 6 com o concelho de Silves como primeira área de escala.
-3. Preencher coordenadas da loja piloto para ativar proximidade geográfica exata.
-4. Preparar a primeira publicação real de ofertas.
+3. Preparar a primeira publicação real de ofertas.
+4. Validar manualmente a primeira publicação real no frontend.
 
 ## Regra de gestão do roadmap
 
