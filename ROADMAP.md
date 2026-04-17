@@ -56,27 +56,33 @@ Definir o núcleo mínimo para arrancar com dados reais comparáveis.
 
 ### Entregáveis
 
-- [ ] lista inicial de produtos canónicos
-- [ ] grupos de comparação
-- [ ] regras de marca própria vs. marca nacional
-- [ ] política de packs e tamanhos
-- [ ] campos obrigatórios de catálogo
+- [x] proposta inicial de lista de produtos canónicos
+- [x] proposta inicial de grupos de comparação
+- [x] política inicial de packs e tamanhos
+- [x] decisão inicial de matching conservador
+- [ ] validação final do catálogo inicial
+- [ ] validação final da política de marca própria vs. marca nacional
 
-### Proposta atual
+### Estado atual do sprint
 
-Arrancar com um catálogo curto e conservador, focado em produtos embalados:
+Existe já uma proposta de Sprint 1 documentada em:
 
-- laticínios e ovos
-- mercearia
-- pequeno-almoço e snacks
-- bebidas
-- limpeza essencial
+- [docs/catalogo-canonico-sprint-1.md](./docs/catalogo-canonico-sprint-1.md)
+
+Âmbito atual assumido:
+
+- 24 produtos iniciais
+- produtos embalados
+- sem frescos nesta fase
+- sem equivalência automática entre marca própria e marca nacional
+- grupos de comparação estritos
 
 ### Intervenção necessária do utilizador
 
 - validar a lista inicial de produtos
-- decidir o nível de rigor da comparação
-- decidir se a fase inicial inclui equivalência entre marca própria e marca nacional
+- confirmar se quer manter o sprint nos 24 produtos iniciais
+- confirmar se a fase inicial fica sem equivalência automática entre marca própria e marca nacional
+- indicar quais os produtos prioritários para a primeira loja piloto
 
 ## Sprint 2: Modelo de dados publicado
 
@@ -178,10 +184,10 @@ Expandir a cobertura sem perder qualidade.
 
 ## Próximos passos imediatos
 
-1. Fechar o Sprint 1 com a lista inicial de produtos canónicos.
-2. Traduzir essa lista para grupos de comparação.
-3. Registar as regras mínimas de matching por produto.
-4. Só depois fechar o contrato final dos JSON.
+1. Fechar a validação do documento do Sprint 1.
+2. Selecionar os primeiros produtos da loja piloto.
+3. Fechar o contrato final dos JSON publicados.
+4. Preparar o Sprint 2 com o modelo de dados publicado.
 
 ## Regra de gestão do roadmap
 
