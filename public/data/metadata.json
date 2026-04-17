@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-04-17T00:00:00Z",
+  "currency": "EUR",
+  "country": "PT",
+  "publicationStatus": "seed",
+  "storesPublished": 1,
+  "storeLocationsPublished": 0,
+  "offersPublished": 0,
+  "catalogProductsPublished": 24,
+  "comparisonGroupsPublished": 24,
+  "notes": [
+    "Seed inicial de dados publicados para integracao futura com pipeline real.",
+    "A loja Continente piloto concreta no concelho de Silves continua pendente de confirmacao."
+  ],
+  "sources": [
+    {
+      "storeId": "continente",
+      "status": "pending_store_selection",
+      "lastUpdated": null
+    }
+  ]
+}

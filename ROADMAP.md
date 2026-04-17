@@ -199,7 +199,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 - [x] plano operacional inicial da primeira publicação real
 - [ ] definição da loja Continente piloto no concelho de Silves
-- [ ] materialização dos ficheiros publicados mínimos
+- [x] materialização inicial dos ficheiros publicados mínimos
 - [ ] primeira publicação real de dados
 - [ ] validação manual com dados reais no frontend
 

@@ -1,0 +1,9 @@
+[
+  {
+    "storeId": "continente",
+    "name": "Continente",
+    "website": "https://www.continente.pt",
+    "logo": "./lojas/continente.png",
+    "active": true
+  }
+]
