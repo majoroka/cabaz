@@ -155,15 +155,17 @@ Montar a primeira versão funcional de dados reais, com âmbito controlado.
 
 ### Entregáveis
 
-- [ ] 1 supermercado
-- [ ] 1 localização
-- [ ] 10 a 20 produtos
-- [ ] geração de JSON publicados
-- [ ] validação manual dos resultados
+- [x] proposta inicial de âmbito do MVP
+- [x] proposta inicial de artefactos publicados
+- [x] proposta inicial de critério de sucesso
+- [x] proposta inicial de validação manual
+- [ ] primeira publicação real de dados
+- [ ] validação manual de resultados reais
 
 ### Intervenção necessária do utilizador
 
-- testar resultados reais e validar utilidade prática
+- validar a proposta documentada do Sprint 5
+- testar resultados reais quando existir a primeira publicação
 
 ## Sprint 6: Escala controlada
 
