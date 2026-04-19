@@ -1,272 +1,28 @@
 [
   {
-    "productId": "leite-meio-gordo-1l",
-    "canonicalName": "Leite meio-gordo 1L",
-    "comparisonGroup": "leite-meio-gordo-1l",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
+    "productId": "abrilhantador-maquina-loica-1l",
+    "canonicalName": "Abrilhantador máquina loiça Continente 1L",
+    "comparisonGroup": "abrilhantador-maquina-loica-1l",
+    "categoryId": "limpeza_casa",
+    "brand": "Continente",
+    "isPrivateLabel": true,
     "size": 1,
     "sizeUnit": "L",
     "packCount": 1,
-    "requiredTokens": ["leite", "meio", "gordo"],
-    "blockedTokens": ["magro", "inteiro", "sem lactose", "proteina", "achocolatado"],
-    "aliases": ["leite meio gordo 1l", "leite meio-gordo 1l"],
-    "active": true
-  },
-  {
-    "productId": "leite-magro-1l",
-    "canonicalName": "Leite magro 1L",
-    "comparisonGroup": "leite-magro-1l",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": ["leite", "magro"],
-    "blockedTokens": ["meio", "gordo", "inteiro", "sem lactose", "proteina", "achocolatado"],
-    "aliases": ["leite magro 1l"],
-    "active": true
-  },
-  {
-    "productId": "leite-inteiro-1l",
-    "canonicalName": "Leite inteiro 1L",
-    "comparisonGroup": "leite-inteiro-1l",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": ["leite", "inteiro"],
-    "blockedTokens": ["meio", "gordo", "magro", "sem lactose", "proteina", "achocolatado"],
-    "aliases": ["leite inteiro 1l"],
-    "active": true
-  },
-  {
-    "productId": "leite-sem-lactose-meio-gordo-1l",
-    "canonicalName": "Leite sem lactose meio-gordo 1L",
-    "comparisonGroup": "leite-sem-lactose-meio-gordo-1l",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": ["leite", "sem lactose", "meio", "gordo"],
-    "blockedTokens": ["magro", "inteiro", "proteina", "achocolatado"],
-    "aliases": ["leite sem lactose meio gordo 1l", "leite meio gordo sem lactose 1l"],
-    "active": true
-  },
-  {
-    "productId": "ovos-classe-m-6",
-    "canonicalName": "Ovos classe M pack 6",
-    "comparisonGroup": "ovos-classe-m-6",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 6,
-    "sizeUnit": "un",
-    "packCount": 6,
-    "requiredTokens": ["ovos", "classe", "m"],
-    "blockedTokens": ["l", "xl", "duzia", "12"],
-    "aliases": ["ovos classe m 6", "ovos m pack 6"],
-    "active": true
-  },
-  {
-    "productId": "iogurte-natural-4",
-    "canonicalName": "Iogurte natural pack 4",
-    "comparisonGroup": "iogurte-natural-4",
-    "categoryId": "lacteos_ovos",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 4,
-    "sizeUnit": "un",
-    "packCount": 4,
-    "requiredTokens": ["iogurte", "natural"],
-    "blockedTokens": ["liquido", "grego", "aroma", "morango"],
-    "aliases": ["iogurte natural pack 4", "iogurtes naturais pack 4"],
-    "active": true
-  },
-  {
-    "productId": "arroz-agulha-1kg",
-    "canonicalName": "Arroz agulha 1kg",
-    "comparisonGroup": "arroz-agulha-1kg",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": ["arroz", "agulha"],
-    "blockedTokens": ["basmati", "carolino", "integral", "vaporizado"],
-    "aliases": ["arroz agulha 1kg", "arroz agulha 1000g"],
-    "active": true
-  },
-  {
-    "productId": "massa-esparguete-500g",
-    "canonicalName": "Massa esparguete 500g",
-    "comparisonGroup": "massa-esparguete-500g",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 500,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["massa", "esparguete"],
-    "blockedTokens": ["macarrao", "penne", "fusilli", "tagliatelle"],
-    "aliases": ["massa esparguete 500g", "esparguete 500g"],
-    "active": true
-  },
-  {
-    "productId": "massa-macarrao-500g",
-    "canonicalName": "Massa macarrao 500g",
-    "comparisonGroup": "massa-macarrao-500g",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 500,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["massa", "macarrao"],
-    "blockedTokens": ["esparguete", "penne", "fusilli", "tagliatelle"],
-    "aliases": ["massa macarrao 500g", "macarrao 500g"],
-    "active": true
-  },
-  {
-    "productId": "atum-em-azeite-pack-3",
-    "canonicalName": "Atum em azeite pack 3",
-    "comparisonGroup": "atum-em-azeite-pack-3",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 3,
-    "sizeUnit": "un",
-    "packCount": 3,
-    "requiredTokens": ["atum", "azeite"],
-    "blockedTokens": ["natural", "picante", "tomate"],
-    "aliases": ["atum em azeite pack 3", "atum azeite pack 3"],
-    "active": true
-  },
-  {
-    "productId": "atum-ao-natural-pack-3",
-    "canonicalName": "Atum ao natural pack 3",
-    "comparisonGroup": "atum-ao-natural-pack-3",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 3,
-    "sizeUnit": "un",
-    "packCount": 3,
-    "requiredTokens": ["atum", "natural"],
-    "blockedTokens": ["azeite", "picante", "tomate"],
-    "aliases": ["atum ao natural pack 3", "atum natural pack 3"],
-    "active": true
-  },
-  {
-    "productId": "azeite-virgem-extra-750ml",
-    "canonicalName": "Azeite virgem extra 750ml",
-    "comparisonGroup": "azeite-virgem-extra-750ml",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 750,
-    "sizeUnit": "ml",
-    "packCount": 1,
-    "requiredTokens": ["azeite", "virgem", "extra"],
-    "blockedTokens": ["oleo", "vinagre", "500ml", "1l"],
-    "aliases": ["azeite virgem extra 750ml", "azeite extra virgem 750ml"],
-    "active": true
-  },
-  {
-    "productId": "polpa-tomate-500g",
-    "canonicalName": "Polpa de tomate 500g",
-    "comparisonGroup": "polpa-tomate-500g",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 500,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["polpa", "tomate"],
-    "blockedTokens": ["molho", "ketchup", "triturado", "concentrado"],
-    "aliases": ["polpa de tomate 500g"],
-    "active": true
-  },
-  {
-    "productId": "grao-de-bico-cozido-540g",
-    "canonicalName": "Grao-de-bico cozido frasco 540g",
-    "comparisonGroup": "grao-de-bico-cozido-540g",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 540,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["grao", "bico", "cozido"],
-    "blockedTokens": ["feijao", "lentilhas"],
-    "aliases": ["grao de bico cozido 540g", "grao-de-bico cozido 540g"],
-    "active": true
-  },
-  {
-    "productId": "feijao-frade-cozido-540g",
-    "canonicalName": "Feijao frade cozido frasco 540g",
-    "comparisonGroup": "feijao-frade-cozido-540g",
-    "categoryId": "mercearia",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 540,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["feijao", "frade", "cozido"],
-    "blockedTokens": ["grao", "lentilhas", "manteiga"],
-    "aliases": ["feijao frade cozido 540g", "feijao-frade cozido 540g"],
-    "active": true
-  },
-  {
-    "productId": "cereais-milho-375g",
-    "canonicalName": "Cereais de milho 375g",
-    "comparisonGroup": "cereais-milho-375g",
-    "categoryId": "snacks_doces",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 375,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["cereais", "milho"],
-    "blockedTokens": ["chocolate", "muesli", "aveia"],
-    "aliases": ["cereais de milho 375g", "corn flakes 375g"],
-    "active": true
-  },
-  {
-    "productId": "bolachas-maria-200g",
-    "canonicalName": "Bolachas Maria 200g",
-    "comparisonGroup": "bolachas-maria-200g",
-    "categoryId": "snacks_doces",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 200,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["bolachas", "maria"],
-    "blockedTokens": ["digestive", "chocolate", "recheadas"],
-    "aliases": ["bolachas maria 200g", "bolacha maria 200g"],
-    "active": true
-  },
-  {
-    "productId": "bolacha-agua-sal-200g",
-    "canonicalName": "Bolacha agua e sal 200g",
-    "comparisonGroup": "bolacha-agua-sal-200g",
-    "categoryId": "snacks_doces",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 200,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": ["bolacha", "agua", "sal"],
-    "blockedTokens": ["maria", "digestive", "recheada"],
-    "aliases": ["bolacha agua e sal 200g", "bolachas agua e sal 200g"],
+    "requiredTokens": [
+      "abrilhantador",
+      "maquina",
+      "loica",
+      "continente"
+    ],
+    "blockedTokens": [
+      "detergente",
+      "sal"
+    ],
+    "aliases": [
+      "abrilhantador maquina loica power continente",
+      "abrilhantador continente 1l"
+    ],
     "active": true
   },
   {
@@ -279,39 +35,349 @@
     "size": 1.5,
     "sizeUnit": "L",
     "packCount": 1,
-    "requiredTokens": ["agua", "mineral"],
-    "blockedTokens": ["gas", "aromatizada", "0.5l"],
-    "aliases": ["agua mineral 1,5l", "agua mineral 1.5l"],
+    "requiredTokens": [
+      "agua",
+      "mineral"
+    ],
+    "blockedTokens": [
+      "gas",
+      "aromatizada",
+      "0.5l"
+    ],
+    "aliases": [
+      "agua mineral 1,5l",
+      "agua mineral 1.5l"
+    ],
     "active": true
   },
   {
-    "productId": "sumo-laranja-1l",
-    "canonicalName": "Sumo de laranja 1L",
-    "comparisonGroup": "sumo-laranja-1l",
-    "categoryId": "bebidas",
+    "productId": "arroz-agulha-1kg",
+    "canonicalName": "Arroz agulha 1kg",
+    "comparisonGroup": "arroz-agulha-1kg",
+    "categoryId": "mercearia",
     "brand": null,
     "isPrivateLabel": false,
     "size": 1,
-    "sizeUnit": "L",
+    "sizeUnit": "kg",
     "packCount": 1,
-    "requiredTokens": ["sumo", "laranja"],
-    "blockedTokens": ["nectar", "multivitaminico", "maca"],
-    "aliases": ["sumo de laranja 1l", "sumo laranja 1l"],
+    "requiredTokens": [
+      "arroz",
+      "agulha"
+    ],
+    "blockedTokens": [
+      "basmati",
+      "carolino",
+      "integral",
+      "vaporizado"
+    ],
+    "aliases": [
+      "arroz agulha 1kg",
+      "arroz agulha 1000g"
+    ],
     "active": true
   },
   {
-    "productId": "refrigerante-cola-1-5l",
-    "canonicalName": "Refrigerante cola 1,5L",
-    "comparisonGroup": "refrigerante-cola-1-5l",
-    "categoryId": "bebidas",
+    "productId": "arroz-agulha-integral-cigala-1kg",
+    "canonicalName": "Arroz agulha integral Cigala 1kg",
+    "comparisonGroup": "arroz-agulha-integral-cigala-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "integral",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha integral cigala",
+      "cigala integral 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-basmati-cacarola-500g",
+    "canonicalName": "Arroz basmati Caçarola 500g",
+    "comparisonGroup": "arroz-basmati-cacarola-500g",
+    "categoryId": "mercearia",
+    "brand": "Caçarola",
+    "isPrivateLabel": false,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "basmati",
+      "cacarola"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz basmati cacarola",
+      "cacarola basmati 500g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-carolino-caravela-continente-1kg",
+    "canonicalName": "Arroz carolino Caravela Continente 1kg",
+    "comparisonGroup": "arroz-carolino-caravela-continente-1kg",
+    "categoryId": "mercearia",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "carolino",
+      "caravela",
+      "continente"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz carolino caravela continente",
+      "caravela continente 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-ao-natural-pack-3",
+    "canonicalName": "Atum ao natural pack 3",
+    "comparisonGroup": "atum-ao-natural-pack-3",
+    "categoryId": "mercearia",
     "brand": null,
     "isPrivateLabel": false,
-    "size": 1.5,
-    "sizeUnit": "L",
+    "size": 3,
+    "sizeUnit": "un",
+    "packCount": 3,
+    "requiredTokens": [
+      "atum",
+      "natural"
+    ],
+    "blockedTokens": [
+      "azeite",
+      "picante",
+      "tomate"
+    ],
+    "aliases": [
+      "atum ao natural pack 3",
+      "atum natural pack 3"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-em-azeite-pack-3",
+    "canonicalName": "Atum em azeite pack 3",
+    "comparisonGroup": "atum-em-azeite-pack-3",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 3,
+    "sizeUnit": "un",
+    "packCount": 3,
+    "requiredTokens": [
+      "atum",
+      "azeite"
+    ],
+    "blockedTokens": [
+      "natural",
+      "picante",
+      "tomate"
+    ],
+    "aliases": [
+      "atum em azeite pack 3",
+      "atum azeite pack 3"
+    ],
+    "active": true
+  },
+  {
+    "productId": "azeite-virgem-extra-750ml",
+    "canonicalName": "Azeite virgem extra 750ml",
+    "comparisonGroup": "azeite-virgem-extra-750ml",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 750,
+    "sizeUnit": "ml",
     "packCount": 1,
-    "requiredTokens": ["cola"],
-    "blockedTokens": ["zero", "light", "limao", "0.33l"],
-    "aliases": ["refrigerante cola 1,5l", "cola 1.5l"],
+    "requiredTokens": [
+      "azeite",
+      "virgem",
+      "extra"
+    ],
+    "blockedTokens": [
+      "oleo",
+      "vinagre",
+      "500ml",
+      "1l"
+    ],
+    "aliases": [
+      "azeite virgem extra 750ml",
+      "azeite extra virgem 750ml"
+    ],
+    "active": true
+  },
+  {
+    "productId": "banana-1kg",
+    "canonicalName": "Banana Continente 1kg",
+    "comparisonGroup": "banana-1kg",
+    "categoryId": "fruta_legumes",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "banana"
+    ],
+    "blockedTokens": [
+      "madura",
+      "bio"
+    ],
+    "aliases": [
+      "banana continente",
+      "banana 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolacha-agua-sal-200g",
+    "canonicalName": "Bolacha agua e sal 200g",
+    "comparisonGroup": "bolacha-agua-sal-200g",
+    "categoryId": "snacks_doces",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 200,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolacha",
+      "agua",
+      "sal"
+    ],
+    "blockedTokens": [
+      "maria",
+      "digestive",
+      "recheada"
+    ],
+    "aliases": [
+      "bolacha agua e sal 200g",
+      "bolachas agua e sal 200g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-maria-200g",
+    "canonicalName": "Bolachas Maria 200g",
+    "comparisonGroup": "bolachas-maria-200g",
+    "categoryId": "snacks_doces",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 200,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolachas",
+      "maria"
+    ],
+    "blockedTokens": [
+      "digestive",
+      "chocolate",
+      "recheadas"
+    ],
+    "aliases": [
+      "bolachas maria 200g",
+      "bolacha maria 200g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-maria-800g-4un",
+    "canonicalName": "Bolachas Maria Continente 800g (4 un)",
+    "comparisonGroup": "bolachas-maria-800g-4un",
+    "categoryId": "snacks_doces",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "bolachas",
+      "maria",
+      "continente"
+    ],
+    "blockedTokens": [
+      "chocolate",
+      "torrada"
+    ],
+    "aliases": [
+      "bolachas maria continente",
+      "bolacha maria continente 800g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "capsulas-cafe-delta-q-int-10-100un",
+    "canonicalName": "Cápsulas Delta Q Qalidus Int 10 (100 un)",
+    "comparisonGroup": "capsulas-cafe-delta-q-int-10-100un",
+    "categoryId": "bebidas",
+    "brand": "Delta Q",
+    "isPrivateLabel": false,
+    "size": 100,
+    "sizeUnit": "un",
+    "packCount": 100,
+    "requiredTokens": [
+      "capsulas",
+      "cafe",
+      "delta",
+      "qalidus"
+    ],
+    "blockedTokens": [
+      "descafeinado"
+    ],
+    "aliases": [
+      "capsulas de cafe qalidus int 10 delta q",
+      "delta q qalidus 100 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "cereais-milho-375g",
+    "canonicalName": "Cereais de milho 375g",
+    "comparisonGroup": "cereais-milho-375g",
+    "categoryId": "snacks_doces",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 375,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "cereais",
+      "milho"
+    ],
+    "blockedTokens": [
+      "chocolate",
+      "muesli",
+      "aveia"
+    ],
+    "aliases": [
+      "cereais de milho 375g",
+      "corn flakes 375g"
+    ],
     "active": true
   },
   {
@@ -324,39 +390,19 @@
     "size": 750,
     "sizeUnit": "ml",
     "packCount": 1,
-    "requiredTokens": ["detergente", "loica"],
-    "blockedTokens": ["maquina", "roupa", "1l"],
-    "aliases": ["detergente loica 750ml", "lava loica manual 750ml"],
-    "active": true
-  },
-  {
-    "productId": "papel-higienico-pack-12",
-    "canonicalName": "Papel higienico pack 12",
-    "comparisonGroup": "papel-higienico-pack-12",
-    "categoryId": "limpeza_casa",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 12,
-    "sizeUnit": "un",
-    "packCount": 12,
-    "requiredTokens": ["papel", "higienico"],
-    "blockedTokens": ["cozinha", "lenços", "6"],
-    "aliases": ["papel higienico pack 12", "papel higienico 12 rolos"],
-    "active": true
-  },
-  {
-    "productId": "rolo-cozinha-pack-2",
-    "canonicalName": "Rolo de cozinha pack 2",
-    "comparisonGroup": "rolo-cozinha-pack-2",
-    "categoryId": "limpeza_casa",
-    "brand": null,
-    "isPrivateLabel": false,
-    "size": 2,
-    "sizeUnit": "un",
-    "packCount": 2,
-    "requiredTokens": ["rolo", "cozinha"],
-    "blockedTokens": ["papel higienico", "guardanapos", "4"],
-    "aliases": ["rolo cozinha pack 2", "rolo de cozinha 2 unidades"],
+    "requiredTokens": [
+      "detergente",
+      "loica"
+    ],
+    "blockedTokens": [
+      "maquina",
+      "roupa",
+      "1l"
+    ],
+    "aliases": [
+      "detergente loica 750ml",
+      "lava loica manual 750ml"
+    ],
     "active": true
   },
   {
@@ -369,114 +415,317 @@
     "size": 840,
     "sizeUnit": "g",
     "packCount": 30,
-    "requiredTokens": ["douradinhos", "peixe"],
-    "blockedTokens": ["frango", "nuggets", "pescada"],
-    "aliases": ["douradinhos de peixe capitao iglo", "douradinhos peixe 840g"],
+    "requiredTokens": [
+      "douradinhos",
+      "peixe"
+    ],
+    "blockedTokens": [
+      "frango",
+      "nuggets",
+      "pescada"
+    ],
+    "aliases": [
+      "douradinhos de peixe capitao iglo",
+      "douradinhos peixe 840g"
+    ],
     "active": true
   },
   {
-    "productId": "bolachas-maria-800g-4un",
-    "canonicalName": "Bolachas Maria 800g (4 un)",
-    "comparisonGroup": "bolachas-maria-800g-4un",
-    "categoryId": "snacks_doces",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 800,
-    "sizeUnit": "g",
-    "packCount": 4,
-    "requiredTokens": ["bolachas", "maria"],
-    "blockedTokens": ["digestive", "recheadas", "chocolate"],
-    "aliases": ["bolachas maria continente", "bolachas maria 800g 4 un"],
-    "active": true
-  },
-  {
-    "productId": "pastilhas-maquina-loica-105-doses",
-    "canonicalName": "Pastilhas maquina loica 105 doses",
-    "comparisonGroup": "pastilhas-maquina-loica-105-doses",
-    "categoryId": "limpeza_casa",
-    "brand": "Finish",
+    "productId": "feijao-frade-cozido-540g",
+    "canonicalName": "Feijao frade cozido frasco 540g",
+    "comparisonGroup": "feijao-frade-cozido-540g",
+    "categoryId": "mercearia",
+    "brand": null,
     "isPrivateLabel": false,
-    "size": 105,
-    "sizeUnit": "un",
-    "packCount": 105,
-    "requiredTokens": ["maquina", "loica", "pastilhas"],
-    "blockedTokens": ["abrilhantador", "po", "gel"],
-    "aliases": ["detergente maquina loica pastilhas quantum finish", "pastilhas quantum finish 105 doses"],
+    "size": 540,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "feijao",
+      "frade",
+      "cozido"
+    ],
+    "blockedTokens": [
+      "grao",
+      "lentilhas",
+      "manteiga"
+    ],
+    "aliases": [
+      "feijao frade cozido 540g",
+      "feijao-frade cozido 540g"
+    ],
     "active": true
   },
   {
-    "productId": "abrilhantador-maquina-loica-1l",
-    "canonicalName": "Abrilhantador maquina loica 1L",
-    "comparisonGroup": "abrilhantador-maquina-loica-1l",
-    "categoryId": "limpeza_casa",
+    "productId": "grao-de-bico-cozido-540g",
+    "canonicalName": "Grao-de-bico cozido frasco 540g",
+    "comparisonGroup": "grao-de-bico-cozido-540g",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 540,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "grao",
+      "bico",
+      "cozido"
+    ],
+    "blockedTokens": [
+      "feijao",
+      "lentilhas"
+    ],
+    "aliases": [
+      "grao de bico cozido 540g",
+      "grao-de-bico cozido 540g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-natural-4",
+    "canonicalName": "Iogurte natural pack 4",
+    "comparisonGroup": "iogurte-natural-4",
+    "categoryId": "lacteos_ovos",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 4,
+    "sizeUnit": "un",
+    "packCount": 4,
+    "requiredTokens": [
+      "iogurte",
+      "natural"
+    ],
+    "blockedTokens": [
+      "liquido",
+      "grego",
+      "aroma",
+      "morango"
+    ],
+    "aliases": [
+      "iogurte natural pack 4",
+      "iogurtes naturais pack 4"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-inteiro-1l",
+    "canonicalName": "Leite inteiro 1L",
+    "comparisonGroup": "leite-inteiro-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "inteiro"
+    ],
+    "blockedTokens": [
+      "meio",
+      "gordo",
+      "magro",
+      "sem lactose",
+      "proteina",
+      "achocolatado"
+    ],
+    "aliases": [
+      "leite inteiro 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-magro-1l",
+    "canonicalName": "Leite magro 1L",
+    "comparisonGroup": "leite-magro-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "magro"
+    ],
+    "blockedTokens": [
+      "meio",
+      "gordo",
+      "inteiro",
+      "sem lactose",
+      "proteina",
+      "achocolatado"
+    ],
+    "aliases": [
+      "leite magro 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-1l",
+    "canonicalName": "Leite UHT meio-gordo Mimosa 1L",
+    "comparisonGroup": "leite-meio-gordo-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Mimosa",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "mimosa"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "sem",
+      "lactose"
+    ],
+    "aliases": [
+      "leite uht meio gordo mimosa",
+      "leite meio gordo mimosa 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-fresco-vigor-1l",
+    "canonicalName": "Leite meio-gordo fresco Vigor 1L",
+    "comparisonGroup": "leite-meio-gordo-fresco-vigor-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Vigor",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "fresco",
+      "vigor"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "uht"
+    ],
+    "aliases": [
+      "leite meio gordo fresco vigor",
+      "vigor meio gordo 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-pastagem-terra-nostra-1l",
+    "canonicalName": "Leite meio-gordo Pastagem Terra Nostra 1L",
+    "comparisonGroup": "leite-meio-gordo-pastagem-terra-nostra-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Terra Nostra",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "terra",
+      "nostra"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro"
+    ],
+    "aliases": [
+      "leite meio gordo pastagem terra nostra",
+      "terra nostra meio gordo 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-sem-lactose-meio-gordo-1l",
+    "canonicalName": "Leite sem lactose meio-gordo 1L",
+    "comparisonGroup": "leite-sem-lactose-meio-gordo-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "sem lactose",
+      "meio",
+      "gordo"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "proteina",
+      "achocolatado"
+    ],
+    "aliases": [
+      "leite sem lactose meio gordo 1l",
+      "leite meio gordo sem lactose 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-uht-meio-gordo-continente-1l",
+    "canonicalName": "Leite UHT meio-gordo Continente 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-continente-1l",
+    "categoryId": "lacteos_ovos",
     "brand": "Continente",
     "isPrivateLabel": true,
     "size": 1,
     "sizeUnit": "L",
     "packCount": 1,
-    "requiredTokens": ["abrilhantador", "maquina", "loica"],
-    "blockedTokens": ["pastilhas", "detergente", "gel"],
-    "aliases": ["abrilhantador maquina loica power continente", "abrilhantador maquina loica 1 litro"],
+    "requiredTokens": [
+      "leite",
+      "uht",
+      "meio",
+      "gordo",
+      "continente"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "fresco"
+    ],
+    "aliases": [
+      "leite uht meio gordo continente",
+      "leite meio gordo continente 1l"
+    ],
     "active": true
   },
   {
-    "productId": "capsulas-cafe-delta-q-int-10-100un",
-    "canonicalName": "Capsulas de cafe Delta Q Int 10 pack 100",
-    "comparisonGroup": "capsulas-cafe-delta-q-int-10-100un",
-    "categoryId": "bebidas",
-    "brand": "Delta Q",
+    "productId": "leite-uht-meio-gordo-nova-acores-1l",
+    "canonicalName": "Leite UHT meio-gordo Nova Açores 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-nova-acores-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Nova Açores",
     "isPrivateLabel": false,
-    "size": 100,
-    "sizeUnit": "un",
-    "packCount": 100,
-    "requiredTokens": ["capsulas", "cafe", "delta", "q"],
-    "blockedTokens": ["grao", "moido", "descafeinado"],
-    "aliases": ["capsulas de cafe qalidus int 10 delta q", "delta q int 10 100 capsulas"],
-    "active": true
-  },
-  {
-    "productId": "banana-1kg",
-    "canonicalName": "Banana 1kg",
-    "comparisonGroup": "banana-1kg",
-    "categoryId": "fruta_legumes",
-    "brand": "Continente",
-    "isPrivateLabel": true,
     "size": 1,
-    "sizeUnit": "kg",
+    "sizeUnit": "L",
     "packCount": 1,
-    "requiredTokens": ["banana"],
-    "blockedTokens": ["desidratada", "chips"],
-    "aliases": ["banana continente", "banana 1kg"],
-    "active": true
-  },
-  {
-    "productId": "metade-abacaxi-1kg",
-    "canonicalName": "Metade abacaxi 1kg",
-    "comparisonGroup": "metade-abacaxi-1kg",
-    "categoryId": "fruta_legumes",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": ["abacaxi"],
-    "blockedTokens": ["sumo", "calda", "desidratado"],
-    "aliases": ["metade abacaxi super sweet continente", "abacaxi super sweet"],
-    "active": true
-  },
-  {
-    "productId": "peito-frango-vacuo-1kg",
-    "canonicalName": "Peito de frango em vacuo 1kg",
-    "comparisonGroup": "peito-frango-vacuo-1kg",
-    "categoryId": "talho",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": ["peito", "frango"],
-    "blockedTokens": ["perna", "asas", "hamburguer"],
-    "aliases": ["peito de frango em vacuo continente", "peito frango vacuo 1kg"],
+    "requiredTokens": [
+      "leite",
+      "uht",
+      "meio",
+      "gordo",
+      "acores"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "fresco"
+    ],
+    "aliases": [
+      "leite uht meio gordo nova acores",
+      "nova acores meio gordo 1l"
+    ],
     "active": true
   },
   {
@@ -489,11 +738,374 @@
     "size": 550,
     "sizeUnit": "g",
     "packCount": 2,
-    "requiredTokens": ["lombos", "bacalhau"],
-    "blockedTokens": ["postas", "migado", "desfiado"],
+    "requiredTokens": [
+      "lombos",
+      "bacalhau",
+      "riberalves"
+    ],
+    "blockedTokens": [
+      "postas",
+      "desfiado"
+    ],
     "aliases": [
       "lombos de bacalhau 9 meses de cura msc ultracongelado riberalves",
-      "lombos bacalhau riberalves 550g"
+      "bacalhau riberalves 550g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "massa-esparguete-500g",
+    "canonicalName": "Massa esparguete 500g",
+    "comparisonGroup": "massa-esparguete-500g",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "massa",
+      "esparguete"
+    ],
+    "blockedTokens": [
+      "macarrao",
+      "penne",
+      "fusilli",
+      "tagliatelle"
+    ],
+    "aliases": [
+      "massa esparguete 500g",
+      "esparguete 500g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "massa-macarrao-500g",
+    "canonicalName": "Massa macarrao 500g",
+    "comparisonGroup": "massa-macarrao-500g",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "massa",
+      "macarrao"
+    ],
+    "blockedTokens": [
+      "esparguete",
+      "penne",
+      "fusilli",
+      "tagliatelle"
+    ],
+    "aliases": [
+      "massa macarrao 500g",
+      "macarrao 500g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "metade-abacaxi-1kg",
+    "canonicalName": "Metade abacaxi Super Sweet Continente 1kg",
+    "comparisonGroup": "metade-abacaxi-1kg",
+    "categoryId": "fruta_legumes",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "abacaxi",
+      "super",
+      "sweet"
+    ],
+    "blockedTokens": [
+      "ananas"
+    ],
+    "aliases": [
+      "metade abacaxi super sweet continente",
+      "abacaxi 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-ar-livre-classe-ml-continente-12un",
+    "canonicalName": "Ovos de ar livre classe M/L Continente (12 un)",
+    "comparisonGroup": "ovos-ar-livre-classe-ml-continente-12un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "ovos",
+      "ar",
+      "livre",
+      "continente"
+    ],
+    "blockedTokens": [
+      "duzia",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos de ar livre classe ml continente",
+      "ovos ar livre continente 12 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-classe-m-6",
+    "canonicalName": "Ovos classe M pack 6",
+    "comparisonGroup": "ovos-classe-m-6",
+    "categoryId": "lacteos_ovos",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 6,
+    "sizeUnit": "un",
+    "packCount": 6,
+    "requiredTokens": [
+      "ovos",
+      "classe",
+      "m"
+    ],
+    "blockedTokens": [
+      "l",
+      "xl",
+      "duzia",
+      "12"
+    ],
+    "aliases": [
+      "ovos classe m 6",
+      "ovos m pack 6"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-classe-ml-matinados-6un",
+    "canonicalName": "Ovos classe M/L Matinados (6 un)",
+    "comparisonGroup": "ovos-classe-ml-matinados-6un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Matinados",
+    "isPrivateLabel": false,
+    "size": 6,
+    "sizeUnit": "un",
+    "packCount": 6,
+    "requiredTokens": [
+      "ovos",
+      "matinados"
+    ],
+    "blockedTokens": [
+      "ar",
+      "livre",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos classe ml matinados",
+      "ovos matinados 6 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-classe-ml-ruby-zezereovo-12un",
+    "canonicalName": "Ovos classe M/L Ruby Zêzerovo (12 un)",
+    "comparisonGroup": "ovos-classe-ml-ruby-zezereovo-12un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Zêzerovo",
+    "isPrivateLabel": false,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "ovos",
+      "ruby",
+      "zezereovo"
+    ],
+    "blockedTokens": [
+      "ar",
+      "livre",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos classe ml ruby zezerovo",
+      "ovos ruby zezerovo 12 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "papel-higienico-pack-12",
+    "canonicalName": "Papel higienico pack 12",
+    "comparisonGroup": "papel-higienico-pack-12",
+    "categoryId": "limpeza_casa",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "papel",
+      "higienico"
+    ],
+    "blockedTokens": [
+      "cozinha",
+      "lenços",
+      "6"
+    ],
+    "aliases": [
+      "papel higienico pack 12",
+      "papel higienico 12 rolos"
+    ],
+    "active": true
+  },
+  {
+    "productId": "pastilhas-maquina-loica-105-doses",
+    "canonicalName": "Detergente máquina loiça Quantum Finish 105 doses",
+    "comparisonGroup": "pastilhas-maquina-loica-105-doses",
+    "categoryId": "limpeza_casa",
+    "brand": "Finish",
+    "isPrivateLabel": false,
+    "size": 105,
+    "sizeUnit": "un",
+    "packCount": 105,
+    "requiredTokens": [
+      "detergente",
+      "maquina",
+      "loica",
+      "quantum",
+      "finish"
+    ],
+    "blockedTokens": [
+      "gel",
+      "po"
+    ],
+    "aliases": [
+      "detergente maquina loica pastilhas quantum finish",
+      "finish quantum 105 doses"
+    ],
+    "active": true
+  },
+  {
+    "productId": "peito-frango-vacuo-1kg",
+    "canonicalName": "Peito de frango em vácuo Continente 1kg",
+    "comparisonGroup": "peito-frango-vacuo-1kg",
+    "categoryId": "talho",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "peito",
+      "frango",
+      "vacuo"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "peito de frango em vacuo continente",
+      "frango vacuo 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "polpa-tomate-500g",
+    "canonicalName": "Polpa de tomate 500g",
+    "comparisonGroup": "polpa-tomate-500g",
+    "categoryId": "mercearia",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "polpa",
+      "tomate"
+    ],
+    "blockedTokens": [
+      "molho",
+      "ketchup",
+      "triturado",
+      "concentrado"
+    ],
+    "aliases": [
+      "polpa de tomate 500g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "refrigerante-cola-1-5l",
+    "canonicalName": "Refrigerante cola 1,5L",
+    "comparisonGroup": "refrigerante-cola-1-5l",
+    "categoryId": "bebidas",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 1.5,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "cola"
+    ],
+    "blockedTokens": [
+      "zero",
+      "light",
+      "limao",
+      "0.33l"
+    ],
+    "aliases": [
+      "refrigerante cola 1,5l",
+      "cola 1.5l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "rolo-cozinha-pack-2",
+    "canonicalName": "Rolo de cozinha pack 2",
+    "comparisonGroup": "rolo-cozinha-pack-2",
+    "categoryId": "limpeza_casa",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 2,
+    "sizeUnit": "un",
+    "packCount": 2,
+    "requiredTokens": [
+      "rolo",
+      "cozinha"
+    ],
+    "blockedTokens": [
+      "papel higienico",
+      "guardanapos",
+      "4"
+    ],
+    "aliases": [
+      "rolo cozinha pack 2",
+      "rolo de cozinha 2 unidades"
+    ],
+    "active": true
+  },
+  {
+    "productId": "sumo-laranja-1l",
+    "canonicalName": "Sumo de laranja 1L",
+    "comparisonGroup": "sumo-laranja-1l",
+    "categoryId": "bebidas",
+    "brand": null,
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "sumo",
+      "laranja"
+    ],
+    "blockedTokens": [
+      "nectar",
+      "multivitaminico",
+      "maca"
+    ],
+    "aliases": [
+      "sumo de laranja 1l",
+      "sumo laranja 1l"
     ],
     "active": true
   }

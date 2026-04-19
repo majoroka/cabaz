@@ -3,21 +3,21 @@
   "generatedAt": "2026-04-19T00:00:00+01:00",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "manual_real_v1",
+  "publicationStatus": "manual_real_v2",
   "storesPublished": 1,
   "storeLocationsPublished": 1,
-  "offersPublished": 10,
-  "catalogProductsPublished": 33,
-  "comparisonGroupsPublished": 33,
+  "offersPublished": 20,
+  "catalogProductsPublished": 43,
+  "comparisonGroupsPublished": 43,
   "notes": [
-    "Primeira publicacao manual real baseada no ficheiro 10produtos.csv fornecido pelo utilizador.",
+    "Publicacao manual real consolidada com base no ficheiro 20produtos.csv fornecido pelo utilizador.",
     "A loja piloto confirmada para esta fase e o Continente Bom Dia Armacao de Pera."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "manual_real_published",
-      "lastUpdated": "2026-04-17T23:00:00+01:00"
+      "lastUpdated": "2026-04-19T23:00:00+01:00"
     }
   ]
 }
