@@ -14,7 +14,7 @@ Objetivo:
 ## Como usar
 
 1. preencher o template com dados reais da loja piloto
-2. validar manualmente nomes, preços, URLs, imagens e datas
+2. validar manualmente nomes, preços, URLs, imagens, notas comerciais e datas
 3. copiar o conteúdo final para `public/data/offers.json`
 4. testar a app localmente
 

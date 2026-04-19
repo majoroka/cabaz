@@ -153,6 +153,7 @@ Ofertas concretas publicadas para consumo da app:
 - `currency`
 - `url`
 - `image`
+- `notes`
 - `inStock`
 - `confidenceScore`
 - `lastUpdated`

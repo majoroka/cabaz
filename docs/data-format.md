@@ -95,6 +95,7 @@ Exemplo:
     "store": "continente",
     "matchedName": "Leite Meio Gordo Mimosa 1 L",
     "brand": "Mimosa",
+    "notes": "emb. 1 lt - 0,90 litro",
     "price": 0.95,
     "size": 1,
     "sizeUnit": "L",
@@ -114,6 +115,7 @@ Campos principais:
 - `store`: identificador da loja
 - `matchedName`: nome do produto encontrado
 - `brand`: marca detetada, opcional
+- `notes`: observações comerciais úteis, opcional
 - `price`: preço do produto
 - `size`: quantidade base da embalagem
 - `sizeUnit`: unidade da embalagem (`g`, `kg`, `mL`, `L`, `un`)
@@ -123,6 +125,14 @@ Campos principais:
 - `lastUpdated`: data ISO da última atualização
 - `inStock`: disponibilidade
 - `confidenceScore`: confiança do matching entre o item do cabaz e o produto encontrado
+
+Use `notes` quando houver contexto relevante que não caiba bem nos campos estruturados, por exemplo:
+
+- packs com várias unidades
+- peso aproximado
+- venda ao kg
+- campanhas do tipo `+ x un grátis`
+- descrições comerciais úteis para validação manual
 
 ## Notas de compatibilidade futura
 

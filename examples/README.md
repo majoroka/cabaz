@@ -17,4 +17,4 @@ Para dados mock mais completos, consulte também:
 
 Num fluxo futuro, um scraper local poderá gerar ficheiros com este formato para serem lidos pelo frontend sem qualquer backend.
 
-Para a fase de transição para dados reais, existe também uma subpasta `published/` com templates de publicação manual.
+Para a fase de transição para dados reais, existe também uma subpasta `published/` com templates de publicação manual, incluindo o campo opcional `notes` para contexto comercial relevante.

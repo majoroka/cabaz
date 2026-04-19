@@ -258,6 +258,7 @@ Representar ofertas concretas que a app deverá comparar e apresentar.
 - `unit`
 - `url`
 - `image`
+- `notes`
 - `confidenceScore`
 
 ### Exemplo
@@ -280,6 +281,7 @@ Representar ofertas concretas que a app deverá comparar e apresentar.
     "currency": "EUR",
     "url": "https://www.continente.pt/...",
     "image": "https://www.continente.pt/....jpg",
+    "notes": "emb. 1 lt - 0,90 litro",
     "inStock": true,
     "confidenceScore": 0.96,
     "lastUpdated": "2026-04-17T05:42:00Z"

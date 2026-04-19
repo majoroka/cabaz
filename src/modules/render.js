@@ -464,6 +464,11 @@ function renderCatalogSearchResults(catalogSearch) {
                         ${escapeHtml(entry.categoryName)}
                         ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
                       </p>
+                      ${
+                        entry.result.notes
+                          ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
+                          : ""
+                      }
                       <dl class="catalog-result-details">
                         <div>
                           <dt>Formato</dt>

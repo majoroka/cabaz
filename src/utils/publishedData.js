@@ -90,6 +90,7 @@ export function mapPublishedOffers(offers) {
       store: String(offer.storeId).trim(),
       matchedName: String(offer.scrapedName).trim(),
       brand: String(offer.brand || "").trim(),
+      notes: String(offer.notes || "").trim(),
       price: Number(offer.price),
       size: toNumberOrNull(offer.size),
       sizeUnit: offer.sizeUnit ? String(offer.sizeUnit).trim() : null,

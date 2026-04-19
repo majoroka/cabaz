@@ -378,6 +378,7 @@ export function createApp(rootElement) {
         [
           result.matchedName,
           result.brand,
+          result.notes,
           basketItem?.name,
           catalogProduct?.name,
           basketItem?.preferredBrand,
