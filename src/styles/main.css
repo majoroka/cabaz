@@ -835,11 +835,7 @@ textarea {
   place-items: center;
   min-height: 42px;
   min-width: 112px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid rgba(31, 42, 57, 0.08);
-  box-shadow: 0 10px 24px rgba(31, 42, 57, 0.06);
+  padding: 0;
 }
 
 .catalog-store-logo {
@@ -869,12 +865,9 @@ textarea {
   display: grid;
   place-items: center;
   height: 124px;
-  padding: 16px;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 1px solid rgba(31, 42, 57, 0.08);
+  padding: 0;
   text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms ease;
 }
 
 .catalog-result-media img {
@@ -888,7 +881,6 @@ textarea {
 
 .catalog-result-media:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(31, 42, 57, 0.08);
 }
 
 .catalog-result-price-block {
