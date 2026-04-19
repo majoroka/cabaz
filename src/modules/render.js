@@ -460,7 +460,7 @@ function renderCatalogSearchResults(catalogSearch) {
 
                     return `
                     <article class="catalog-result-card">
-                      <div class="catalog-result-top">
+                      <div class="catalog-result-store-block">
                         <span class="catalog-store" title="${escapeHtml(storeName)}">
                           ${
                             storeLogoFilename
@@ -473,53 +473,64 @@ function renderCatalogSearchResults(catalogSearch) {
                               : `<span class="catalog-store-fallback">${escapeHtml(storeName)}</span>`
                           }
                         </span>
-                        <strong>${formatCurrency(entry.result.price)}</strong>
+                        <span class="catalog-store-name">${escapeHtml(storeName)}</span>
                       </div>
                       ${
                         entry.result.image
-                          ? `<div class="catalog-result-media">
+                          ? `${
+                              entry.result.url
+                                ? `<a
+                                    class="catalog-result-media"
+                                    href="${escapeHtml(entry.result.url)}"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    title="Ver o produto na loja"
+                                    aria-label="Ver o produto na loja"
+                                  >`
+                                : `<div class="catalog-result-media">`
+                            }
                               <img
                                 src="${escapeHtml(entry.result.image)}"
                                 alt="${escapeHtml(entry.result.matchedName)}"
                                 loading="lazy"
                                 referrerpolicy="no-referrer"
                               />
-                            </div>`
+                            ${entry.result.url ? `</a>` : `</div>`}`
                           : ""
                       }
-                      <h3>${escapeHtml(entry.result.matchedName)}</h3>
-                      <p class="catalog-result-meta">
-                        ${escapeHtml(entry.categoryName)}
-                        ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
-                      </p>
-                      ${
-                        entry.result.notes
-                          ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
-                          : ""
-                      }
-                      <dl class="catalog-result-details">
-                        <div>
-                          <dt>Formato</dt>
-                          <dd>${escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit))}</dd>
+                      <div class="catalog-result-price-block">
+                        <strong>${formatCurrency(entry.result.price)}</strong>
+                        <span class="catalog-result-price-label">Preço unitário</span>
+                        <span class="catalog-result-price-unit">${escapeHtml(
+                          formatUnitPrice(entry.result.unitPrice, entry.result.unit)
+                        )}</span>
+                      </div>
+                      <div class="catalog-result-info">
+                        <h3>${escapeHtml(entry.result.matchedName)}</h3>
+                        <p class="catalog-result-meta">
+                          ${escapeHtml(entry.categoryName)}
+                          ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
+                        </p>
+                        ${
+                          entry.result.notes
+                            ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
+                            : ""
+                        }
+                        <div class="catalog-result-format">
+                          <span class="catalog-result-format-label">Formato</span>
+                          <strong>${escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit))}</strong>
                         </div>
-                        <div>
-                          <dt>Preço unitário</dt>
-                          <dd>${escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit))}</dd>
+                      </div>
+                      <div class="catalog-result-status">
+                        <div class="catalog-result-status-item">
+                          <span class="catalog-result-status-label">Estado</span>
+                          <strong>${entry.result.inStock ? "Disponível" : "Indisponível"}</strong>
                         </div>
-                        <div>
-                          <dt>Estado</dt>
-                          <dd>${entry.result.inStock ? "Disponível" : "Indisponível"}</dd>
+                        <div class="catalog-result-status-item">
+                          <span class="catalog-result-status-label">Atualizado</span>
+                          <strong>${escapeHtml(formatDate(entry.result.lastUpdated))}</strong>
                         </div>
-                        <div>
-                          <dt>Atualizado</dt>
-                          <dd>${escapeHtml(formatDate(entry.result.lastUpdated))}</dd>
-                        </div>
-                      </dl>
-                      ${
-                        entry.result.url
-                          ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
-                          : ""
-                      }
+                      </div>
                       <div class="catalog-result-actions">
                         <form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
                           <label class="catalog-quantity-field">

@@ -814,48 +814,27 @@ textarea {
 
 .catalog-result-card {
   display: grid;
-  grid-template-columns: 172px 168px minmax(0, 1fr) auto;
-  grid-template-areas:
-    "media top title actions"
-    "media top meta actions"
-    "media top note actions"
-    "media top details actions"
-    "media top link actions";
-  align-items: start;
-  column-gap: 22px;
-  row-gap: 10px;
+  grid-template-columns: 124px 168px 162px minmax(0, 1fr) 190px 134px;
+  align-items: center;
+  column-gap: 20px;
   padding: 22px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: #fbfcfe;
 }
 
-.catalog-result-card h3 {
-  margin: 0;
-  grid-area: title;
-  font-size: 1.15rem;
-  line-height: 1.28;
-}
-
-.catalog-result-top {
-  grid-area: top;
+.catalog-result-store-block {
   display: grid;
-  justify-items: start;
-  align-content: start;
-  gap: 16px;
-}
-
-.catalog-result-top strong {
-  font-size: 1.9rem;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  justify-items: center;
+  align-content: center;
+  gap: 14px;
 }
 
 .catalog-store {
   display: inline-grid;
   place-items: center;
   min-height: 42px;
-  min-width: 120px;
+  min-width: 112px;
   padding: 8px 14px;
   border-radius: 999px;
   background: #ffffff;
@@ -878,55 +857,55 @@ textarea {
   font-weight: 700;
 }
 
+.catalog-store-name {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: lowercase;
+}
+
 .catalog-result-media {
-  grid-area: media;
   display: grid;
   place-items: center;
-  min-height: 148px;
+  height: 124px;
   padding: 16px;
   border-radius: 20px;
   background: #ffffff;
   border: 1px solid rgba(31, 42, 57, 0.08);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .catalog-result-media img {
   display: block;
   max-width: 100%;
-  max-height: 116px;
+  max-height: 92px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
-.catalog-result-meta {
-  grid-area: meta;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.94rem;
+.catalog-result-media:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(31, 42, 57, 0.08);
 }
 
-.catalog-result-note {
-  grid-area: note;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
-.catalog-result-details {
-  grid-area: details;
+.catalog-result-price-block {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px 22px;
-  margin: 0;
+  align-content: center;
+  gap: 6px;
 }
 
-.catalog-result-details div {
-  margin: 0;
+.catalog-result-price-block strong {
+  font-size: 1.9rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-.catalog-result-details dt {
-  margin: 0 0 4px;
+.catalog-result-price-label,
+.catalog-result-format-label,
+.catalog-result-status-label {
   color: var(--text-faint);
   font-size: 0.72rem;
   font-weight: 800;
@@ -934,27 +913,69 @@ textarea {
   text-transform: uppercase;
 }
 
-.catalog-result-details dd {
+.catalog-result-price-unit {
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.catalog-result-info {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.catalog-result-info h3 {
   margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.28;
+}
+
+.catalog-result-meta {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.catalog-result-note {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.catalog-result-format {
+  display: grid;
+  gap: 4px;
+}
+
+.catalog-result-format strong {
   color: var(--text);
   font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.catalog-result-status {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.catalog-result-status-item {
+  display: grid;
+  gap: 4px;
+}
+
+.catalog-result-status-item strong {
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 500;
 }
 
 .catalog-result-actions {
-  grid-area: actions;
   display: flex;
   align-items: center;
   justify-content: end;
   align-self: center;
-  min-height: 100%;
-  padding-left: 12px;
-}
-
-.catalog-result-link {
-  grid-area: link;
-  align-self: end;
-  color: var(--accent-strong);
-  font-weight: 700;
 }
 
 .catalog-add-form {
@@ -1148,11 +1169,8 @@ textarea {
   }
 
   .catalog-result-card {
-    grid-template-columns: 156px 150px minmax(0, 1fr) auto;
-  }
-
-  .catalog-result-details {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 112px 148px 142px minmax(0, 1fr) 176px 122px;
+    column-gap: 16px;
   }
 
   .stores-grid {
@@ -1228,18 +1246,33 @@ textarea {
   }
 
   .catalog-result-card {
-    grid-template-columns: 140px minmax(0, 1fr) auto;
+    grid-template-columns: 112px 144px 1fr 140px;
     grid-template-areas:
-      "media top actions"
-      "media title actions"
-      "media meta actions"
-      "media note actions"
-      "details details actions"
-      "link link actions";
+      "store media price actions"
+      "info info info status";
+    row-gap: 18px;
+    align-items: start;
   }
 
-  .catalog-result-top {
-    gap: 14px;
+  .catalog-result-store-block {
+    grid-area: store;
+  }
+
+  .catalog-result-media {
+    grid-area: media;
+  }
+
+  .catalog-result-price-block {
+    grid-area: price;
+  }
+
+  .catalog-result-info {
+    grid-area: info;
+  }
+
+  .catalog-result-status {
+    grid-area: status;
+    gap: 12px;
   }
 }
 
@@ -1308,33 +1341,26 @@ textarea {
 
   .catalog-result-card {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "top"
-      "media"
-      "title"
-      "meta"
-      "note"
-      "details"
-      "link"
-      "actions";
     row-gap: 14px;
   }
 
-  .catalog-result-top,
+  .catalog-result-store-block,
   .catalog-result-actions {
     justify-content: start;
     justify-items: start;
     align-self: start;
-    min-height: auto;
-    padding-left: 0;
   }
 
-  .catalog-result-top strong {
+  .catalog-result-store-block {
+    justify-items: start;
+  }
+
+  .catalog-result-price-block strong {
     font-size: 1.6rem;
   }
 
-  .catalog-result-details {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .catalog-result-media {
+    width: 100%;
   }
 
   .basket-item {
@@ -1346,8 +1372,7 @@ textarea {
   }
 
   .catalog-result-actions {
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: start;
   }
 
   .catalog-add-form {
