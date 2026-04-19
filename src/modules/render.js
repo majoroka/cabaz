@@ -515,12 +515,12 @@ function renderCatalogSearchResults(catalogSearch) {
                           <dd>${escapeHtml(formatDate(entry.result.lastUpdated))}</dd>
                         </div>
                       </dl>
+                      ${
+                        entry.result.url
+                          ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
+                          : ""
+                      }
                       <div class="catalog-result-actions">
-                        ${
-                          entry.result.url
-                            ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
-                            : `<span></span>`
-                        }
                         <form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
                           <label class="catalog-quantity-field">
                             <span>Qtd.</span>

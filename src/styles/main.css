@@ -807,15 +807,24 @@ textarea {
 
 .catalog-results-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 18px;
   padding: 20px 24px 0;
 }
 
 .catalog-result-card {
   display: grid;
-  gap: 14px;
-  padding: 18px;
+  grid-template-columns: 172px 168px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "media top title actions"
+    "media top meta actions"
+    "media top note actions"
+    "media top details actions"
+    "media top link actions";
+  align-items: start;
+  column-gap: 22px;
+  row-gap: 10px;
+  padding: 22px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: #fbfcfe;
@@ -823,20 +832,23 @@ textarea {
 
 .catalog-result-card h3 {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.35;
+  grid-area: title;
+  font-size: 1.15rem;
+  line-height: 1.28;
 }
 
 .catalog-result-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: start;
+  grid-area: top;
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 16px;
 }
 
 .catalog-result-top strong {
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .catalog-store {
@@ -867,11 +879,12 @@ textarea {
 }
 
 .catalog-result-media {
+  grid-area: media;
   display: grid;
   place-items: center;
-  min-height: 180px;
+  min-height: 148px;
   padding: 16px;
-  border-radius: 24px;
+  border-radius: 20px;
   background: #ffffff;
   border: 1px solid rgba(31, 42, 57, 0.08);
 }
@@ -879,19 +892,21 @@ textarea {
 .catalog-result-media img {
   display: block;
   max-width: 100%;
-  max-height: 148px;
+  max-height: 116px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
 .catalog-result-meta {
-  margin: -6px 0 0;
+  grid-area: meta;
+  margin: 0;
   color: var(--text-soft);
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
 .catalog-result-note {
+  grid-area: note;
   margin: 0;
   color: var(--text-soft);
   font-size: 0.9rem;
@@ -899,9 +914,10 @@ textarea {
 }
 
 .catalog-result-details {
+  grid-area: details;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 22px;
   margin: 0;
 }
 
@@ -925,23 +941,26 @@ textarea {
 }
 
 .catalog-result-actions {
+  grid-area: actions;
   display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 16px;
-  margin-top: 4px;
+  align-items: center;
+  justify-content: end;
+  align-self: center;
+  min-height: 100%;
+  padding-left: 12px;
 }
 
 .catalog-result-link {
+  grid-area: link;
+  align-self: end;
   color: var(--accent-strong);
   font-weight: 700;
 }
 
 .catalog-add-form {
   display: inline-flex;
-  align-items: end;
-  gap: 10px;
-  margin-left: auto;
+  align-items: center;
+  gap: 12px;
 }
 
 .catalog-quantity-field {
@@ -1128,7 +1147,11 @@ textarea {
     position: static;
   }
 
-  .catalog-results-grid {
+  .catalog-result-card {
+    grid-template-columns: 156px 150px minmax(0, 1fr) auto;
+  }
+
+  .catalog-result-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1203,6 +1226,21 @@ textarea {
   .catalog-filters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .catalog-result-card {
+    grid-template-columns: 140px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "media top actions"
+      "media title actions"
+      "media meta actions"
+      "media note actions"
+      "details details actions"
+      "link link actions";
+  }
+
+  .catalog-result-top {
+    gap: 14px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1268,6 +1306,37 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .catalog-result-card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "top"
+      "media"
+      "title"
+      "meta"
+      "note"
+      "details"
+      "link"
+      "actions";
+    row-gap: 14px;
+  }
+
+  .catalog-result-top,
+  .catalog-result-actions {
+    justify-content: start;
+    justify-items: start;
+    align-self: start;
+    min-height: auto;
+    padding-left: 0;
+  }
+
+  .catalog-result-top strong {
+    font-size: 1.6rem;
+  }
+
+  .catalog-result-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .basket-item {
     flex-direction: column;
   }
@@ -1284,7 +1353,6 @@ textarea {
   .catalog-add-form {
     width: 100%;
     justify-content: space-between;
-    margin-left: 0;
   }
 
   .summary-card strong {
