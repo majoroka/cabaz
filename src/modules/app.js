@@ -50,6 +50,27 @@ function normalizeSearchText(value) {
     .trim();
 }
 
+function singularizeSearchToken(token) {
+  if (token.length > 4 && token.endsWith("s") && !token.endsWith("ss")) {
+    return token.slice(0, -1);
+  }
+
+  return token;
+}
+
+function buildSearchIndexText(value) {
+  const normalized = normalizeSearchText(value);
+
+  if (!normalized) {
+    return "";
+  }
+
+  const tokens = normalized.split(/\s+/).filter(Boolean);
+  const expandedTokens = [...new Set(tokens.flatMap((token) => [token, singularizeSearchToken(token)]))];
+
+  return expandedTokens.join(" ");
+}
+
 function sortByLabel(items) {
   return [...items].sort((left, right) => left.label.localeCompare(right.label, "pt"));
 }
@@ -362,7 +383,7 @@ export function createApp(rootElement) {
   }
 
   function runCatalogSearch(query) {
-    const normalizedQuery = normalizeSearchText(query);
+    const normalizedQuery = buildSearchIndexText(query);
 
     if (!normalizedQuery) {
       setError("Escreva um termo de pesquisa.");
@@ -374,7 +395,7 @@ export function createApp(rootElement) {
       const basketItem = state.basket.find((item) => item.id === result.basketItemId);
       const catalogProduct = state.catalogProducts.find((item) => item.id === result.basketItemId);
       const store = state.stores.find((entry) => entry.id === result.store);
-      const haystack = normalizeSearchText(
+      const haystack = buildSearchIndexText(
         [
           result.matchedName,
           result.brand,
