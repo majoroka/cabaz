@@ -384,8 +384,6 @@ export function createApp(rootElement) {
           basketItem?.preferredBrand,
           catalogProduct?.preferredBrand,
           basketItem?.notes,
-          basketItem?.category,
-          catalogProduct?.category,
           store?.name
         ]
           .filter(Boolean)
