@@ -864,7 +864,7 @@ textarea {
 .catalog-result-media {
   display: grid;
   place-items: center;
-  height: 124px;
+  height: 136px;
   padding: 0;
   text-decoration: none;
   transition: transform 160ms ease;
@@ -873,10 +873,11 @@ textarea {
 .catalog-result-media img {
   display: block;
   max-width: 100%;
-  max-height: 92px;
+  max-height: 116px;
   width: auto;
   height: auto;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .catalog-result-media:hover {
