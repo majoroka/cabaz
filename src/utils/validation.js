@@ -114,6 +114,7 @@ export function validateResultsJson(data) {
         result.unitPrice === null || result.unitPrice === undefined ? null : Number(result.unitPrice),
       unit: result.unit ? String(result.unit).trim() : null,
       url: String(result.url || "").trim(),
+      image: String(result.image || "").trim(),
       lastUpdated: String(result.lastUpdated || "").trim(),
       inStock: result.inStock !== false,
       confidenceScore:

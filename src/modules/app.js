@@ -444,6 +444,48 @@ export function createApp(rootElement) {
     render();
   }
 
+  function addCatalogResultToBasket(resultId, quantity) {
+    const result = state.results.find((entry) => entry.id === resultId);
+
+    if (!result) {
+      setError("Não foi possível encontrar o produto selecionado.");
+      render();
+      return;
+    }
+
+    const catalogProduct = state.catalogProducts.find((entry) => entry.id === result.basketItemId) || null;
+    const productName = catalogProduct?.name || result.matchedName;
+    const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
+    const existingIndex = state.basket.findIndex((entry) => entry.id === result.basketItemId);
+
+    if (existingIndex >= 0) {
+      const existingItem = state.basket[existingIndex];
+
+      state.basket.splice(existingIndex, 1, {
+        ...existingItem,
+        quantity: existingItem.quantity + normalizedQuantity,
+        preferredStore: existingItem.preferredStore || result.store,
+        preferredBrand: existingItem.preferredBrand || result.brand || catalogProduct?.preferredBrand || "",
+        notes: existingItem.notes || result.notes || ""
+      });
+      setNotice(`Quantidade atualizada para "${productName}".`);
+    } else {
+      state.basket.unshift({
+        id: result.basketItemId,
+        name: productName,
+        quantity: normalizedQuantity,
+        preferredStore: result.store,
+        category: normalizeCategoryId(catalogProduct?.category || "sem_categoria"),
+        preferredBrand: result.brand || catalogProduct?.preferredBrand || "",
+        notes: result.notes || ""
+      });
+      setNotice(`Item "${productName}" adicionado ao cabaz.`);
+    }
+
+    persistJson(STORAGE_KEYS.basket, state.basket);
+    render();
+  }
+
   function removeItem(itemId) {
     const item = state.basket.find((entry) => entry.id === itemId);
 
@@ -559,6 +601,19 @@ export function createApp(rootElement) {
       event.preventDefault();
       clearMessages();
       upsertBasketItem(new FormData(event.target));
+      return;
+    }
+
+    if (
+      event.target instanceof HTMLFormElement &&
+      event.target.classList.contains("catalog-add-form") &&
+      event.target.dataset.resultId
+    ) {
+      event.preventDefault();
+      clearMessages();
+      const formData = new FormData(event.target);
+      addCatalogResultToBasket(event.target.dataset.resultId, formData.get("quantity"));
+      event.target.reset();
       return;
     }
 

@@ -453,12 +453,40 @@ function renderCatalogSearchResults(catalogSearch) {
             <div class="catalog-results-grid">
               ${catalogSearch.rows
                 .map(
-                  (entry) => `
+                  (entry) => {
+                    const storeId = entry.store?.id || entry.result.store;
+                    const storeName = entry.store?.name || entry.result.store;
+                    const storeLogoFilename = getStoreLogoFilename(storeId);
+
+                    return `
                     <article class="catalog-result-card">
                       <div class="catalog-result-top">
-                        <span class="catalog-store">${escapeHtml(entry.store?.name || entry.result.store)}</span>
+                        <span class="catalog-store" title="${escapeHtml(storeName)}">
+                          ${
+                            storeLogoFilename
+                              ? `<img
+                                  src="./lojas/${escapeHtml(storeLogoFilename)}"
+                                  alt="${escapeHtml(storeName)}"
+                                  class="catalog-store-logo"
+                                  loading="lazy"
+                                />`
+                              : `<span class="catalog-store-fallback">${escapeHtml(storeName)}</span>`
+                          }
+                        </span>
                         <strong>${formatCurrency(entry.result.price)}</strong>
                       </div>
+                      ${
+                        entry.result.image
+                          ? `<div class="catalog-result-media">
+                              <img
+                                src="${escapeHtml(entry.result.image)}"
+                                alt="${escapeHtml(entry.result.matchedName)}"
+                                loading="lazy"
+                                referrerpolicy="no-referrer"
+                              />
+                            </div>`
+                          : ""
+                      }
                       <h3>${escapeHtml(entry.result.matchedName)}</h3>
                       <p class="catalog-result-meta">
                         ${escapeHtml(entry.categoryName)}
@@ -487,13 +515,33 @@ function renderCatalogSearchResults(catalogSearch) {
                           <dd>${escapeHtml(formatDate(entry.result.lastUpdated))}</dd>
                         </div>
                       </dl>
-                      ${
-                        entry.result.url
-                          ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
-                          : ""
-                      }
+                      <div class="catalog-result-actions">
+                        ${
+                          entry.result.url
+                            ? `<a class="catalog-result-link" href="${escapeHtml(entry.result.url)}" target="_blank" rel="noreferrer">Abrir produto</a>`
+                            : `<span></span>`
+                        }
+                        <form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
+                          <label class="catalog-quantity-field">
+                            <span>Qtd.</span>
+                            <input
+                              type="number"
+                              name="quantity"
+                              min="1"
+                              step="1"
+                              value="1"
+                              inputmode="numeric"
+                              aria-label="Quantidade a adicionar ao cabaz"
+                            />
+                          </label>
+                          <button type="submit" class="catalog-add-button" aria-label="Adicionar ao cabaz">
+                            <span aria-hidden="true">+</span>
+                          </button>
+                        </form>
+                      </div>
                     </article>
-                  `
+                  `;
+                  }
                 )
                 .join("")}
             </div>
