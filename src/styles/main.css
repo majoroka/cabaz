@@ -980,13 +980,14 @@ textarea {
 
 .catalog-add-form {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 12px;
 }
 
 .catalog-quantity-field {
   display: grid;
   gap: 4px;
+  align-content: end;
 }
 
 .catalog-quantity-field span {
