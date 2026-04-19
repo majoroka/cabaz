@@ -227,3 +227,15 @@ A primeira loja piloto confirmada para esta fase é:
 - coordenadas: `37.1066761`, `-8.3624628`
 
 Esta loja já pode ser usada como referência de publicação e como base para proximidade geográfica real na fase MVP.
+
+## Nota operacional sobre a primeira publicação manual
+
+A primeira publicação manual real pode não coincidir exatamente com os 10 produtos-piloto teóricos definidos no Sprint 1.
+
+Se o primeiro conjunto real disponível da loja piloto trouxer produtos diferentes:
+
+1. a publicação real deve refletir os produtos efetivamente disponíveis
+2. o catálogo publicado pode ser expandido de forma controlada para acomodar esses produtos
+3. essa expansão deve ficar documentada para não criar ambiguidade entre o piloto teórico e o piloto real
+
+Nos produtos vendidos ao peso ou com preço de referência por kg, a publicação manual pode usar um formato normalizado de referência, desde que isso fique claro em `notes`.

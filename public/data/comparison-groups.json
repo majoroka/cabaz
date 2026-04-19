@@ -262,5 +262,104 @@
       "packCount": 2
     },
     "active": true
+  },
+  {
+    "comparisonGroupId": "douradinhos-peixe-840g-30un",
+    "label": "Douradinhos de peixe 840g (30 un)",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 840,
+      "sizeUnit": "g",
+      "packCount": 30
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "bolachas-maria-800g-4un",
+    "label": "Bolachas Maria 800g (4 un)",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 800,
+      "sizeUnit": "g",
+      "packCount": 4
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "pastilhas-maquina-loica-105-doses",
+    "label": "Pastilhas maquina loica 105 doses",
+    "categoryId": "limpeza_casa",
+    "rules": {
+      "size": 105,
+      "sizeUnit": "un",
+      "packCount": 105
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "abrilhantador-maquina-loica-1l",
+    "label": "Abrilhantador maquina loica 1L",
+    "categoryId": "limpeza_casa",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "capsulas-cafe-delta-q-int-10-100un",
+    "label": "Capsulas de cafe Delta Q Int 10 pack 100",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 100,
+      "sizeUnit": "un",
+      "packCount": 100
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "banana-1kg",
+    "label": "Banana 1kg",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "metade-abacaxi-1kg",
+    "label": "Metade abacaxi 1kg",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "peito-frango-vacuo-1kg",
+    "label": "Peito de frango em vacuo 1kg",
+    "categoryId": "talho",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "lombos-bacalhau-ultracongelado-550g-2un",
+    "label": "Lombos de bacalhau ultracongelado 550g (2 un)",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 550,
+      "sizeUnit": "g",
+      "packCount": 2
+    },
+    "active": true
   }
 ]
