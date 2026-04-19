@@ -81,6 +81,16 @@ function buildSearchTokens(value) {
   return [...new Set(normalized.split(/\s+/).filter(Boolean).flatMap((token) => [token, singularizeSearchToken(token)]))];
 }
 
+function buildCanonicalSearchTokens(value) {
+  const normalized = normalizeSearchText(value);
+
+  if (!normalized) {
+    return [];
+  }
+
+  return [...new Set(normalized.split(/\s+/).filter(Boolean).map((token) => singularizeSearchToken(token)))];
+}
+
 function sortByLabel(items) {
   return [...items].sort((left, right) => left.label.localeCompare(right.label, "pt"));
 }
@@ -394,7 +404,7 @@ export function createApp(rootElement) {
 
   function runCatalogSearch(query) {
     const normalizedQuery = buildSearchIndexText(query);
-    const queryTokens = buildSearchTokens(query);
+    const queryTokens = buildCanonicalSearchTokens(query);
 
     if (!normalizedQuery) {
       setError("Escreva um termo de pesquisa.");
@@ -422,7 +432,7 @@ export function createApp(rootElement) {
           .join(" ")
       );
 
-      const haystackTokens = new Set(buildSearchTokens(haystack));
+      const haystackTokens = new Set(buildCanonicalSearchTokens(haystack));
 
       return (
         haystack.includes(normalizedQuery) ||
