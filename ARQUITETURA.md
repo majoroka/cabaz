@@ -233,7 +233,7 @@ Produtos fora da primeira fase:
 ├── examples/            # exemplos de ficheiros JSON
 ├── public/              # assets públicos
 ├── src/
-│   ├── data/            # dados mock de exemplo
+│   ├── data/            # listas de apoio à UI, como categorias e marcas
 │   ├── modules/         # app e rendering
 │   ├── styles/          # CSS global
 │   └── utils/           # helpers, formatação, validação
@@ -252,23 +252,22 @@ Produtos fora da primeira fase:
 Responsável por:
 
 - criar e gerir o estado da app
-- carregar dados mock e dados guardados
+- carregar dados publicados em `public/data/`
+- guardar apenas o cabaz local do utilizador
 - tratar eventos da interface
 - gerir pesquisa principal
 - gerir navegação entre secções
-- importar JSON
 
 Estado relevante atual:
 
 - `basket`
+- `catalogProducts`
 - `results`
 - `stores`
 - `currentSection`
 - `catalogSearch`
-- `editingItemId`
 - `notice`
 - `error`
-- `sources`
 
 ### `src/modules/render.js`
 
@@ -279,6 +278,7 @@ Responsável por:
 - render dos cards de resumo
 - render da pesquisa principal
 - render da secção `Lojas`
+- render da secção `Cabaz`
 - render de estados vazios e mensagens
 
 ### `src/utils/`
@@ -309,7 +309,21 @@ Secções atualmente previstas na navegação:
 - `Cabaz`
 - `Comparação`
 
-Neste momento, apenas `Painel` e `Lojas` têm superfície útil visível.
+Neste momento, `Painel`, `Lojas` e `Cabaz` têm superfície útil visível. `Categorias`, `Marcas` e `Comparação` mantêm estado vazio enquanto não forem implementadas.
+
+## Fonte de dados ativa
+
+A fonte ativa da app é apenas `public/data/`.
+
+Ficheiros consumidos diretamente:
+
+- `metadata.json`
+- `stores.json`
+- `catalog-products.json`
+- `offers.json`
+- `codigos_postais_portugal.txt`
+
+Os antigos dados mock e a importação manual foram removidos do runtime para evitar mistura com os 20 produtos reais piloto publicados a partir do CSV.
 
 ## Decisão estrutural
 

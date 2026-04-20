@@ -1,10 +1,7 @@
-import basketExample from "../data/basket.example.json";
-import resultsExample from "../data/results.example.json";
-import storesExample from "../data/stores.json";
 import { enrichResults } from "../utils/calculations.js";
 import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
-import { slugify, uniqueValues } from "../utils/helpers.js";
+import { uniqueValues } from "../utils/helpers.js";
 import {
   createPostalCodeIndex,
   findPostalCodeRecord,
@@ -12,14 +9,13 @@ import {
   normalizePostalCodeInput
 } from "../utils/postalCodes.js";
 import { loadPublishedData } from "../utils/publishedData.js";
-import { validateBasketJson, validateResultsJson, validateStoresJson } from "../utils/validation.js";
+import { validateBasketJson } from "../utils/validation.js";
 import { renderApp } from "./render.js";
 
 const STORAGE_KEYS = {
-  basket: "cabaz:basket",
-  results: "cabaz:results",
-  stores: "cabaz:stores"
+  basket: "cabaz:published-v1:basket"
 };
+const LEGACY_STORAGE_KEYS = ["cabaz:basket", "cabaz:results", "cabaz:stores"];
 
 const DEFAULT_SECTION = "painel";
 const DEFAULT_CATALOG_SEARCH = {
@@ -119,8 +115,10 @@ function persistJson(storageKey, value) {
   window.localStorage.setItem(storageKey, JSON.stringify(value));
 }
 
-function removeStoredJson(storageKey) {
-  window.localStorage.removeItem(storageKey);
+function cleanupLegacyStorage() {
+  LEGACY_STORAGE_KEYS.forEach((storageKey) => {
+    window.localStorage.removeItem(storageKey);
+  });
 }
 
 function createFallbackStoresFromResults(results, stores) {
@@ -140,46 +138,20 @@ function createFallbackStoresFromResults(results, stores) {
   ];
 }
 
-function readFileAsJson(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      try {
-        resolve(JSON.parse(String(reader.result)));
-      } catch {
-        reject(new Error("O ficheiro selecionado não contém JSON válido."));
-      }
-    };
-
-    reader.onerror = () => reject(new Error("Não foi possível ler o ficheiro selecionado."));
-    reader.readAsText(file);
-  });
-}
-
 function createInitialState() {
-  const storedBasket = loadStoredJson(STORAGE_KEYS.basket, validateBasketJson);
-  const storedResults = loadStoredJson(STORAGE_KEYS.results, validateResultsJson);
-  const storedStores = loadStoredJson(STORAGE_KEYS.stores, validateStoresJson);
-  const baseResults = storedResults || cloneValue(resultsExample);
-  const baseStores = storedStores || cloneValue(storesExample);
+  cleanupLegacyStorage();
 
-  const stores = createFallbackStoresFromResults(baseResults, baseStores);
+  const storedBasket = loadStoredJson(STORAGE_KEYS.basket, validateBasketJson);
 
   return {
     basket: storedBasket || [],
     catalogProducts: [],
-    results: enrichResults(baseResults),
-    stores,
+    results: [],
+    stores: [],
     currentSection: DEFAULT_SECTION,
     catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
-    editingItemId: null,
     notice: "",
-    error: "",
-    sources: {
-      results: storedResults ? "Ficheiro importado" : "Exemplo local",
-      stores: storedStores ? "Ficheiro importado" : "Exemplo local"
-    }
+    error: ""
   };
 }
 
@@ -283,7 +255,6 @@ function getViewModel(state) {
       results: state.results
     }),
     categories,
-    editingItem: state.basket.find((item) => item.id === state.editingItemId) || null,
     catalogSearch: {
       ...state.catalogSearch,
       resultCount: catalogSearchRecords.length,
@@ -385,18 +356,6 @@ export function createApp(rootElement) {
     state.notice = "";
   }
 
-  function resetEditor() {
-    state.editingItemId = null;
-  }
-
-  function closeCustomSelects(exceptSelect = null) {
-    rootElement.querySelectorAll("[data-custom-select]").forEach((select) => {
-      if (select !== exceptSelect) {
-        select.classList.remove("custom-select-open");
-      }
-    });
-  }
-
   function resetCatalogSearch() {
     state.catalogSearch = {
       ...cloneValue(DEFAULT_CATALOG_SEARCH),
@@ -481,40 +440,6 @@ export function createApp(rootElement) {
     render();
   }
 
-  function upsertBasketItem(formData) {
-    const normalizedName = String(formData.get("name") || "").trim();
-
-    if (!normalizedName) {
-      setError("O nome do item é obrigatório.");
-      render();
-      return;
-    }
-
-    const item = {
-      id: String(formData.get("id") || "").trim() || slugify(normalizedName),
-      name: normalizedName,
-      quantity: Math.max(1, Number.parseInt(String(formData.get("quantity") || "1"), 10) || 1),
-      preferredStore: String(formData.get("preferredStore") || "").trim(),
-      category: normalizeCategoryId(formData.get("category")),
-      preferredBrand: String(formData.get("preferredBrand") || "").trim(),
-      notes: String(formData.get("notes") || "").trim()
-    };
-
-    const existingIndex = state.basket.findIndex((entry) => entry.id === item.id);
-
-    if (existingIndex >= 0) {
-      state.basket.splice(existingIndex, 1, item);
-      setNotice(`Item "${item.name}" atualizado.`);
-    } else {
-      state.basket.unshift(item);
-      setNotice(`Item "${item.name}" adicionado ao cabaz.`);
-    }
-
-    persistJson(STORAGE_KEYS.basket, state.basket);
-    resetEditor();
-    render();
-  }
-
   function addCatalogResultToBasket(resultId, quantity) {
     const result = state.results.find((entry) => entry.id === resultId);
 
@@ -582,115 +507,36 @@ export function createApp(rootElement) {
 
     state.basket = state.basket.filter((entry) => entry.id !== itemId);
     persistJson(STORAGE_KEYS.basket, state.basket);
-    resetEditor();
     setNotice(`Item "${item.name}" removido.`);
     render();
   }
 
-  async function importJsonFile(file, kind) {
-    if (!file) {
-      return;
-    }
-
-    try {
-      const parsed = await readFileAsJson(file);
-      const validatorByKind = {
-        basket: validateBasketJson,
-        results: validateResultsJson,
-        stores: validateStoresJson
-      };
-      const validation = validatorByKind[kind](parsed);
-
-      if (!validation.valid) {
-        setError(validation.error);
-        render();
-        return;
-      }
-
-      if (kind === "basket") {
-        state.basket = validation.data;
-        persistJson(STORAGE_KEYS.basket, state.basket);
-        resetEditor();
-      }
-
-      if (kind === "results") {
-        state.catalogProducts = [];
-        state.results = enrichResults(validation.data);
-        state.stores = createFallbackStoresFromResults(state.results, state.stores);
-        persistJson(STORAGE_KEYS.results, validation.data);
-        state.sources.results = "Ficheiro importado";
-      }
-
-      if (kind === "stores") {
-        state.stores = createFallbackStoresFromResults(state.results, validation.data);
-        persistJson(STORAGE_KEYS.stores, validation.data);
-        state.sources.stores = "Ficheiro importado";
-      }
-
-      setNotice(`Ficheiro ${kind} importado com sucesso.`);
-      render();
-    } catch (error) {
-      setError(error.message || "Não foi possível importar o ficheiro selecionado.");
-      render();
-    }
-  }
-
-  function loadExampleData() {
-    state.catalogProducts = [];
-    state.results = enrichResults(cloneValue(resultsExample));
-    state.stores = createFallbackStoresFromResults(state.results, cloneValue(storesExample));
-    state.sources.results = "Exemplo local";
-    state.sources.stores = "Exemplo local";
-    removeStoredJson(STORAGE_KEYS.results);
-    removeStoredJson(STORAGE_KEYS.stores);
-    setNotice("Dados de exemplo carregados.");
-    render();
-  }
-
-  function resetDemo() {
-    state.basket = cloneValue(basketExample);
-    state.catalogProducts = [];
-    state.results = enrichResults(cloneValue(resultsExample));
-    state.stores = createFallbackStoresFromResults(state.results, cloneValue(storesExample));
-    state.sources.results = "Exemplo local";
-    state.sources.stores = "Exemplo local";
-    removeStoredJson(STORAGE_KEYS.results);
-    removeStoredJson(STORAGE_KEYS.stores);
-    persistJson(STORAGE_KEYS.basket, state.basket);
-    resetEditor();
-    setNotice("Demo reposta com os valores iniciais.");
-    render();
-  }
-
   async function bootstrapPublishedData() {
-    const isUsingImportedResults = state.sources.results === "Ficheiro importado";
-    const isUsingImportedStores = state.sources.stores === "Ficheiro importado";
-
     try {
       const publishedData = await loadPublishedData(import.meta.env.BASE_URL);
 
       state.catalogProducts = publishedData.catalogProducts;
 
-      if (publishedData.offers.length > 0 && !isUsingImportedResults && !isUsingImportedStores) {
+      if (publishedData.offers.length > 0) {
         state.results = enrichResults(publishedData.offers);
         state.stores = createFallbackStoresFromResults(state.results, publishedData.stores);
-        state.sources.results = "Publicação local";
-        state.sources.stores = "Publicação local";
+        clearMessages();
         render();
+        return;
       }
+
+      state.results = [];
+      state.stores = publishedData.stores;
+      setError("Não existem ofertas publicadas em public/data/offers.json.");
     } catch {
       state.catalogProducts = [];
+      state.results = [];
+      state.stores = [];
+      setError("Não foi possível carregar os dados publicados em public/data.");
     }
   }
 
   rootElement.addEventListener("submit", async (event) => {
-    if (event.target instanceof HTMLFormElement && event.target.id === "basket-form") {
-      event.preventDefault();
-      clearMessages();
-      upsertBasketItem(new FormData(event.target));
-      return;
-    }
-
     if (
       event.target instanceof HTMLFormElement &&
       event.target.classList.contains("catalog-add-form") &&
@@ -762,43 +608,6 @@ export function createApp(rootElement) {
 
     const action = target.dataset.action;
     const itemId = target.dataset.itemId;
-    const importTarget = target.dataset.target;
-
-    if (action === "toggle-custom-select") {
-      const customSelect = target.closest("[data-custom-select]");
-
-      if (customSelect instanceof HTMLElement) {
-        const isOpen = customSelect.classList.contains("custom-select-open");
-        closeCustomSelects(customSelect);
-        customSelect.classList.toggle("custom-select-open", !isOpen);
-      }
-
-      return;
-    }
-
-    if (action === "select-custom-option") {
-      const customSelect = target.closest("[data-custom-select]");
-      const selectName = target.dataset.selectName;
-      const selectValue = target.dataset.selectValue || "";
-      const selectLabel = target.dataset.selectLabel || "";
-
-      if (customSelect instanceof HTMLElement) {
-        const hiddenInput = selectName ? customSelect.querySelector('input[type="hidden"]') : null;
-        const triggerLabel = customSelect.querySelector(".custom-select-trigger span");
-
-        if (hiddenInput instanceof HTMLInputElement) {
-          hiddenInput.value = selectValue;
-        }
-
-        if (triggerLabel instanceof HTMLElement) {
-          triggerLabel.textContent = selectLabel;
-        }
-
-        customSelect.classList.remove("custom-select-open");
-      }
-
-      return;
-    }
 
     if (action === "select-postal-suggestion" && target.dataset.postalCode && target.dataset.postalLabel) {
       state.catalogSearch.postalCode = target.dataset.postalCode;
@@ -822,53 +631,10 @@ export function createApp(rootElement) {
       return;
     }
 
-    if (action === "edit-item" && itemId) {
-      state.editingItemId = itemId;
-      setNotice("Modo de edição ativo.");
-      render();
-      return;
-    }
-
     if (action === "remove-item" && itemId) {
       removeItem(itemId);
       return;
     }
-
-    if (action === "clear-edit") {
-      resetEditor();
-      setNotice("Formulário limpo.");
-      render();
-      return;
-    }
-
-    if (action === "load-example") {
-      loadExampleData();
-      return;
-    }
-
-    if (action === "reset-demo") {
-      resetDemo();
-      return;
-    }
-
-    if (action === "trigger-import" && importTarget) {
-      rootElement.querySelector(`#${importTarget}`)?.click();
-    }
-  });
-
-  rootElement.addEventListener("pointerout", (event) => {
-    const target = event.target;
-    const customSelect = target instanceof HTMLElement ? target.closest("[data-custom-select]") : null;
-
-    if (!(customSelect instanceof HTMLElement)) {
-        return;
-    }
-
-    if (event.relatedTarget instanceof Node && customSelect.contains(event.relatedTarget)) {
-      return;
-    }
-
-    customSelect.classList.remove("custom-select-open");
   });
 
   rootElement.addEventListener("change", async (event) => {
@@ -877,12 +643,6 @@ export function createApp(rootElement) {
     if (target instanceof HTMLSelectElement && target.closest("#catalog-filters-form")) {
       state.catalogSearch.filters[target.name] = target.value;
       render();
-      return;
-    }
-
-    if (target instanceof HTMLInputElement && target.dataset.importType) {
-      await importJsonFile(target.files?.[0], target.dataset.importType);
-      target.value = "";
     }
   });
 

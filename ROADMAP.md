@@ -28,10 +28,9 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 
 ### Dados e suporte técnico
 
-- [x] dados mock locais
 - [x] primeira publicação manual real com 20 produtos piloto
-- [x] importação manual de JSON
-- [x] validação mínima de estruturas importadas
+- [x] leitura exclusiva dos JSON publicados em `public/data/`
+- [x] remoção do fallback automático para mocks
 - [x] pesquisa por base local de códigos postais
 - [x] estrutura documental preparada para evolução do pipeline
 
@@ -43,6 +42,8 @@ Estas partes existiram em fases anteriores, mas não devem ser tomadas como prod
 - comparação multi-loja a partir do cabaz
 - cálculo completo dos cards de resumo por supermercado
 - totais finais por supermercado na UI principal
+- dados mock como fonte ativa da app
+- importação manual de JSON pela interface
 
 Se voltarem, devem regressar por desenho novo e não por reaproveitamento implícito.
 
@@ -163,6 +164,7 @@ Montar a primeira versão funcional de dados reais, com âmbito controlado.
 - [x] proposta inicial de validação manual
 - [x] primeira publicação real de dados
 - [x] expansão manual para 20 produtos piloto
+- [x] remoção do fallback automático para mocks
 - [ ] validação manual final de resultados reais
 
 ### Intervenção necessária do utilizador
@@ -227,8 +229,8 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] template manual inicial para `offers.json`
 - [x] primeira publicação real de dados
 - [x] expansão manual para 20 produtos piloto
+- [x] remoção do fallback automático para mocks após publicação real estável
 - [ ] validação manual final com dados reais no frontend
-- [ ] remoção do fallback automático para mocks após publicação real estável
 
 ### Intervenção necessária do utilizador
 
@@ -245,10 +247,10 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 ## Próximos passos imediatos
 
-1. Validar o Sprint 7 no frontend com produtos adicionados ao cabaz.
+1. Validar o Sprint 7 no frontend com os 20 produtos reais piloto.
 2. Afinar a leitura da secção `Cabaz`, se necessário.
 3. Desenhar a comparação multi-loja a partir do cabaz.
-4. Remover o fallback automático para mocks quando a publicação real estiver estabilizada.
+4. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap
 

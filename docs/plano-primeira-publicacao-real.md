@@ -171,17 +171,17 @@ Esta fase pode ser dada como bem-sucedida quando:
 4. o matching não apresentar erros óbvios
 5. a proximidade estiver coerente com a loja real selecionada para `Armação de Pêra`
 
-## Política para os mocks atuais
+## Política para os mocks antigos
 
-Os dados mock existentes servem apenas como mecanismo de transição e desenvolvimento.
+Os dados mock antigos foram removidos como fonte ativa do frontend.
 
-Assim que existir uma publicação real estável com cobertura mínima aceitável:
+Regra atual:
 
-1. o frontend deve passar a privilegiar apenas os dados publicados
-2. o fallback automático para mocks deve ser removido
-3. a demo deve ficar, no máximo, como ferramenta manual de teste isolada
+1. a app lê apenas os dados publicados em `public/data/`
+2. o cabaz do utilizador continua guardado em `localStorage`
+3. qualquer novo produto piloto deve entrar por `public/data/catalog-products.json` e `public/data/offers.json`
 
-Ou seja: os mocks não devem continuar a mascarar falhas depois de a fase real arrancar.
+Ou seja: falhas de publicação real devem aparecer como ausência/erro de dados, não ser mascaradas por mocks.
 
 ## O que ainda não entra nesta fase
 

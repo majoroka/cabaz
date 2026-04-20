@@ -1,19 +1,19 @@
 # Cabaz
 
-Cabaz é uma aplicação web estática para comparar preços de um cabaz de compras entre supermercados em Portugal. O projeto foi preparado para funcionar em GitHub Pages, sem backend, sem APIs privadas e com dados lidos a partir de ficheiros JSON locais ou exportados por ferramentas externas.
+Cabaz é uma aplicação web estática para comparar preços de um cabaz de compras entre supermercados em Portugal. O projeto foi preparado para funcionar em GitHub Pages, sem backend, sem APIs privadas e com dados lidos a partir dos ficheiros JSON publicados em `public/data/`.
 
 ## Objetivos
 
 - gerir um cabaz de compras no browser
-- comparar preços por item entre várias superfícies comerciais
+- comparar preços por item a partir de dados publicados
 - evoluir para comparação por localização e lojas próximas
-- aceitar importação manual de JSON para futura integração com scraping local
+- preparar a integração futura com um pipeline externo de scraping/publicação
 
 ## Limitações atuais
 
-- os dados incluídos são mock, embora com estrutura realista
+- nesta fase, a app trabalha apenas com os 20 produtos reais piloto publicados a partir do CSV
 - o projeto não faz scraping real
-- a importação é manual e separada por tipo de ficheiro
+- não existe importação manual pela interface
 - a interface está em fase de evolução e nem todas as secções do menu lateral estão implementadas
 - os cards de resumo estão em estado neutro até existir fluxo real de cabaz ativo
 - a futura comparação real dependerá de catálogo canónico, matching e dados publicados fora deste frontend
@@ -68,9 +68,8 @@ Notas:
 - pesquisa por código postal, localidade e rua
 - pesquisa principal com resultados filtráveis
 - secção `Lojas` com logos e links externos
-- importação manual de JSON para cabaz, resultados e lojas
-- validação mínima com mensagens de erro amigáveis
-- botões para carregar dados de exemplo e repor a demo completa
+- secção `Cabaz` com produtos adicionados, quantidades, remoção e subtotal estimado
+- leitura dos JSON publicados em `public/data/`
 
 ## Estado do produto
 
@@ -86,10 +85,11 @@ O projeto está a ser trabalhado por fases:
 .
 ├── .github/workflows/     # deploy automático para GitHub Pages
 ├── docs/                  # documentação do formato de dados
-├── examples/              # exemplos simples de importação JSON
-├── public/                # favicon e assets públicos
+├── examples/              # templates auxiliares de publicação
+├── public/                # favicon, assets públicos e dados publicados
+│   └── data/              # JSON consumidos pela app
 ├── src/
-│   ├── data/              # dados mock de exemplo
+│   ├── data/              # listas de apoio à UI, como categorias e marcas
 │   ├── modules/           # montagem da app e rendering da interface
 │   ├── styles/            # estilos globais
 │   └── utils/             # cálculos, helpers, validação e formatação
@@ -98,29 +98,40 @@ O projeto está a ser trabalhado por fases:
 └── vite.config.js
 ```
 
-## Formato esperado dos JSON
+## Formato esperado dos JSON publicados
 
-O frontend aceita:
+O frontend lê diretamente os ficheiros em `public/data/`:
 
-- arrays JSON simples
-- ou objetos com as propriedades `items`, `results` e `stores`
+- `metadata.json`
+- `stores.json`
+- `store-locations.json`
+- `catalog-products.json`
+- `comparison-groups.json`
+- `offers.json`
 
-Campos relevantes por resultado:
+Campos relevantes por oferta em `offers.json`:
 
-- `basketItemId`
-- `store`
-- `matchedName`
+- `offerId`
+- `storeId`
+- `locationId`
+- `productId`
+- `scrapedName`
+- `brand`
+- `categoryId`
 - `price`
 - `size`
 - `sizeUnit`
 - `unitPrice`
 - `unit`
+- `currency`
 - `url`
+- `image`
+- `notes`
 - `lastUpdated`
 - `inStock`
 - `confidenceScore`
 
-Exemplos de importação:
+Template auxiliar:
 
 - [examples/README.md](./examples/README.md)
 
@@ -139,11 +150,11 @@ Exemplos de importação:
 
 ## Integração futura com pipeline de dados
 
-Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá gerar ficheiros JSON com o formato documentado em `docs/data-format.md`, e a app limitar-se-á a ler esses ficheiros e a apresentar os resultados.
+Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá gerar os ficheiros JSON documentados em `docs/data-format.md`, e a app limitar-se-á a lê-los e a apresentar os resultados.
 
 Essa separação permite:
 
 - manter o frontend compatível com GitHub Pages
 - evitar dependência de serviços privados
-- testar a UI com dados mock ou publicados
+- testar a UI com dados publicados controlados
 - evoluir o scraping noutro repositório ou pipeline separado

@@ -11,28 +11,6 @@
     "active": true
   },
   {
-    "comparisonGroupId": "agua-mineral-1-5l",
-    "label": "Agua mineral 1,5L",
-    "categoryId": "bebidas",
-    "rules": {
-      "size": 1.5,
-      "sizeUnit": "L",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "arroz-agulha-1kg",
-    "label": "Arroz agulha 1kg",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "kg",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
     "comparisonGroupId": "arroz-agulha-integral-cigala-1kg",
     "label": "Arroz agulha integral Cigala 1kg",
     "categoryId": "mercearia",
@@ -66,67 +44,12 @@
     "active": true
   },
   {
-    "comparisonGroupId": "atum-ao-natural-pack-3",
-    "label": "Atum ao natural pack 3",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 3,
-      "sizeUnit": "un",
-      "packCount": 3
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "atum-em-azeite-pack-3",
-    "label": "Atum em azeite pack 3",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 3,
-      "sizeUnit": "un",
-      "packCount": 3
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "azeite-virgem-extra-750ml",
-    "label": "Azeite virgem extra 750ml",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 750,
-      "sizeUnit": "ml",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
     "comparisonGroupId": "banana-1kg",
     "label": "Banana Continente 1kg",
     "categoryId": "fruta_legumes",
     "rules": {
       "size": 1,
       "sizeUnit": "kg",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "bolacha-agua-sal-200g",
-    "label": "Bolacha agua e sal 200g",
-    "categoryId": "snacks_doces",
-    "rules": {
-      "size": 200,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "bolachas-maria-200g",
-    "label": "Bolachas Maria 200g",
-    "categoryId": "snacks_doces",
-    "rules": {
-      "size": 200,
-      "sizeUnit": "g",
       "packCount": 1
     },
     "active": true
@@ -154,28 +77,6 @@
     "active": true
   },
   {
-    "comparisonGroupId": "cereais-milho-375g",
-    "label": "Cereais de milho 375g",
-    "categoryId": "snacks_doces",
-    "rules": {
-      "size": 375,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "detergente-loica-750ml",
-    "label": "Detergente loica 750ml",
-    "categoryId": "limpeza_casa",
-    "rules": {
-      "size": 750,
-      "sizeUnit": "ml",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
     "comparisonGroupId": "douradinhos-peixe-840g-30un",
     "label": "Douradinhos de peixe 840g (30 un)",
     "categoryId": "congelados",
@@ -183,61 +84,6 @@
       "size": 840,
       "sizeUnit": "g",
       "packCount": 30
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "feijao-frade-cozido-540g",
-    "label": "Feijao frade cozido frasco 540g",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 540,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "grao-de-bico-cozido-540g",
-    "label": "Grao-de-bico cozido frasco 540g",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 540,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "iogurte-natural-4",
-    "label": "Iogurte natural pack 4",
-    "categoryId": "lacteos_ovos",
-    "rules": {
-      "size": 4,
-      "sizeUnit": "un",
-      "packCount": 4
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "leite-inteiro-1l",
-    "label": "Leite inteiro 1L",
-    "categoryId": "lacteos_ovos",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "L",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "leite-magro-1l",
-    "label": "Leite magro 1L",
-    "categoryId": "lacteos_ovos",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "L",
-      "packCount": 1
     },
     "active": true
   },
@@ -266,17 +112,6 @@
   {
     "comparisonGroupId": "leite-meio-gordo-pastagem-terra-nostra-1l",
     "label": "Leite meio-gordo Pastagem Terra Nostra 1L",
-    "categoryId": "lacteos_ovos",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "L",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "leite-sem-lactose-meio-gordo-1l",
-    "label": "Leite sem lactose meio-gordo 1L",
     "categoryId": "lacteos_ovos",
     "rules": {
       "size": 1,
@@ -319,28 +154,6 @@
     "active": true
   },
   {
-    "comparisonGroupId": "massa-esparguete-500g",
-    "label": "Massa esparguete 500g",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 500,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "massa-macarrao-500g",
-    "label": "Massa macarrao 500g",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 500,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
     "comparisonGroupId": "metade-abacaxi-1kg",
     "label": "Metade abacaxi Super Sweet Continente 1kg",
     "categoryId": "fruta_legumes",
@@ -359,17 +172,6 @@
       "size": 12,
       "sizeUnit": "un",
       "packCount": 12
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "ovos-classe-m-6",
-    "label": "Ovos classe M pack 6",
-    "categoryId": "lacteos_ovos",
-    "rules": {
-      "size": 6,
-      "sizeUnit": "un",
-      "packCount": 6
     },
     "active": true
   },
@@ -396,17 +198,6 @@
     "active": true
   },
   {
-    "comparisonGroupId": "papel-higienico-pack-12",
-    "label": "Papel higienico pack 12",
-    "categoryId": "limpeza_casa",
-    "rules": {
-      "size": 12,
-      "sizeUnit": "un",
-      "packCount": 12
-    },
-    "active": true
-  },
-  {
     "comparisonGroupId": "pastilhas-maquina-loica-105-doses",
     "label": "Detergente máquina loiça Quantum Finish 105 doses",
     "categoryId": "limpeza_casa",
@@ -424,50 +215,6 @@
     "rules": {
       "size": 1,
       "sizeUnit": "kg",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "polpa-tomate-500g",
-    "label": "Polpa de tomate 500g",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 500,
-      "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "refrigerante-cola-1-5l",
-    "label": "Refrigerante cola 1,5L",
-    "categoryId": "bebidas",
-    "rules": {
-      "size": 1.5,
-      "sizeUnit": "L",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "rolo-cozinha-pack-2",
-    "label": "Rolo de cozinha pack 2",
-    "categoryId": "limpeza_casa",
-    "rules": {
-      "size": 2,
-      "sizeUnit": "un",
-      "packCount": 2
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "sumo-laranja-1l",
-    "label": "Sumo de laranja 1L",
-    "categoryId": "bebidas",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "L",
       "packCount": 1
     },
     "active": true
