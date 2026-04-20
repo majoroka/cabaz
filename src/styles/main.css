@@ -1047,6 +1047,164 @@ textarea {
   margin-top: 0.25rem;
 }
 
+.basket-empty {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  padding: 24px;
+}
+
+.basket-empty p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.basket-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 18px 24px 0;
+}
+
+.basket-summary-strip div {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fbfcfe;
+}
+
+.basket-summary-strip span,
+.basket-line-price span,
+.basket-line-total span,
+.basket-quantity-form span {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.basket-summary-strip strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.25rem;
+}
+
+.basket-lines {
+  display: grid;
+  gap: 14px;
+  padding: 20px 24px 24px;
+}
+
+.basket-line {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr) 132px 126px 150px 124px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fbfcfe;
+}
+
+.basket-line-media {
+  position: relative;
+  width: 100%;
+  height: 82px;
+  overflow: hidden;
+}
+
+.basket-line-media img {
+  position: absolute;
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: multiply;
+}
+
+.basket-line-image-fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.basket-line-main {
+  display: grid;
+  gap: 6px;
+}
+
+.basket-line-main h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.basket-line-main p,
+.basket-line-main small {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+.basket-line-store {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+
+.basket-line-store img {
+  max-width: 96px;
+  max-height: 24px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.basket-line-store span {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.basket-line-price,
+.basket-line-total {
+  display: grid;
+  gap: 6px;
+}
+
+.basket-line-price strong,
+.basket-line-total strong {
+  font-size: 1.06rem;
+}
+
+.basket-line-price small {
+  color: var(--text-soft);
+}
+
+.basket-quantity-form {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.basket-quantity-form label {
+  display: grid;
+  gap: 4px;
+}
+
+.basket-quantity-form input {
+  width: 72px;
+  min-height: 38px;
+  padding: 0 10px;
+  text-align: center;
+}
+
 .help-text {
   margin: 0;
   padding: 0 24px 22px;
@@ -1171,6 +1329,37 @@ textarea {
     column-gap: 16px;
   }
 
+  .basket-line {
+    grid-template-columns: 88px minmax(0, 1fr) 116px 110px;
+    grid-template-areas:
+      "media main store total"
+      "media main price qty";
+  }
+
+  .basket-line-media {
+    grid-area: media;
+  }
+
+  .basket-line-main {
+    grid-area: main;
+  }
+
+  .basket-line-store {
+    grid-area: store;
+  }
+
+  .basket-line-price {
+    grid-area: price;
+  }
+
+  .basket-quantity-form {
+    grid-area: qty;
+  }
+
+  .basket-line-total {
+    grid-area: total;
+  }
+
   .stores-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1272,6 +1461,14 @@ textarea {
     grid-area: status;
     gap: 12px;
   }
+
+  .basket-line {
+    grid-template-columns: 86px minmax(0, 1fr) 128px;
+    grid-template-areas:
+      "media main total"
+      "media store price"
+      "media qty qty";
+  }
 }
 
 @media (max-width: 640px) {
@@ -1335,6 +1532,37 @@ textarea {
   .catalog-filters,
   .catalog-results-grid {
     grid-template-columns: 1fr;
+  }
+
+  .basket-summary-strip {
+    grid-template-columns: 1fr;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .basket-lines {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .basket-line {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "main"
+      "store"
+      "price"
+      "qty"
+      "total";
+  }
+
+  .basket-line-media {
+    height: 112px;
+  }
+
+  .basket-quantity-form {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .catalog-result-card {

@@ -71,16 +71,6 @@ function buildSearchIndexText(value) {
   return expandedTokens.join(" ");
 }
 
-function buildSearchTokens(value) {
-  const normalized = normalizeSearchText(value);
-
-  if (!normalized) {
-    return [];
-  }
-
-  return [...new Set(normalized.split(/\s+/).filter(Boolean).flatMap((token) => [token, singularizeSearchToken(token)]))];
-}
-
 function buildCanonicalSearchTokens(value) {
   const normalized = normalizeSearchText(value);
 
@@ -93,6 +83,19 @@ function buildCanonicalSearchTokens(value) {
 
 function sortByLabel(items) {
   return [...items].sort((left, right) => left.label.localeCompare(right.label, "pt"));
+}
+
+function findResultForBasketItem(item, results) {
+  const matchingResults = results.filter((result) => result.basketItemId === item.id);
+
+  if (matchingResults.length === 0) {
+    return null;
+  }
+
+  return (
+    matchingResults.find((result) => item.preferredStore && result.store === item.preferredStore) ||
+    [...matchingResults].sort((left, right) => left.price - right.price)[0]
+  );
 }
 
 function loadStoredJson(storageKey, validator) {
@@ -164,7 +167,7 @@ function createInitialState() {
   const stores = createFallbackStoresFromResults(baseResults, baseStores);
 
   return {
-    basket: storedBasket || cloneValue(basketExample),
+    basket: storedBasket || [],
     catalogProducts: [],
     results: enrichResults(baseResults),
     stores,
@@ -254,6 +257,23 @@ function getViewModel(state) {
 
       return left.result.price - right.result.price;
     });
+  const basketRows = state.basket.map((item) => {
+    const result = findResultForBasketItem(item, state.results);
+    const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
+    const store = result ? state.stores.find((entry) => entry.id === result.store) || null : null;
+    const quantity = Math.max(1, Number.parseInt(String(item.quantity || "1"), 10) || 1);
+
+    return {
+      item,
+      quantity,
+      result,
+      catalogProduct,
+      store,
+      lineTotal: result ? result.price * quantity : null
+    };
+  });
+  const basketTotal = basketRows.reduce((total, row) => total + (row.lineTotal || 0), 0);
+  const pricedBasketRows = basketRows.filter((row) => row.lineTotal !== null);
 
   return {
     currentSection: state.currentSection,
@@ -270,10 +290,16 @@ function getViewModel(state) {
       rows: visibleCatalogRecords,
       options: catalogFilterOptions
     },
+    basketView: {
+      rows: basketRows,
+      itemCount: state.basket.length,
+      total: pricedBasketRows.length > 0 ? basketTotal : null,
+      pricedItemCount: pricedBasketRows.length
+    },
     summary: {
-      basketItemCount: null,
+      basketItemCount: state.basket.length > 0 ? state.basket.length : null,
       cheapestStore: null,
-      cheapestTotal: null,
+      cheapestTotal: pricedBasketRows.length > 0 ? basketTotal : null,
       spread: null
     }
   };
@@ -531,6 +557,22 @@ export function createApp(rootElement) {
     render();
   }
 
+  function updateBasketItemQuantity(itemId, quantity) {
+    const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
+    const item = state.basket.find((entry) => entry.id === itemId);
+
+    if (!item) {
+      setError("Não foi possível encontrar o item no cabaz.");
+      render();
+      return;
+    }
+
+    item.quantity = normalizedQuantity;
+    persistJson(STORAGE_KEYS.basket, state.basket);
+    setNotice(`Quantidade atualizada para "${item.name}".`);
+    render();
+  }
+
   function removeItem(itemId) {
     const item = state.basket.find((entry) => entry.id === itemId);
 
@@ -659,6 +701,18 @@ export function createApp(rootElement) {
       const formData = new FormData(event.target);
       addCatalogResultToBasket(event.target.dataset.resultId, formData.get("quantity"));
       event.target.reset();
+      return;
+    }
+
+    if (
+      event.target instanceof HTMLFormElement &&
+      event.target.classList.contains("basket-quantity-form") &&
+      event.target.dataset.itemId
+    ) {
+      event.preventDefault();
+      clearMessages();
+      const formData = new FormData(event.target);
+      updateBasketItemQuantity(event.target.dataset.itemId, formData.get("quantity"));
       return;
     }
 

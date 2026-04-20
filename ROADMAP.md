@@ -23,11 +23,13 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 - [x] cards de resumo em estado neutro
 - [x] pesquisa principal com resultados na área principal
 - [x] secção `Lojas` com logos e links externos
+- [x] secção `Cabaz` com listagem, quantidades, remoção e subtotal estimado
 - [x] estados vazios para secções ainda não implementadas
 
 ### Dados e suporte técnico
 
 - [x] dados mock locais
+- [x] primeira publicação manual real com 20 produtos piloto
 - [x] importação manual de JSON
 - [x] validação mínima de estruturas importadas
 - [x] pesquisa por base local de códigos postais
@@ -38,8 +40,8 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 Estas partes existiram em fases anteriores, mas não devem ser tomadas como produto ativo da interface atual:
 
 - comparação final por cabaz completo
-- gestão visível do cabaz na área principal
-- cálculo real dos cards de resumo
+- comparação multi-loja a partir do cabaz
+- cálculo completo dos cards de resumo por supermercado
 - totais finais por supermercado na UI principal
 
 Se voltarem, devem regressar por desenho novo e não por reaproveitamento implícito.
@@ -159,13 +161,13 @@ Montar a primeira versão funcional de dados reais, com âmbito controlado.
 - [x] proposta inicial de artefactos publicados
 - [x] proposta inicial de critério de sucesso
 - [x] proposta inicial de validação manual
-- [ ] primeira publicação real de dados
-- [ ] validação manual de resultados reais
+- [x] primeira publicação real de dados
+- [x] expansão manual para 20 produtos piloto
+- [ ] validação manual final de resultados reais
 
 ### Intervenção necessária do utilizador
 
-- validar a proposta documentada do Sprint 5
-- testar resultados reais quando existir a primeira publicação
+- validar visualmente a publicação real no frontend sempre que forem adicionados novos produtos
 
 ## Sprint 6: Escala controlada
 
@@ -189,6 +191,28 @@ Expandir a cobertura sem perder qualidade.
 - validar a proposta documentada do Sprint 6
 - confirmar a ordem de expansão recomendada a partir do concelho de Silves
 
+## Sprint 7: Cabaz real e fluxo de comparação
+
+### Objetivo
+
+Transformar a ação de adicionar produtos num cabaz utilizável e persistente, preparando a futura comparação entre lojas.
+
+### Entregáveis
+
+- [x] secção `Cabaz` ligada ao menu lateral
+- [x] listagem dos produtos adicionados a partir dos resultados
+- [x] edição rápida de quantidades
+- [x] remoção de itens do cabaz
+- [x] cálculo de subtotal por item
+- [x] total estimado simples com base nos preços atualmente disponíveis
+- [ ] comparação multi-loja a partir dos itens do cabaz
+- [ ] tratamento de produtos sem preço disponível em lojas alternativas
+
+### Intervenção necessária do utilizador
+
+- testar o fluxo `pesquisar -> adicionar -> abrir Cabaz -> editar quantidade/remover`
+- validar se a leitura dos subtotais é clara antes de avançarmos para comparação multi-loja
+
 ## Fase operacional seguinte: Primeira publicação real
 
 ### Objetivo
@@ -202,12 +226,13 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] materialização inicial dos ficheiros publicados mínimos
 - [x] template manual inicial para `offers.json`
 - [x] primeira publicação real de dados
-- [ ] validação manual com dados reais no frontend
+- [x] expansão manual para 20 produtos piloto
+- [ ] validação manual final com dados reais no frontend
 - [ ] remoção do fallback automático para mocks após publicação real estável
 
 ### Intervenção necessária do utilizador
 
-- validar a primeira publicação real quando existir
+- validar a publicação real no frontend depois de cada expansão relevante
 
 ## Fora de âmbito neste repositório
 
@@ -220,10 +245,10 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 ## Próximos passos imediatos
 
-1. Fechar a validação do documento do Sprint 5.
-2. Fechar a validação do documento do Sprint 6 com o concelho de Silves como primeira área de escala.
-3. Preparar a primeira publicação real de ofertas.
-4. Validar manualmente a primeira publicação real no frontend.
+1. Validar o Sprint 7 no frontend com produtos adicionados ao cabaz.
+2. Afinar a leitura da secção `Cabaz`, se necessário.
+3. Desenhar a comparação multi-loja a partir do cabaz.
+4. Remover o fallback automático para mocks quando a publicação real estiver estabilizada.
 
 ## Regra de gestão do roadmap
 
