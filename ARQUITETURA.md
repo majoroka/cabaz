@@ -305,6 +305,13 @@ Responsável por:
 - cards de resumo
 - área principal
 
+Os cards de resumo são derivados do estado real da app:
+
+- itens e quantidades no cabaz
+- favoritos guardados, quando o cabaz ainda está vazio
+- loja com menor total entre lojas com cobertura completa
+- diferença entre a loja completa mais barata e a mais cara
+
 Secções atualmente ativas na navegação:
 
 - `Painel`

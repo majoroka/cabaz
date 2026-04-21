@@ -58,29 +58,84 @@ function renderSelectField({ label, name, value, options }) {
   `;
 }
 
+function pluralize(value, singular, plural) {
+  return value === 1 ? singular : plural;
+}
+
+export function getSummaryCards(summary) {
+  const basketItemCount = summary.basketItemCount || 0;
+  const basketQuantityCount = summary.basketQuantityCount || 0;
+  const basketPricedItemCount = summary.basketPricedItemCount || 0;
+  const favoriteCount = summary.favoriteCount || 0;
+  const completeStoreCount = summary.completeStoreCount || 0;
+  const comparedStoreCount = summary.comparedStoreCount || 0;
+  const cheapestStore = summary.cheapestStore || null;
+  const mostExpensiveStore = summary.mostExpensiveStore || null;
+
+  return [
+    {
+      id: "basket-items",
+      label: "Itens no cabaz",
+      value: String(basketItemCount),
+      copy:
+        basketItemCount === 0
+          ? `${favoriteCount} ${pluralize(favoriteCount, "favorito guardado", "favoritos guardados")}. Adicione produtos para começar.`
+          : `${basketQuantityCount} ${pluralize(basketQuantityCount, "unidade", "unidades")} no total · ${basketPricedItemCount}/${basketItemCount} ${pluralize(basketItemCount, "item", "itens")} com preço.`
+    },
+    {
+      id: "cheapest-store",
+      label: "Loja mais barata",
+      value: cheapestStore?.store.name || "—",
+      copy:
+        basketItemCount === 0
+          ? "Será calculada quando existir um cabaz ativo."
+          : cheapestStore
+            ? completeStoreCount > 1
+              ? `${completeStoreCount} lojas com cobertura completa do cabaz.`
+              : "Única loja com cobertura completa do cabaz."
+            : `Nenhuma das ${comparedStoreCount} ${pluralize(comparedStoreCount, "loja", "lojas")} cobre ainda todo o cabaz.`
+    },
+    {
+      id: "cheapest-total",
+      label: "Total mais baixo",
+      value: summary.cheapestTotal == null ? "—" : formatCurrency(summary.cheapestTotal),
+      copy:
+        basketItemCount === 0
+          ? "Adicione produtos para calcular o total."
+          : summary.cheapestTotal == null
+            ? "Aguardando preços suficientes para uma loja cobrir todo o cabaz."
+            : `Estimativa em ${cheapestStore?.store.name || "loja com menor total"}.`
+    },
+    {
+      id: "store-spread",
+      label: "Diferença entre lojas",
+      value: summary.spread == null ? "—" : formatCurrency(summary.spread),
+      copy:
+        basketItemCount === 0
+          ? "Aparece quando houver cabaz e lojas comparáveis."
+          : summary.spread == null
+            ? "Necessárias pelo menos duas lojas com cobertura completa."
+            : `${cheapestStore?.store.name || "Mais barata"} vs. ${mostExpensiveStore?.store.name || "mais cara"}.`
+    }
+  ];
+}
+
 function renderSummaryCards(summary) {
+  const cards = getSummaryCards(summary);
+
   return `
     <section class="summary-grid">
-      <article class="summary-card">
-        <span class="summary-label">Itens em análise</span>
-        <strong>${summary.basketItemCount == null ? "—" : escapeHtml(String(summary.basketItemCount))}</strong>
-        <p>${summary.basketItemCount == null ? "Adicione produtos ao cabaz para começar." : "Produtos atualmente no cabaz."}</p>
-      </article>
-      <article class="summary-card">
-        <span class="summary-label">Supermercado mais barato</span>
-        <strong>${escapeHtml(summary.cheapestStore?.store.name || "—")}</strong>
-        <p>${summary.cheapestStore ? "Com base nas lojas com cobertura completa do cabaz." : "Será calculado quando existir um cabaz ativo para comparação."}</p>
-      </article>
-      <article class="summary-card">
-        <span class="summary-label">Total estimado</span>
-        <strong class="summary-total-value">${summary.cheapestTotal == null ? "—" : formatCurrency(summary.cheapestTotal)}</strong>
-        <p>${summary.cheapestTotal == null ? "Será calculado quando existirem itens com preço." : "Estimativa com base nos produtos adicionados."}</p>
-      </article>
-      <article class="summary-card summary-card-featured">
-        <span class="summary-label">Diferença mais barata vs. mais cara</span>
-        <strong>${summary.spread == null ? "—" : formatCurrency(summary.spread)}</strong>
-        <p>${summary.spread == null ? "Necessária mais do que uma loja com cobertura completa." : "Comparação entre lojas com a mesma cobertura de itens."}</p>
-      </article>
+      ${cards
+        .map(
+          (card, index) => `
+            <article class="summary-card ${index === cards.length - 1 ? "summary-card-featured" : ""}">
+              <span class="summary-label">${escapeHtml(card.label)}</span>
+              <strong data-summary-value="${escapeHtml(card.id)}">${escapeHtml(card.value)}</strong>
+              <p data-summary-copy="${escapeHtml(card.id)}">${escapeHtml(card.copy)}</p>
+            </article>
+          `
+        )
+        .join("")}
     </section>
   `;
 }

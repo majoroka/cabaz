@@ -11,7 +11,7 @@ import {
 } from "../utils/postalCodes.js";
 import { loadPublishedData } from "../utils/publishedData.js";
 import { validateBasketJson } from "../utils/validation.js";
-import { renderApp } from "./render.js";
+import { getSummaryCards, renderApp } from "./render.js";
 
 const STORAGE_KEYS = {
   basket: "cabaz:published-v1:basket",
@@ -340,6 +340,7 @@ function getViewModel(state) {
       lineTotal: result ? result.price * quantity : null
     };
   });
+  const basketQuantityCount = basketRows.reduce((sum, row) => sum + row.quantity, 0);
   const basketTotal = basketRows.reduce((total, row) => total + (row.lineTotal || 0), 0);
   const pricedBasketRows = basketRows.filter((row) => row.lineTotal !== null);
   const favoriteRows = state.favorites
@@ -516,9 +517,15 @@ function getViewModel(state) {
       itemCount: state.basket.length
     },
     summary: {
-      basketItemCount: state.basket.length > 0 ? state.basket.length : null,
+      basketItemCount: state.basket.length,
+      basketQuantityCount,
+      basketPricedItemCount: pricedBasketRows.length,
+      favoriteCount: state.favorites.length,
+      comparedStoreCount: comparisonStores.length,
+      completeStoreCount: completeComparisonStores.length,
       cheapestStore: cheapestComparisonStore,
-      cheapestTotal: cheapestComparisonStore?.total ?? (pricedBasketRows.length > 0 ? basketTotal : null),
+      mostExpensiveStore: mostExpensiveComparisonStore,
+      cheapestTotal: cheapestComparisonStore?.total ?? null,
       spread: comparisonSpread
     }
   };
@@ -826,7 +833,8 @@ export function createApp(rootElement) {
   }
 
   function refreshBasketTotalsInDom() {
-    const basketView = getViewModel(state).basketView;
+    const viewModel = getViewModel(state);
+    const basketView = viewModel.basketView;
     const totalLabel = basketView.total == null ? "—" : formatCurrency(basketView.total);
 
     rootElement.querySelectorAll(".basket-total-value").forEach((element) => {
@@ -837,8 +845,13 @@ export function createApp(rootElement) {
       element.textContent = basketView.total == null ? "Total pendente" : totalLabel;
     });
 
-    rootElement.querySelectorAll(".summary-total-value").forEach((element) => {
-      element.textContent = totalLabel;
+    getSummaryCards(viewModel.summary).forEach((card) => {
+      rootElement.querySelectorAll(`[data-summary-value="${card.id}"]`).forEach((element) => {
+        element.textContent = card.value;
+      });
+      rootElement.querySelectorAll(`[data-summary-copy="${card.id}"]`).forEach((element) => {
+        element.textContent = card.copy;
+      });
     });
 
     basketView.rows.forEach((row) => {

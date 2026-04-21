@@ -18,7 +18,7 @@ Cabaz é uma aplicação web estática para comparar preços de um cabaz de comp
 - não existe importação manual pela interface
 - a interface está em fase de evolução e nem todas as secções do menu lateral estão implementadas
 - as secções `Categorias` e `Marcas` ficam fora do menu até existir ingestão automática de dados reais
-- os cards de resumo estão em estado neutro até existir fluxo real de cabaz ativo
+- os cards de resumo dependem do cabaz atual e só calculam totais entre lojas com cobertura completa
 - a futura comparação real dependerá de catálogo canónico, matching e dados publicados fora deste frontend
 
 ## Stack técnica

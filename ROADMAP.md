@@ -20,7 +20,7 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 - [x] barra lateral com secções principais
 - [x] hero com pesquisa principal
 - [x] campo de localização com pesquisa por CP, localidade e rua
-- [x] cards de resumo em estado neutro
+- [x] cards de resumo ligados ao cabaz e à comparação entre lojas
 - [x] pesquisa principal com resultados na área principal
 - [x] secção `Lojas` com logos e links externos
 - [x] secção `Favoritos` com persistência local, pesquisa, filtros e adição rápida ao cabaz
@@ -41,9 +41,6 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 
 Estas partes existiram em fases anteriores, mas não devem ser tomadas como produto ativo da interface atual:
 
-- comparação final por cabaz completo
-- comparação multi-loja real a partir do cabaz
-- cálculo completo dos cards de resumo por supermercado
 - totais finais por supermercado na UI principal
 - dados mock como fonte ativa da app
 - importação manual de JSON pela interface
