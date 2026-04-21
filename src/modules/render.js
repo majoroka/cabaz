@@ -706,6 +706,9 @@ function renderComparisonSection(comparisonView) {
 
   const activeStore = comparisonView.activeStore;
   const activeStoreLogo = getStoreLogoFilename(activeStore.store.id);
+  const activeStoreStatusCopy = activeStore.complete
+    ? "Cobertura completa do cabaz nesta loja."
+    : `${activeStore.missingCount} ${activeStore.missingCount === 1 ? "produto em falta" : "produtos em falta"} nesta loja.`;
 
   return `
     <section class="panel-card comparison-panel">
@@ -723,6 +726,10 @@ function renderComparisonSection(comparisonView) {
           .map((entry) => {
             const logoFilename = getStoreLogoFilename(entry.store.id);
             const isActive = entry.store.id === comparisonView.activeStoreId;
+            const tabStatus =
+              entry.missingCount > 0
+                ? `${entry.missingCount} ${entry.missingCount === 1 ? "em falta" : "em falta"}`
+                : "Cobertura completa";
 
             return `
               <button
@@ -743,7 +750,7 @@ function renderComparisonSection(comparisonView) {
                 <span class="comparison-tab-copy">
                   <strong>${escapeHtml(entry.store.name)}</strong>
                   <small>${entry.total == null ? "Total indisponível" : formatCurrency(entry.total)}</small>
-                  <em>${escapeHtml(String(entry.foundCount))}/${escapeHtml(String(entry.itemCount))} produtos</em>
+                  <em>${escapeHtml(String(entry.foundCount))}/${escapeHtml(String(entry.itemCount))} produtos · ${escapeHtml(tabStatus)}</em>
                 </span>
               </button>
             `;
@@ -766,12 +773,19 @@ function renderComparisonSection(comparisonView) {
           <div class="comparison-store-total">
             <span>Total do cabaz</span>
             <strong>${activeStore.total == null ? "—" : formatCurrency(activeStore.total)}</strong>
-            <small>
-              ${activeStore.complete
-                ? "Todos os produtos têm preço nesta loja."
-                : `${escapeHtml(String(activeStore.missingCount))} produtos sem preço nesta loja.`}
-            </small>
+            <small>${escapeHtml(activeStoreStatusCopy)}</small>
           </div>
+        </div>
+        <div class="comparison-match-summary" aria-label="Resumo de correspondências">
+          <span class="comparison-pill comparison-pill-exact">
+            ${escapeHtml(String(activeStore.exactCount))} ${activeStore.exactCount === 1 ? "exato" : "exatos"}
+          </span>
+          <span class="comparison-pill comparison-pill-equivalent">
+            ${escapeHtml(String(activeStore.equivalentCount))} ${activeStore.equivalentCount === 1 ? "equivalente" : "equivalentes"}
+          </span>
+          <span class="comparison-pill comparison-pill-missing">
+            ${escapeHtml(String(activeStore.missingCount))} ${activeStore.missingCount === 1 ? "em falta" : "em falta"}
+          </span>
         </div>
         <div class="comparison-lines">
           ${activeStore.rows
@@ -779,9 +793,26 @@ function renderComparisonSection(comparisonView) {
               const resultName = row.result?.matchedName || "";
               const image = row.result?.image || "";
               const isEquivalent = row.matchType === "equivalent";
+              const isExact = row.matchType === "exact";
+              const lineClass = row.result
+                ? isEquivalent
+                  ? "comparison-line-equivalent"
+                  : "comparison-line-exact"
+                : "comparison-line-missing";
+              const statusClass = row.result
+                ? isEquivalent
+                  ? "comparison-status-equivalent"
+                  : "comparison-status-exact"
+                : "comparison-status-missing";
+              const statusLabel = row.result ? (isEquivalent ? "Equivalente" : "Exato") : "Em falta";
+              const statusHint = row.result
+                ? isEquivalent
+                  ? "Produto alternativo do mesmo grupo de comparação."
+                  : "Mesmo produto canónico encontrado nesta loja."
+                : "Sem oferta publicada para este produto ou equivalente nesta loja.";
 
               return `
-                <article class="comparison-line ${row.result ? "" : "comparison-line-missing"}">
+                <article class="comparison-line ${lineClass}">
                   <div class="comparison-line-media">
                     ${
                       image
@@ -797,9 +828,10 @@ function renderComparisonSection(comparisonView) {
                     </p>
                     ${
                       row.result
-                        ? `<small>${escapeHtml(resultName)}${isEquivalent ? " · equivalente" : ""}</small>`
+                        ? `<small>${escapeHtml(resultName)}</small>`
                         : `<small>Produto sem preço publicado nesta loja.</small>`
                     }
+                    <em class="comparison-match-hint">${escapeHtml(statusHint)}</em>
                   </div>
                   <div class="comparison-line-price">
                     <span>Preço</span>
@@ -815,8 +847,8 @@ function renderComparisonSection(comparisonView) {
                     <strong>${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
                   </div>
                   <div class="comparison-line-status">
-                    <span class="${row.result ? "comparison-status-ok" : "comparison-status-missing"}">
-                      ${row.result ? (isEquivalent ? "Equivalente" : "Encontrado") : "Em falta"}
+                    <span class="${statusClass}">
+                      ${escapeHtml(statusLabel)}
                     </span>
                   </div>
                 </article>

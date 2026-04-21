@@ -225,6 +225,7 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] secção `Comparação` piloto a partir dos itens do cabaz
 - [x] separadores ordenados por total, preparados para várias lojas
 - [x] comparação multi-loja piloto com Continente e Pingo Doce
+- [x] indicação visual de produtos exatos, equivalentes e em falta
 - [ ] tratamento de produtos sem preço disponível em lojas alternativas
 - [ ] normalização fina de equivalências entre formatos, marcas próprias e tamanhos diferentes
 

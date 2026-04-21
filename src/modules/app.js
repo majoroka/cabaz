@@ -445,6 +445,8 @@ function getViewModel(state) {
         };
       });
       const foundRows = rows.filter((row) => row.result);
+      const exactCount = rows.filter((row) => row.matchType === "exact").length;
+      const equivalentCount = rows.filter((row) => row.matchType === "equivalent").length;
       const total = foundRows.reduce((sum, row) => sum + (row.lineTotal || 0), 0);
 
       return {
@@ -452,6 +454,8 @@ function getViewModel(state) {
         rows,
         total: foundRows.length > 0 ? total : null,
         foundCount: foundRows.length,
+        exactCount,
+        equivalentCount,
         missingCount: rows.length - foundRows.length,
         itemCount: rows.length,
         complete: rows.length > 0 && foundRows.length === rows.length

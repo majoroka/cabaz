@@ -1544,6 +1544,38 @@ textarea {
   color: var(--text-soft);
 }
 
+.comparison-match-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 24px;
+}
+
+.comparison-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.comparison-pill-exact {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.comparison-pill-equivalent {
+  background: #fff7e8;
+  color: #9a651c;
+}
+
+.comparison-pill-missing {
+  background: #fff1ef;
+  color: var(--danger);
+}
+
 .comparison-lines {
   display: grid;
   gap: 12px;
@@ -1562,6 +1594,15 @@ textarea {
 
 .comparison-line-missing {
   background: #fffdfb;
+}
+
+.comparison-line-exact {
+  border-color: rgba(62, 145, 133, 0.18);
+}
+
+.comparison-line-equivalent {
+  border-color: rgba(202, 143, 45, 0.28);
+  background: #fffdf8;
 }
 
 .comparison-line-media {
@@ -1608,6 +1649,13 @@ textarea {
   line-height: 1.45;
 }
 
+.comparison-match-hint {
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  font-style: normal;
+  line-height: 1.35;
+}
+
 .comparison-line-price,
 .comparison-line-quantity,
 .comparison-line-total {
@@ -1640,9 +1688,14 @@ textarea {
   font-weight: 800;
 }
 
-.comparison-status-ok {
+.comparison-status-exact {
   background: var(--accent-soft);
   color: var(--accent-strong);
+}
+
+.comparison-status-equivalent {
+  background: #fff7e8;
+  color: #9a651c;
 }
 
 .comparison-status-missing {
@@ -2028,7 +2081,8 @@ textarea {
   }
 
   .comparison-tabs,
-  .comparison-store-panel {
+  .comparison-store-panel,
+  .comparison-match-summary {
     padding-left: 18px;
     padding-right: 18px;
   }
