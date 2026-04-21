@@ -226,13 +226,15 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] separadores ordenados por total, preparados para várias lojas
 - [x] comparação multi-loja piloto com Continente e Pingo Doce
 - [x] indicação visual de produtos exatos, equivalentes e em falta
-- [ ] tratamento de produtos sem preço disponível em lojas alternativas
+- [x] tratamento de produtos sem preço disponível em lojas alternativas
+- [x] lista de validação manual para equivalências detetadas no cabaz
 - [ ] normalização fina de equivalências entre formatos, marcas próprias e tamanhos diferentes
 
 ### Intervenção necessária do utilizador
 
 - testar o fluxo `pesquisar -> adicionar -> abrir Cabaz -> editar quantidade/remover`
 - validar se a leitura dos subtotais é clara antes de avançarmos para comparação multi-loja
+- validar manualmente equivalências na secção `Comparação` e confirmar se os estados `Aprovar/Rever/Limpar` são claros
 
 ## Sprint 8: Favoritos e listagem imprimível
 

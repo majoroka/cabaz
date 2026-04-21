@@ -561,6 +561,17 @@ textarea {
   background: #fff8f7;
 }
 
+.button-secondary {
+  color: #9a651c;
+  border-color: rgba(202, 143, 45, 0.28);
+  background: #fffaf0;
+}
+
+.button-ghost {
+  color: var(--text-soft);
+  background: transparent;
+}
+
 .button-small {
   min-height: 36px;
   padding: 0.56rem 0.68rem;
@@ -1708,6 +1719,152 @@ textarea {
   color: var(--danger);
 }
 
+.comparison-review-panel {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.comparison-review-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 4px;
+}
+
+.comparison-review-heading h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.comparison-review-heading p:not(.eyebrow) {
+  margin: 6px 0 0;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.comparison-review-counts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: start;
+  gap: 8px;
+}
+
+.comparison-review-counts span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #f5f7fa;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.comparison-review-lines {
+  display: grid;
+  gap: 10px;
+}
+
+.comparison-review-line {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.1fr) 112px minmax(250px, 1.4fr) 108px 118px 220px;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 16px;
+  border: 1px solid rgba(202, 143, 45, 0.26);
+  border-radius: var(--radius-md);
+  background: #fffdf8;
+}
+
+.comparison-review-main,
+.comparison-review-offer,
+.comparison-review-meta {
+  display: grid;
+  gap: 5px;
+}
+
+.comparison-review-main span,
+.comparison-review-offer span,
+.comparison-review-meta span {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-review-main strong,
+.comparison-review-offer strong,
+.comparison-review-meta strong {
+  line-height: 1.25;
+}
+
+.comparison-review-main small,
+.comparison-review-offer small,
+.comparison-review-meta small {
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+
+.comparison-review-store {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.comparison-review-store-logo {
+  width: 52px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.comparison-review-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.comparison-review-actions > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.comparison-review-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.comparison-review-status-pending {
+  background: #f4f6f8;
+  color: var(--text-soft);
+}
+
+.comparison-review-status-approved {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.comparison-review-status-needs_review {
+  background: #fff7e8;
+  color: #9a651c;
+}
+
 .status-tag {
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
@@ -1752,6 +1909,37 @@ textarea {
       "media main price qty total"
       "media main status status status";
     gap: 16px;
+  }
+
+  .comparison-review-line {
+    grid-template-columns: minmax(180px, 1fr) 92px minmax(220px, 1.2fr) 108px 118px;
+    grid-template-areas:
+      "main store offer price confidence"
+      "main store offer actions actions";
+  }
+
+  .comparison-review-main {
+    grid-area: main;
+  }
+
+  .comparison-review-store {
+    grid-area: store;
+  }
+
+  .comparison-review-offer {
+    grid-area: offer;
+  }
+
+  .comparison-review-price {
+    grid-area: price;
+  }
+
+  .comparison-review-confidence {
+    grid-area: confidence;
+  }
+
+  .comparison-review-actions {
+    grid-area: actions;
   }
 
   .shopping-list-line {
@@ -1932,6 +2120,31 @@ textarea {
       "media main total"
       "media price qty"
       "media status status";
+  }
+
+  .comparison-review-heading {
+    display: grid;
+  }
+
+  .comparison-review-counts {
+    justify-content: flex-start;
+  }
+
+  .comparison-review-line {
+    grid-template-columns: 80px minmax(0, 1fr) 120px;
+    grid-template-areas:
+      "store main price"
+      "store offer confidence"
+      "store actions actions";
+    align-items: start;
+  }
+
+  .comparison-review-actions {
+    justify-items: start;
+  }
+
+  .comparison-review-actions > div {
+    justify-content: flex-start;
   }
 
   .shopping-list-summary {

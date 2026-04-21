@@ -15,7 +15,8 @@ import { getSummaryCards, renderApp } from "./render.js";
 
 const STORAGE_KEYS = {
   basket: "cabaz:published-v1:basket",
-  favorites: "cabaz:published-v1:favorites"
+  favorites: "cabaz:published-v1:favorites",
+  equivalenceReviews: "cabaz:published-v1:equivalence-reviews"
 };
 const LEGACY_STORAGE_KEYS = ["cabaz:basket", "cabaz:results", "cabaz:stores"];
 
@@ -200,6 +201,48 @@ function loadStoredFavorites() {
   }
 }
 
+function loadStoredEquivalenceReviews() {
+  try {
+    const rawValue = window.localStorage.getItem(STORAGE_KEYS.equivalenceReviews);
+
+    if (!rawValue) {
+      return {};
+    }
+
+    const parsed = JSON.parse(rawValue);
+
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return {};
+    }
+
+    return Object.fromEntries(
+      Object.entries(parsed)
+        .map(([reviewId, review]) => {
+          if (!review || typeof review !== "object") {
+            return null;
+          }
+
+          const status = String(review.status || "").trim();
+
+          if (!["approved", "needs_review"].includes(status)) {
+            return null;
+          }
+
+          return [
+            String(reviewId),
+            {
+              status,
+              reviewedAt: String(review.reviewedAt || "").trim()
+            }
+          ];
+        })
+        .filter(Boolean)
+    );
+  } catch {
+    return {};
+  }
+}
+
 function persistJson(storageKey, value) {
   window.localStorage.setItem(storageKey, JSON.stringify(value));
 }
@@ -232,10 +275,12 @@ function createInitialState() {
 
   const storedBasket = loadStoredJson(STORAGE_KEYS.basket, validateBasketJson);
   const storedFavorites = loadStoredFavorites();
+  const storedEquivalenceReviews = loadStoredEquivalenceReviews();
 
   return {
     basket: storedBasket || [],
     favorites: storedFavorites,
+    equivalenceReviews: storedEquivalenceReviews,
     catalogProducts: [],
     results: [],
     stores: [],
@@ -246,6 +291,10 @@ function createInitialState() {
     notice: "",
     error: ""
   };
+}
+
+function getEquivalenceReviewId({ itemId, storeId, resultProductId }) {
+  return [itemId, storeId, resultProductId].map((part) => encodeURIComponent(String(part || ""))).join("__");
 }
 
 function getViewModel(state) {
@@ -481,6 +530,37 @@ function getViewModel(state) {
 
       return left.store.name.localeCompare(right.store.name, "pt");
     });
+  const equivalenceReviewRows = comparisonStores.flatMap((entry) =>
+    entry.rows
+      .filter((row) => row.matchType === "equivalent" && row.result)
+      .map((row) => {
+        const resultProduct = state.catalogProducts.find((product) => product.id === row.result.basketItemId) || null;
+        const reviewId = getEquivalenceReviewId({
+          itemId: row.item.id,
+          storeId: entry.store.id,
+          resultProductId: row.result.basketItemId
+        });
+        const review = state.equivalenceReviews[reviewId] || null;
+
+        return {
+          id: reviewId,
+          status: review?.status || "pending",
+          reviewedAt: review?.reviewedAt || "",
+          store: entry.store,
+          item: row.item,
+          result: row.result,
+          resultProduct,
+          quantity: row.quantity,
+          lineTotal: row.lineTotal
+        };
+      })
+  );
+  const equivalenceReviewSummary = {
+    total: equivalenceReviewRows.length,
+    pending: equivalenceReviewRows.filter((row) => row.status === "pending").length,
+    approved: equivalenceReviewRows.filter((row) => row.status === "approved").length,
+    needsReview: equivalenceReviewRows.filter((row) => row.status === "needs_review").length
+  };
   const activeComparisonStore =
     comparisonStores.find((entry) => entry.store.id === state.comparisonActiveStoreId) || comparisonStores[0] || null;
   const completeComparisonStores = comparisonStores.filter((entry) => entry.complete && entry.total !== null);
@@ -523,7 +603,11 @@ function getViewModel(state) {
       stores: comparisonStores,
       activeStoreId: activeComparisonStore?.store.id || "",
       activeStore: activeComparisonStore,
-      itemCount: state.basket.length
+      itemCount: state.basket.length,
+      equivalenceReviews: {
+        rows: equivalenceReviewRows,
+        summary: equivalenceReviewSummary
+      }
     },
     summary: {
       basketItemCount: state.basket.length,
@@ -819,6 +903,38 @@ export function createApp(rootElement) {
     render();
   }
 
+  function setEquivalenceReview(reviewId, status) {
+    if (!reviewId) {
+      return;
+    }
+
+    if (status === "pending") {
+      const nextReviews = { ...state.equivalenceReviews };
+      delete nextReviews[reviewId];
+      state.equivalenceReviews = nextReviews;
+      persistJson(STORAGE_KEYS.equivalenceReviews, state.equivalenceReviews);
+      setNotice("Validação da equivalência limpa.");
+      render();
+      return;
+    }
+
+    if (!["approved", "needs_review"].includes(status)) {
+      return;
+    }
+
+    state.equivalenceReviews = {
+      ...state.equivalenceReviews,
+      [reviewId]: {
+        status,
+        reviewedAt: new Date().toISOString()
+      }
+    };
+
+    persistJson(STORAGE_KEYS.equivalenceReviews, state.equivalenceReviews);
+    setNotice(status === "approved" ? "Equivalência aprovada." : "Equivalência marcada para revisão.");
+    render();
+  }
+
   function updateBasketItemQuantity(itemId, quantity, { renderView = true, showNotice = true } = {}) {
     const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
     const item = state.basket.find((entry) => entry.id === itemId);
@@ -1004,6 +1120,11 @@ export function createApp(rootElement) {
     if (action === "set-comparison-store" && target.dataset.storeId) {
       state.comparisonActiveStoreId = target.dataset.storeId;
       render();
+      return;
+    }
+
+    if (action === "set-equivalence-review" && target.dataset.reviewId && target.dataset.reviewStatus) {
+      setEquivalenceReview(target.dataset.reviewId, target.dataset.reviewStatus);
       return;
     }
 

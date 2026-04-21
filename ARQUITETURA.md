@@ -340,6 +340,8 @@ Comportamento atual:
 - calcula preço, quantidade e subtotal por item
 - assinala produtos encontrados, equivalentes ou em falta
 - apresenta contadores e etiquetas visuais para `Exato`, `Equivalente` e `Em falta`
+- apresenta uma lista de validação manual das equivalências detetadas
+- guarda localmente a decisão por equivalência (`Aprovada` ou `A rever`) em `localStorage`
 
 Nesta fase piloto existem duas insígnias publicadas: Continente e Pingo Doce. A localização física do Pingo Doce ainda está marcada como operacional/online até ser confirmada uma loja concreta.
 

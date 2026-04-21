@@ -144,6 +144,14 @@ function getStoreLogoFilename(storeId) {
   return STORE_LOGO_MAP[storeId] || null;
 }
 
+function renderStoreLogo({ store, className = "" }) {
+  const logoFilename = getStoreLogoFilename(store.id);
+
+  return logoFilename
+    ? `<img class="${escapeHtml(className)}" src="./lojas/${escapeHtml(logoFilename)}" alt="${escapeHtml(store.name)}" loading="lazy" />`
+    : `<span class="${escapeHtml(className)}">${escapeHtml(store.name.slice(0, 1))}</span>`;
+}
+
 function renderFavoriteButton({ productId, isFavorite, label }) {
   return `
     <button
@@ -670,6 +678,127 @@ function renderFavoritesSection(favoritesView) {
   `;
 }
 
+function renderEquivalenceReviewSection(comparisonView) {
+  const reviews = comparisonView.equivalenceReviews || {
+    rows: [],
+    summary: { total: 0, pending: 0, approved: 0, needsReview: 0 }
+  };
+
+  return `
+    <div class="comparison-review-panel">
+      <div class="comparison-review-heading">
+        <div>
+          <p class="eyebrow">Validação</p>
+          <h3>Equivalências a validar</h3>
+          <p>Confirme manualmente os produtos usados como alternativa quando a loja não tem o produto exato.</p>
+        </div>
+        <div class="comparison-review-counts" aria-label="Resumo da validação de equivalências">
+          <span>${escapeHtml(String(reviews.summary.pending))} por validar</span>
+          <span>${escapeHtml(String(reviews.summary.approved))} aprovadas</span>
+          <span>${escapeHtml(String(reviews.summary.needsReview))} a rever</span>
+        </div>
+      </div>
+      ${
+        reviews.rows.length === 0
+          ? `<p class="empty-state">Sem equivalências detetadas no cabaz atual. Os produtos estão como exatos ou em falta.</p>`
+          : `<div class="comparison-review-lines">
+              ${reviews.rows
+                .map((row) => {
+                  const statusLabel =
+                    row.status === "approved"
+                      ? "Aprovada"
+                      : row.status === "needs_review"
+                        ? "A rever"
+                        : "Por validar";
+                  const confidence =
+                    typeof row.result.confidenceScore === "number"
+                      ? `${Math.round(row.result.confidenceScore * 100)}%`
+                      : "n/d";
+
+                  return `
+                    <article class="comparison-review-line">
+                      <div class="comparison-review-main">
+                        <span>Produto no cabaz</span>
+                        <strong>${escapeHtml(row.item.name)}</strong>
+                        <small>
+                          ${escapeHtml(getCategoryName(row.item.category))}
+                          ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
+                        </small>
+                      </div>
+                      <div class="comparison-review-store">
+                        ${renderStoreLogo({
+                          store: row.store,
+                          className: "comparison-review-store-logo"
+                        })}
+                        <span>${escapeHtml(row.store.name)}</span>
+                      </div>
+                      <div class="comparison-review-offer">
+                        <span>Produto usado</span>
+                        <strong>${escapeHtml(row.result.matchedName)}</strong>
+                        <small>
+                          ${row.result.brand ? `${escapeHtml(row.result.brand)} · ` : ""}
+                          ${escapeHtml(formatSize(row.result.size, row.result.sizeUnit))}
+                          ${row.result.notes ? ` · ${escapeHtml(row.result.notes)}` : ""}
+                        </small>
+                      </div>
+                      <div class="comparison-review-meta comparison-review-price">
+                        <span>Preço</span>
+                        <strong>${formatCurrency(row.result.price)}</strong>
+                        <small>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</small>
+                      </div>
+                      <div class="comparison-review-meta comparison-review-confidence">
+                        <span>Confiança</span>
+                        <strong>${escapeHtml(confidence)}</strong>
+                        <small>${row.reviewedAt ? `Revisto em ${escapeHtml(formatDate(row.reviewedAt))}` : "Sem decisão manual"}</small>
+                      </div>
+                      <div class="comparison-review-actions">
+                        <span class="comparison-review-status comparison-review-status-${escapeHtml(row.status)}">
+                          ${escapeHtml(statusLabel)}
+                        </span>
+                        <div>
+                          <button
+                            type="button"
+                            class="button button-small"
+                            data-action="set-equivalence-review"
+                            data-review-id="${escapeHtml(row.id)}"
+                            data-review-status="approved"
+                          >
+                            Aprovar
+                          </button>
+                          <button
+                            type="button"
+                            class="button button-small button-secondary"
+                            data-action="set-equivalence-review"
+                            data-review-id="${escapeHtml(row.id)}"
+                            data-review-status="needs_review"
+                          >
+                            Rever
+                          </button>
+                          ${
+                            row.status !== "pending"
+                              ? `<button
+                                  type="button"
+                                  class="button button-small button-ghost"
+                                  data-action="set-equivalence-review"
+                                  data-review-id="${escapeHtml(row.id)}"
+                                  data-review-status="pending"
+                                >
+                                  Limpar
+                                </button>`
+                              : ""
+                          }
+                        </div>
+                      </div>
+                    </article>
+                  `;
+                })
+                .join("")}
+            </div>`
+      }
+    </div>
+  `;
+}
+
 function renderComparisonSection(comparisonView) {
   if (comparisonView.itemCount === 0) {
     return `
@@ -862,6 +991,7 @@ function renderComparisonSection(comparisonView) {
             .join("")}
         </div>
       </div>
+      ${renderEquivalenceReviewSection(comparisonView)}
     </section>
   `;
 }
