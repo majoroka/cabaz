@@ -73,7 +73,7 @@ function renderSummaryCards(summary) {
       </article>
       <article class="summary-card">
         <span class="summary-label">Total estimado</span>
-        <strong>${summary.cheapestTotal == null ? "—" : formatCurrency(summary.cheapestTotal)}</strong>
+        <strong class="summary-total-value">${summary.cheapestTotal == null ? "—" : formatCurrency(summary.cheapestTotal)}</strong>
         <p>${summary.cheapestTotal == null ? "Será calculado quando existirem itens com preço." : "Estimativa com base nos produtos adicionados."}</p>
       </article>
       <article class="summary-card summary-card-featured">
@@ -170,14 +170,14 @@ function renderBasketSection(basketView) {
           <p class="eyebrow">Cabaz</p>
           <h2>${escapeHtml(String(basketView.itemCount))} produtos adicionados</h2>
         </div>
-        <span class="status-tag">
+        <span class="status-tag basket-status-total">
           ${basketView.total == null ? "Total pendente" : formatCurrency(basketView.total)}
         </span>
       </div>
       <div class="basket-summary-strip">
         <div>
           <span>Total estimado</span>
-          <strong>${basketView.total == null ? "—" : formatCurrency(basketView.total)}</strong>
+          <strong class="basket-total-value">${basketView.total == null ? "—" : formatCurrency(basketView.total)}</strong>
         </div>
         <div>
           <span>Com preço conhecido</span>
@@ -192,7 +192,7 @@ function renderBasketSection(basketView) {
             const storeLogoFilename = getStoreLogoFilename(storeId);
 
             return `
-              <article class="basket-line">
+              <article class="basket-line" data-item-id="${escapeHtml(row.item.id)}">
                 <div class="basket-line-media">
                   ${
                     row.result?.image
@@ -226,10 +226,11 @@ function renderBasketSection(basketView) {
                   <strong>${row.result ? formatCurrency(row.result.price) : "—"}</strong>
                   <small>${row.result ? escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit)) : "Sem preço"}</small>
                 </div>
-                <form class="basket-quantity-form" data-item-id="${escapeHtml(row.item.id)}">
+                <div class="basket-quantity-control" data-item-id="${escapeHtml(row.item.id)}">
                   <label>
                     <span>Qtd.</span>
                     <input
+                      class="basket-quantity-input"
                       type="number"
                       name="quantity"
                       min="1"
@@ -239,11 +240,10 @@ function renderBasketSection(basketView) {
                       aria-label="Quantidade no cabaz"
                     />
                   </label>
-                  <button type="submit" class="button button-small">Guardar</button>
-                </form>
+                </div>
                 <div class="basket-line-total">
                   <span>Subtotal</span>
-                  <strong>${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
+                  <strong class="basket-line-subtotal">${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
                   <button
                     type="button"
                     class="button button-small button-danger"

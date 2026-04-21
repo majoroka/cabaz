@@ -1,6 +1,7 @@
 import { enrichResults } from "../utils/calculations.js";
 import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
+import { formatCurrency } from "../utils/formatters.js";
 import { uniqueValues } from "../utils/helpers.js";
 import {
   createPostalCodeIndex,
@@ -482,7 +483,7 @@ export function createApp(rootElement) {
     render();
   }
 
-  function updateBasketItemQuantity(itemId, quantity) {
+  function updateBasketItemQuantity(itemId, quantity, { renderView = true, showNotice = true } = {}) {
     const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
     const item = state.basket.find((entry) => entry.id === itemId);
 
@@ -494,8 +495,42 @@ export function createApp(rootElement) {
 
     item.quantity = normalizedQuantity;
     persistJson(STORAGE_KEYS.basket, state.basket);
-    setNotice(`Quantidade atualizada para "${item.name}".`);
-    render();
+
+    if (showNotice) {
+      setNotice(`Quantidade atualizada para "${item.name}".`);
+    }
+
+    if (renderView) {
+      render();
+    }
+  }
+
+  function refreshBasketTotalsInDom() {
+    const basketView = getViewModel(state).basketView;
+    const totalLabel = basketView.total == null ? "—" : formatCurrency(basketView.total);
+
+    rootElement.querySelectorAll(".basket-total-value").forEach((element) => {
+      element.textContent = totalLabel;
+    });
+
+    rootElement.querySelectorAll(".basket-status-total").forEach((element) => {
+      element.textContent = basketView.total == null ? "Total pendente" : totalLabel;
+    });
+
+    rootElement.querySelectorAll(".summary-total-value").forEach((element) => {
+      element.textContent = totalLabel;
+    });
+
+    basketView.rows.forEach((row) => {
+      const line = [...rootElement.querySelectorAll(".basket-line")].find(
+        (element) => element instanceof HTMLElement && element.dataset.itemId === row.item.id
+      );
+      const subtotal = line?.querySelector(".basket-line-subtotal");
+
+      if (subtotal) {
+        subtotal.textContent = row.lineTotal == null ? "—" : formatCurrency(row.lineTotal);
+      }
+    });
   }
 
   function removeItem(itemId) {
@@ -547,18 +582,6 @@ export function createApp(rootElement) {
       const formData = new FormData(event.target);
       addCatalogResultToBasket(event.target.dataset.resultId, formData.get("quantity"));
       event.target.reset();
-      return;
-    }
-
-    if (
-      event.target instanceof HTMLFormElement &&
-      event.target.classList.contains("basket-quantity-form") &&
-      event.target.dataset.itemId
-    ) {
-      event.preventDefault();
-      clearMessages();
-      const formData = new FormData(event.target);
-      updateBasketItemQuantity(event.target.dataset.itemId, formData.get("quantity"));
       return;
     }
 
@@ -643,6 +666,23 @@ export function createApp(rootElement) {
     if (target instanceof HTMLSelectElement && target.closest("#catalog-filters-form")) {
       state.catalogSearch.filters[target.name] = target.value;
       render();
+      return;
+    }
+
+    if (target instanceof HTMLInputElement && target.classList.contains("basket-quantity-input")) {
+      const quantityControl = target.closest(".basket-quantity-control");
+      const itemId = quantityControl instanceof HTMLElement ? quantityControl.dataset.itemId : "";
+      const quantity = Math.max(1, Number.parseInt(String(target.value || "1"), 10) || 1);
+
+      target.value = String(quantity);
+
+      if (itemId) {
+        updateBasketItemQuantity(itemId, quantity, {
+          renderView: false,
+          showNotice: false
+        });
+        refreshBasketTotalsInDom();
+      }
     }
   });
 
@@ -712,6 +752,36 @@ export function createApp(rootElement) {
         resetCatalogSearch();
         render();
       }
+
+      return;
+    }
+
+    if (target instanceof HTMLInputElement && target.classList.contains("basket-quantity-input")) {
+      const quantityControl = target.closest(".basket-quantity-control");
+      const itemId = quantityControl instanceof HTMLElement ? quantityControl.dataset.itemId : "";
+      const rawQuantity = target.value.trim();
+
+      if (!itemId || rawQuantity === "") {
+        return;
+      }
+
+      const parsedQuantity = Number.parseInt(rawQuantity, 10);
+
+      if (!Number.isFinite(parsedQuantity)) {
+        return;
+      }
+
+      const quantity = Math.max(1, parsedQuantity);
+
+      if (quantity !== parsedQuantity) {
+        target.value = String(quantity);
+      }
+
+      updateBasketItemQuantity(itemId, quantity, {
+        renderView: false,
+        showNotice: false
+      });
+      refreshBasketTotalsInDom();
     }
   });
 

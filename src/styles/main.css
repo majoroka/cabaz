@@ -961,7 +961,7 @@ textarea {
 .basket-summary-strip span,
 .basket-line-price span,
 .basket-line-total span,
-.basket-quantity-form span {
+.basket-quantity-control span {
   color: var(--text-faint);
   font-size: 0.72rem;
   font-weight: 800;
@@ -1071,18 +1071,18 @@ textarea {
   color: var(--text-soft);
 }
 
-.basket-quantity-form {
+.basket-quantity-control {
   display: inline-flex;
   align-items: flex-end;
   gap: 10px;
 }
 
-.basket-quantity-form label {
+.basket-quantity-control label {
   display: grid;
   gap: 4px;
 }
 
-.basket-quantity-form input {
+.basket-quantity-control input {
   width: 72px;
   min-height: 38px;
   padding: 0 10px;
@@ -1142,7 +1142,7 @@ textarea {
     grid-area: price;
   }
 
-  .basket-quantity-form {
+  .basket-quantity-control {
     grid-area: qty;
   }
 
@@ -1340,7 +1340,7 @@ textarea {
     height: 112px;
   }
 
-  .basket-quantity-form {
+  .basket-quantity-control {
     width: 100%;
     justify-content: space-between;
   }
