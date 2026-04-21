@@ -88,11 +88,11 @@ function getStoreLogoFilename(storeId) {
   return STORE_LOGO_MAP[storeId] || null;
 }
 
-function renderFavoriteButton({ productId, isFavorite, label, size = "" }) {
+function renderFavoriteButton({ productId, isFavorite, label }) {
   return `
     <button
       type="button"
-      class="favorite-button ${size === "small" ? "favorite-button-small" : ""} ${isFavorite ? "favorite-button-active" : ""}"
+      class="favorite-button ${isFavorite ? "favorite-button-active" : ""}"
       data-action="toggle-favorite"
       data-product-id="${escapeHtml(productId)}"
       aria-pressed="${isFavorite ? "true" : "false"}"
@@ -209,14 +209,6 @@ function renderBasketSection(basketView) {
             return `
               <article class="basket-line" data-item-id="${escapeHtml(row.item.id)}">
                 <div class="basket-line-media">
-                  ${renderFavoriteButton({
-                    productId: row.item.id,
-                    isFavorite: row.isFavorite,
-                    label: row.isFavorite
-                      ? `Remover ${row.item.name} dos favoritos`
-                      : `Adicionar ${row.item.name} aos favoritos`,
-                    size: "small"
-                  })}
                   ${
                     row.result?.image
                       ? `<img
@@ -229,7 +221,16 @@ function renderBasketSection(basketView) {
                   }
                 </div>
                 <div class="basket-line-main">
-                  <h3>${escapeHtml(row.item.name)}</h3>
+                  <div class="product-title-row">
+                    <h3>${escapeHtml(row.item.name)}</h3>
+                    ${renderFavoriteButton({
+                      productId: row.item.id,
+                      isFavorite: row.isFavorite,
+                      label: row.isFavorite
+                        ? `Remover ${row.item.name} dos favoritos`
+                        : `Adicionar ${row.item.name} aos favoritos`
+                    })}
+                  </div>
                   <p>
                     ${escapeHtml(getCategoryName(row.item.category))}
                     ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
@@ -344,11 +345,6 @@ function renderFavoritesSection(favoritesView) {
                   <span class="catalog-store-name">${escapeHtml(storeName)}</span>
                 </div>
                 <div class="catalog-result-media-shell">
-                  ${renderFavoriteButton({
-                    productId,
-                    isFavorite: true,
-                    label: `Remover ${productName} dos favoritos`
-                  })}
                   ${
                     entry.result?.image
                       ? `${
@@ -379,7 +375,14 @@ function renderFavoritesSection(favoritesView) {
                   <span class="catalog-result-price-unit">${entry.result ? escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit)) : "Sem preço"}</span>
                 </div>
                 <div class="catalog-result-info">
-                  <h3>${escapeHtml(productName)}</h3>
+                  <div class="product-title-row">
+                    <h3>${escapeHtml(productName)}</h3>
+                    ${renderFavoriteButton({
+                      productId,
+                      isFavorite: true,
+                      label: `Remover ${productName} dos favoritos`
+                    })}
+                  </div>
                   <p class="catalog-result-meta">
                     ${escapeHtml(entry.categoryName)}
                     ${entry.catalogProduct?.preferredBrand ? ` · ${escapeHtml(entry.catalogProduct.preferredBrand)}` : ""}
@@ -684,13 +687,6 @@ function renderCatalogSearchResults(catalogSearch) {
                         <span class="catalog-store-name">${escapeHtml(storeName)}</span>
                       </div>
                       <div class="catalog-result-media-shell">
-                        ${renderFavoriteButton({
-                          productId: entry.result.basketItemId,
-                          isFavorite: entry.isFavorite,
-                          label: entry.isFavorite
-                            ? `Remover ${entry.result.matchedName} dos favoritos`
-                            : `Adicionar ${entry.result.matchedName} aos favoritos`
-                        })}
                         ${
                           entry.result.image
                             ? `${
@@ -723,7 +719,16 @@ function renderCatalogSearchResults(catalogSearch) {
                         )}</span>
                       </div>
                       <div class="catalog-result-info">
-                        <h3>${escapeHtml(entry.result.matchedName)}</h3>
+                        <div class="product-title-row">
+                          <h3>${escapeHtml(entry.result.matchedName)}</h3>
+                          ${renderFavoriteButton({
+                            productId: entry.result.basketItemId,
+                            isFavorite: entry.isFavorite,
+                            label: entry.isFavorite
+                              ? `Remover ${entry.result.matchedName} dos favoritos`
+                              : `Adicionar ${entry.result.matchedName} aos favoritos`
+                          })}
+                        </div>
                         <p class="catalog-result-meta">
                           ${escapeHtml(entry.categoryName)}
                           ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
