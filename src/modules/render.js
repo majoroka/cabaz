@@ -244,13 +244,17 @@ function renderBasketSection(basketView) {
                 <div class="basket-line-total">
                   <span>Subtotal</span>
                   <strong class="basket-line-subtotal">${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
+                </div>
+                <div class="basket-line-action">
                   <button
                     type="button"
-                    class="button button-small button-danger"
+                    class="basket-remove-button"
                     data-action="remove-item"
                     data-item-id="${escapeHtml(row.item.id)}"
+                    aria-label="Remover ${escapeHtml(row.item.name)} do cabaz"
+                    title="Remover do cabaz"
                   >
-                    Remover
+                    <span aria-hidden="true">−</span>
                   </button>
                 </div>
               </article>

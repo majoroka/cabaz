@@ -983,10 +983,10 @@ textarea {
 
 .basket-line {
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr) 132px 126px 150px 124px;
+  grid-template-columns: 96px minmax(240px, 1.6fr) 128px 120px 110px 126px 48px;
   align-items: center;
-  gap: 18px;
-  padding: 18px;
+  gap: 28px;
+  padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: #fbfcfe;
@@ -995,7 +995,7 @@ textarea {
 .basket-line-media {
   position: relative;
   width: 100%;
-  height: 82px;
+  height: 92px;
   overflow: hidden;
 }
 
@@ -1020,12 +1020,12 @@ textarea {
 
 .basket-line-main {
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
 .basket-line-main h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.06rem;
   line-height: 1.3;
 }
 
@@ -1038,8 +1038,9 @@ textarea {
 
 .basket-line-store {
   display: grid;
-  justify-items: start;
-  gap: 8px;
+  justify-items: center;
+  gap: 7px;
+  text-align: center;
 }
 
 .basket-line-store img {
@@ -1052,7 +1053,7 @@ textarea {
 
 .basket-line-store span {
   color: var(--text-soft);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   line-height: 1.2;
 }
 
@@ -1089,6 +1090,47 @@ textarea {
   text-align: center;
 }
 
+.basket-line-action {
+  display: flex;
+  justify-content: end;
+}
+
+.basket-remove-button {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(194, 90, 82, 0.42);
+  border-radius: 999px;
+  background: #fff8f7;
+  color: var(--danger);
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.basket-remove-button span {
+  font-size: 1.45rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.basket-remove-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(194, 90, 82, 0.7);
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.basket-remove-button:focus-visible {
+  outline: 3px solid rgba(194, 90, 82, 0.16);
+  outline-offset: 3px;
+}
+
 .status-tag {
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
@@ -1120,10 +1162,11 @@ textarea {
   }
 
   .basket-line {
-    grid-template-columns: 88px minmax(0, 1fr) 116px 110px;
+    grid-template-columns: 88px minmax(0, 1fr) 116px 110px 42px;
     grid-template-areas:
-      "media main store total"
-      "media main price qty";
+      "media main store total action"
+      "media main price qty action";
+    gap: 16px;
   }
 
   .basket-line-media {
@@ -1148,6 +1191,10 @@ textarea {
 
   .basket-line-total {
     grid-area: total;
+  }
+
+  .basket-line-action {
+    grid-area: action;
   }
 
   .stores-grid {
@@ -1333,7 +1380,8 @@ textarea {
       "store"
       "price"
       "qty"
-      "total";
+      "total"
+      "action";
   }
 
   .basket-line-media {
@@ -1343,6 +1391,10 @@ textarea {
   .basket-quantity-control {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .basket-line-action {
+    justify-content: start;
   }
 
   .catalog-result-card {
