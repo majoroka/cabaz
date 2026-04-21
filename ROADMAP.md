@@ -24,6 +24,7 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 - [x] pesquisa principal com resultados na área principal
 - [x] secção `Lojas` com logos e links externos
 - [x] secção `Cabaz` com listagem, quantidades, remoção e subtotal estimado
+- [x] secção `Comparação` piloto com separadores por loja e total do cabaz
 - [x] estados vazios para secções ainda não implementadas
 
 ### Dados e suporte técnico
@@ -39,13 +40,28 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 Estas partes existiram em fases anteriores, mas não devem ser tomadas como produto ativo da interface atual:
 
 - comparação final por cabaz completo
-- comparação multi-loja a partir do cabaz
+- comparação multi-loja real a partir do cabaz
 - cálculo completo dos cards de resumo por supermercado
 - totais finais por supermercado na UI principal
 - dados mock como fonte ativa da app
 - importação manual de JSON pela interface
 
 Se voltarem, devem regressar por desenho novo e não por reaproveitamento implícito.
+
+## Secções previstas
+
+Secções atuais ou planeadas para a navegação principal:
+
+- `Painel`: pesquisa e resultados de produtos
+- `Lojas`: grelha de lojas suportadas
+- `Categorias`: navegação por categoria de produto
+- `Marcas`: navegação por marca
+- `Favoritos`: produtos guardados pelo utilizador para acesso rápido
+- `Cabaz`: produtos selecionados para comparação/compra
+- `Listagem`: lista simples, imprimível, gerada a partir do cabaz
+- `Comparação`: comparação de preços e totais por loja
+
+`Favoritos` e `Listagem` ainda não estão implementadas na UI. Devem entrar depois de estabilizar o fluxo do `Cabaz`, porque dependem diretamente dos produtos guardados pelo utilizador.
 
 ## Estratégia de evolução
 
@@ -207,13 +223,43 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] remoção de itens do cabaz
 - [x] cálculo de subtotal por item
 - [x] total estimado simples com base nos preços atualmente disponíveis
-- [ ] comparação multi-loja a partir dos itens do cabaz
+- [x] secção `Comparação` piloto a partir dos itens do cabaz
+- [x] separadores ordenados por total, preparados para várias lojas
+- [ ] comparação multi-loja real quando existirem ofertas de mais do que uma loja
 - [ ] tratamento de produtos sem preço disponível em lojas alternativas
 
 ### Intervenção necessária do utilizador
 
 - testar o fluxo `pesquisar -> adicionar -> abrir Cabaz -> editar quantidade/remover`
 - validar se a leitura dos subtotais é clara antes de avançarmos para comparação multi-loja
+
+## Sprint 8: Favoritos e listagem imprimível
+
+### Objetivo
+
+Criar uma camada de utilização recorrente: guardar produtos favoritos e gerar uma listagem simples para consulta ou impressão.
+
+### Entregáveis
+
+- [ ] secção `Favoritos` ligada ao menu lateral
+- [ ] ação para adicionar/remover produto dos favoritos a partir dos resultados
+- [ ] persistência de favoritos em `localStorage`
+- [ ] listagem de favoritos com pesquisa/filtro simples
+- [ ] secção `Listagem` ligada ao menu lateral
+- [ ] geração de listagem a partir do cabaz atual
+- [ ] opção de impressão com layout limpo e sem elementos de navegação
+- [ ] estado vazio útil quando não existirem itens para listar
+
+### Critérios de UX
+
+- `Favoritos` não deve substituir o cabaz; deve servir para produtos recorrentes.
+- `Listagem` deve ser mais simples do que `Cabaz`, sem comparação visual pesada.
+- A impressão deve mostrar nome, quantidade, categoria, loja/preço quando existir e espaço para marcação manual.
+
+### Intervenção necessária do utilizador
+
+- validar se a listagem deve ser gerada apenas pelo cabaz ou também permitir favoritos selecionados
+- validar campos necessários na versão impressa
 
 ## Fase operacional seguinte: Primeira publicação real
 
@@ -249,8 +295,10 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 1. Validar o Sprint 7 no frontend com os 20 produtos reais piloto.
 2. Afinar a leitura da secção `Cabaz`, se necessário.
-3. Desenhar a comparação multi-loja a partir do cabaz.
-4. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
+3. Desenhar a secção `Favoritos`.
+4. Desenhar a secção `Listagem` com impressão.
+5. Expandir a comparação quando existirem dados multi-loja reais.
+6. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap
 

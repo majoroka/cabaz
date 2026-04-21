@@ -69,7 +69,7 @@ function renderSummaryCards(summary) {
       <article class="summary-card">
         <span class="summary-label">Supermercado mais barato</span>
         <strong>${escapeHtml(summary.cheapestStore?.store.name || "—")}</strong>
-        <p>Será calculado quando existir um cabaz ativo para comparação.</p>
+        <p>${summary.cheapestStore ? "Com base nas lojas com cobertura completa do cabaz." : "Será calculado quando existir um cabaz ativo para comparação."}</p>
       </article>
       <article class="summary-card">
         <span class="summary-label">Total estimado</span>
@@ -79,7 +79,7 @@ function renderSummaryCards(summary) {
       <article class="summary-card summary-card-featured">
         <span class="summary-label">Diferença mais barata vs. mais cara</span>
         <strong>${summary.spread == null ? "—" : formatCurrency(summary.spread)}</strong>
-        <p>Será calculada quando existir um cabaz ativo para comparação.</p>
+        <p>${summary.spread == null ? "Necessária mais do que uma loja com cobertura completa." : "Comparação entre lojas com a mesma cobertura de itens."}</p>
       </article>
     </section>
   `;
@@ -261,6 +261,165 @@ function renderBasketSection(basketView) {
             `;
           })
           .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderComparisonSection(comparisonView) {
+  if (comparisonView.itemCount === 0) {
+    return `
+      <section class="panel-card comparison-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Comparação</p>
+            <h2>Adicione produtos ao cabaz</h2>
+          </div>
+        </div>
+        <div class="basket-empty">
+          <p>A comparação usa os produtos do cabaz para calcular o total em cada loja disponível.</p>
+          <button type="button" class="button button-primary" data-action="set-section" data-section="painel">
+            Pesquisar produtos
+          </button>
+        </div>
+      </section>
+    `;
+  }
+
+  if (comparisonView.stores.length === 0) {
+    return `
+      <section class="panel-card comparison-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Comparação</p>
+            <h2>Sem lojas com dados publicados</h2>
+          </div>
+        </div>
+        <p class="empty-state">Quando existirem ofertas publicadas em public/data/offers.json, a comparação será apresentada aqui.</p>
+      </section>
+    `;
+  }
+
+  const activeStore = comparisonView.activeStore;
+  const activeStoreLogo = getStoreLogoFilename(activeStore.store.id);
+
+  return `
+    <section class="panel-card comparison-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Comparação</p>
+          <h2>Comparação do cabaz por loja</h2>
+        </div>
+        <span class="status-tag">
+          ${escapeHtml(String(comparisonView.stores.length))} ${comparisonView.stores.length === 1 ? "loja" : "lojas"}
+        </span>
+      </div>
+      <div class="comparison-tabs" role="tablist" aria-label="Lojas para comparação">
+        ${comparisonView.stores
+          .map((entry) => {
+            const logoFilename = getStoreLogoFilename(entry.store.id);
+            const isActive = entry.store.id === comparisonView.activeStoreId;
+
+            return `
+              <button
+                type="button"
+                class="comparison-tab ${isActive ? "comparison-tab-active" : ""}"
+                data-action="set-comparison-store"
+                data-store-id="${escapeHtml(entry.store.id)}"
+                role="tab"
+                aria-selected="${isActive ? "true" : "false"}"
+              >
+                <span class="comparison-tab-logo">
+                  ${
+                    logoFilename
+                      ? `<img src="./lojas/${escapeHtml(logoFilename)}" alt="" aria-hidden="true" loading="lazy" />`
+                      : `<span>${escapeHtml(entry.store.name.slice(0, 1))}</span>`
+                  }
+                </span>
+                <span class="comparison-tab-copy">
+                  <strong>${escapeHtml(entry.store.name)}</strong>
+                  <small>${entry.total == null ? "Total indisponível" : formatCurrency(entry.total)}</small>
+                  <em>${escapeHtml(String(entry.foundCount))}/${escapeHtml(String(entry.itemCount))} produtos</em>
+                </span>
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+      <div class="comparison-store-panel" role="tabpanel">
+        <div class="comparison-store-heading">
+          <div class="comparison-store-title">
+            ${
+              activeStoreLogo
+                ? `<img src="./lojas/${escapeHtml(activeStoreLogo)}" alt="${escapeHtml(activeStore.store.name)}" loading="lazy" />`
+                : ""
+            }
+            <div>
+              <span>Loja selecionada</span>
+              <strong>${escapeHtml(activeStore.store.name)}</strong>
+            </div>
+          </div>
+          <div class="comparison-store-total">
+            <span>Total do cabaz</span>
+            <strong>${activeStore.total == null ? "—" : formatCurrency(activeStore.total)}</strong>
+            <small>
+              ${activeStore.complete
+                ? "Todos os produtos têm preço nesta loja."
+                : `${escapeHtml(String(activeStore.missingCount))} produtos sem preço nesta loja.`}
+            </small>
+          </div>
+        </div>
+        <div class="comparison-lines">
+          ${activeStore.rows
+            .map((row) => {
+              const resultName = row.result?.matchedName || "";
+              const image = row.result?.image || "";
+              const isEquivalent = row.matchType === "equivalent";
+
+              return `
+                <article class="comparison-line ${row.result ? "" : "comparison-line-missing"}">
+                  <div class="comparison-line-media">
+                    ${
+                      image
+                        ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(resultName)}" loading="lazy" referrerpolicy="no-referrer" />`
+                        : `<span>Sem imagem</span>`
+                    }
+                  </div>
+                  <div class="comparison-line-main">
+                    <h3>${escapeHtml(row.item.name)}</h3>
+                    <p>
+                      ${escapeHtml(getCategoryName(row.item.category))}
+                      ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
+                    </p>
+                    ${
+                      row.result
+                        ? `<small>${escapeHtml(resultName)}${isEquivalent ? " · equivalente" : ""}</small>`
+                        : `<small>Produto sem preço publicado nesta loja.</small>`
+                    }
+                  </div>
+                  <div class="comparison-line-price">
+                    <span>Preço</span>
+                    <strong>${row.result ? formatCurrency(row.result.price) : "—"}</strong>
+                    <small>${row.result ? escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit)) : "Sem preço"}</small>
+                  </div>
+                  <div class="comparison-line-quantity">
+                    <span>Qtd.</span>
+                    <strong>${escapeHtml(String(row.quantity))}</strong>
+                  </div>
+                  <div class="comparison-line-total">
+                    <span>Subtotal</span>
+                    <strong>${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
+                  </div>
+                  <div class="comparison-line-status">
+                    <span class="${row.result ? "comparison-status-ok" : "comparison-status-missing"}">
+                      ${row.result ? (isEquivalent ? "Equivalente" : "Encontrado") : "Em falta"}
+                    </span>
+                  </div>
+                </article>
+              `;
+            })
+            .join("")}
+        </div>
       </div>
     </section>
   `;
@@ -459,7 +618,7 @@ function renderMainSection(viewModel) {
   }
 
   if (viewModel.currentSection === "comparacao") {
-    return renderComingSoonSection("Comparação");
+    return renderComparisonSection(viewModel.comparisonView);
   }
 
   return renderCatalogSearchResults(viewModel.catalogSearch);

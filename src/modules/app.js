@@ -95,6 +95,49 @@ function findResultForBasketItem(item, results) {
   );
 }
 
+function getBasketItemQuantity(item) {
+  return Math.max(1, Number.parseInt(String(item.quantity || "1"), 10) || 1);
+}
+
+function findBestResultForBasketItemInStore(item, storeId, results, catalogProducts) {
+  const availableResults = results.filter((result) => result.store === storeId && result.inStock !== false);
+  const exactResults = availableResults.filter((result) => result.basketItemId === item.id);
+
+  if (exactResults.length > 0) {
+    return {
+      result: [...exactResults].sort((left, right) => left.price - right.price)[0],
+      matchType: "exact"
+    };
+  }
+
+  const catalogProduct = catalogProducts.find((entry) => entry.id === item.id) || null;
+
+  if (!catalogProduct?.comparisonGroup) {
+    return {
+      result: null,
+      matchType: "missing"
+    };
+  }
+
+  const equivalentResults = availableResults.filter((result) => {
+    const resultProduct = catalogProducts.find((entry) => entry.id === result.basketItemId);
+
+    return resultProduct?.comparisonGroup === catalogProduct.comparisonGroup;
+  });
+
+  if (equivalentResults.length === 0) {
+    return {
+      result: null,
+      matchType: "missing"
+    };
+  }
+
+  return {
+    result: [...equivalentResults].sort((left, right) => left.price - right.price)[0],
+    matchType: "equivalent"
+  };
+}
+
 function loadStoredJson(storageKey, validator) {
   try {
     const rawValue = window.localStorage.getItem(storageKey);
@@ -150,6 +193,7 @@ function createInitialState() {
     results: [],
     stores: [],
     currentSection: DEFAULT_SECTION,
+    comparisonActiveStoreId: "",
     catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
     notice: "",
     error: ""
@@ -234,7 +278,7 @@ function getViewModel(state) {
     const result = findResultForBasketItem(item, state.results);
     const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
     const store = result ? state.stores.find((entry) => entry.id === result.store) || null : null;
-    const quantity = Math.max(1, Number.parseInt(String(item.quantity || "1"), 10) || 1);
+    const quantity = getBasketItemQuantity(item);
 
     return {
       item,
@@ -247,6 +291,66 @@ function getViewModel(state) {
   });
   const basketTotal = basketRows.reduce((total, row) => total + (row.lineTotal || 0), 0);
   const pricedBasketRows = basketRows.filter((row) => row.lineTotal !== null);
+  const comparisonStoreIds = uniqueValues(state.results.map((result) => result.store));
+  const comparisonStores = comparisonStoreIds
+    .map((storeId) => state.stores.find((store) => store.id === storeId) || {
+      id: storeId,
+      name: storeId,
+      website: "",
+      themeColor: "#51606f"
+    })
+    .map((store) => {
+      const rows = state.basket.map((item) => {
+        const quantity = getBasketItemQuantity(item);
+        const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
+        const match = findBestResultForBasketItemInStore(item, store.id, state.results, state.catalogProducts);
+
+        return {
+          item,
+          quantity,
+          catalogProduct,
+          result: match.result,
+          matchType: match.matchType,
+          lineTotal: match.result ? match.result.price * quantity : null
+        };
+      });
+      const foundRows = rows.filter((row) => row.result);
+      const total = foundRows.reduce((sum, row) => sum + (row.lineTotal || 0), 0);
+
+      return {
+        store,
+        rows,
+        total: foundRows.length > 0 ? total : null,
+        foundCount: foundRows.length,
+        missingCount: rows.length - foundRows.length,
+        itemCount: rows.length,
+        complete: rows.length > 0 && foundRows.length === rows.length
+      };
+    })
+    .sort((left, right) => {
+      if (left.complete !== right.complete) {
+        return left.complete ? -1 : 1;
+      }
+
+      if (left.total !== null && right.total !== null && left.total !== right.total) {
+        return left.total - right.total;
+      }
+
+      if (left.missingCount !== right.missingCount) {
+        return left.missingCount - right.missingCount;
+      }
+
+      return left.store.name.localeCompare(right.store.name, "pt");
+    });
+  const activeComparisonStore =
+    comparisonStores.find((entry) => entry.store.id === state.comparisonActiveStoreId) || comparisonStores[0] || null;
+  const completeComparisonStores = comparisonStores.filter((entry) => entry.complete && entry.total !== null);
+  const cheapestComparisonStore = completeComparisonStores[0] || null;
+  const mostExpensiveComparisonStore = completeComparisonStores.at(-1) || null;
+  const comparisonSpread =
+    cheapestComparisonStore && mostExpensiveComparisonStore && completeComparisonStores.length > 1
+      ? mostExpensiveComparisonStore.total - cheapestComparisonStore.total
+      : null;
 
   return {
     currentSection: state.currentSection,
@@ -268,11 +372,17 @@ function getViewModel(state) {
       total: pricedBasketRows.length > 0 ? basketTotal : null,
       pricedItemCount: pricedBasketRows.length
     },
+    comparisonView: {
+      stores: comparisonStores,
+      activeStoreId: activeComparisonStore?.store.id || "",
+      activeStore: activeComparisonStore,
+      itemCount: state.basket.length
+    },
     summary: {
       basketItemCount: state.basket.length > 0 ? state.basket.length : null,
-      cheapestStore: null,
-      cheapestTotal: pricedBasketRows.length > 0 ? basketTotal : null,
-      spread: null
+      cheapestStore: cheapestComparisonStore,
+      cheapestTotal: cheapestComparisonStore?.total ?? (pricedBasketRows.length > 0 ? basketTotal : null),
+      spread: comparisonSpread
     }
   };
 }
@@ -650,6 +760,12 @@ export function createApp(rootElement) {
     if (action === "set-section" && target.dataset.section) {
       state.currentSection = target.dataset.section;
       clearMessages();
+      render();
+      return;
+    }
+
+    if (action === "set-comparison-store" && target.dataset.storeId) {
+      state.comparisonActiveStoreId = target.dataset.storeId;
       render();
       return;
     }

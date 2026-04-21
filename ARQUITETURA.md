@@ -26,6 +26,7 @@ Responsabilidades:
 - apresentar pesquisa, filtros e comparação
 - ler ficheiros JSON já preparados
 - persistir preferências e estado local no browser
+- persistir cabaz e favoritos em `localStorage`
 - não fazer scraping nem lógica pesada de matching
 
 ### 2. Pipeline de dados
@@ -253,7 +254,7 @@ Responsável por:
 
 - criar e gerir o estado da app
 - carregar dados publicados em `public/data/`
-- guardar apenas o cabaz local do utilizador
+- guardar estado local do utilizador, como cabaz e futuramente favoritos
 - tratar eventos da interface
 - gerir pesquisa principal
 - gerir navegação entre secções
@@ -269,6 +270,11 @@ Estado relevante atual:
 - `notice`
 - `error`
 
+Estado previsto:
+
+- `favorites`
+- `shoppingList`
+
 ### `src/modules/render.js`
 
 Responsável por:
@@ -279,6 +285,9 @@ Responsável por:
 - render da pesquisa principal
 - render da secção `Lojas`
 - render da secção `Cabaz`
+- render da secção `Comparação`
+- render futuro da secção `Favoritos`
+- render futuro da secção `Listagem`
 - render de estados vazios e mensagens
 
 ### `src/utils/`
@@ -306,10 +315,60 @@ Secções atualmente previstas na navegação:
 - `Lojas`
 - `Categorias`
 - `Marcas`
+- `Favoritos`
 - `Cabaz`
+- `Listagem`
 - `Comparação`
 
-Neste momento, `Painel`, `Lojas` e `Cabaz` têm superfície útil visível. `Categorias`, `Marcas` e `Comparação` mantêm estado vazio enquanto não forem implementadas.
+Neste momento, `Painel`, `Lojas`, `Cabaz` e `Comparação` têm superfície útil visível. `Categorias` e `Marcas` mantêm estado vazio enquanto não forem implementadas. `Favoritos` e `Listagem` estão previstas, mas ainda não devem ser ligadas à UI antes de existir desenho funcional validado.
+
+## Comparação atual
+
+A secção `Comparação` calcula o cabaz por loja a partir dos produtos adicionados pelo utilizador.
+
+Comportamento atual:
+
+- gera um separador por loja com ofertas publicadas
+- ordena os separadores por total do cabaz, do mais barato para o mais caro
+- mostra os produtos do cabaz dentro do separador da loja selecionada
+- calcula preço, quantidade e subtotal por item
+- assinala produtos encontrados, equivalentes ou em falta
+
+Nesta fase piloto existe apenas uma loja publicada, mas a estrutura está preparada para múltiplas lojas quando existirem dados reais adicionais.
+
+## Secções futuras: Favoritos e Listagem
+
+### Favoritos
+
+Objetivo:
+
+- permitir guardar produtos recorrentes sem os adicionar imediatamente ao cabaz
+- acelerar pesquisas futuras
+- funcionar apenas no browser, com persistência em `localStorage`
+
+Estado previsto:
+
+- identificador do produto
+- data de adição
+- quantidade preferida opcional
+- notas do utilizador opcionais
+
+### Listagem
+
+Objetivo:
+
+- gerar uma lista simples a partir do cabaz atual
+- preparar uma versão imprimível sem navegação, hero ou cartões de resumo
+- servir como lista de compras prática, não como tabela de comparação
+
+Campos previstos na listagem:
+
+- nome do produto
+- quantidade
+- categoria
+- loja/preço quando existir
+- subtotal quando existir preço
+- espaço visual para marcação manual na versão impressa
 
 ## Fonte de dados ativa
 
