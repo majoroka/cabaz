@@ -861,6 +861,11 @@ export function createApp(rootElement) {
       return;
     }
 
+    if (action === "print-list") {
+      window.print();
+      return;
+    }
+
     if (action === "toggle-favorite" && target.dataset.productId) {
       toggleFavorite(target.dataset.productId);
       return;

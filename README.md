@@ -7,7 +7,7 @@ Cabaz é uma aplicação web estática para comparar preços de um cabaz de comp
 - gerir um cabaz de compras no browser
 - comparar preços por item a partir de dados publicados
 - guardar produtos favoritos para acesso rápido
-- gerar futuramente uma listagem imprimível a partir do cabaz
+- gerar uma listagem imprimível a partir do cabaz
 - evoluir para comparação por localização e lojas próximas
 - preparar a integração futura com um pipeline externo de scraping/publicação
 
@@ -17,7 +17,6 @@ Cabaz é uma aplicação web estática para comparar preços de um cabaz de comp
 - o projeto não faz scraping real
 - não existe importação manual pela interface
 - a interface está em fase de evolução e nem todas as secções do menu lateral estão implementadas
-- a secção `Listagem` está planeada, mas ainda não está implementada
 - as secções `Categorias` e `Marcas` ficam fora do menu até existir ingestão automática de dados reais
 - os cards de resumo estão em estado neutro até existir fluxo real de cabaz ativo
 - a futura comparação real dependerá de catálogo canónico, matching e dados publicados fora deste frontend
@@ -74,12 +73,12 @@ Notas:
 - secção `Lojas` com logos e links externos
 - secção `Favoritos` com produtos guardados no browser
 - secção `Cabaz` com produtos adicionados, quantidades, remoção e subtotal estimado
+- secção `Listagem` com lista prática do cabaz, fotos e impressão limpa
 - secção `Comparação` piloto com total do cabaz por loja disponível
 - leitura dos JSON publicados em `public/data/`
 
 ## Funcionalidades planeadas
 
-- `Listagem`: gerar uma lista simples a partir do cabaz, com opção de impressão
 - `Categorias`: explorar produtos por categoria quando existir ingestão automática de dados reais
 - `Marcas`: explorar produtos por marca quando existir ingestão automática de dados reais
 - `Comparação`: expandir a comparação entre lojas quando existirem dados multi-loja

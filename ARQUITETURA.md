@@ -271,10 +271,6 @@ Estado relevante atual:
 - `notice`
 - `error`
 
-Estado previsto:
-
-- `shoppingList`
-
 ### `src/modules/render.js`
 
 Responsável por:
@@ -287,7 +283,7 @@ Responsável por:
 - render da secção `Cabaz`
 - render da secção `Comparação`
 - render da secção `Favoritos`
-- render futuro da secção `Listagem`
+- render da secção `Listagem`
 - render de estados vazios e mensagens
 
 ### `src/utils/`
@@ -315,15 +311,15 @@ Secções atualmente ativas na navegação:
 - `Lojas`
 - `Favoritos`
 - `Cabaz`
+- `Listagem`
 - `Comparação`
 
 Secções planeadas fora da navegação ativa:
 
-- `Listagem`
 - `Categorias`
 - `Marcas`
 
-Neste momento, `Painel`, `Lojas`, `Favoritos`, `Cabaz` e `Comparação` têm superfície útil visível. `Listagem` está prevista, mas ainda não deve ser ligada à UI antes de existir desenho funcional validado. `Categorias` e `Marcas` ficam fora da navegação ativa até existir ingestão automática de dados reais.
+Neste momento, `Painel`, `Lojas`, `Favoritos`, `Cabaz`, `Listagem` e `Comparação` têm superfície útil visível. `Categorias` e `Marcas` ficam fora da navegação ativa até existir ingestão automática de dados reais.
 
 ## Comparação atual
 
@@ -368,17 +364,26 @@ Estado atual:
 Objetivo:
 
 - gerar uma lista simples a partir do cabaz atual
-- preparar uma versão imprimível sem navegação, hero ou cartões de resumo
+- disponibilizar uma versão imprimível sem navegação, hero ou cartões de resumo
 - servir como lista de compras prática, não como tabela de comparação
 
-Campos previstos na listagem:
+Campos atuais da listagem:
 
+- imagem do produto
 - nome do produto
 - quantidade
 - categoria
 - loja/preço quando existir
 - subtotal quando existir preço
 - espaço visual para marcação manual na versão impressa
+
+Estado atual:
+
+- secção ligada ao menu lateral
+- dados derivados diretamente do cabaz atual
+- botão de impressão usando `window.print()`
+- CSS específico para impressão
+- sem estado próprio para evitar divergência entre cabaz e listagem
 
 ## Fonte de dados ativa
 

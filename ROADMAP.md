@@ -25,6 +25,7 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 - [x] secção `Lojas` com logos e links externos
 - [x] secção `Favoritos` com persistência local
 - [x] secção `Cabaz` com listagem, quantidades, remoção e subtotal estimado
+- [x] secção `Listagem` com fotos, resumo e impressão limpa
 - [x] secção `Comparação` piloto com separadores por loja e total do cabaz
 - [x] estados vazios para secções ainda não implementadas
 
@@ -61,7 +62,7 @@ Secções atuais ou planeadas para a navegação principal:
 - `Listagem`: lista simples, imprimível, gerada a partir do cabaz
 - `Comparação`: comparação de preços e totais por loja
 
-`Categorias` e `Marcas` ficam planeadas para uma fase posterior, depois de a app receber dados reais automáticos. `Listagem` ainda não está implementada na UI.
+`Categorias` e `Marcas` ficam planeadas para uma fase posterior, depois de a app receber dados reais automáticos.
 
 ## Estratégia de evolução
 
@@ -245,10 +246,11 @@ Criar uma camada de utilização recorrente: guardar produtos favoritos e gerar 
 - [x] ação para adicionar/remover produto dos favoritos a partir dos resultados
 - [x] persistência de favoritos em `localStorage`
 - [x] listagem inicial de favoritos
-- [ ] secção `Listagem` ligada ao menu lateral
-- [ ] geração de listagem a partir do cabaz atual
-- [ ] opção de impressão com layout limpo e sem elementos de navegação
-- [ ] estado vazio útil quando não existirem itens para listar
+- [x] secção `Listagem` ligada ao menu lateral
+- [x] geração de listagem a partir do cabaz atual
+- [x] fotos dos produtos na listagem
+- [x] opção de impressão com layout limpo e sem elementos de navegação
+- [x] estado vazio útil quando não existirem itens para listar
 
 ### Critérios de UX
 
@@ -258,8 +260,8 @@ Criar uma camada de utilização recorrente: guardar produtos favoritos e gerar 
 
 ### Intervenção necessária do utilizador
 
-- validar se a listagem deve ser gerada apenas pelo cabaz ou também permitir favoritos selecionados
-- validar campos necessários na versão impressa
+- validar visualmente a versão impressa em papel/PDF
+- decidir se no futuro a listagem também deve aceitar favoritos selecionados, além do cabaz
 
 ## Fase operacional seguinte: Primeira publicação real
 
@@ -296,7 +298,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 1. Validar o Sprint 7 no frontend com os 20 produtos reais piloto.
 2. Afinar a leitura da secção `Cabaz`, se necessário.
 3. Validar o fluxo de favoritos nos resultados e na secção `Favoritos`.
-4. Desenhar a secção `Listagem` com impressão.
+4. Validar a versão imprimível da secção `Listagem`.
 5. Expandir a comparação quando existirem dados multi-loja reais.
 6. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 

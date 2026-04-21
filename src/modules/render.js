@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { id: "lojas", label: "Lojas" },
   { id: "favoritos", label: "Favoritos" },
   { id: "cabaz", label: "Cabaz" },
+  { id: "listagem", label: "Listagem" },
   { id: "comparacao", label: "Comparação" }
 ];
 
@@ -280,6 +281,118 @@ function renderBasketSection(basketView) {
                   >
                     <span aria-hidden="true">−</span>
                   </button>
+                </div>
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderShoppingListSection(basketView) {
+  if (basketView.rows.length === 0) {
+    return `
+      <section class="panel-card shopping-list-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Listagem</p>
+            <h2>A listagem ainda está vazia</h2>
+          </div>
+        </div>
+        <div class="basket-empty">
+          <p>Adicione produtos ao cabaz para gerar uma lista de compras simples e imprimível.</p>
+          <button type="button" class="button button-primary" data-action="set-section" data-section="painel">
+            Pesquisar produtos
+          </button>
+        </div>
+      </section>
+    `;
+  }
+
+  const totalQuantity = basketView.rows.reduce((sum, row) => sum + row.quantity, 0);
+
+  return `
+    <section class="panel-card shopping-list-panel">
+      <div class="section-heading shopping-list-heading">
+        <div>
+          <p class="eyebrow">Listagem</p>
+          <h2>Lista de compras</h2>
+        </div>
+        <button type="button" class="button button-primary button-small shopping-print-button" data-action="print-list">
+          Imprimir
+        </button>
+      </div>
+      <div class="shopping-list-summary">
+        <div>
+          <span>Produtos</span>
+          <strong>${escapeHtml(String(basketView.itemCount))}</strong>
+        </div>
+        <div>
+          <span>Unidades</span>
+          <strong>${escapeHtml(String(totalQuantity))}</strong>
+        </div>
+        <div>
+          <span>Total estimado</span>
+          <strong>${basketView.total == null ? "—" : formatCurrency(basketView.total)}</strong>
+        </div>
+      </div>
+      <div class="shopping-list-lines">
+        ${basketView.rows
+          .map((row) => {
+            const storeId = row.store?.id || row.result?.store || row.item.preferredStore;
+            const storeName = row.store?.name || storeId || "Loja por definir";
+            const storeLogoFilename = getStoreLogoFilename(storeId);
+            const productName = row.result?.matchedName || row.item.name;
+            const imageMarkup = row.result?.image
+              ? `<img
+                  src="${escapeHtml(row.result.image)}"
+                  alt="${escapeHtml(productName)}"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                />`
+              : `<span class="shopping-list-image-fallback">Sem imagem</span>`;
+
+            return `
+              <article class="shopping-list-line">
+                <span class="shopping-list-check" aria-hidden="true"></span>
+                <div class="shopping-list-media">
+                  ${
+                    row.result?.url
+                      ? `<a href="${escapeHtml(row.result.url)}" target="_blank" rel="noreferrer" title="Ver o produto na loja">${imageMarkup}</a>`
+                      : imageMarkup
+                  }
+                </div>
+                <div class="shopping-list-main">
+                  <h3>${escapeHtml(row.item.name)}</h3>
+                  <p>
+                    ${escapeHtml(getCategoryName(row.item.category))}
+                    ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
+                  </p>
+                  ${
+                    row.item.notes || row.result?.notes
+                      ? `<small>${escapeHtml(row.item.notes || row.result.notes)}</small>`
+                      : ""
+                  }
+                </div>
+                <div class="shopping-list-store">
+                  <span>Loja/preço</span>
+                  <strong>${escapeHtml(storeName)}</strong>
+                  ${
+                    storeLogoFilename
+                      ? `<img src="./lojas/${escapeHtml(storeLogoFilename)}" alt="${escapeHtml(storeName)}" loading="lazy" />`
+                      : ""
+                  }
+                  <small>${row.result ? `${formatCurrency(row.result.price)} · ${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}` : "Preço indisponível"}</small>
+                </div>
+                <div class="shopping-list-quantity">
+                  <span>Qtd.</span>
+                  <strong>${escapeHtml(String(row.quantity))}</strong>
+                </div>
+                <div class="shopping-list-total">
+                  <span>Subtotal</span>
+                  <strong>${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
                 </div>
               </article>
             `;
@@ -795,6 +908,10 @@ function renderMainSection(viewModel) {
 
   if (viewModel.currentSection === "cabaz") {
     return renderBasketSection(viewModel.basketView);
+  }
+
+  if (viewModel.currentSection === "listagem") {
+    return renderShoppingListSection(viewModel.basketView);
   }
 
   if (viewModel.currentSection === "comparacao") {
