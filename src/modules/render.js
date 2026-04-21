@@ -88,11 +88,11 @@ function getStoreLogoFilename(storeId) {
   return STORE_LOGO_MAP[storeId] || null;
 }
 
-function renderFavoriteButton({ productId, isFavorite, label }) {
+function renderFavoriteButton({ productId, isFavorite, label, size = "" }) {
   return `
     <button
       type="button"
-      class="favorite-button ${isFavorite ? "favorite-button-active" : ""}"
+      class="favorite-button ${size === "small" ? "favorite-button-small" : ""} ${isFavorite ? "favorite-button-active" : ""}"
       data-action="toggle-favorite"
       data-product-id="${escapeHtml(productId)}"
       aria-pressed="${isFavorite ? "true" : "false"}"
@@ -209,6 +209,14 @@ function renderBasketSection(basketView) {
             return `
               <article class="basket-line" data-item-id="${escapeHtml(row.item.id)}">
                 <div class="basket-line-media">
+                  ${renderFavoriteButton({
+                    productId: row.item.id,
+                    isFavorite: row.isFavorite,
+                    label: row.isFavorite
+                      ? `Remover ${row.item.name} dos favoritos`
+                      : `Adicionar ${row.item.name} aos favoritos`,
+                    size: "small"
+                  })}
                   ${
                     row.result?.image
                       ? `<img

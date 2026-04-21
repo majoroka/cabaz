@@ -329,6 +329,7 @@ function getViewModel(state) {
       result,
       catalogProduct,
       store,
+      isFavorite: favoriteIds.has(item.id),
       lineTotal: result ? result.price * quantity : null
     };
   });
