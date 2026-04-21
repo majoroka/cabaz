@@ -434,12 +434,17 @@ function getViewModel(state) {
         const quantity = getBasketItemQuantity(item);
         const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
         const match = findBestResultForBasketItemInStore(item, store.id, state.results, state.catalogProducts);
+        const referenceResult =
+          state.results.find((result) => item.preferredStore && result.store === item.preferredStore && result.basketItemId === item.id) ||
+          state.results.find((result) => result.basketItemId === item.id) ||
+          null;
 
         return {
           item,
           quantity,
           catalogProduct,
           result: match.result,
+          referenceResult,
           matchType: match.matchType,
           lineTotal: match.result ? match.result.price * quantity : null
         };

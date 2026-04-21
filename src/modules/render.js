@@ -791,9 +791,12 @@ function renderComparisonSection(comparisonView) {
           ${activeStore.rows
             .map((row) => {
               const resultName = row.result?.matchedName || "";
-              const image = row.result?.image || "";
+              const referenceName = row.referenceResult?.matchedName || row.item.name;
+              const image = row.result?.image || row.referenceResult?.image || "";
+              const imageAlt = row.result ? resultName : referenceName;
               const isEquivalent = row.matchType === "equivalent";
               const isExact = row.matchType === "exact";
+              const usesReferenceImage = !row.result && Boolean(row.referenceResult?.image);
               const lineClass = row.result
                 ? isEquivalent
                   ? "comparison-line-equivalent"
@@ -809,14 +812,16 @@ function renderComparisonSection(comparisonView) {
                 ? isEquivalent
                   ? "Produto alternativo do mesmo grupo de comparação."
                   : "Mesmo produto canónico encontrado nesta loja."
-                : "Sem oferta publicada para este produto ou equivalente nesta loja.";
+                : usesReferenceImage
+                  ? "Imagem do produto no cabaz; sem oferta publicada nesta loja."
+                  : "Sem oferta publicada para este produto ou equivalente nesta loja.";
 
               return `
                 <article class="comparison-line ${lineClass}">
-                  <div class="comparison-line-media">
+                  <div class="comparison-line-media ${usesReferenceImage ? "comparison-line-media-reference" : ""}">
                     ${
                       image
-                        ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(resultName)}" loading="lazy" referrerpolicy="no-referrer" />`
+                        ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="lazy" referrerpolicy="no-referrer" />`
                         : `<span>Sem imagem</span>`
                     }
                   </div>

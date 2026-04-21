@@ -1622,6 +1622,11 @@ textarea {
   mix-blend-mode: multiply;
 }
 
+.comparison-line-media-reference img {
+  opacity: 0.56;
+  filter: grayscale(0.18);
+}
+
 .comparison-line-media span {
   display: grid;
   place-items: center;
