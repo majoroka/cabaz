@@ -343,7 +343,7 @@ Comportamento atual:
 - apresenta uma lista de validação manual das equivalências detetadas
 - guarda localmente a decisão por equivalência (`Aprovada` ou `A rever`) em `localStorage`
 
-Nesta fase piloto existem duas insígnias publicadas: Continente e Pingo Doce. A localização física do Pingo Doce ainda está marcada como operacional/online até ser confirmada uma loja concreta.
+Nesta fase piloto existem duas insígnias publicadas: Continente Bom Dia Armação de Pêra e Pingo Doce Armação de Pêra. As ofertas continuam a ser importadas manualmente, mas ambas já apontam para lojas físicas piloto no concelho de Silves.
 
 ## Favoritos e Listagem
 

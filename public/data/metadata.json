@@ -12,6 +12,7 @@
   "notes": [
     "Publicacao manual real consolidada com base no ficheiro 20produtos-2lojas.csv fornecido pelo utilizador.",
     "Continente mantem os 20 produtos piloto ja publicados; Pingo Doce foi acrescentado como segunda insígnia piloto.",
+    "Pingo Doce associado a loja fisica piloto em Armacao de Pera, no concelho de Silves.",
     "Iglo e Capitao Iglo foram normalizados como a mesma marca: Iglo.",
     "Produtos do Pingo Doce sem equivalencia segura foram criados como produtos canonicos proprios para evitar comparacoes erradas."
   ],
