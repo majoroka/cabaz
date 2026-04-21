@@ -5,5 +5,12 @@
     "website": "https://www.continente.pt",
     "logo": "./lojas/continente.png",
     "active": true
+  },
+  {
+    "storeId": "pingo-doce",
+    "name": "Pingo Doce",
+    "website": "https://www.pingodoce.pt",
+    "logo": "./lojas/pingodoce.png",
+    "active": true
   }
 ]

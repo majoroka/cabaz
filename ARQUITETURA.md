@@ -333,7 +333,7 @@ Comportamento atual:
 - calcula preço, quantidade e subtotal por item
 - assinala produtos encontrados, equivalentes ou em falta
 
-Nesta fase piloto existe apenas uma loja publicada, mas a estrutura está preparada para múltiplas lojas quando existirem dados reais adicionais.
+Nesta fase piloto existem duas insígnias publicadas: Continente e Pingo Doce. A localização física do Pingo Doce ainda está marcada como operacional/online até ser confirmada uma loja concreta.
 
 ## Favoritos e Listagem
 
@@ -399,7 +399,15 @@ Ficheiros consumidos diretamente:
 - `offers.json`
 - `codigos_postais_portugal.txt`
 
-Os antigos dados mock e a importação manual foram removidos do runtime para evitar mistura com os 20 produtos reais piloto publicados a partir do CSV.
+Os antigos dados mock e a importação manual foram removidos do runtime para evitar mistura com os dados reais piloto publicados manualmente a partir dos CSV fornecidos pelo utilizador.
+
+Estado atual dos dados publicados:
+
+- 2 lojas
+- 2 localizações operacionais, uma delas ainda provisória para Pingo Doce
+- 40 ofertas
+- 35 produtos canónicos
+- normalização inicial de `Iglo` e `Capitão Iglo` como a mesma marca
 
 ## Decisão estrutural
 

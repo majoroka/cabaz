@@ -1,24 +1,30 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-20T00:00:00+01:00",
+  "generatedAt": "2026-04-21T00:00:00+01:00",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "manual_real_v2",
-  "storesPublished": 1,
-  "storeLocationsPublished": 1,
-  "offersPublished": 20,
-  "catalogProductsPublished": 20,
-  "comparisonGroupsPublished": 20,
+  "publicationStatus": "manual_real_v3_two_stores",
+  "storesPublished": 2,
+  "storeLocationsPublished": 2,
+  "offersPublished": 40,
+  "catalogProductsPublished": 35,
+  "comparisonGroupsPublished": 33,
   "notes": [
-    "Publicacao manual real consolidada com base no ficheiro 20produtos.csv fornecido pelo utilizador.",
-    "A loja piloto confirmada para esta fase e o Continente Bom Dia Armacao de Pera.",
-    "Dados mock removidos do runtime; a app trabalha apenas com os JSON publicados desta fase piloto."
+    "Publicacao manual real consolidada com base no ficheiro 20produtos-2lojas.csv fornecido pelo utilizador.",
+    "Continente mantem os 20 produtos piloto ja publicados; Pingo Doce foi acrescentado como segunda insígnia piloto.",
+    "Iglo e Capitao Iglo foram normalizados como a mesma marca: Iglo.",
+    "Produtos do Pingo Doce sem equivalencia segura foram criados como produtos canonicos proprios para evitar comparacoes erradas."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "manual_real_published",
       "lastUpdated": "2026-04-19T23:00:00+01:00"
+    },
+    {
+      "storeId": "pingo-doce",
+      "status": "manual_real_published",
+      "lastUpdated": "2026-04-18T23:00:00+01:00"
     }
   ]
 }

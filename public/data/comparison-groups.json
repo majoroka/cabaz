@@ -11,6 +11,17 @@
     "active": true
   },
   {
+    "comparisonGroupId": "arroz-agulha-cigala-1kg",
+    "label": "Arroz agulha Cigala 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "arroz-agulha-integral-cigala-1kg",
     "label": "Arroz agulha integral Cigala 1kg",
     "categoryId": "mercearia",
@@ -28,6 +39,28 @@
     "rules": {
       "size": 500,
       "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-basmati-pingo-doce-1kg",
+    "label": "Arroz basmati Pingo Doce 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-carolino-bom-sucesso-1kg",
+    "label": "Arroz carolino Bom Sucesso 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
       "packCount": 1
     },
     "active": true
@@ -77,6 +110,50 @@
     "active": true
   },
   {
+    "comparisonGroupId": "capsulas-cafe-delta-q-qalidus-80un",
+    "label": "Cápsulas Delta Q Qalidus 80 un",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 80,
+      "sizeUnit": "un",
+      "packCount": 80
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "champo-anticaspa-linic-610ml",
+    "label": "Champô anticaspa Linic 610ml",
+    "categoryId": "higiene_beleza",
+    "rules": {
+      "size": 0.61,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "costeleta-cachaco-porco-1kg",
+    "label": "Costeleta do cachaço de porco 1kg",
+    "categoryId": "talho",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "detergente-roupa-liquido-skip-active-clean-76doses",
+    "label": "Detergente máquina roupa líquido Skip Active Clean 76 doses",
+    "categoryId": "limpeza_casa",
+    "rules": {
+      "size": 76,
+      "sizeUnit": "un",
+      "packCount": 76
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "douradinhos-peixe-840g-30un",
     "label": "Douradinhos de peixe 840g (30 un)",
     "categoryId": "congelados",
@@ -84,6 +161,28 @@
       "size": 840,
       "sizeUnit": "g",
       "packCount": 30
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "douradinhos-peixe-iglo-420g",
+    "label": "Douradinhos de peixe Iglo 420g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 420,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "filetes-atum-azeite-tenorio-78g",
+    "label": "Filetes de atum em azeite Tenório 78g",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 78,
+      "sizeUnit": "g",
+      "packCount": 1
     },
     "active": true
   },
@@ -121,8 +220,8 @@
     "active": true
   },
   {
-    "comparisonGroupId": "leite-uht-meio-gordo-continente-1l",
-    "label": "Leite UHT meio-gordo Continente 1L",
+    "comparisonGroupId": "leite-uht-meio-gordo-marca-propria-1l",
+    "label": "Leite UHT meio-gordo marca própria 1L",
     "categoryId": "lacteos_ovos",
     "rules": {
       "size": 1,
@@ -143,6 +242,17 @@
     "active": true
   },
   {
+    "comparisonGroupId": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "label": "Lombos de bacalhau congelados Pingo Doce 800g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 800,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "lombos-bacalhau-ultracongelado-550g-2un",
     "label": "Lombos de bacalhau ultracongelado 550g (2 un)",
     "categoryId": "congelados",
@@ -150,6 +260,28 @@
       "size": 550,
       "sizeUnit": "g",
       "packCount": 2
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "massa-esparguete-milaneza-1kg",
+    "label": "Massa esparguete Milaneza 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "massa-esparguete-nacional-725g",
+    "label": "Massa esparguete Nacional 725g",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 725,
+      "sizeUnit": "g",
+      "packCount": 1
     },
     "active": true
   },
@@ -165,8 +297,8 @@
     "active": true
   },
   {
-    "comparisonGroupId": "ovos-ar-livre-classe-ml-continente-12un",
-    "label": "Ovos de ar livre classe M/L Continente (12 un)",
+    "comparisonGroupId": "ovos-ar-livre-classe-ml-12un",
+    "label": "Ovos de ar livre classe M/L (12 un)",
     "categoryId": "lacteos_ovos",
     "rules": {
       "size": 12,
@@ -189,6 +321,17 @@
   {
     "comparisonGroupId": "ovos-classe-ml-ruby-zezereovo-12un",
     "label": "Ovos classe M/L Ruby Zêzerovo (12 un)",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 12,
+      "sizeUnit": "un",
+      "packCount": 12
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "ovos-solo-classe-l-pingo-doce-12un",
+    "label": "Ovos de solo classe L Pingo Doce (12 un)",
     "categoryId": "lacteos_ovos",
     "rules": {
       "size": 12,

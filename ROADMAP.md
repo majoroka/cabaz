@@ -31,7 +31,7 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 
 ### Dados e suporte técnico
 
-- [x] primeira publicação manual real com 20 produtos piloto
+- [x] primeira publicação manual real com 2 lojas, 40 ofertas e 35 produtos canónicos
 - [x] leitura exclusiva dos JSON publicados em `public/data/`
 - [x] remoção do fallback automático para mocks
 - [x] pesquisa por base local de códigos postais
@@ -181,6 +181,7 @@ Montar a primeira versão funcional de dados reais, com âmbito controlado.
 - [x] proposta inicial de validação manual
 - [x] primeira publicação real de dados
 - [x] expansão manual para 20 produtos piloto
+- [x] segunda loja piloto publicada manualmente com Pingo Doce
 - [x] remoção do fallback automático para mocks
 - [ ] validação manual final de resultados reais
 
@@ -226,8 +227,9 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] total estimado simples com base nos preços atualmente disponíveis
 - [x] secção `Comparação` piloto a partir dos itens do cabaz
 - [x] separadores ordenados por total, preparados para várias lojas
-- [ ] comparação multi-loja real quando existirem ofertas de mais do que uma loja
+- [x] comparação multi-loja piloto com Continente e Pingo Doce
 - [ ] tratamento de produtos sem preço disponível em lojas alternativas
+- [ ] normalização fina de equivalências entre formatos, marcas próprias e tamanhos diferentes
 
 ### Intervenção necessária do utilizador
 
@@ -279,6 +281,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] template manual inicial para `offers.json`
 - [x] primeira publicação real de dados
 - [x] expansão manual para 20 produtos piloto
+- [x] publicação manual da segunda loja piloto com Pingo Doce
 - [x] remoção do fallback automático para mocks após publicação real estável
 - [ ] validação manual final com dados reais no frontend
 
@@ -297,12 +300,11 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 
 ## Próximos passos imediatos
 
-1. Validar o Sprint 7 no frontend com os 20 produtos reais piloto.
-2. Afinar a leitura da secção `Cabaz`, se necessário.
-3. Validar o fluxo de favoritos nos resultados e na secção `Favoritos`.
+1. Validar a comparação Continente vs. Pingo Doce com cabazes pequenos.
+2. Rever os produtos do Pingo Doce que ainda não têm equivalência segura.
+3. Confirmar localização física da loja Pingo Doce piloto, se a comparação por proximidade for ativada.
 4. Validar a versão imprimível da secção `Listagem`.
-5. Expandir a comparação quando existirem dados multi-loja reais.
-6. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
+5. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap
 

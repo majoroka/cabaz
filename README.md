@@ -13,7 +13,7 @@ Cabaz é uma aplicação web estática para comparar preços de um cabaz de comp
 
 ## Limitações atuais
 
-- nesta fase, a app trabalha apenas com os 20 produtos reais piloto publicados a partir do CSV
+- nesta fase, a app trabalha com dados reais piloto publicados manualmente: 2 lojas, 40 ofertas e 35 produtos canónicos
 - o projeto não faz scraping real
 - não existe importação manual pela interface
 - a interface está em fase de evolução e nem todas as secções do menu lateral estão implementadas
@@ -81,7 +81,7 @@ Notas:
 
 - `Categorias`: explorar produtos por categoria quando existir ingestão automática de dados reais
 - `Marcas`: explorar produtos por marca quando existir ingestão automática de dados reais
-- `Comparação`: expandir a comparação entre lojas quando existirem dados multi-loja
+- `Comparação`: afinar regras de equivalência quando existirem mais produtos e lojas reais
 
 ## Estado do produto
 
