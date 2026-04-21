@@ -14,7 +14,8 @@ import { validateBasketJson } from "../utils/validation.js";
 import { renderApp } from "./render.js";
 
 const STORAGE_KEYS = {
-  basket: "cabaz:published-v1:basket"
+  basket: "cabaz:published-v1:basket",
+  favorites: "cabaz:published-v1:favorites"
 };
 const LEGACY_STORAGE_KEYS = ["cabaz:basket", "cabaz:results", "cabaz:stores"];
 
@@ -155,6 +156,44 @@ function loadStoredJson(storageKey, validator) {
   }
 }
 
+function loadStoredFavorites() {
+  try {
+    const rawValue = window.localStorage.getItem(STORAGE_KEYS.favorites);
+
+    if (!rawValue) {
+      return [];
+    }
+
+    const parsed = JSON.parse(rawValue);
+
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+
+    return parsed
+      .map((favorite) => {
+        if (typeof favorite === "string") {
+          return {
+            productId: favorite,
+            addedAt: ""
+          };
+        }
+
+        if (!favorite || typeof favorite !== "object" || !favorite.productId) {
+          return null;
+        }
+
+        return {
+          productId: String(favorite.productId).trim(),
+          addedAt: String(favorite.addedAt || "").trim()
+        };
+      })
+      .filter((favorite) => favorite?.productId);
+  } catch {
+    return [];
+  }
+}
+
 function persistJson(storageKey, value) {
   window.localStorage.setItem(storageKey, JSON.stringify(value));
 }
@@ -186,9 +225,11 @@ function createInitialState() {
   cleanupLegacyStorage();
 
   const storedBasket = loadStoredJson(STORAGE_KEYS.basket, validateBasketJson);
+  const storedFavorites = loadStoredFavorites();
 
   return {
     basket: storedBasket || [],
+    favorites: storedFavorites,
     catalogProducts: [],
     results: [],
     stores: [],
@@ -202,6 +243,7 @@ function createInitialState() {
 
 function getViewModel(state) {
   const categories = getCategoryOptions();
+  const favoriteIds = new Set(state.favorites.map((favorite) => favorite.productId));
   const catalogSearchRecords = state.catalogSearch.resultIds
     .map((resultId) => {
       const result = state.results.find((entry) => entry.id === resultId);
@@ -223,7 +265,8 @@ function getViewModel(state) {
         catalogProduct,
         brand,
         categoryId,
-        categoryName: getCategoryOptions().find((category) => category.id === categoryId)?.name || "Sem categoria"
+        categoryName: getCategoryOptions().find((category) => category.id === categoryId)?.name || "Sem categoria",
+        isFavorite: favoriteIds.has(result.basketItemId)
       };
     })
     .filter(Boolean);
@@ -291,6 +334,28 @@ function getViewModel(state) {
   });
   const basketTotal = basketRows.reduce((total, row) => total + (row.lineTotal || 0), 0);
   const pricedBasketRows = basketRows.filter((row) => row.lineTotal !== null);
+  const favoriteRows = state.favorites
+    .map((favorite) => {
+      const catalogProduct = state.catalogProducts.find((entry) => entry.id === favorite.productId) || null;
+      const results = state.results
+        .filter((result) => result.basketItemId === favorite.productId)
+        .sort((left, right) => left.price - right.price);
+      const result = results[0] || null;
+      const store = result ? state.stores.find((entry) => entry.id === result.store) || null : null;
+
+      if (!catalogProduct && !result) {
+        return null;
+      }
+
+      return {
+        favorite,
+        catalogProduct,
+        result,
+        store,
+        categoryName: getCategoryOptions().find((category) => category.id === catalogProduct?.category)?.name || "Sem categoria"
+      };
+    })
+    .filter(Boolean);
   const comparisonStoreIds = uniqueValues(state.results.map((result) => result.store));
   const comparisonStores = comparisonStoreIds
     .map((storeId) => state.stores.find((store) => store.id === storeId) || {
@@ -371,6 +436,10 @@ function getViewModel(state) {
       itemCount: state.basket.length,
       total: pricedBasketRows.length > 0 ? basketTotal : null,
       pricedItemCount: pricedBasketRows.length
+    },
+    favoritesView: {
+      rows: favoriteRows,
+      itemCount: favoriteRows.length
     },
     comparisonView: {
       stores: comparisonStores,
@@ -593,6 +662,27 @@ export function createApp(rootElement) {
     render();
   }
 
+  function toggleFavorite(productId) {
+    const catalogProduct = state.catalogProducts.find((entry) => entry.id === productId) || null;
+    const result = state.results.find((entry) => entry.basketItemId === productId) || null;
+    const productName = catalogProduct?.name || result?.matchedName || "Produto";
+    const existingIndex = state.favorites.findIndex((favorite) => favorite.productId === productId);
+
+    if (existingIndex >= 0) {
+      state.favorites.splice(existingIndex, 1);
+      setNotice(`"${productName}" removido dos favoritos.`);
+    } else {
+      state.favorites.unshift({
+        productId,
+        addedAt: new Date().toISOString()
+      });
+      setNotice(`"${productName}" adicionado aos favoritos.`);
+    }
+
+    persistJson(STORAGE_KEYS.favorites, state.favorites);
+    render();
+  }
+
   function updateBasketItemQuantity(itemId, quantity, { renderView = true, showNotice = true } = {}) {
     const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
     const item = state.basket.find((entry) => entry.id === itemId);
@@ -767,6 +857,11 @@ export function createApp(rootElement) {
     if (action === "set-comparison-store" && target.dataset.storeId) {
       state.comparisonActiveStoreId = target.dataset.storeId;
       render();
+      return;
+    }
+
+    if (action === "toggle-favorite" && target.dataset.productId) {
+      toggleFavorite(target.dataset.productId);
       return;
     }
 

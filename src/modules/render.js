@@ -5,8 +5,7 @@ import { getCategoryName } from "../utils/categories.js";
 const NAV_ITEMS = [
   { id: "painel", label: "Painel" },
   { id: "lojas", label: "Lojas" },
-  { id: "categorias", label: "Categorias" },
-  { id: "marcas", label: "Marcas" },
+  { id: "favoritos", label: "Favoritos" },
   { id: "cabaz", label: "Cabaz" },
   { id: "comparacao", label: "Comparação" }
 ];
@@ -87,6 +86,22 @@ function renderSummaryCards(summary) {
 
 function getStoreLogoFilename(storeId) {
   return STORE_LOGO_MAP[storeId] || null;
+}
+
+function renderFavoriteButton({ productId, isFavorite, label }) {
+  return `
+    <button
+      type="button"
+      class="favorite-button ${isFavorite ? "favorite-button-active" : ""}"
+      data-action="toggle-favorite"
+      data-product-id="${escapeHtml(productId)}"
+      aria-pressed="${isFavorite ? "true" : "false"}"
+      aria-label="${escapeHtml(label)}"
+      title="${escapeHtml(label)}"
+    >
+      <span aria-hidden="true">${isFavorite ? "♥" : "♡"}</span>
+    </button>
+  `;
 }
 
 function renderStoresDirectory(stores) {
@@ -256,6 +271,153 @@ function renderBasketSection(basketView) {
                   >
                     <span aria-hidden="true">−</span>
                   </button>
+                </div>
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderFavoritesSection(favoritesView) {
+  if (favoritesView.rows.length === 0) {
+    return `
+      <section class="panel-card favorites-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Favoritos</p>
+            <h2>Ainda não existem favoritos</h2>
+          </div>
+        </div>
+        <div class="basket-empty">
+          <p>Use o coração nos resultados da pesquisa para guardar produtos recorrentes.</p>
+          <button type="button" class="button button-primary" data-action="set-section" data-section="painel">
+            Pesquisar produtos
+          </button>
+        </div>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="panel-card favorites-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Favoritos</p>
+          <h2>${escapeHtml(String(favoritesView.itemCount))} produtos guardados</h2>
+        </div>
+      </div>
+      <div class="catalog-results-grid favorites-grid">
+        ${favoritesView.rows
+          .map((entry) => {
+            const productId = entry.favorite.productId;
+            const productName = entry.catalogProduct?.name || entry.result?.matchedName || "Produto";
+            const storeId = entry.store?.id || entry.result?.store || "";
+            const storeName = entry.store?.name || storeId || "Loja por definir";
+            const storeLogoFilename = getStoreLogoFilename(storeId);
+
+            return `
+              <article class="catalog-result-card favorite-result-card">
+                <div class="catalog-result-store-block">
+                  <span class="catalog-store" title="${escapeHtml(storeName)}">
+                    ${
+                      storeLogoFilename
+                        ? `<img
+                            src="./lojas/${escapeHtml(storeLogoFilename)}"
+                            alt="${escapeHtml(storeName)}"
+                            class="catalog-store-logo"
+                            loading="lazy"
+                          />`
+                        : `<span class="catalog-store-fallback">${escapeHtml(storeName)}</span>`
+                    }
+                  </span>
+                  <span class="catalog-store-name">${escapeHtml(storeName)}</span>
+                </div>
+                <div class="catalog-result-media-shell">
+                  ${renderFavoriteButton({
+                    productId,
+                    isFavorite: true,
+                    label: `Remover ${productName} dos favoritos`
+                  })}
+                  ${
+                    entry.result?.image
+                      ? `${
+                          entry.result.url
+                            ? `<a
+                                class="catalog-result-media"
+                                href="${escapeHtml(entry.result.url)}"
+                                target="_blank"
+                                rel="noreferrer"
+                                title="Ver o produto na loja"
+                                aria-label="Ver o produto na loja"
+                              >`
+                            : `<div class="catalog-result-media">`
+                        }
+                          <img
+                            src="${escapeHtml(entry.result.image)}"
+                            alt="${escapeHtml(entry.result.matchedName)}"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                          />
+                        ${entry.result.url ? `</a>` : `</div>`}`
+                      : `<div class="catalog-result-media"><span class="catalog-media-fallback">Sem imagem</span></div>`
+                  }
+                </div>
+                <div class="catalog-result-price-block">
+                  <strong>${entry.result ? formatCurrency(entry.result.price) : "—"}</strong>
+                  <span class="catalog-result-price-label">Preço unitário</span>
+                  <span class="catalog-result-price-unit">${entry.result ? escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit)) : "Sem preço"}</span>
+                </div>
+                <div class="catalog-result-info">
+                  <h3>${escapeHtml(productName)}</h3>
+                  <p class="catalog-result-meta">
+                    ${escapeHtml(entry.categoryName)}
+                    ${entry.catalogProduct?.preferredBrand ? ` · ${escapeHtml(entry.catalogProduct.preferredBrand)}` : ""}
+                  </p>
+                  ${
+                    entry.result?.notes
+                      ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
+                      : ""
+                  }
+                  <div class="catalog-result-format">
+                    <span class="catalog-result-format-label">Formato</span>
+                    <strong>${entry.result ? escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit)) : "n/d"}</strong>
+                  </div>
+                </div>
+                <div class="catalog-result-status">
+                  <div class="catalog-result-status-item">
+                    <span class="catalog-result-status-label">Estado</span>
+                    <strong>${entry.result?.inStock ? "Disponível" : "Sem preço"}</strong>
+                  </div>
+                  <div class="catalog-result-status-item">
+                    <span class="catalog-result-status-label">Atualizado</span>
+                    <strong>${entry.result ? escapeHtml(formatDate(entry.result.lastUpdated)) : "n/d"}</strong>
+                  </div>
+                </div>
+                <div class="catalog-result-actions">
+                  ${
+                    entry.result
+                      ? `<form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
+                          <label class="catalog-quantity-field">
+                            <span>Qtd.</span>
+                            <input
+                              type="number"
+                              name="quantity"
+                              min="1"
+                              step="1"
+                              value="1"
+                              inputmode="numeric"
+                              aria-label="Quantidade a adicionar ao cabaz"
+                            />
+                          </label>
+                          <button type="submit" class="catalog-add-button" aria-label="Adicionar ao cabaz">
+                            <span aria-hidden="true">+</span>
+                          </button>
+                        </form>`
+                      : `<span class="empty-state-inline">Sem oferta disponível</span>`
+                  }
                 </div>
               </article>
             `;
@@ -513,29 +675,38 @@ function renderCatalogSearchResults(catalogSearch) {
                         </span>
                         <span class="catalog-store-name">${escapeHtml(storeName)}</span>
                       </div>
-                      ${
-                        entry.result.image
-                          ? `${
-                              entry.result.url
-                                ? `<a
-                                    class="catalog-result-media"
-                                    href="${escapeHtml(entry.result.url)}"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    title="Ver o produto na loja"
-                                    aria-label="Ver o produto na loja"
-                                  >`
-                                : `<div class="catalog-result-media">`
-                            }
-                              <img
-                                src="${escapeHtml(entry.result.image)}"
-                                alt="${escapeHtml(entry.result.matchedName)}"
-                                loading="lazy"
-                                referrerpolicy="no-referrer"
-                              />
-                            ${entry.result.url ? `</a>` : `</div>`}`
-                          : ""
-                      }
+                      <div class="catalog-result-media-shell">
+                        ${renderFavoriteButton({
+                          productId: entry.result.basketItemId,
+                          isFavorite: entry.isFavorite,
+                          label: entry.isFavorite
+                            ? `Remover ${entry.result.matchedName} dos favoritos`
+                            : `Adicionar ${entry.result.matchedName} aos favoritos`
+                        })}
+                        ${
+                          entry.result.image
+                            ? `${
+                                entry.result.url
+                                  ? `<a
+                                      class="catalog-result-media"
+                                      href="${escapeHtml(entry.result.url)}"
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      title="Ver o produto na loja"
+                                      aria-label="Ver o produto na loja"
+                                    >`
+                                  : `<div class="catalog-result-media">`
+                              }
+                                <img
+                                  src="${escapeHtml(entry.result.image)}"
+                                  alt="${escapeHtml(entry.result.matchedName)}"
+                                  loading="lazy"
+                                  referrerpolicy="no-referrer"
+                                />
+                              ${entry.result.url ? `</a>` : `</div>`}`
+                            : `<div class="catalog-result-media"><span class="catalog-media-fallback">Sem imagem</span></div>`
+                        }
+                      </div>
                       <div class="catalog-result-price-block">
                         <strong>${formatCurrency(entry.result.price)}</strong>
                         <span class="catalog-result-price-label">Preço unitário</span>
@@ -605,12 +776,8 @@ function renderMainSection(viewModel) {
     return renderStoresDirectory(viewModel.stores);
   }
 
-  if (viewModel.currentSection === "categorias") {
-    return renderComingSoonSection("Categorias");
-  }
-
-  if (viewModel.currentSection === "marcas") {
-    return renderComingSoonSection("Marcas");
+  if (viewModel.currentSection === "favoritos") {
+    return renderFavoritesSection(viewModel.favoritesView);
   }
 
   if (viewModel.currentSection === "cabaz") {

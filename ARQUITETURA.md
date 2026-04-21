@@ -267,12 +267,12 @@ Estado relevante atual:
 - `stores`
 - `currentSection`
 - `catalogSearch`
+- `favorites`
 - `notice`
 - `error`
 
 Estado previsto:
 
-- `favorites`
 - `shoppingList`
 
 ### `src/modules/render.js`
@@ -286,7 +286,7 @@ Responsável por:
 - render da secção `Lojas`
 - render da secção `Cabaz`
 - render da secção `Comparação`
-- render futuro da secção `Favoritos`
+- render da secção `Favoritos`
 - render futuro da secção `Listagem`
 - render de estados vazios e mensagens
 
@@ -309,18 +309,21 @@ Responsável por:
 - cards de resumo
 - área principal
 
-Secções atualmente previstas na navegação:
+Secções atualmente ativas na navegação:
 
 - `Painel`
 - `Lojas`
-- `Categorias`
-- `Marcas`
 - `Favoritos`
 - `Cabaz`
-- `Listagem`
 - `Comparação`
 
-Neste momento, `Painel`, `Lojas`, `Cabaz` e `Comparação` têm superfície útil visível. `Categorias` e `Marcas` mantêm estado vazio enquanto não forem implementadas. `Favoritos` e `Listagem` estão previstas, mas ainda não devem ser ligadas à UI antes de existir desenho funcional validado.
+Secções planeadas fora da navegação ativa:
+
+- `Listagem`
+- `Categorias`
+- `Marcas`
+
+Neste momento, `Painel`, `Lojas`, `Favoritos`, `Cabaz` e `Comparação` têm superfície útil visível. `Listagem` está prevista, mas ainda não deve ser ligada à UI antes de existir desenho funcional validado. `Categorias` e `Marcas` ficam fora da navegação ativa até existir ingestão automática de dados reais.
 
 ## Comparação atual
 
@@ -336,7 +339,7 @@ Comportamento atual:
 
 Nesta fase piloto existe apenas uma loja publicada, mas a estrutura está preparada para múltiplas lojas quando existirem dados reais adicionais.
 
-## Secções futuras: Favoritos e Listagem
+## Favoritos e Listagem
 
 ### Favoritos
 
@@ -352,6 +355,13 @@ Estado previsto:
 - data de adição
 - quantidade preferida opcional
 - notas do utilizador opcionais
+
+Estado atual:
+
+- secção ligada ao menu lateral
+- botão de coração nos resultados da pesquisa
+- persistência local por produto
+- listagem inicial dos favoritos com possibilidade de adicionar ao cabaz
 
 ### Listagem
 
