@@ -23,7 +23,7 @@ O projeto está numa fase de definição de produto e UX/UI, com frontend estát
 - [x] cards de resumo em estado neutro
 - [x] pesquisa principal com resultados na área principal
 - [x] secção `Lojas` com logos e links externos
-- [x] secção `Favoritos` com persistência local
+- [x] secção `Favoritos` com persistência local, pesquisa, filtros e adição rápida ao cabaz
 - [x] secção `Cabaz` com listagem, quantidades, remoção e subtotal estimado
 - [x] secção `Listagem` com fotos, resumo e impressão limpa
 - [x] secção `Comparação` piloto com separadores por loja e total do cabaz
@@ -246,6 +246,8 @@ Criar uma camada de utilização recorrente: guardar produtos favoritos e gerar 
 - [x] ação para adicionar/remover produto dos favoritos a partir dos resultados
 - [x] persistência de favoritos em `localStorage`
 - [x] listagem inicial de favoritos
+- [x] pesquisa e filtros dentro dos favoritos
+- [x] ação para adicionar favoritos visíveis ao cabaz
 - [x] secção `Listagem` ligada ao menu lateral
 - [x] geração de listagem a partir do cabaz atual
 - [x] fotos dos produtos na listagem

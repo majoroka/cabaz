@@ -404,7 +404,7 @@ function renderShoppingListSection(basketView) {
 }
 
 function renderFavoritesSection(favoritesView) {
-  if (favoritesView.rows.length === 0) {
+  if (favoritesView.itemCount === 0) {
     return `
       <section class="panel-card favorites-panel">
         <div class="section-heading">
@@ -423,131 +423,194 @@ function renderFavoritesSection(favoritesView) {
     `;
   }
 
+  const storeOptions = [
+    { value: "all", label: "Todas" },
+    ...favoritesView.options.stores
+  ];
+  const categoryOptions = [
+    { value: "all", label: "Todas" },
+    ...favoritesView.options.categories
+  ];
+  const brandOptions = [
+    { value: "all", label: "Todas" },
+    ...favoritesView.options.brands
+  ];
+
   return `
     <section class="panel-card favorites-panel">
-      <div class="section-heading">
+      <div class="section-heading favorites-heading">
         <div>
           <p class="eyebrow">Favoritos</p>
           <h2>${escapeHtml(String(favoritesView.itemCount))} produtos guardados</h2>
         </div>
+        <span class="status-tag">${escapeHtml(String(favoritesView.visibleCount))} visíveis</span>
       </div>
-      <div class="catalog-results-grid favorites-grid">
-        ${favoritesView.rows
-          .map((entry) => {
-            const productId = entry.favorite.productId;
-            const productName = entry.catalogProduct?.name || entry.result?.matchedName || "Produto";
-            const storeId = entry.store?.id || entry.result?.store || "";
-            const storeName = entry.store?.name || storeId || "Loja por definir";
-            const storeLogoFilename = getStoreLogoFilename(storeId);
+      <div class="favorites-toolbar">
+        <form id="favorites-filters-form" class="favorites-filters">
+          <label class="filter-field favorites-search-field">
+            <span>Pesquisar favoritos</span>
+            <input
+              type="search"
+              name="query"
+              value="${escapeHtml(favoritesView.filters.query)}"
+              placeholder="Ex.: leite, arroz, ovos"
+              aria-label="Pesquisar nos favoritos"
+            />
+          </label>
+          ${renderSelectField({
+            label: "Lojas",
+            name: "store",
+            value: favoritesView.filters.store,
+            options: storeOptions
+          })}
+          ${renderSelectField({
+            label: "Categorias",
+            name: "category",
+            value: favoritesView.filters.category,
+            options: categoryOptions
+          })}
+          ${renderSelectField({
+            label: "Marcas",
+            name: "brand",
+            value: favoritesView.filters.brand,
+            options: brandOptions
+          })}
+        </form>
+        <div class="favorites-actions">
+          <button type="button" class="button button-small" data-action="clear-favorites-filters">
+            Limpar filtros
+          </button>
+          <button
+            type="button"
+            class="button button-primary button-small"
+            data-action="add-visible-favorites"
+            ${favoritesView.addableCount === 0 ? "disabled" : ""}
+          >
+            Adicionar todos visíveis
+          </button>
+        </div>
+      </div>
+      ${
+        favoritesView.rows.length === 0
+          ? `<p class="empty-state">Não existem favoritos visíveis com os filtros atuais.</p>`
+          : `<div class="catalog-results-grid favorites-grid">
+              ${favoritesView.rows
+                .map((entry) => {
+                  const productId = entry.favorite.productId;
+                  const productName = entry.catalogProduct?.name || entry.result?.matchedName || "Produto";
+                  const storeId = entry.store?.id || entry.result?.store || "";
+                  const storeName = entry.store?.name || storeId || "Loja por definir";
+                  const storeLogoFilename = getStoreLogoFilename(storeId);
 
-            return `
-              <article class="catalog-result-card favorite-result-card">
-                <div class="catalog-result-store-block">
-                  <span class="catalog-store" title="${escapeHtml(storeName)}">
-                    ${
-                      storeLogoFilename
-                        ? `<img
-                            src="./lojas/${escapeHtml(storeLogoFilename)}"
-                            alt="${escapeHtml(storeName)}"
-                            class="catalog-store-logo"
-                            loading="lazy"
-                          />`
-                        : `<span class="catalog-store-fallback">${escapeHtml(storeName)}</span>`
-                    }
-                  </span>
-                  <span class="catalog-store-name">${escapeHtml(storeName)}</span>
-                </div>
-                <div class="catalog-result-media-shell">
-                  ${
-                    entry.result?.image
-                      ? `${
-                          entry.result.url
-                            ? `<a
-                                class="catalog-result-media"
-                                href="${escapeHtml(entry.result.url)}"
-                                target="_blank"
-                                rel="noreferrer"
-                                title="Ver o produto na loja"
-                                aria-label="Ver o produto na loja"
-                              >`
-                            : `<div class="catalog-result-media">`
+                  return `
+                    <article class="catalog-result-card favorite-result-card">
+                      <div class="catalog-result-store-block">
+                        <span class="catalog-store" title="${escapeHtml(storeName)}">
+                          ${
+                            storeLogoFilename
+                              ? `<img
+                                  src="./lojas/${escapeHtml(storeLogoFilename)}"
+                                  alt="${escapeHtml(storeName)}"
+                                  class="catalog-store-logo"
+                                  loading="lazy"
+                                />`
+                              : `<span class="catalog-store-fallback">${escapeHtml(storeName)}</span>`
+                          }
+                        </span>
+                        <span class="catalog-store-name">${escapeHtml(storeName)}</span>
+                      </div>
+                      <div class="catalog-result-media-shell">
+                        ${
+                          entry.result?.image
+                            ? `${
+                                entry.result.url
+                                  ? `<a
+                                      class="catalog-result-media"
+                                      href="${escapeHtml(entry.result.url)}"
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      title="Ver o produto na loja"
+                                      aria-label="Ver o produto na loja"
+                                    >`
+                                  : `<div class="catalog-result-media">`
+                              }
+                                <img
+                                  src="${escapeHtml(entry.result.image)}"
+                                  alt="${escapeHtml(entry.result.matchedName)}"
+                                  loading="lazy"
+                                  referrerpolicy="no-referrer"
+                                />
+                              ${entry.result.url ? `</a>` : `</div>`}`
+                            : `<div class="catalog-result-media"><span class="catalog-media-fallback">Sem imagem</span></div>`
                         }
-                          <img
-                            src="${escapeHtml(entry.result.image)}"
-                            alt="${escapeHtml(entry.result.matchedName)}"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                          />
-                        ${entry.result.url ? `</a>` : `</div>`}`
-                      : `<div class="catalog-result-media"><span class="catalog-media-fallback">Sem imagem</span></div>`
-                  }
-                </div>
-                <div class="catalog-result-price-block">
-                  <strong>${entry.result ? formatCurrency(entry.result.price) : "—"}</strong>
-                  <span class="catalog-result-price-label">Preço unitário</span>
-                  <span class="catalog-result-price-unit">${entry.result ? escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit)) : "Sem preço"}</span>
-                </div>
-                <div class="catalog-result-info">
-                  <div class="product-title-row">
-                    <h3>${escapeHtml(productName)}</h3>
-                    ${renderFavoriteButton({
-                      productId,
-                      isFavorite: true,
-                      label: `Remover ${productName} dos favoritos`
-                    })}
-                  </div>
-                  <p class="catalog-result-meta">
-                    ${escapeHtml(entry.categoryName)}
-                    ${entry.catalogProduct?.preferredBrand ? ` · ${escapeHtml(entry.catalogProduct.preferredBrand)}` : ""}
-                  </p>
-                  ${
-                    entry.result?.notes
-                      ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
-                      : ""
-                  }
-                  <div class="catalog-result-format">
-                    <span class="catalog-result-format-label">Formato</span>
-                    <strong>${entry.result ? escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit)) : "n/d"}</strong>
-                  </div>
-                </div>
-                <div class="catalog-result-status">
-                  <div class="catalog-result-status-item">
-                    <span class="catalog-result-status-label">Estado</span>
-                    <strong>${entry.result?.inStock ? "Disponível" : "Sem preço"}</strong>
-                  </div>
-                  <div class="catalog-result-status-item">
-                    <span class="catalog-result-status-label">Atualizado</span>
-                    <strong>${entry.result ? escapeHtml(formatDate(entry.result.lastUpdated)) : "n/d"}</strong>
-                  </div>
-                </div>
-                <div class="catalog-result-actions">
-                  ${
-                    entry.result
-                      ? `<form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
-                          <label class="catalog-quantity-field">
-                            <span>Qtd.</span>
-                            <input
-                              type="number"
-                              name="quantity"
-                              min="1"
-                              step="1"
-                              value="1"
-                              inputmode="numeric"
-                              aria-label="Quantidade a adicionar ao cabaz"
-                            />
-                          </label>
-                          <button type="submit" class="catalog-add-button" aria-label="Adicionar ao cabaz">
-                            <span aria-hidden="true">+</span>
-                          </button>
-                        </form>`
-                      : `<span class="empty-state-inline">Sem oferta disponível</span>`
-                  }
-                </div>
-              </article>
-            `;
-          })
-          .join("")}
-      </div>
+                      </div>
+                      <div class="catalog-result-price-block">
+                        <strong>${entry.result ? formatCurrency(entry.result.price) : "—"}</strong>
+                        <span class="catalog-result-price-label">Preço unitário</span>
+                        <span class="catalog-result-price-unit">${entry.result ? escapeHtml(formatUnitPrice(entry.result.unitPrice, entry.result.unit)) : "Sem preço"}</span>
+                      </div>
+                      <div class="catalog-result-info">
+                        <div class="product-title-row">
+                          <h3>${escapeHtml(productName)}</h3>
+                          ${renderFavoriteButton({
+                            productId,
+                            isFavorite: true,
+                            label: `Remover ${productName} dos favoritos`
+                          })}
+                        </div>
+                        <p class="catalog-result-meta">
+                          ${escapeHtml(entry.categoryName)}
+                          ${entry.brand ? ` · ${escapeHtml(entry.brand)}` : ""}
+                        </p>
+                        ${
+                          entry.result?.notes
+                            ? `<p class="catalog-result-note">${escapeHtml(entry.result.notes)}</p>`
+                            : ""
+                        }
+                        <div class="catalog-result-format">
+                          <span class="catalog-result-format-label">Formato</span>
+                          <strong>${entry.result ? escapeHtml(formatSize(entry.result.size, entry.result.sizeUnit)) : "n/d"}</strong>
+                        </div>
+                      </div>
+                      <div class="catalog-result-status">
+                        <div class="catalog-result-status-item">
+                          <span class="catalog-result-status-label">Estado</span>
+                          <strong>${entry.result?.inStock ? "Disponível" : "Sem preço"}</strong>
+                        </div>
+                        <div class="catalog-result-status-item">
+                          <span class="catalog-result-status-label">Atualizado</span>
+                          <strong>${entry.result ? escapeHtml(formatDate(entry.result.lastUpdated)) : "n/d"}</strong>
+                        </div>
+                      </div>
+                      <div class="catalog-result-actions">
+                        ${
+                          entry.result
+                            ? `<form class="catalog-add-form" data-result-id="${escapeHtml(entry.result.id)}">
+                                <label class="catalog-quantity-field">
+                                  <span>Qtd.</span>
+                                  <input
+                                    type="number"
+                                    name="quantity"
+                                    min="1"
+                                    step="1"
+                                    value="1"
+                                    inputmode="numeric"
+                                    aria-label="Quantidade a adicionar ao cabaz"
+                                  />
+                                </label>
+                                <button type="submit" class="catalog-add-button" aria-label="Adicionar ao cabaz">
+                                  <span aria-hidden="true">+</span>
+                                </button>
+                              </form>`
+                            : `<span class="empty-state-inline">Sem oferta disponível</span>`
+                        }
+                      </div>
+                    </article>
+                  `;
+                })
+                .join("")}
+            </div>`
+      }
     </section>
   `;
 }

@@ -71,7 +71,7 @@ Notas:
 - pesquisa por código postal, localidade e rua
 - pesquisa principal com resultados filtráveis
 - secção `Lojas` com logos e links externos
-- secção `Favoritos` com produtos guardados no browser
+- secção `Favoritos` com pesquisa, filtros e adição rápida ao cabaz
 - secção `Cabaz` com produtos adicionados, quantidades, remoção e subtotal estimado
 - secção `Listagem` com lista prática do cabaz, fotos e impressão limpa
 - secção `Comparação` piloto com total do cabaz por loja disponível

@@ -358,6 +358,8 @@ Estado atual:
 - botão de coração nos resultados da pesquisa
 - persistência local por produto
 - listagem inicial dos favoritos com possibilidade de adicionar ao cabaz
+- pesquisa e filtros locais por texto, loja, categoria e marca
+- ação para adicionar os favoritos visíveis ao cabaz, evitando duplicados já existentes
 
 ### Listagem
 

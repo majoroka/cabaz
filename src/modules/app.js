@@ -34,6 +34,12 @@ const DEFAULT_CATALOG_SEARCH = {
     sort: "price-asc"
   }
 };
+const DEFAULT_FAVORITES_FILTERS = {
+  query: "",
+  store: "all",
+  category: "all",
+  brand: "all"
+};
 const MESSAGE_TIMEOUT_MS = 4000;
 
 function cloneValue(value) {
@@ -236,6 +242,7 @@ function createInitialState() {
     currentSection: DEFAULT_SECTION,
     comparisonActiveStoreId: "",
     catalogSearch: cloneValue(DEFAULT_CATALOG_SEARCH),
+    favoritesFilters: cloneValue(DEFAULT_FAVORITES_FILTERS),
     notice: "",
     error: ""
   };
@@ -348,15 +355,71 @@ function getViewModel(state) {
         return null;
       }
 
+      const categoryId = normalizeCategoryId(catalogProduct?.category || "sem_categoria");
+      const brand = result?.brand || catalogProduct?.preferredBrand || "";
+      const storeId = store?.id || result?.store || "";
+
       return {
         favorite,
         catalogProduct,
         result,
         store,
-        categoryName: getCategoryOptions().find((category) => category.id === catalogProduct?.category)?.name || "Sem categoria"
+        brand,
+        storeId,
+        categoryId,
+        categoryName: categories.find((category) => category.id === categoryId)?.name || "Sem categoria"
       };
     })
     .filter(Boolean);
+  const favoriteFilterOptions = {
+    stores: sortByLabel(
+      uniqueValues(favoriteRows.map((entry) => entry.storeId).filter(Boolean)).map((storeId) => ({
+        value: storeId,
+        label: state.stores.find((store) => store.id === storeId)?.name || storeId
+      }))
+    ),
+    categories: sortByLabel(
+      uniqueValues(favoriteRows.map((entry) => entry.categoryId).filter(Boolean)).map((categoryId) => ({
+        value: categoryId,
+        label: categories.find((category) => category.id === categoryId)?.name || categoryId
+      }))
+    ),
+    brands: sortByLabel(
+      uniqueValues(favoriteRows.map((entry) => entry.brand).filter(Boolean)).map((brand) => ({
+        value: brand,
+        label: brand
+      }))
+    )
+  };
+  const normalizedFavoriteQuery = buildSearchIndexText(state.favoritesFilters.query);
+  const favoriteQueryTokens = buildCanonicalSearchTokens(state.favoritesFilters.query);
+  const visibleFavoriteRows = favoriteRows.filter((entry) => {
+    const searchText = buildSearchIndexText(
+      [
+        entry.catalogProduct?.name,
+        entry.result?.matchedName,
+        entry.brand,
+        entry.result?.notes,
+        entry.store?.name,
+        entry.categoryName
+      ]
+        .filter(Boolean)
+        .join(" ")
+    );
+    const searchTokens = new Set(buildCanonicalSearchTokens(searchText));
+    const matchesQuery =
+      !normalizedFavoriteQuery ||
+      searchText.includes(normalizedFavoriteQuery) ||
+      favoriteQueryTokens.every((token) => searchTokens.has(token));
+    const matchesStore =
+      state.favoritesFilters.store === "all" || entry.storeId === state.favoritesFilters.store;
+    const matchesCategory =
+      state.favoritesFilters.category === "all" || entry.categoryId === state.favoritesFilters.category;
+    const matchesBrand =
+      state.favoritesFilters.brand === "all" || entry.brand === state.favoritesFilters.brand;
+
+    return matchesQuery && matchesStore && matchesCategory && matchesBrand;
+  });
   const comparisonStoreIds = uniqueValues(state.results.map((result) => result.store));
   const comparisonStores = comparisonStoreIds
     .map((storeId) => state.stores.find((store) => store.id === storeId) || {
@@ -439,8 +502,12 @@ function getViewModel(state) {
       pricedItemCount: pricedBasketRows.length
     },
     favoritesView: {
-      rows: favoriteRows,
-      itemCount: favoriteRows.length
+      rows: visibleFavoriteRows,
+      itemCount: favoriteRows.length,
+      visibleCount: visibleFavoriteRows.length,
+      addableCount: visibleFavoriteRows.filter((entry) => entry.result).length,
+      filters: state.favoritesFilters,
+      options: favoriteFilterOptions
     },
     comparisonView: {
       stores: comparisonStores,
@@ -684,6 +751,58 @@ export function createApp(rootElement) {
     render();
   }
 
+  function addVisibleFavoritesToBasket() {
+    const favoritesView = getViewModel(state).favoritesView;
+    const existingIds = new Set(state.basket.map((item) => item.id));
+    const newItems = favoritesView.rows
+      .filter((entry) => entry.result && !existingIds.has(entry.result.basketItemId))
+      .map((entry) => ({
+        id: entry.result.basketItemId,
+        name: entry.catalogProduct?.name || entry.result.matchedName,
+        quantity: 1,
+        preferredStore: entry.result.store,
+        category: normalizeCategoryId(entry.catalogProduct?.category || "sem_categoria"),
+        preferredBrand: entry.result.brand || entry.catalogProduct?.preferredBrand || "",
+        notes: entry.result.notes || ""
+      }));
+
+    const alreadyInBasketCount = favoritesView.rows.filter(
+      (entry) => entry.result && existingIds.has(entry.result.basketItemId)
+    ).length;
+    const unavailableCount = favoritesView.rows.filter((entry) => !entry.result).length;
+
+    if (favoritesView.visibleCount === 0) {
+      setError("Não existem favoritos visíveis para adicionar ao cabaz.");
+      render();
+      return;
+    }
+
+    if (newItems.length === 0) {
+      setNotice(
+        alreadyInBasketCount > 0
+          ? "Os favoritos visíveis já estão no cabaz."
+          : "Os favoritos visíveis não têm oferta disponível para adicionar."
+      );
+      render();
+      return;
+    }
+
+    state.basket = [...newItems, ...state.basket];
+    persistJson(STORAGE_KEYS.basket, state.basket);
+
+    const skippedParts = [
+      alreadyInBasketCount > 0 ? `${alreadyInBasketCount} já existentes` : "",
+      unavailableCount > 0 ? `${unavailableCount} sem oferta` : ""
+    ].filter(Boolean);
+
+    setNotice(
+      `${newItems.length} ${newItems.length === 1 ? "favorito adicionado" : "favoritos adicionados"} ao cabaz${
+        skippedParts.length > 0 ? ` (${skippedParts.join(", ")}).` : "."
+      }`
+    );
+    render();
+  }
+
   function updateBasketItemQuantity(itemId, quantity, { renderView = true, showNotice = true } = {}) {
     const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
     const item = state.basket.find((entry) => entry.id === itemId);
@@ -773,6 +892,11 @@ export function createApp(rootElement) {
   }
 
   rootElement.addEventListener("submit", async (event) => {
+    if (event.target instanceof HTMLFormElement && event.target.id === "favorites-filters-form") {
+      event.preventDefault();
+      return;
+    }
+
     if (
       event.target instanceof HTMLFormElement &&
       event.target.classList.contains("catalog-add-form") &&
@@ -871,6 +995,17 @@ export function createApp(rootElement) {
       return;
     }
 
+    if (action === "add-visible-favorites") {
+      addVisibleFavoritesToBasket();
+      return;
+    }
+
+    if (action === "clear-favorites-filters") {
+      state.favoritesFilters = cloneValue(DEFAULT_FAVORITES_FILTERS);
+      render();
+      return;
+    }
+
     if (action === "remove-item" && itemId) {
       removeItem(itemId);
       return;
@@ -882,6 +1017,12 @@ export function createApp(rootElement) {
 
     if (target instanceof HTMLSelectElement && target.closest("#catalog-filters-form")) {
       state.catalogSearch.filters[target.name] = target.value;
+      render();
+      return;
+    }
+
+    if (target instanceof HTMLSelectElement && target.closest("#favorites-filters-form")) {
+      state.favoritesFilters[target.name] = target.value;
       render();
       return;
     }
@@ -970,6 +1111,24 @@ export function createApp(rootElement) {
         render();
       }
 
+      return;
+    }
+
+    if (
+      target instanceof HTMLInputElement &&
+      target.name === "query" &&
+      target.closest("#favorites-filters-form")
+    ) {
+      const selectionStart = target.selectionStart ?? target.value.length;
+      const selectionEnd = target.selectionEnd ?? target.value.length;
+      state.favoritesFilters.query = target.value;
+      render();
+      const nextInput = rootElement.querySelector('#favorites-filters-form input[name="query"]');
+
+      if (nextInput instanceof HTMLInputElement) {
+        nextInput.focus();
+        nextInput.setSelectionRange(selectionStart, selectionEnd);
+      }
       return;
     }
 
