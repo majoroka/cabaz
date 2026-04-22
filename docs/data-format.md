@@ -2,6 +2,8 @@
 
 O frontend do Cabaz lê apenas JSON estáticos publicados em `public/data/`. Nesta fase, esses ficheiros são alimentados manualmente a partir do CSV piloto; no futuro, deverão ser gerados por um pipeline externo de scraping, normalização e validação.
 
+O contrato operacional para esse pipeline externo está detalhado em [scraper-contract.md](./scraper-contract.md).
+
 A app não faz scraping, não usa backend e não mistura estes dados publicados com dados mock.
 
 ## Ficheiros publicados
@@ -188,4 +190,6 @@ Use `notes` quando houver contexto relevante que não caiba bem nos campos estru
 
 - O frontend só consome ficheiros publicados e validados.
 - Um scraper local futuro deve gerar os ficheiros finais para `public/data/` ou para uma etapa equivalente de publicação.
+- Antes de publicar novos dados deve ser executado `npm run validate:data:report`.
+- O relatório local é gerado em `reports/data-validation-report.json`.
 - Falhas de scraping não devem ser mascaradas por dados mock no frontend.

@@ -307,6 +307,27 @@ Criar uma verificação local para impedir que novas publicações manuais ou fu
 
 - correr `npm run validate:data` sempre que forem adicionados ou alterados produtos, lojas, localizações ou regras de equivalência
 
+## Sprint 11: Preparação para scraper
+
+### Objetivo
+
+Preparar o contrato e a validação local para um scraper externo gerar dados sem introduzir scraping real neste repositório.
+
+### Entregáveis
+
+- [x] contrato operacional do scraper em `docs/scraper-contract.md`
+- [x] definição dos ficheiros que o scraper deve gerar ou atualizar
+- [x] regras conservadoras para equivalência, alternativa e bloqueio
+- [x] reforço da validação de `offers.json`
+- [x] reforço da validação de `catalog-products.json`
+- [x] reforço da validação de `store-locations.json`
+- [x] comando `npm run validate:data:report`
+- [x] relatório local `reports/data-validation-report.json`, excluído do Git
+
+### Intervenção necessária do utilizador
+
+- quando começarmos o scraper real, indicar a primeira loja/site a automatizar e confirmar se o output será testado primeiro em ficheiros temporários ou diretamente em `public/data/`
+
 ## Fase operacional seguinte: Primeira publicação real
 
 ### Objetivo
@@ -366,10 +387,10 @@ Evitar comparações erradas quando os produtos são semelhantes mas não equiva
 ## Próximos passos imediatos
 
 1. Validar a comparação Continente vs. Pingo Doce com cabazes pequenos.
-2. Correr `npm run validate:data` antes de qualquer nova publicação em `public/data/`.
+2. Correr `npm run validate:data:report` antes de qualquer nova publicação em `public/data/`.
 3. Rever visualmente as novas alternativas controladas e decidir se alguma deve passar a equivalente.
 4. Validar a versão imprimível da secção `Listagem`.
-5. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
+5. Definir o primeiro alvo do scraper externo, mantendo o scraper fora deste repositório.
 
 ## Regra de gestão do roadmap
 

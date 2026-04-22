@@ -9,3 +9,11 @@ Ficheiros incluídos:
 Num fluxo futuro, um scraper local poderá gerar ficheiros publicados para `public/data/`. A app limita-se a ler esses JSON estáticos sem backend.
 
 A subpasta `published/` mantém templates auxiliares, incluindo o campo opcional `notes` para contexto comercial relevante.
+
+Antes de copiar dados gerados por scraper para publicação, correr:
+
+```bash
+npm run validate:data:report
+```
+
+O contrato esperado está em [../docs/scraper-contract.md](../docs/scraper-contract.md).

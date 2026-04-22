@@ -64,6 +64,14 @@ npm run validate:data
 
 Este comando valida referências entre lojas, localizações, produtos canónicos, grupos de comparação, ofertas, regras de equivalência e metadados publicados.
 
+Para gerar também um relatório local de validação:
+
+```bash
+npm run validate:data:report
+```
+
+O relatório é escrito em `reports/data-validation-report.json` e não é versionado.
+
 ## Publicação no GitHub Pages
 
 O repositório inclui o workflow `.github/workflows/deploy.yml`, que publica automaticamente a aplicação quando existe um `push` para a branch `main`.
@@ -174,11 +182,12 @@ Template auxiliar:
 - [docs/pipeline-mvp-sprint-5.md](./docs/pipeline-mvp-sprint-5.md)
 - [docs/escala-controlada-sprint-6.md](./docs/escala-controlada-sprint-6.md)
 - [docs/plano-primeira-publicacao-real.md](./docs/plano-primeira-publicacao-real.md)
+- [docs/scraper-contract.md](./docs/scraper-contract.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados
 
-Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá gerar os ficheiros JSON documentados em `docs/data-format.md`, e a app limitar-se-á a lê-los e a apresentar os resultados.
+Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá gerar os ficheiros JSON documentados em `docs/scraper-contract.md` e `docs/data-format.md`, e a app limitar-se-á a lê-los e a apresentar os resultados.
 
 Essa separação permite:
 

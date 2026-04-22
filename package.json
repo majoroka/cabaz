@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "validate:data": "node scripts/validate-published-data.mjs",
+    "validate:data:report": "node scripts/validate-published-data.mjs --report reports/data-validation-report.json",
     "build": "vite build",
     "preview": "vite preview"
   },

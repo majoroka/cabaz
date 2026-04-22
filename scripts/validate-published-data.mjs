@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,6 +7,14 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(scriptDir, "..");
 const dataDir = path.join(rootDir, "public", "data");
 const publicDir = path.join(rootDir, "public");
+const args = process.argv.slice(2);
+const reportArgIndex = args.indexOf("--report");
+const reportPath =
+  reportArgIndex >= 0 && args[reportArgIndex + 1]
+    ? path.resolve(rootDir, args[reportArgIndex + 1])
+    : "";
+const allowedSizeUnits = new Set(["g", "kg", "mL", "L", "un"]);
+const allowedUnitPriceUnits = new Set(["kg", "L", "un"]);
 
 const errors = [];
 const warnings = [];
@@ -78,6 +86,14 @@ function isValidConfidence(value) {
   return isFiniteNumber(value) && value >= 0 && value <= 1;
 }
 
+function isValidDate(value) {
+  return typeof value === "string" && value.trim() !== "" && !Number.isNaN(Date.parse(value));
+}
+
+function isPositiveInteger(value) {
+  return Number.isInteger(value) && value > 0;
+}
+
 function normalizeLogoPath(logo) {
   return String(logo || "").replace(/^\.\//, "");
 }
@@ -124,6 +140,14 @@ function validateStores(stores) {
       addError(`${prefix}: name obrigatório.`);
     }
 
+    if (!store.website) {
+      addWarning(`${prefix}: website vazio.`);
+    }
+
+    if (typeof store.active !== "boolean") {
+      addError(`${prefix}: active deve ser booleano.`);
+    }
+
     if (store.logo) {
       const logoPath = path.join(publicDir, normalizeLogoPath(store.logo));
 
@@ -150,17 +174,35 @@ function validateStoreLocations(storeLocations, storeIds) {
       addError(`${prefix}: storeId desconhecido "${location.storeId}".`);
     }
 
+    if (!location.name) {
+      addError(`${prefix}: name obrigatório.`);
+    }
+
+    if (!location.address) {
+      addWarning(`${prefix}: address vazio.`);
+    }
+
+    if (!location.locality) {
+      addError(`${prefix}: locality obrigatório.`);
+    }
+
     if (!/^\d{4}-\d{3}$/.test(String(location.postalCode || ""))) {
       addWarning(`${prefix}: postalCode deve seguir o formato 0000-000.`);
     }
 
     if (!isFiniteNumber(location.lat) || !isFiniteNumber(location.lng)) {
       addError(`${prefix}: lat/lng obrigatórios e numéricos.`);
+    } else if (location.lat < -90 || location.lat > 90 || location.lng < -180 || location.lng > 180) {
+      addError(`${prefix}: lat/lng fora dos limites geográficos válidos.`);
+    }
+
+    if (typeof location.active !== "boolean") {
+      addError(`${prefix}: active deve ser booleano.`);
     }
   });
 }
 
-function validateCatalogProducts(catalogProducts, comparisonGroupIds) {
+function validateCatalogProducts(catalogProducts, { comparisonGroupIds, categoryIds }) {
   getDuplicateValues(catalogProducts, (product) => product.productId).forEach((productId) => {
     addError(`catalog-products.json: productId duplicado "${productId}".`);
   });
@@ -178,15 +220,43 @@ function validateCatalogProducts(catalogProducts, comparisonGroupIds) {
 
     if (!product.categoryId) {
       addError(`${prefix}: categoryId obrigatório.`);
+    } else if (!categoryIds.has(product.categoryId)) {
+      addError(`${prefix}: categoryId desconhecido "${product.categoryId}".`);
     }
 
     if (!comparisonGroupIds.has(product.comparisonGroup)) {
       addError(`${prefix}: comparisonGroup desconhecido "${product.comparisonGroup}".`);
     }
+
+    if (!isFiniteNumber(product.size) || product.size <= 0) {
+      addError(`${prefix}: size deve ser numérico e maior que zero.`);
+    }
+
+    if (!allowedSizeUnits.has(product.sizeUnit)) {
+      addError(`${prefix}: sizeUnit inválido "${product.sizeUnit}".`);
+    }
+
+    if (!isPositiveInteger(product.packCount)) {
+      addError(`${prefix}: packCount deve ser inteiro e maior que zero.`);
+    }
+
+    ["requiredTokens", "blockedTokens", "aliases"].forEach((field) => {
+      if (!Array.isArray(product[field])) {
+        addError(`${prefix}: ${field} deve ser array.`);
+      }
+    });
+
+    if (typeof product.isPrivateLabel !== "boolean") {
+      addError(`${prefix}: isPrivateLabel deve ser booleano.`);
+    }
+
+    if (typeof product.active !== "boolean") {
+      addError(`${prefix}: active deve ser booleano.`);
+    }
   });
 }
 
-function validateComparisonGroups(comparisonGroups) {
+function validateComparisonGroups(comparisonGroups, categoryIds) {
   getDuplicateValues(comparisonGroups, (group) => group.comparisonGroupId).forEach((groupId) => {
     addError(`comparison-groups.json: comparisonGroupId duplicado "${groupId}".`);
   });
@@ -201,10 +271,18 @@ function validateComparisonGroups(comparisonGroups) {
     if (!group.label) {
       addError(`${prefix}: label obrigatório.`);
     }
+
+    if (!categoryIds.has(group.categoryId)) {
+      addError(`${prefix}: categoryId desconhecido "${group.categoryId}".`);
+    }
+
+    if (typeof group.active !== "boolean") {
+      addError(`${prefix}: active deve ser booleano.`);
+    }
   });
 }
 
-function validateOffers(offers, { storeIds, locationById, productIds, currency }) {
+function validateOffers(offers, { storeIds, locationById, productIds, categoryIds, currency }) {
   getDuplicateValues(offers, (offer) => offer.offerId).forEach((offerId) => {
     addError(`offers.json: offerId duplicado "${offerId}".`);
   });
@@ -235,6 +313,10 @@ function validateOffers(offers, { storeIds, locationById, productIds, currency }
       addError(`${prefix}: scrapedName obrigatório.`);
     }
 
+    if (!categoryIds.has(offer.categoryId)) {
+      addError(`${prefix}: categoryId desconhecido "${offer.categoryId}".`);
+    }
+
     if (!isFiniteNumber(offer.price) || offer.price < 0) {
       addError(`${prefix}: price deve ser numérico e positivo.`);
     }
@@ -243,8 +325,16 @@ function validateOffers(offers, { storeIds, locationById, productIds, currency }
       addError(`${prefix}: size deve ser numérico e maior que zero.`);
     }
 
+    if (!allowedSizeUnits.has(offer.sizeUnit)) {
+      addError(`${prefix}: sizeUnit inválido "${offer.sizeUnit}".`);
+    }
+
     if (!isFiniteNumber(offer.unitPrice) || offer.unitPrice < 0) {
       addError(`${prefix}: unitPrice deve ser numérico e positivo.`);
+    }
+
+    if (!allowedUnitPriceUnits.has(offer.unit)) {
+      addError(`${prefix}: unit inválido "${offer.unit}".`);
     }
 
     if (offer.currency !== currency) {
@@ -265,6 +355,10 @@ function validateOffers(offers, { storeIds, locationById, productIds, currency }
 
     if (!isValidConfidence(offer.confidenceScore)) {
       addError(`${prefix}: confidenceScore deve estar entre 0 e 1.`);
+    }
+
+    if (!isValidDate(offer.lastUpdated)) {
+      addError(`${prefix}: lastUpdated deve ser uma data ISO válida.`);
     }
   });
 }
@@ -327,20 +421,26 @@ const comparisonGroups = requireArray(await loadJson("comparison-groups.json"), 
 const equivalenceRules = requireArray(await loadJson("equivalence-rules.json"), "equivalence-rules.json");
 const postalCodesPilot = requireArray(await loadJson("postal-codes-pilot.json"), "postal-codes-pilot.json");
 const offers = requireArray(await loadJson("offers.json"), "offers.json");
+const categories = requireArray(
+  JSON.parse(await readFile(path.join(rootDir, "src", "data", "categories.json"), "utf8")),
+  "src/data/categories.json"
+);
 
 const storeIds = new Set(stores.map((store) => store.storeId).filter(Boolean));
 const locationById = new Map(storeLocations.map((location) => [location.locationId, location]));
 const productIds = new Set(catalogProducts.map((product) => product.productId).filter(Boolean));
 const comparisonGroupIds = new Set(comparisonGroups.map((group) => group.comparisonGroupId).filter(Boolean));
+const categoryIds = new Set(categories.map((category) => category.id).filter(Boolean));
 
 validateStores(stores);
 validateStoreLocations(storeLocations, storeIds);
-validateComparisonGroups(comparisonGroups);
-validateCatalogProducts(catalogProducts, comparisonGroupIds);
+validateComparisonGroups(comparisonGroups, categoryIds);
+validateCatalogProducts(catalogProducts, { comparisonGroupIds, categoryIds });
 validateOffers(offers, {
   storeIds,
   locationById,
   productIds,
+  categoryIds,
   currency: metadata.currency || "EUR"
 });
 validateEquivalenceRules(equivalenceRules, productIds);
@@ -367,6 +467,30 @@ console.log(`Códigos postais piloto: ${postalCodesPilot.length}`);
 if (warnings.length > 0) {
   console.log("\nAvisos:");
   warnings.forEach((warning) => console.log(`- ${warning}`));
+}
+
+if (reportPath) {
+  const report = {
+    generatedAt: new Date().toISOString(),
+    status: errors.length > 0 ? "failed" : "passed",
+    counts: {
+      stores: stores.length,
+      storeLocations: storeLocations.length,
+      catalogProducts: catalogProducts.length,
+      comparisonGroups: comparisonGroups.length,
+      offers: offers.length,
+      equivalenceRules: equivalenceRules.length,
+      postalCodesPilot: postalCodesPilot.length,
+      warnings: warnings.length,
+      errors: errors.length
+    },
+    warnings,
+    errors
+  };
+
+  await mkdir(path.dirname(reportPath), { recursive: true });
+  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+  console.log(`\nRelatório escrito em ${path.relative(rootDir, reportPath)}.`);
 }
 
 if (errors.length > 0) {

@@ -39,7 +39,7 @@ Responsabilidades:
 - normalização de dados
 - deduplicação
 - matching para catálogo canónico
-- validação
+- validação com relatório antes da publicação
 - publicação dos JSON finais consumidos pela app
 
 ### 3. Artefactos publicados
@@ -328,6 +328,13 @@ Valida:
 
 Este script é uma ferramenta de qualidade local; não é usado pelo browser nem faz parte da aplicação publicada.
 
+Comandos:
+
+- `npm run validate:data`: valida os dados publicados e escreve resultado no terminal
+- `npm run validate:data:report`: valida os dados publicados e gera `reports/data-validation-report.json`
+
+O relatório é local, não versionado, e deve ser usado pelo futuro scraper/pipeline antes de copiar dados para publicação.
+
 ## Interface atual
 
 Áreas principais:
@@ -453,6 +460,14 @@ npm run validate:data
 ```
 
 O objetivo é detetar incoerências antes do deploy, sem introduzir backend nem validação pesada em runtime no browser.
+
+Quando os dados forem gerados por scraper ou por preparação semi-automática, deve ser usado:
+
+```bash
+npm run validate:data:report
+```
+
+O contrato operacional do scraper está documentado em [docs/scraper-contract.md](./docs/scraper-contract.md).
 
 Estado atual dos dados publicados:
 

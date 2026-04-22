@@ -16,8 +16,11 @@ Objetivo:
 1. preencher o template com dados reais da loja piloto
 2. validar manualmente nomes, preços, URLs, imagens, notas comerciais e datas
 3. copiar o conteúdo final para `public/data/offers.json`
-4. testar a app localmente
+4. correr `npm run validate:data:report`
+5. testar a app localmente
 
 ## Nota importante
 
 O template não deve ser usado diretamente como `public/data/offers.json` sem ser preenchido, porque contém placeholders textuais propositados.
+
+O contrato para dados gerados por scraper está em [../../docs/scraper-contract.md](../../docs/scraper-contract.md).
