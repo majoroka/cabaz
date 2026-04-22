@@ -137,6 +137,9 @@ Preparar a lógica de proximidade com base em lojas físicas e código postal.
 - [x] validação final da insígnia piloto
 - [x] validação final da zona/localidade piloto
 - [x] validação final da regra `top 1` vs. múltiplas lojas
+- [x] carregamento de `store-locations.json` no frontend
+- [x] cálculo de distância estimada entre CP/localidade e lojas físicas piloto
+- [x] ordenação dos separadores da comparação por proximidade quando há localização selecionada
 
 ### Intervenção necessária do utilizador
 
@@ -285,6 +288,7 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] remoção do fallback automático para mocks após publicação real estável
 - [x] localização física piloto do Pingo Doce em Armação de Pêra
 - [x] regras controladas para distinguir equivalente, alternativa e produto em falta
+- [x] ligação inicial da proximidade real por código postal/localidade na comparação
 - [ ] validação manual final com dados reais no frontend
 
 ### Intervenção necessária do utilizador
@@ -327,7 +331,7 @@ Evitar comparações erradas quando os produtos são semelhantes mas não equiva
 1. Validar a comparação Continente vs. Pingo Doce com cabazes pequenos.
 2. Rever visualmente as novas alternativas controladas e decidir se alguma deve passar a equivalente.
 3. Validar a versão imprimível da secção `Listagem`.
-4. Preparar a ligação da proximidade real por código postal.
+4. Testar a proximidade com CP/localidade de Armação de Pêra e confirmar se a ordenação faz sentido.
 5. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap

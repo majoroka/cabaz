@@ -75,6 +75,7 @@ Notas:
 - secção `Cabaz` com produtos adicionados, quantidades, remoção e subtotal estimado
 - secção `Listagem` com lista prática do cabaz, fotos e impressão limpa
 - secção `Comparação` piloto com total do cabaz por loja disponível
+- ordenação da comparação por proximidade quando existe CP/localidade selecionado
 - leitura dos JSON publicados em `public/data/`
 
 ## Funcionalidades planeadas

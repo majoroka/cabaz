@@ -2,6 +2,7 @@ import { enrichResults } from "../utils/calculations.js";
 import { getBrandOptions } from "../utils/brands.js";
 import { getCategoryOptions, normalizeCategoryId } from "../utils/categories.js";
 import { formatCurrency } from "../utils/formatters.js";
+import { calculateDistanceKm, getAverageCoordinates } from "../utils/geo.js";
 import { uniqueValues } from "../utils/helpers.js";
 import {
   createPostalCodeIndex,
@@ -349,6 +350,7 @@ function createInitialState() {
     equivalenceReviews: storedEquivalenceReviews,
     catalogProducts: [],
     equivalenceRules: [],
+    storeLocations: [],
     results: [],
     stores: [],
     currentSection: DEFAULT_SECTION,
@@ -362,6 +364,109 @@ function createInitialState() {
 
 function getEquivalenceReviewId({ itemId, storeId, resultProductId }) {
   return [itemId, storeId, resultProductId].map((part) => encodeURIComponent(String(part || ""))).join("__");
+}
+
+function getPostalPrefix(postalCode) {
+  return String(postalCode || "").slice(0, 4);
+}
+
+function getLocationReference({ postalCode, postalLabel, storeLocations }) {
+  const locationsWithCoordinates = storeLocations.filter(
+    (location) => Number.isFinite(location.lat) && Number.isFinite(location.lng)
+  );
+  const normalizedPostalLabel = normalizeSearchText(postalLabel);
+  const postalPrefix = getPostalPrefix(postalCode);
+
+  if (locationsWithCoordinates.length === 0 || (!postalCode && !normalizedPostalLabel)) {
+    return null;
+  }
+
+  const matchGroups = [
+    {
+      source: "postalCode",
+      locations: locationsWithCoordinates.filter((location) => location.postalCode === postalCode)
+    },
+    {
+      source: "postalPrefix",
+      locations: locationsWithCoordinates.filter(
+        (location) => postalPrefix && getPostalPrefix(location.postalCode) === postalPrefix
+      )
+    },
+    {
+      source: "locality",
+      locations: locationsWithCoordinates.filter((location) => {
+        const normalizedLocality = normalizeSearchText(location.locality);
+        const normalizedMunicipality = normalizeSearchText(location.municipality);
+
+        return (
+          normalizedPostalLabel &&
+          (normalizedLocality === normalizedPostalLabel || normalizedMunicipality === normalizedPostalLabel)
+        );
+      })
+    }
+  ];
+  const matchGroup = matchGroups.find((group) => group.locations.length > 0);
+
+  if (!matchGroup) {
+    return null;
+  }
+
+  const coordinates = getAverageCoordinates(matchGroup.locations);
+
+  if (!coordinates) {
+    return null;
+  }
+
+  return {
+    ...coordinates,
+    label: postalLabel || postalCode,
+    postalCode,
+    source: matchGroup.source
+  };
+}
+
+function getClosestStoreLocation(storeId, storeLocations, locationReference) {
+  const candidateLocations = storeLocations.filter(
+    (location) =>
+      location.storeId === storeId &&
+      Number.isFinite(location.lat) &&
+      Number.isFinite(location.lng)
+  );
+
+  if (candidateLocations.length === 0) {
+    return {
+      location: null,
+      distanceKm: null
+    };
+  }
+
+  if (!locationReference) {
+    return {
+      location: candidateLocations[0],
+      distanceKm: null
+    };
+  }
+
+  return candidateLocations
+    .map((location) => ({
+      location,
+      distanceKm: calculateDistanceKm(locationReference, location)
+    }))
+    .sort((left, right) => {
+      if (left.distanceKm === null && right.distanceKm === null) {
+        return left.location.name.localeCompare(right.location.name, "pt");
+      }
+
+      if (left.distanceKm === null) {
+        return 1;
+      }
+
+      if (right.distanceKm === null) {
+        return -1;
+      }
+
+      return left.distanceKm - right.distanceKm;
+    })[0];
 }
 
 function getViewModel(state) {
@@ -538,6 +643,11 @@ function getViewModel(state) {
     return matchesQuery && matchesStore && matchesCategory && matchesBrand;
   });
   const comparisonStoreIds = uniqueValues(state.results.map((result) => result.store));
+  const locationReference = getLocationReference({
+    postalCode: state.catalogSearch.postalCode,
+    postalLabel: state.catalogSearch.postalLabel,
+    storeLocations: state.storeLocations
+  });
   const comparisonStores = comparisonStoreIds
     .map((storeId) => state.stores.find((store) => store.id === storeId) || {
       id: storeId,
@@ -546,6 +656,7 @@ function getViewModel(state) {
       themeColor: "#51606f"
     })
     .map((store) => {
+      const locationContext = getClosestStoreLocation(store.id, state.storeLocations, locationReference);
       const rows = state.basket.map((item) => {
         const quantity = getBasketItemQuantity(item);
         const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
@@ -582,6 +693,8 @@ function getViewModel(state) {
 
       return {
         store,
+        location: locationContext.location,
+        distanceKm: locationContext.distanceKm,
         rows,
         total: foundRows.length > 0 ? total : null,
         foundCount: foundRows.length,
@@ -595,6 +708,20 @@ function getViewModel(state) {
       };
     })
     .sort((left, right) => {
+      if (locationReference) {
+        if (left.distanceKm !== null && right.distanceKm !== null && left.distanceKm !== right.distanceKm) {
+          return left.distanceKm - right.distanceKm;
+        }
+
+        if (left.distanceKm !== null && right.distanceKm === null) {
+          return -1;
+        }
+
+        if (left.distanceKm === null && right.distanceKm !== null) {
+          return 1;
+        }
+      }
+
       if (left.complete !== right.complete) {
         return left.complete ? -1 : 1;
       }
@@ -645,7 +772,9 @@ function getViewModel(state) {
   };
   const activeComparisonStore =
     comparisonStores.find((entry) => entry.store.id === state.comparisonActiveStoreId) || comparisonStores[0] || null;
-  const completeComparisonStores = comparisonStores.filter((entry) => entry.complete && entry.total !== null);
+  const completeComparisonStores = comparisonStores
+    .filter((entry) => entry.complete && entry.total !== null)
+    .sort((left, right) => left.total - right.total);
   const cheapestComparisonStore = completeComparisonStores[0] || null;
   const mostExpensiveComparisonStore = completeComparisonStores.at(-1) || null;
   const comparisonSpread =
@@ -686,6 +815,8 @@ function getViewModel(state) {
       activeStoreId: activeComparisonStore?.store.id || "",
       activeStore: activeComparisonStore,
       itemCount: state.basket.length,
+      locationReference,
+      sortMode: locationReference ? "distance" : "price",
       equivalenceReviews: {
         rows: equivalenceReviewRows,
         summary: equivalenceReviewSummary
@@ -1092,6 +1223,7 @@ export function createApp(rootElement) {
 
       state.catalogProducts = publishedData.catalogProducts;
       state.equivalenceRules = publishedData.equivalenceRules;
+      state.storeLocations = publishedData.storeLocations;
 
       if (publishedData.offers.length > 0) {
         state.results = enrichResults(publishedData.offers);
@@ -1104,10 +1236,12 @@ export function createApp(rootElement) {
       state.results = [];
       state.stores = publishedData.stores;
       state.equivalenceRules = publishedData.equivalenceRules;
+      state.storeLocations = publishedData.storeLocations;
       setError("Não existem ofertas publicadas em public/data/offers.json.");
     } catch {
       state.catalogProducts = [];
       state.equivalenceRules = [];
+      state.storeLocations = [];
       state.results = [];
       state.stores = [];
       setError("Não foi possível carregar os dados publicados em public/data.");

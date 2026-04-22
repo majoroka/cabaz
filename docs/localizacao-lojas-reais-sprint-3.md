@@ -122,7 +122,9 @@ Se a loja física exata de Armação de Pêra não estiver disponível na origem
 
 ### Regra da fase MVP
 
-- usar apenas a loja mais próxima (`top 1`)
+- ordenar as lojas disponíveis por proximidade quando o utilizador seleciona CP/localidade
+- manter todas as lojas visíveis na comparação para não esconder preços durante a fase piloto
+- mostrar a distância estimada e a loja física usada por cada insígnia
 
 ### Regra da fase seguinte
 

@@ -311,6 +311,7 @@ Responsável por:
 - validação de JSON
 - helpers e formatters
 - pesquisa por código postal e localidade
+- cálculo de distância aproximada entre a localização do utilizador e lojas físicas
 
 ## Interface atual
 
@@ -359,6 +360,8 @@ Comportamento atual:
 - apresenta contadores e etiquetas visuais para `Exato`, `Equivalente`, `Alternativa` e `Em falta`
 - apresenta uma lista de validação manual das correspondências controladas detetadas
 - guarda localmente a decisão por equivalência (`Aprovada` ou `A rever`) em `localStorage`
+- quando existe CP/localidade selecionado no hero, ordena os separadores por proximidade estimada à loja física mais próxima de cada insígnia
+- quando não existe localização selecionada, mantém a ordenação por cobertura e preço
 
 Nesta fase piloto existem duas insígnias publicadas: Continente Bom Dia Armação de Pêra e Pingo Doce Armação de Pêra. As ofertas continuam a ser importadas manualmente, mas ambas já apontam para lojas físicas piloto no concelho de Silves.
 

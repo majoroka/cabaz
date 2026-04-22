@@ -62,6 +62,20 @@ function pluralize(value, singular, plural) {
   return value === 1 ? singular : plural;
 }
 
+function formatDistance(distanceKm) {
+  if (typeof distanceKm !== "number" || !Number.isFinite(distanceKm)) {
+    return "";
+  }
+
+  if (distanceKm < 1) {
+    return `${Math.round(distanceKm * 1000)} m`;
+  }
+
+  return `${distanceKm.toLocaleString("pt-PT", {
+    maximumFractionDigits: distanceKm < 10 ? 1 : 0
+  })} km`;
+}
+
 export function getSummaryCards(summary) {
   const basketItemCount = summary.basketItemCount || 0;
   const basketQuantityCount = summary.basketQuantityCount || 0;
@@ -841,9 +855,20 @@ function renderComparisonSection(comparisonView) {
 
   const activeStore = comparisonView.activeStore;
   const activeStoreLogo = getStoreLogoFilename(activeStore.store.id);
+  const activeStoreDistance = formatDistance(activeStore.distanceKm);
+  const activeStoreLocationParts = [
+    activeStore.location?.name,
+    activeStore.location?.address,
+    activeStore.location?.postalCode,
+    activeStore.location?.locality
+  ].filter(Boolean);
   const activeStoreStatusCopy = activeStore.complete
     ? "Cobertura completa do cabaz nesta loja."
     : `${activeStore.notPricedCount} ${activeStore.notPricedCount === 1 ? "produto fora do total" : "produtos fora do total"} nesta loja.`;
+  const proximityCopy =
+    comparisonView.sortMode === "distance" && comparisonView.locationReference
+      ? `Lojas ordenadas por proximidade a ${comparisonView.locationReference.label}.`
+      : "Sem localização selecionada; lojas ordenadas por cobertura e preço.";
 
   return `
     <section class="panel-card comparison-panel">
@@ -856,11 +881,13 @@ function renderComparisonSection(comparisonView) {
           ${escapeHtml(String(comparisonView.stores.length))} ${comparisonView.stores.length === 1 ? "loja" : "lojas"}
         </span>
       </div>
+      <p class="comparison-context">${escapeHtml(proximityCopy)}</p>
       <div class="comparison-tabs" role="tablist" aria-label="Lojas para comparação">
         ${comparisonView.stores
           .map((entry) => {
             const logoFilename = getStoreLogoFilename(entry.store.id);
             const isActive = entry.store.id === comparisonView.activeStoreId;
+            const distanceLabel = formatDistance(entry.distanceKm);
             const tabStatus =
               entry.notPricedCount > 0
                 ? `${entry.notPricedCount} ${entry.notPricedCount === 1 ? "fora do total" : "fora do total"}`
@@ -885,7 +912,10 @@ function renderComparisonSection(comparisonView) {
                 <span class="comparison-tab-copy">
                   <strong>${escapeHtml(entry.store.name)}</strong>
                   <small>${entry.total == null ? "Total indisponível" : formatCurrency(entry.total)}</small>
-                  <em>${escapeHtml(String(entry.foundCount))}/${escapeHtml(String(entry.itemCount))} produtos · ${escapeHtml(tabStatus)}</em>
+                  <em>
+                    ${distanceLabel ? `${escapeHtml(distanceLabel)} · ` : ""}
+                    ${escapeHtml(String(entry.foundCount))}/${escapeHtml(String(entry.itemCount))} produtos · ${escapeHtml(tabStatus)}
+                  </em>
                 </span>
               </button>
             `;
@@ -903,12 +933,17 @@ function renderComparisonSection(comparisonView) {
             <div>
               <span>Loja selecionada</span>
               <strong>${escapeHtml(activeStore.store.name)}</strong>
+              ${
+                activeStoreLocationParts.length > 0
+                  ? `<small>${escapeHtml(activeStoreLocationParts.join(" · "))}</small>`
+                  : ""
+              }
             </div>
           </div>
           <div class="comparison-store-total">
             <span>Total do cabaz</span>
             <strong>${activeStore.total == null ? "—" : formatCurrency(activeStore.total)}</strong>
-            <small>${escapeHtml(activeStoreStatusCopy)}</small>
+            <small>${activeStoreDistance ? `${escapeHtml(activeStoreDistance)} · ` : ""}${escapeHtml(activeStoreStatusCopy)}</small>
           </div>
         </div>
         <div class="comparison-match-summary" aria-label="Resumo de correspondências">

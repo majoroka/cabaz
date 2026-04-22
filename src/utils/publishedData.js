@@ -49,6 +49,28 @@ export function mapPublishedStores(stores) {
     }));
 }
 
+export function mapPublishedStoreLocations(locations) {
+  if (!Array.isArray(locations)) {
+    return [];
+  }
+
+  return locations
+    .filter((location) => isPlainObject(location) && location.active !== false && location.storeId)
+    .map((location) => ({
+      id: String(location.locationId || location.id || "").trim(),
+      storeId: String(location.storeId).trim(),
+      name: String(location.name || "").trim(),
+      address: String(location.address || "").trim(),
+      postalCode: String(location.postalCode || "").trim(),
+      locality: String(location.locality || "").trim(),
+      municipality: String(location.municipality || "").trim(),
+      lat: toNumberOrNull(location.lat),
+      lng: toNumberOrNull(location.lng),
+      notes: String(location.notes || "").trim()
+    }))
+    .filter((location) => location.id && location.storeId);
+}
+
 export function mapPublishedCatalogProducts(products) {
   if (!Array.isArray(products)) {
     return [];
@@ -141,9 +163,10 @@ export async function loadPublishedData(baseUrl) {
     return response.json();
   };
 
-  const [metadata, stores, catalogProducts, offers, equivalenceRules] = await Promise.all([
+  const [metadata, stores, storeLocations, catalogProducts, offers, equivalenceRules] = await Promise.all([
     fetchJson("data/metadata.json"),
     fetchJson("data/stores.json"),
+    fetchJson("data/store-locations.json"),
     fetchJson("data/catalog-products.json"),
     fetchJson("data/offers.json"),
     fetchJson("data/equivalence-rules.json")
@@ -152,6 +175,7 @@ export async function loadPublishedData(baseUrl) {
   return {
     metadata: isPlainObject(metadata) ? metadata : null,
     stores: mapPublishedStores(stores),
+    storeLocations: mapPublishedStoreLocations(storeLocations),
     catalogProducts: mapPublishedCatalogProducts(catalogProducts),
     offers: mapPublishedOffers(offers),
     equivalenceRules: mapPublishedEquivalenceRules(equivalenceRules)

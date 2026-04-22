@@ -1404,6 +1404,13 @@ textarea {
   padding-bottom: 24px;
 }
 
+.comparison-context {
+  margin: 4px 24px 0;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .comparison-tabs {
   display: flex;
   gap: 14px;
@@ -1538,6 +1545,13 @@ textarea {
   display: block;
   margin-top: 4px;
   font-size: 1.1rem;
+}
+
+.comparison-store-title small {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-soft);
+  line-height: 1.35;
 }
 
 .comparison-store-total {
