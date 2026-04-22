@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "validate:data": "node scripts/validate-published-data.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,4 +13,3 @@
     "vite": "^7.1.0"
   }
 }
-

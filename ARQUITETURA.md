@@ -313,6 +313,21 @@ Responsável por:
 - pesquisa por código postal e localidade
 - cálculo de distância aproximada entre a localização do utilizador e lojas físicas
 
+### `scripts/validate-published-data.mjs`
+
+Responsável por validar localmente os artefactos publicados em `public/data/`.
+
+Valida:
+
+- contagens declaradas em `metadata.json`
+- referências entre ofertas, lojas, localizações e produtos canónicos
+- existência dos grupos de comparação usados pelo catálogo
+- regras de equivalência entre produtos existentes
+- estrutura base dos códigos postais piloto
+- existência local dos logos declarados pelas lojas
+
+Este script é uma ferramenta de qualidade local; não é usado pelo browser nem faz parte da aplicação publicada.
+
 ## Interface atual
 
 Áreas principais:
@@ -431,12 +446,22 @@ Ficheiros consumidos diretamente:
 
 Os antigos dados mock e a importação manual foram removidos do runtime para evitar mistura com os dados reais piloto publicados manualmente a partir dos CSV fornecidos pelo utilizador.
 
+Sempre que os ficheiros publicados forem alterados manualmente ou por pipeline futuro, deve ser executado:
+
+```bash
+npm run validate:data
+```
+
+O objetivo é detetar incoerências antes do deploy, sem introduzir backend nem validação pesada em runtime no browser.
+
 Estado atual dos dados publicados:
 
 - 2 lojas
-- 2 localizações operacionais, uma delas ainda provisória para Pingo Doce
+- 2 localizações operacionais confirmadas
 - 40 ofertas
 - 35 produtos canónicos
+- 33 grupos de comparação
+- 6 regras de equivalência controlada
 - normalização inicial de `Iglo` e `Capitão Iglo` como a mesma marca
 
 ## Decisão estrutural

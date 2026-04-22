@@ -54,6 +54,16 @@ Para pré-visualizar a build:
 npm run preview
 ```
 
+## Validação dos dados publicados
+
+Antes de publicar alterações em `public/data/`, correr:
+
+```bash
+npm run validate:data
+```
+
+Este comando valida referências entre lojas, localizações, produtos canónicos, grupos de comparação, ofertas, regras de equivalência e metadados publicados.
+
 ## Publicação no GitHub Pages
 
 O repositório inclui o workflow `.github/workflows/deploy.yml`, que publica automaticamente a aplicação quando existe um `push` para a branch `main`.
@@ -77,6 +87,7 @@ Notas:
 - secção `Comparação` piloto com total do cabaz por loja disponível
 - ordenação da comparação por proximidade quando existe CP/localidade selecionado
 - leitura dos JSON publicados em `public/data/`
+- validação local dos JSON publicados com `npm run validate:data`
 
 ## Funcionalidades planeadas
 

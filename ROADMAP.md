@@ -270,6 +270,43 @@ Criar uma camada de utilização recorrente: guardar produtos favoritos e gerar 
 - validar visualmente a versão impressa em papel/PDF
 - decidir se no futuro a listagem também deve aceitar favoritos selecionados, além do cabaz
 
+## Sprint 9: Localização operacional
+
+### Objetivo
+
+Tornar a seleção de localização suficientemente fluida para suportar ordenação por proximidade sem depender da leitura completa da base nacional a cada interação.
+
+### Entregáveis
+
+- [x] pesquisa por código postal, localidade e rua
+- [x] índice piloto local para códigos postais do prefixo `8365`
+- [x] seleção visual por localidade com armazenamento do código postal associado
+- [x] ordenação da comparação por proximidade quando existe localização selecionada
+- [x] correção de fluidez da caixa de CP/localidade
+
+### Intervenção necessária do utilizador
+
+- validar pesquisas reais dentro do concelho de Silves antes de alargar a cobertura postal
+
+## Sprint 10: Qualidade dos dados publicados
+
+### Objetivo
+
+Criar uma verificação local para impedir que novas publicações manuais ou futuras publicações automáticas quebrem referências entre ficheiros JSON.
+
+### Entregáveis
+
+- [x] script local `scripts/validate-published-data.mjs`
+- [x] comando `npm run validate:data`
+- [x] validação de contagens declaradas em `metadata.json`
+- [x] validação de referências entre lojas, localizações, produtos, ofertas e equivalências
+- [x] validação de existência local dos logos declarados em `stores.json`
+- [x] documentação do processo no README e na arquitetura
+
+### Intervenção necessária do utilizador
+
+- correr `npm run validate:data` sempre que forem adicionados ou alterados produtos, lojas, localizações ou regras de equivalência
+
 ## Fase operacional seguinte: Primeira publicação real
 
 ### Objetivo
@@ -329,9 +366,9 @@ Evitar comparações erradas quando os produtos são semelhantes mas não equiva
 ## Próximos passos imediatos
 
 1. Validar a comparação Continente vs. Pingo Doce com cabazes pequenos.
-2. Rever visualmente as novas alternativas controladas e decidir se alguma deve passar a equivalente.
-3. Validar a versão imprimível da secção `Listagem`.
-4. Testar a proximidade com CP/localidade de Armação de Pêra e confirmar se a ordenação faz sentido.
+2. Correr `npm run validate:data` antes de qualquer nova publicação em `public/data/`.
+3. Rever visualmente as novas alternativas controladas e decidir se alguma deve passar a equivalente.
+4. Validar a versão imprimível da secção `Listagem`.
 5. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap
