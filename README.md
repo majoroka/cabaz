@@ -121,6 +121,7 @@ O frontend lê diretamente os ficheiros em `public/data/`:
 - `catalog-products.json`
 - `comparison-groups.json`
 - `equivalence-rules.json`
+- `postal-codes-pilot.json`
 - `offers.json`
 
 O ficheiro `equivalence-rules.json` controla casos em que produtos semelhantes não devem ser comparados automaticamente: `equivalent` entra no total, `alternative` aparece como sugestão fora do total e `blocked` impede a correspondência.

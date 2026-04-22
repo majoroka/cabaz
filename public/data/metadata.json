@@ -10,10 +10,12 @@
   "catalogProductsPublished": 35,
   "comparisonGroupsPublished": 33,
   "equivalenceRulesPublished": 6,
+  "postalCodesPilotPublished": 224,
   "notes": [
     "Publicacao manual real consolidada com base no ficheiro 20produtos-2lojas.csv fornecido pelo utilizador.",
     "Continente mantem os 20 produtos piloto ja publicados; Pingo Doce foi acrescentado como segunda insígnia piloto.",
     "Pingo Doce associado a loja fisica piloto em Armacao de Pera, no concelho de Silves.",
+    "Codigos postais piloto publicados para o prefixo 8365, evitando carregar a base nacional durante a escrita.",
     "Iglo e Capitao Iglo foram normalizados como a mesma marca: Iglo.",
     "Equivalencias controladas publicadas para distinguir equivalente, alternativa e produto em falta.",
     "Produtos do Pingo Doce sem equivalencia segura foram criados como produtos canonicos proprios para evitar comparacoes erradas."

@@ -71,6 +71,23 @@ export function mapPublishedStoreLocations(locations) {
     .filter((location) => location.id && location.storeId);
 }
 
+export function mapPublishedPostalCodes(records) {
+  if (!Array.isArray(records)) {
+    return [];
+  }
+
+  return records
+    .filter((record) => isPlainObject(record) && record.code && record.label)
+    .map((record) => ({
+      code: String(record.code).trim(),
+      label: String(record.label).trim(),
+      postalArea: String(record.postalArea || record.label).trim(),
+      streets: Array.isArray(record.streets)
+        ? record.streets.map((street) => String(street || "").trim()).filter(Boolean)
+        : []
+    }));
+}
+
 export function mapPublishedCatalogProducts(products) {
   if (!Array.isArray(products)) {
     return [];
@@ -163,10 +180,11 @@ export async function loadPublishedData(baseUrl) {
     return response.json();
   };
 
-  const [metadata, stores, storeLocations, catalogProducts, offers, equivalenceRules] = await Promise.all([
+  const [metadata, stores, storeLocations, postalCodes, catalogProducts, offers, equivalenceRules] = await Promise.all([
     fetchJson("data/metadata.json"),
     fetchJson("data/stores.json"),
     fetchJson("data/store-locations.json"),
+    fetchJson("data/postal-codes-pilot.json"),
     fetchJson("data/catalog-products.json"),
     fetchJson("data/offers.json"),
     fetchJson("data/equivalence-rules.json")
@@ -176,6 +194,7 @@ export async function loadPublishedData(baseUrl) {
     metadata: isPlainObject(metadata) ? metadata : null,
     stores: mapPublishedStores(stores),
     storeLocations: mapPublishedStoreLocations(storeLocations),
+    postalCodes: mapPublishedPostalCodes(postalCodes),
     catalogProducts: mapPublishedCatalogProducts(catalogProducts),
     offers: mapPublishedOffers(offers),
     equivalenceRules: mapPublishedEquivalenceRules(equivalenceRules)

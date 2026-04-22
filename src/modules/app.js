@@ -350,6 +350,7 @@ function createInitialState() {
     catalogProducts: [],
     equivalenceRules: [],
     storeLocations: [],
+    postalCodes: [],
     results: [],
     stores: [],
     currentSection: DEFAULT_SECTION,
@@ -370,7 +371,7 @@ function getPostalPrefix(postalCode) {
 }
 
 function getStoreLocationPostalRecords(storeLocations) {
-  const records = storeLocations
+  return storeLocations
     .filter((location) => location.postalCode && location.locality)
     .map((location) => ({
       code: location.postalCode,
@@ -381,6 +382,29 @@ function getStoreLocationPostalRecords(storeLocations) {
       streets: [location.address].filter(Boolean),
       normalizedStreets: [normalizeSearchText(location.address)].filter(Boolean)
     }));
+}
+
+function getPublishedPostalRecords(postalCodes) {
+  return postalCodes
+    .filter((record) => record.code && record.label)
+    .map((record) => ({
+      code: record.code,
+      label: record.label,
+      postalArea: record.postalArea || record.label,
+      normalizedLabel: normalizeSearchText(record.label),
+      normalizedPostalArea: normalizeSearchText(record.postalArea || record.label),
+      streets: Array.isArray(record.streets) ? record.streets : [],
+      normalizedStreets: Array.isArray(record.streets)
+        ? record.streets.map((street) => normalizeSearchText(street)).filter(Boolean)
+        : []
+    }));
+}
+
+function getLocalPostalRecords({ storeLocations, postalCodes }) {
+  const records = [
+    ...getStoreLocationPostalRecords(storeLocations),
+    ...getPublishedPostalRecords(postalCodes)
+  ];
   const uniqueRecords = new Map();
 
   records.forEach((record) => {
@@ -390,12 +414,12 @@ function getStoreLocationPostalRecords(storeLocations) {
   return [...uniqueRecords.values()].sort((left, right) => left.code.localeCompare(right.code, "pt"));
 }
 
-function findStoreLocationPostalRecord(storeLocations, value) {
+function findLocalPostalRecord({ storeLocations, postalCodes }, value) {
   const normalized = normalizePostalCodeInput(value);
   const normalizedText = normalizeSearchText(value);
 
   return (
-    getStoreLocationPostalRecords(storeLocations).find(
+    getLocalPostalRecords({ storeLocations, postalCodes }).find(
       (record) =>
         record.code === normalized ||
         record.normalizedLabel === normalizedText ||
@@ -405,7 +429,7 @@ function findStoreLocationPostalRecord(storeLocations, value) {
   );
 }
 
-function getStoreLocationPostalSuggestions(storeLocations, value) {
+function getLocalPostalSuggestions({ storeLocations, postalCodes }, value) {
   const normalized = normalizePostalCodeInput(value);
   const normalizedText = normalizeSearchText(value);
   const digits = normalized.replace(/\D/g, "");
@@ -414,7 +438,7 @@ function getStoreLocationPostalSuggestions(storeLocations, value) {
     return [];
   }
 
-  return getStoreLocationPostalRecords(storeLocations).filter((record) => {
+  return getLocalPostalRecords({ storeLocations, postalCodes }).filter((record) => {
     if (digits) {
       return record.code.replace(/\D/g, "").startsWith(digits);
     }
@@ -1290,6 +1314,7 @@ export function createApp(rootElement) {
       state.catalogProducts = publishedData.catalogProducts;
       state.equivalenceRules = publishedData.equivalenceRules;
       state.storeLocations = publishedData.storeLocations;
+      state.postalCodes = publishedData.postalCodes;
 
       if (publishedData.offers.length > 0) {
         state.results = enrichResults(publishedData.offers);
@@ -1303,12 +1328,14 @@ export function createApp(rootElement) {
       state.stores = publishedData.stores;
       state.equivalenceRules = publishedData.equivalenceRules;
       state.storeLocations = publishedData.storeLocations;
+      state.postalCodes = publishedData.postalCodes;
       setError("Não existem ofertas publicadas em public/data/offers.json.");
       render();
     } catch {
       state.catalogProducts = [];
       state.equivalenceRules = [];
       state.storeLocations = [];
+      state.postalCodes = [];
       state.results = [];
       state.stores = [];
       setError("Não foi possível carregar os dados publicados em public/data.");
@@ -1344,8 +1371,8 @@ export function createApp(rootElement) {
         try {
           const localPostalRecord =
             state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
-              ? findStoreLocationPostalRecord(state.storeLocations, state.catalogSearch.postalCode)
-              : findStoreLocationPostalRecord(state.storeLocations, rawPostalValue);
+              ? findLocalPostalRecord(state, state.catalogSearch.postalCode)
+              : findLocalPostalRecord(state, rawPostalValue);
           let resolvedPostalRecord = localPostalRecord;
 
           if (!resolvedPostalRecord) {
@@ -1511,7 +1538,7 @@ export function createApp(rootElement) {
           target.value = normalizedPostalCode;
         }
 
-        const localExactMatch = findStoreLocationPostalRecord(state.storeLocations, rawPostalValue);
+        const localExactMatch = findLocalPostalRecord(state, rawPostalValue);
 
         if (localExactMatch) {
           state.catalogSearch.postalCode = localExactMatch.code;
@@ -1523,15 +1550,9 @@ export function createApp(rootElement) {
         }
 
         if (looksLikePostalCode && normalizedPostalCode.replace(/\D/g, "").length >= 3) {
-          state.catalogSearch.postalSuggestions = getStoreLocationPostalSuggestions(
-            state.storeLocations,
-            normalizedPostalCode
-          );
+          state.catalogSearch.postalSuggestions = getLocalPostalSuggestions(state, normalizedPostalCode);
         } else if (rawPostalValue.length >= 2) {
-          state.catalogSearch.postalSuggestions = getStoreLocationPostalSuggestions(
-            state.storeLocations,
-            rawPostalValue
-          );
+          state.catalogSearch.postalSuggestions = getLocalPostalSuggestions(state, rawPostalValue);
         } else if (!normalizedPostalCode) {
           state.catalogSearch.postalCode = "";
           state.catalogSearch.postalLabel = "";

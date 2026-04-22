@@ -14,6 +14,7 @@ public/data/
   catalog-products.json
   comparison-groups.json
   equivalence-rules.json
+  postal-codes-pilot.json
   offers.json
   codigos_postais_portugal.txt
 ```
@@ -112,6 +113,19 @@ Regras de interpretação na app:
 - `equivalent`: entra no total do cabaz quando não existe produto exato na loja
 - `alternative`: aparece como sugestão, mas fica fora do total do cabaz
 - `blocked`: impede que dois produtos sejam tratados como correspondência
+
+## `postal-codes-pilot.json`
+
+Índice leve de códigos postais da zona piloto usado para sugestões rápidas no hero.
+
+Campos principais:
+
+- `code`: código postal completo
+- `label`: localidade apresentada
+- `postalArea`: designação postal
+- `streets`: ruas associadas, quando existirem
+
+Este ficheiro evita usar a base nacional `codigos_postais_portugal.txt` durante a escrita no input. A base nacional continua disponível como fonte completa para validação/futuras expansões.
 
 ## `offers.json`
 
