@@ -7,7 +7,6 @@ import { uniqueValues } from "../utils/helpers.js";
 import {
   createPostalCodeIndex,
   findPostalCodeRecord,
-  getPostalCodeSuggestions,
   normalizePostalCodeInput
 } from "../utils/postalCodes.js";
 import { loadPublishedData } from "../utils/publishedData.js";
@@ -368,6 +367,64 @@ function getEquivalenceReviewId({ itemId, storeId, resultProductId }) {
 
 function getPostalPrefix(postalCode) {
   return String(postalCode || "").slice(0, 4);
+}
+
+function getStoreLocationPostalRecords(storeLocations) {
+  const records = storeLocations
+    .filter((location) => location.postalCode && location.locality)
+    .map((location) => ({
+      code: location.postalCode,
+      label: location.locality,
+      postalArea: location.locality,
+      normalizedLabel: normalizeSearchText(location.locality),
+      normalizedPostalArea: normalizeSearchText(location.locality),
+      streets: [location.address].filter(Boolean),
+      normalizedStreets: [normalizeSearchText(location.address)].filter(Boolean)
+    }));
+  const uniqueRecords = new Map();
+
+  records.forEach((record) => {
+    uniqueRecords.set(record.code, record);
+  });
+
+  return [...uniqueRecords.values()].sort((left, right) => left.code.localeCompare(right.code, "pt"));
+}
+
+function findStoreLocationPostalRecord(storeLocations, value) {
+  const normalized = normalizePostalCodeInput(value);
+  const normalizedText = normalizeSearchText(value);
+
+  return (
+    getStoreLocationPostalRecords(storeLocations).find(
+      (record) =>
+        record.code === normalized ||
+        record.normalizedLabel === normalizedText ||
+        record.normalizedPostalArea === normalizedText ||
+        record.normalizedStreets.includes(normalizedText)
+    ) || null
+  );
+}
+
+function getStoreLocationPostalSuggestions(storeLocations, value) {
+  const normalized = normalizePostalCodeInput(value);
+  const normalizedText = normalizeSearchText(value);
+  const digits = normalized.replace(/\D/g, "");
+
+  if (!digits && normalizedText.length < 2) {
+    return [];
+  }
+
+  return getStoreLocationPostalRecords(storeLocations).filter((record) => {
+    if (digits) {
+      return record.code.replace(/\D/g, "").startsWith(digits);
+    }
+
+    return (
+      record.normalizedLabel.includes(normalizedText) ||
+      record.normalizedPostalArea.includes(normalizedText) ||
+      record.normalizedStreets.some((street) => street.includes(normalizedText))
+    );
+  });
 }
 
 function getLocationReference({ postalCode, postalLabel, storeLocations }) {
@@ -846,7 +903,6 @@ export function createApp(rootElement) {
   let messageTimeoutId = null;
   let postalCodeIndex = null;
   let postalCodeLoadPromise = null;
-  let postalSuggestionsRequestId = 0;
 
   function render() {
     rootElement.innerHTML = renderApp({
@@ -956,19 +1012,6 @@ export function createApp(rootElement) {
     }
 
     return postalCodeLoadPromise;
-  }
-
-  function preloadPostalCodeIndex() {
-    const schedule =
-      typeof window.requestIdleCallback === "function"
-        ? (callback) => window.requestIdleCallback(callback)
-        : (callback) => window.setTimeout(callback, 250);
-
-    schedule(() => {
-      ensurePostalCodeIndex().catch(() => {
-        postalCodeLoadPromise = null;
-      });
-    });
   }
 
   function runCatalogSearch(query) {
@@ -1253,7 +1296,6 @@ export function createApp(rootElement) {
         state.stores = createFallbackStoresFromResults(state.results, publishedData.stores);
         clearMessages();
         render();
-        preloadPostalCodeIndex();
         return;
       }
 
@@ -1263,7 +1305,6 @@ export function createApp(rootElement) {
       state.storeLocations = publishedData.storeLocations;
       setError("Não existem ofertas publicadas em public/data/offers.json.");
       render();
-      preloadPostalCodeIndex();
     } catch {
       state.catalogProducts = [];
       state.equivalenceRules = [];
@@ -1301,20 +1342,28 @@ export function createApp(rootElement) {
 
       if (rawPostalValue) {
         try {
-          const index = await ensurePostalCodeIndex();
-          const postalRecord =
+          const localPostalRecord =
             state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
-              ? findPostalCodeRecord(index, state.catalogSearch.postalCode)
-              : findPostalCodeRecord(index, rawPostalValue);
+              ? findStoreLocationPostalRecord(state.storeLocations, state.catalogSearch.postalCode)
+              : findStoreLocationPostalRecord(state.storeLocations, rawPostalValue);
+          let resolvedPostalRecord = localPostalRecord;
 
-          if (!postalRecord) {
+          if (!resolvedPostalRecord) {
+            const index = await ensurePostalCodeIndex();
+            resolvedPostalRecord =
+              state.catalogSearch.postalLabel && rawPostalValue === state.catalogSearch.postalLabel
+                ? findPostalCodeRecord(index, state.catalogSearch.postalCode)
+                : findPostalCodeRecord(index, rawPostalValue);
+          }
+
+          if (!resolvedPostalRecord) {
             setError("Selecione uma localidade, rua ou introduza um código postal válido.");
             render();
             return;
           }
 
-          state.catalogSearch.postalCode = postalRecord.code;
-          state.catalogSearch.postalLabel = postalRecord.label;
+          state.catalogSearch.postalCode = resolvedPostalRecord.code;
+          state.catalogSearch.postalLabel = resolvedPostalRecord.label;
           state.catalogSearch.postalSuggestions = [];
         } catch (error) {
           setError(error.message || "Não foi possível validar o código postal.");
@@ -1446,7 +1495,6 @@ export function createApp(rootElement) {
       }
 
       if (target.name === "postalCode") {
-        const requestId = (postalSuggestionsRequestId += 1);
         const rawPostalValue = target.value.trim();
         const normalizedPostalCode = normalizePostalCodeInput(rawPostalValue);
         const rawDigits = rawPostalValue.replace(/\D/g, "");
@@ -1463,41 +1511,27 @@ export function createApp(rootElement) {
           target.value = normalizedPostalCode;
         }
 
-        if (looksLikePostalCode && normalizedPostalCode.replace(/\D/g, "").length >= 4) {
-          try {
-            const index = await ensurePostalCodeIndex();
+        const localExactMatch = findStoreLocationPostalRecord(state.storeLocations, rawPostalValue);
 
-            if (requestId !== postalSuggestionsRequestId) {
-              return;
-            }
+        if (localExactMatch) {
+          state.catalogSearch.postalCode = localExactMatch.code;
+          state.catalogSearch.postalLabel = localExactMatch.label;
+          state.catalogSearch.postalSuggestions = [];
+          target.value = localExactMatch.label;
+          refreshLocationDependentView();
+          return;
+        }
 
-            const exactMatch = findPostalCodeRecord(index, normalizedPostalCode);
-
-            if (exactMatch) {
-              state.catalogSearch.postalCode = exactMatch.code;
-              state.catalogSearch.postalLabel = exactMatch.label;
-              state.catalogSearch.postalSuggestions = [];
-              target.value = exactMatch.label;
-              refreshLocationDependentView();
-              return;
-            } else {
-              state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
-            }
-          } catch {
-            state.catalogSearch.postalSuggestions = [];
-          }
+        if (looksLikePostalCode && normalizedPostalCode.replace(/\D/g, "").length >= 3) {
+          state.catalogSearch.postalSuggestions = getStoreLocationPostalSuggestions(
+            state.storeLocations,
+            normalizedPostalCode
+          );
         } else if (rawPostalValue.length >= 2) {
-          try {
-            const index = await ensurePostalCodeIndex();
-
-            if (requestId !== postalSuggestionsRequestId) {
-              return;
-            }
-
-            state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, rawPostalValue);
-          } catch {
-            state.catalogSearch.postalSuggestions = [];
-          }
+          state.catalogSearch.postalSuggestions = getStoreLocationPostalSuggestions(
+            state.storeLocations,
+            rawPostalValue
+          );
         } else if (!normalizedPostalCode) {
           state.catalogSearch.postalCode = "";
           state.catalogSearch.postalLabel = "";
