@@ -1,0 +1,39 @@
+name: Validate Data
+
+on:
+  pull_request:
+    paths:
+      - "public/data/**"
+      - "src/data/categories.json"
+      - "scripts/validate-published-data.mjs"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate published data
+        run: npm run validate:data
+
+      - name: Build
+        run: npm run build

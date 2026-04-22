@@ -323,10 +323,18 @@ Preparar o contrato e a validação local para um scraper externo gerar dados se
 - [x] reforço da validação de `store-locations.json`
 - [x] comando `npm run validate:data:report`
 - [x] relatório local `reports/data-validation-report.json`, excluído do Git
+- [x] pasta `staging/published-data/` para validar output externo antes da publicação
+- [x] comando `npm run validate:staging`
+- [x] decisão de arquitetura: scraper em repositório separado
+- [x] documentação do repositório externo em `docs/external-scraper-repo.md`
+- [x] workflow `Validate Data` para validar PRs que alterem `public/data/`
+- [x] validação dos dados publicada também no workflow de deploy
 
 ### Intervenção necessária do utilizador
 
-- quando começarmos o scraper real, indicar a primeira loja/site a automatizar e confirmar se o output será testado primeiro em ficheiros temporários ou diretamente em `public/data/`
+- quando começarmos o scraper real, indicar a primeira loja/site a automatizar
+- o output inicial do scraper deve ser testado primeiro em `staging/published-data/`, não diretamente em `public/data/`
+- criar manualmente o repositório externo do scraper quando avançarmos para implementação real
 
 ## Fase operacional seguinte: Primeira publicação real
 

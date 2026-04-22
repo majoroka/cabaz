@@ -190,6 +190,7 @@ Use `notes` quando houver contexto relevante que não caiba bem nos campos estru
 
 - O frontend só consome ficheiros publicados e validados.
 - Um scraper local futuro deve gerar os ficheiros finais para `public/data/` ou para uma etapa equivalente de publicação.
+- O output externo deve ser validado primeiro em `staging/published-data/` com `npm run validate:staging`.
 - Antes de publicar novos dados deve ser executado `npm run validate:data:report`.
 - O relatório local é gerado em `reports/data-validation-report.json`.
 - Falhas de scraping não devem ser mascaradas por dados mock no frontend.

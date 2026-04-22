@@ -7,6 +7,7 @@
     "dev": "vite",
     "validate:data": "node scripts/validate-published-data.mjs",
     "validate:data:report": "node scripts/validate-published-data.mjs --report reports/data-validation-report.json",
+    "validate:staging": "node scripts/validate-published-data.mjs --data-dir staging/published-data --report reports/staging-validation-report.json",
     "build": "vite build",
     "preview": "vite preview"
   },

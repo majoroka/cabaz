@@ -10,7 +10,13 @@ Num fluxo futuro, um scraper local poderá gerar ficheiros publicados para `publ
 
 A subpasta `published/` mantém templates auxiliares, incluindo o campo opcional `notes` para contexto comercial relevante.
 
-Antes de copiar dados gerados por scraper para publicação, correr:
+Antes de copiar dados gerados por scraper para publicação, colocar os JSON em `staging/published-data/` e correr:
+
+```bash
+npm run validate:staging
+```
+
+Depois de copiar os dados aprovados para `public/data/`, correr:
 
 ```bash
 npm run validate:data:report

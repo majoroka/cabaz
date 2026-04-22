@@ -72,6 +72,14 @@ npm run validate:data:report
 
 O relatório é escrito em `reports/data-validation-report.json` e não é versionado.
 
+Para validar ficheiros gerados por um scraper externo antes de os publicar, copiar os JSON para `staging/published-data/` e correr:
+
+```bash
+npm run validate:staging
+```
+
+Essa pasta não é lida pela app e os JSON aí colocados não são versionados.
+
 ## Publicação no GitHub Pages
 
 O repositório inclui o workflow `.github/workflows/deploy.yml`, que publica automaticamente a aplicação quando existe um `push` para a branch `main`.
@@ -96,6 +104,7 @@ Notas:
 - ordenação da comparação por proximidade quando existe CP/localidade selecionado
 - leitura dos JSON publicados em `public/data/`
 - validação local dos JSON publicados com `npm run validate:data`
+- validação automática dos JSON em pull requests que alterem `public/data/`
 
 ## Funcionalidades planeadas
 
@@ -120,6 +129,7 @@ O projeto está a ser trabalhado por fases:
 ├── examples/              # templates auxiliares de publicação
 ├── public/                # favicon, assets públicos e dados publicados
 │   └── data/              # JSON consumidos pela app
+├── staging/               # zona local para validar output externo antes da publicação
 ├── src/
 │   ├── data/              # listas de apoio à UI, como categorias e marcas
 │   ├── modules/           # montagem da app e rendering da interface
@@ -183,11 +193,12 @@ Template auxiliar:
 - [docs/escala-controlada-sprint-6.md](./docs/escala-controlada-sprint-6.md)
 - [docs/plano-primeira-publicacao-real.md](./docs/plano-primeira-publicacao-real.md)
 - [docs/scraper-contract.md](./docs/scraper-contract.md)
+- [docs/external-scraper-repo.md](./docs/external-scraper-repo.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados
 
-Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá gerar os ficheiros JSON documentados em `docs/scraper-contract.md` e `docs/data-format.md`, e a app limitar-se-á a lê-los e a apresentar os resultados.
+Este repositório contém apenas a camada de apresentação. No futuro, um pipeline externo de recolha, normalização, matching e publicação deverá viver num repositório separado, conforme documentado em `docs/external-scraper-repo.md`, gerar os ficheiros JSON documentados em `docs/scraper-contract.md` e `docs/data-format.md`, e a app limitar-se-á a lê-los e a apresentar os resultados.
 
 Essa separação permite:
 

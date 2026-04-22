@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate published data
+        run: npm run validate:data
+
       - name: Build
         run: npm run build
 

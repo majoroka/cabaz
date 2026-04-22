@@ -4,7 +4,7 @@
 
 Definir o contrato que um scraper externo deve cumprir antes de publicar dados para o frontend Cabaz.
 
-Este repositório continua a não conter scraping real, backend ou chamadas diretas aos supermercados. O scraper deve viver noutro projeto ou noutro fluxo local e deve entregar apenas JSON finais, normalizados e validados.
+Este repositório continua a não conter scraping real, backend ou chamadas diretas aos supermercados. O scraper deve viver noutro repositório, documentado em [external-scraper-repo.md](./external-scraper-repo.md), e deve entregar apenas JSON finais, normalizados e validados.
 
 ## Fluxo esperado
 
@@ -14,6 +14,7 @@ scraper externo
   -> normalização
   -> matching contra catálogo canónico
   -> geração de JSON publicados
+  -> cópia para staging/published-data/
   -> validação local neste repositório
   -> publicação em public/data/
   -> deploy estático da app
@@ -42,7 +43,25 @@ scraper externo
 
 O scraper não deve publicar diretamente dados que falhem validação.
 
-Antes de considerar uma publicação válida:
+Antes de substituir `public/data/`, copiar o output do scraper para:
+
+```text
+staging/published-data/
+```
+
+Depois correr:
+
+```bash
+npm run validate:staging
+```
+
+Este comando gera:
+
+```text
+reports/staging-validation-report.json
+```
+
+Se a validação passar, copiar os ficheiros aprovados para `public/data/` e correr:
 
 ```bash
 npm run validate:data:report

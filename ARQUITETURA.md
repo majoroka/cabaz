@@ -33,6 +33,8 @@ Responsabilidades:
 
 Projeto separado, fora deste repositório.
 
+Nome recomendado para o repositório externo: `cabaz-data` ou `cabaz-scraper`.
+
 Responsabilidades:
 
 - recolha por loja
@@ -40,7 +42,7 @@ Responsabilidades:
 - deduplicação
 - matching para catálogo canónico
 - validação com relatório antes da publicação
-- publicação dos JSON finais consumidos pela app
+- abertura de pull requests para publicar os JSON finais no repositório `cabaz`
 
 ### 3. Artefactos publicados
 
@@ -65,9 +67,27 @@ public/data/
   basket-templates.json
   snapshots/
     YYYY-MM-DD/
-      metadata.json
-      offers.json
+  metadata.json
+  offers.json
 ```
+
+## Staging de dados externos
+
+Antes de um scraper externo substituir os ficheiros publicados, o output deve ser copiado para:
+
+```text
+staging/published-data/
+```
+
+Esta pasta não é lida pela app e os JSON aí colocados não são versionados. Serve apenas para validação local:
+
+```bash
+npm run validate:staging
+```
+
+Depois de aprovada a validação, os ficheiros podem ser copiados para `public/data/` e validados novamente com `npm run validate:data:report`.
+
+Quando o scraper viver num repositório separado, o fluxo recomendado passa a ser abrir PR para `cabaz` com alterações apenas em `public/data/`. O workflow `Validate Data` valida esses PRs com `npm run validate:data` e `npm run build`.
 
 ## Modelo de dados alvo
 
@@ -332,6 +352,7 @@ Comandos:
 
 - `npm run validate:data`: valida os dados publicados e escreve resultado no terminal
 - `npm run validate:data:report`: valida os dados publicados e gera `reports/data-validation-report.json`
+- `npm run validate:staging`: valida `staging/published-data/` e gera `reports/staging-validation-report.json`
 
 O relatório é local, não versionado, e deve ser usado pelo futuro scraper/pipeline antes de copiar dados para publicação.
 

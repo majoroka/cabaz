@@ -15,9 +15,11 @@ Objetivo:
 
 1. preencher o template com dados reais da loja piloto
 2. validar manualmente nomes, preços, URLs, imagens, notas comerciais e datas
-3. copiar o conteúdo final para `public/data/offers.json`
-4. correr `npm run validate:data:report`
-5. testar a app localmente
+3. copiar o conteúdo final para `staging/published-data/offers.json`, juntamente com os restantes JSON exigidos pelo contrato
+4. correr `npm run validate:staging`
+5. copiar os ficheiros aprovados para `public/data/`
+6. correr `npm run validate:data:report`
+7. testar a app localmente
 
 ## Nota importante
 

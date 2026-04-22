@@ -4,3 +4,4 @@ dist
 .vite
 coverage
 reports/*.json
+staging/published-data/*.json

@@ -5,14 +5,21 @@ import { fileURLToPath } from "node:url";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(scriptDir, "..");
-const dataDir = path.join(rootDir, "public", "data");
 const publicDir = path.join(rootDir, "public");
 const args = process.argv.slice(2);
-const reportArgIndex = args.indexOf("--report");
-const reportPath =
-  reportArgIndex >= 0 && args[reportArgIndex + 1]
-    ? path.resolve(rootDir, args[reportArgIndex + 1])
-    : "";
+
+function getArgValue(name) {
+  const index = args.indexOf(name);
+
+  return index >= 0 && args[index + 1] ? args[index + 1] : "";
+}
+
+function resolveFromRoot(value) {
+  return path.isAbsolute(value) ? value : path.resolve(rootDir, value);
+}
+
+const dataDir = resolveFromRoot(getArgValue("--data-dir") || path.join("public", "data"));
+const reportPath = getArgValue("--report") ? resolveFromRoot(getArgValue("--report")) : "";
 const allowedSizeUnits = new Set(["g", "kg", "mL", "L", "un"]);
 const allowedUnitPriceUnits = new Set(["kg", "L", "un"]);
 
@@ -456,6 +463,7 @@ validateMetadata(metadata, {
 });
 
 console.log("Validação dos dados publicados");
+console.log(`Origem: ${path.relative(rootDir, dataDir) || "."}`);
 console.log(`Lojas: ${stores.length}`);
 console.log(`Localizações: ${storeLocations.length}`);
 console.log(`Produtos canónicos: ${catalogProducts.length}`);
@@ -473,6 +481,7 @@ if (reportPath) {
   const report = {
     generatedAt: new Date().toISOString(),
     status: errors.length > 0 ? "failed" : "passed",
+    dataDir: path.relative(rootDir, dataDir) || ".",
     counts: {
       stores: stores.length,
       storeLocations: storeLocations.length,
