@@ -964,12 +964,18 @@ function renderComparisonSection(comparisonView) {
           ${activeStore.rows
             .map((row) => {
               const resultName = row.result?.matchedName || "";
-              const referenceName = row.referenceResult?.matchedName || row.item.name;
-              const image = row.result?.image || row.referenceResult?.image || "";
-              const imageAlt = row.result ? resultName : referenceName;
               const isEquivalent = row.matchType === "equivalent";
               const isAlternative = row.matchType === "alternative";
               const isExact = row.matchType === "exact";
+              const isDifferentProduct = Boolean(row.result && row.result.basketItemId !== row.item.id);
+              const displayName = row.result
+                ? row.resultCatalogProduct?.name || resultName || row.item.name
+                : row.item.name;
+              const displayCategory = row.resultCatalogProduct?.category || row.item.category;
+              const displayBrand = row.result?.brand || row.resultCatalogProduct?.preferredBrand || row.item.preferredBrand || "";
+              const referenceName = row.referenceResult?.matchedName || row.item.name;
+              const image = row.result?.image || row.referenceResult?.image || "";
+              const imageAlt = row.result ? displayName : referenceName;
               const usesReferenceImage = !row.result && Boolean(row.referenceResult?.image);
               const lineClass = row.result
                 ? isEquivalent
@@ -1006,6 +1012,11 @@ function renderComparisonSection(comparisonView) {
                   ? "Fora do total"
                   : "—"
                 : formatCurrency(row.lineTotal);
+              const productDetail = row.result
+                ? isDifferentProduct
+                  ? `Produto no cabaz: ${row.item.name}`
+                  : resultName
+                : "Produto sem preço publicado nesta loja.";
 
               return `
                 <article class="comparison-line ${lineClass}">
@@ -1017,16 +1028,12 @@ function renderComparisonSection(comparisonView) {
                     }
                   </div>
                   <div class="comparison-line-main">
-                    <h3>${escapeHtml(row.item.name)}</h3>
+                    <h3>${escapeHtml(displayName)}</h3>
                     <p>
-                      ${escapeHtml(getCategoryName(row.item.category))}
-                      ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
+                      ${escapeHtml(getCategoryName(displayCategory))}
+                      ${displayBrand ? ` · ${escapeHtml(displayBrand)}` : ""}
                     </p>
-                    ${
-                      row.result
-                        ? `<small>${escapeHtml(resultName)}</small>`
-                        : `<small>Produto sem preço publicado nesta loja.</small>`
-                    }
+                    <small>${escapeHtml(productDetail)}</small>
                     <em class="comparison-match-hint">${escapeHtml(statusHint)}</em>
                   </div>
                   <div class="comparison-line-price">

@@ -748,6 +748,9 @@ function getViewModel(state) {
           state.catalogProducts,
           state.equivalenceRules
         );
+        const resultCatalogProduct = match.result
+          ? state.catalogProducts.find((entry) => entry.id === match.result.basketItemId) || null
+          : null;
         const referenceResult =
           state.results.find((result) => item.preferredStore && result.store === item.preferredStore && result.basketItemId === item.id) ||
           state.results.find((result) => result.basketItemId === item.id) ||
@@ -758,6 +761,7 @@ function getViewModel(state) {
           quantity,
           catalogProduct,
           result: match.result,
+          resultCatalogProduct,
           referenceResult,
           matchType: match.matchType,
           matchRule: match.matchRule,
