@@ -263,9 +263,9 @@ function renderBasketSection(basketView) {
           <p class="eyebrow">Cabaz</p>
           <h2>${escapeHtml(String(basketView.itemCount))} produtos adicionados</h2>
         </div>
-        <span class="status-tag basket-status-total">
-          ${basketView.total == null ? "Total pendente" : formatCurrency(basketView.total)}
-        </span>
+        <button type="button" class="button button-danger button-small" data-action="clear-basket">
+          Esvaziar cabaz
+        </button>
       </div>
       <div class="basket-summary-strip">
         <div>

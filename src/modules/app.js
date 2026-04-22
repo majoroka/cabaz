@@ -1269,10 +1269,6 @@ export function createApp(rootElement) {
       element.textContent = totalLabel;
     });
 
-    rootElement.querySelectorAll(".basket-status-total").forEach((element) => {
-      element.textContent = basketView.total == null ? "Total pendente" : totalLabel;
-    });
-
     getSummaryCards(viewModel.summary).forEach((card) => {
       rootElement.querySelectorAll(`[data-summary-value="${card.id}"]`).forEach((element) => {
         element.textContent = card.value;
@@ -1304,6 +1300,17 @@ export function createApp(rootElement) {
     state.basket = state.basket.filter((entry) => entry.id !== itemId);
     persistJson(STORAGE_KEYS.basket, state.basket);
     setNotice(`Item "${item.name}" removido.`);
+    render();
+  }
+
+  function clearBasket() {
+    if (state.basket.length === 0) {
+      return;
+    }
+
+    state.basket = [];
+    persistJson(STORAGE_KEYS.basket, state.basket);
+    setNotice("Cabaz esvaziado.");
     render();
   }
 
@@ -1468,6 +1475,11 @@ export function createApp(rootElement) {
     if (action === "clear-favorites-filters") {
       state.favoritesFilters = cloneValue(DEFAULT_FAVORITES_FILTERS);
       render();
+      return;
+    }
+
+    if (action === "clear-basket") {
+      clearBasket();
       return;
     }
 
