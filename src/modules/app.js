@@ -846,6 +846,7 @@ export function createApp(rootElement) {
   let messageTimeoutId = null;
   let postalCodeIndex = null;
   let postalCodeLoadPromise = null;
+  let postalSuggestionsRequestId = 0;
 
   function render() {
     rootElement.innerHTML = renderApp({
@@ -879,6 +880,15 @@ export function createApp(rootElement) {
         return button;
       })
     );
+  }
+
+  function refreshLocationDependentView() {
+    if (state.currentSection === "comparacao") {
+      render();
+      return;
+    }
+
+    syncPostalCodeSuggestions();
   }
 
   function cancelMessageDismiss() {
@@ -946,6 +956,19 @@ export function createApp(rootElement) {
     }
 
     return postalCodeLoadPromise;
+  }
+
+  function preloadPostalCodeIndex() {
+    const schedule =
+      typeof window.requestIdleCallback === "function"
+        ? (callback) => window.requestIdleCallback(callback)
+        : (callback) => window.setTimeout(callback, 250);
+
+    schedule(() => {
+      ensurePostalCodeIndex().catch(() => {
+        postalCodeLoadPromise = null;
+      });
+    });
   }
 
   function runCatalogSearch(query) {
@@ -1230,6 +1253,7 @@ export function createApp(rootElement) {
         state.stores = createFallbackStoresFromResults(state.results, publishedData.stores);
         clearMessages();
         render();
+        preloadPostalCodeIndex();
         return;
       }
 
@@ -1238,6 +1262,8 @@ export function createApp(rootElement) {
       state.equivalenceRules = publishedData.equivalenceRules;
       state.storeLocations = publishedData.storeLocations;
       setError("Não existem ofertas publicadas em public/data/offers.json.");
+      render();
+      preloadPostalCodeIndex();
     } catch {
       state.catalogProducts = [];
       state.equivalenceRules = [];
@@ -1245,6 +1271,7 @@ export function createApp(rootElement) {
       state.results = [];
       state.stores = [];
       setError("Não foi possível carregar os dados publicados em public/data.");
+      render();
     }
   }
 
@@ -1325,7 +1352,7 @@ export function createApp(rootElement) {
         postalInput.value = target.dataset.postalLabel;
       }
 
-      syncPostalCodeSuggestions();
+      refreshLocationDependentView();
       return;
     }
 
@@ -1419,6 +1446,7 @@ export function createApp(rootElement) {
       }
 
       if (target.name === "postalCode") {
+        const requestId = (postalSuggestionsRequestId += 1);
         const rawPostalValue = target.value.trim();
         const normalizedPostalCode = normalizePostalCodeInput(rawPostalValue);
         const rawDigits = rawPostalValue.replace(/\D/g, "");
@@ -1438,6 +1466,11 @@ export function createApp(rootElement) {
         if (looksLikePostalCode && normalizedPostalCode.replace(/\D/g, "").length >= 4) {
           try {
             const index = await ensurePostalCodeIndex();
+
+            if (requestId !== postalSuggestionsRequestId) {
+              return;
+            }
+
             const exactMatch = findPostalCodeRecord(index, normalizedPostalCode);
 
             if (exactMatch) {
@@ -1445,6 +1478,8 @@ export function createApp(rootElement) {
               state.catalogSearch.postalLabel = exactMatch.label;
               state.catalogSearch.postalSuggestions = [];
               target.value = exactMatch.label;
+              refreshLocationDependentView();
+              return;
             } else {
               state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, normalizedPostalCode);
             }
@@ -1454,6 +1489,11 @@ export function createApp(rootElement) {
         } else if (rawPostalValue.length >= 2) {
           try {
             const index = await ensurePostalCodeIndex();
+
+            if (requestId !== postalSuggestionsRequestId) {
+              return;
+            }
+
             state.catalogSearch.postalSuggestions = getPostalCodeSuggestions(index, rawPostalValue);
           } catch {
             state.catalogSearch.postalSuggestions = [];
@@ -1461,6 +1501,8 @@ export function createApp(rootElement) {
         } else if (!normalizedPostalCode) {
           state.catalogSearch.postalCode = "";
           state.catalogSearch.postalLabel = "";
+          refreshLocationDependentView();
+          return;
         }
 
         syncPostalCodeSuggestions();
