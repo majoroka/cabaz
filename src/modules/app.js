@@ -107,14 +107,37 @@ function getBasketItemQuantity(item) {
   return Math.max(1, Number.parseInt(String(item.quantity || "1"), 10) || 1);
 }
 
-function findBestResultForBasketItemInStore(item, storeId, results, catalogProducts) {
+function getEquivalenceRuleForPair(sourceProductId, targetProductId, equivalenceRules) {
+  return (
+    equivalenceRules.find(
+      (rule) =>
+        rule.sourceProductId === sourceProductId &&
+        rule.targetProductId === targetProductId
+    ) ||
+    equivalenceRules.find(
+      (rule) =>
+        rule.bidirectional &&
+        rule.sourceProductId === targetProductId &&
+        rule.targetProductId === sourceProductId
+    ) ||
+    null
+  );
+}
+
+function sortResultMatchesByPrice(matches) {
+  return [...matches].sort((left, right) => left.result.price - right.result.price);
+}
+
+function findBestResultForBasketItemInStore(item, storeId, results, catalogProducts, equivalenceRules) {
   const availableResults = results.filter((result) => result.store === storeId && result.inStock !== false);
   const exactResults = availableResults.filter((result) => result.basketItemId === item.id);
 
   if (exactResults.length > 0) {
     return {
       result: [...exactResults].sort((left, right) => left.price - right.price)[0],
-      matchType: "exact"
+      matchType: "exact",
+      matchRule: null,
+      countsForTotal: true
     };
   }
 
@@ -123,26 +146,69 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
   if (!catalogProduct?.comparisonGroup) {
     return {
       result: null,
-      matchType: "missing"
+      matchType: "missing",
+      matchRule: null,
+      countsForTotal: false
     };
   }
 
+  const blockedProductIds = new Set(
+    availableResults
+      .filter((result) => getEquivalenceRuleForPair(item.id, result.basketItemId, equivalenceRules)?.relation === "blocked")
+      .map((result) => result.basketItemId)
+  );
   const equivalentResults = availableResults.filter((result) => {
     const resultProduct = catalogProducts.find((entry) => entry.id === result.basketItemId);
 
-    return resultProduct?.comparisonGroup === catalogProduct.comparisonGroup;
+    return resultProduct?.comparisonGroup === catalogProduct.comparisonGroup && !blockedProductIds.has(result.basketItemId);
   });
 
-  if (equivalentResults.length === 0) {
+  if (equivalentResults.length > 0) {
     return {
-      result: null,
-      matchType: "missing"
+      result: [...equivalentResults].sort((left, right) => left.price - right.price)[0],
+      matchType: "equivalent",
+      matchRule: null,
+      countsForTotal: true
+    };
+  }
+
+  const controlledMatches = availableResults
+    .map((result) => ({
+      result,
+      rule: getEquivalenceRuleForPair(item.id, result.basketItemId, equivalenceRules)
+    }))
+    .filter((match) => match.rule && match.rule.relation !== "blocked");
+  const controlledEquivalents = controlledMatches.filter((match) => match.rule.relation === "equivalent");
+
+  if (controlledEquivalents.length > 0) {
+    const match = sortResultMatchesByPrice(controlledEquivalents)[0];
+
+    return {
+      result: match.result,
+      matchType: "equivalent",
+      matchRule: match.rule,
+      countsForTotal: true
+    };
+  }
+
+  const controlledAlternatives = controlledMatches.filter((match) => match.rule.relation === "alternative");
+
+  if (controlledAlternatives.length > 0) {
+    const match = sortResultMatchesByPrice(controlledAlternatives)[0];
+
+    return {
+      result: match.result,
+      matchType: "alternative",
+      matchRule: match.rule,
+      countsForTotal: false
     };
   }
 
   return {
-    result: [...equivalentResults].sort((left, right) => left.price - right.price)[0],
-    matchType: "equivalent"
+    result: null,
+    matchType: "missing",
+    matchRule: null,
+    countsForTotal: false
   };
 }
 
@@ -282,6 +348,7 @@ function createInitialState() {
     favorites: storedFavorites,
     equivalenceReviews: storedEquivalenceReviews,
     catalogProducts: [],
+    equivalenceRules: [],
     results: [],
     stores: [],
     currentSection: DEFAULT_SECTION,
@@ -482,7 +549,13 @@ function getViewModel(state) {
       const rows = state.basket.map((item) => {
         const quantity = getBasketItemQuantity(item);
         const catalogProduct = state.catalogProducts.find((entry) => entry.id === item.id) || null;
-        const match = findBestResultForBasketItemInStore(item, store.id, state.results, state.catalogProducts);
+        const match = findBestResultForBasketItemInStore(
+          item,
+          store.id,
+          state.results,
+          state.catalogProducts,
+          state.equivalenceRules
+        );
         const referenceResult =
           state.results.find((result) => item.preferredStore && result.store === item.preferredStore && result.basketItemId === item.id) ||
           state.results.find((result) => result.basketItemId === item.id) ||
@@ -495,12 +568,16 @@ function getViewModel(state) {
           result: match.result,
           referenceResult,
           matchType: match.matchType,
-          lineTotal: match.result ? match.result.price * quantity : null
+          matchRule: match.matchRule,
+          countsForTotal: match.countsForTotal,
+          lineTotal: match.countsForTotal && match.result ? match.result.price * quantity : null
         };
       });
-      const foundRows = rows.filter((row) => row.result);
+      const foundRows = rows.filter((row) => row.countsForTotal);
       const exactCount = rows.filter((row) => row.matchType === "exact").length;
       const equivalentCount = rows.filter((row) => row.matchType === "equivalent").length;
+      const alternativeCount = rows.filter((row) => row.matchType === "alternative").length;
+      const missingCount = rows.filter((row) => row.matchType === "missing").length;
       const total = foundRows.reduce((sum, row) => sum + (row.lineTotal || 0), 0);
 
       return {
@@ -510,7 +587,9 @@ function getViewModel(state) {
         foundCount: foundRows.length,
         exactCount,
         equivalentCount,
-        missingCount: rows.length - foundRows.length,
+        alternativeCount,
+        missingCount,
+        notPricedCount: rows.length - foundRows.length,
         itemCount: rows.length,
         complete: rows.length > 0 && foundRows.length === rows.length
       };
@@ -532,7 +611,7 @@ function getViewModel(state) {
     });
   const equivalenceReviewRows = comparisonStores.flatMap((entry) =>
     entry.rows
-      .filter((row) => row.matchType === "equivalent" && row.result)
+      .filter((row) => ["equivalent", "alternative"].includes(row.matchType) && row.result)
       .map((row) => {
         const resultProduct = state.catalogProducts.find((product) => product.id === row.result.basketItemId) || null;
         const reviewId = getEquivalenceReviewId({
@@ -550,6 +629,9 @@ function getViewModel(state) {
           item: row.item,
           result: row.result,
           resultProduct,
+          matchType: row.matchType,
+          matchRule: row.matchRule,
+          countsForTotal: row.countsForTotal,
           quantity: row.quantity,
           lineTotal: row.lineTotal
         };
@@ -1009,6 +1091,7 @@ export function createApp(rootElement) {
       const publishedData = await loadPublishedData(import.meta.env.BASE_URL);
 
       state.catalogProducts = publishedData.catalogProducts;
+      state.equivalenceRules = publishedData.equivalenceRules;
 
       if (publishedData.offers.length > 0) {
         state.results = enrichResults(publishedData.offers);
@@ -1020,9 +1103,11 @@ export function createApp(rootElement) {
 
       state.results = [];
       state.stores = publishedData.stores;
+      state.equivalenceRules = publishedData.equivalenceRules;
       setError("Não existem ofertas publicadas em public/data/offers.json.");
     } catch {
       state.catalogProducts = [];
+      state.equivalenceRules = [];
       state.results = [];
       state.stores = [];
       setError("Não foi possível carregar os dados publicados em public/data.");

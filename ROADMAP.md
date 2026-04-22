@@ -283,11 +283,35 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 - [x] expansão manual para 20 produtos piloto
 - [x] publicação manual da segunda loja piloto com Pingo Doce
 - [x] remoção do fallback automático para mocks após publicação real estável
+- [x] localização física piloto do Pingo Doce em Armação de Pêra
+- [x] regras controladas para distinguir equivalente, alternativa e produto em falta
 - [ ] validação manual final com dados reais no frontend
 
 ### Intervenção necessária do utilizador
 
 - validar a publicação real no frontend depois de cada expansão relevante
+
+## Sprint operacional: Equivalências controladas
+
+### Objetivo
+
+Evitar comparações erradas quando os produtos são semelhantes mas não equivalentes diretos.
+
+### Entregáveis
+
+- [x] ficheiro `equivalence-rules.json` para decisões explícitas entre produtos
+- [x] suporte a relações `equivalent`, `alternative` e `blocked`
+- [x] alternativas visíveis na comparação sem entrar no total do cabaz
+- [x] validação manual de correspondências controladas na secção `Comparação`
+- [x] regras iniciais para arroz basmati, arroz carolino, douradinhos, cápsulas de café, lombos de bacalhau e esparguete
+- [ ] expandir regras à medida que entrarem novas lojas e produtos
+
+### Critério de decisão
+
+- `Exato`: mesmo `productId`
+- `Equivalente`: mesmo `comparisonGroup` ou regra explícita `equivalent`; entra no total
+- `Alternativa`: regra explícita `alternative`; aparece como sugestão, mas fica fora do total
+- `Em falta`: sem produto exato, equivalente ou alternativa permitida
 
 ## Fora de âmbito neste repositório
 
@@ -301,9 +325,9 @@ Passar da definição conceptual para a primeira publicação real de dados com 
 ## Próximos passos imediatos
 
 1. Validar a comparação Continente vs. Pingo Doce com cabazes pequenos.
-2. Rever os produtos do Pingo Doce que ainda não têm equivalência segura.
-3. Confirmar localização física da loja Pingo Doce piloto, se a comparação por proximidade for ativada.
-4. Validar a versão imprimível da secção `Listagem`.
+2. Rever visualmente as novas alternativas controladas e decidir se alguma deve passar a equivalente.
+3. Validar a versão imprimível da secção `Listagem`.
+4. Preparar a ligação da proximidade real por código postal.
 5. Preparar a expansão controlada de produtos quando a base piloto estiver validada.
 
 ## Regra de gestão do roadmap

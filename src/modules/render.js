@@ -689,8 +689,8 @@ function renderEquivalenceReviewSection(comparisonView) {
       <div class="comparison-review-heading">
         <div>
           <p class="eyebrow">Validação</p>
-          <h3>Equivalências a validar</h3>
-          <p>Confirme manualmente os produtos usados como alternativa quando a loja não tem o produto exato.</p>
+          <h3>Correspondências a validar</h3>
+          <p>Confirme manualmente os produtos usados como equivalente ou alternativa quando a loja não tem o produto exato.</p>
         </div>
         <div class="comparison-review-counts" aria-label="Resumo da validação de equivalências">
           <span>${escapeHtml(String(reviews.summary.pending))} por validar</span>
@@ -700,10 +700,11 @@ function renderEquivalenceReviewSection(comparisonView) {
       </div>
       ${
         reviews.rows.length === 0
-          ? `<p class="empty-state">Sem equivalências detetadas no cabaz atual. Os produtos estão como exatos ou em falta.</p>`
+          ? `<p class="empty-state">Sem correspondências controladas no cabaz atual. Os produtos estão como exatos ou em falta.</p>`
           : `<div class="comparison-review-lines">
               ${reviews.rows
                 .map((row) => {
+                  const relationLabel = row.matchType === "alternative" ? "Alternativa" : "Equivalente";
                   const statusLabel =
                     row.status === "approved"
                       ? "Aprovada"
@@ -711,8 +712,10 @@ function renderEquivalenceReviewSection(comparisonView) {
                         ? "A rever"
                         : "Por validar";
                   const confidence =
-                    typeof row.result.confidenceScore === "number"
-                      ? `${Math.round(row.result.confidenceScore * 100)}%`
+                    typeof row.matchRule?.confidenceScore === "number"
+                      ? `${Math.round(row.matchRule.confidenceScore * 100)}%`
+                      : typeof row.result.confidenceScore === "number"
+                        ? `${Math.round(row.result.confidenceScore * 100)}%`
                       : "n/d";
 
                   return `
@@ -736,6 +739,9 @@ function renderEquivalenceReviewSection(comparisonView) {
                         <span>Produto usado</span>
                         <strong>${escapeHtml(row.result.matchedName)}</strong>
                         <small>
+                          ${escapeHtml(relationLabel)}
+                          ${row.countsForTotal ? " · entra no total" : " · fora do total"}
+                          ·
                           ${row.result.brand ? `${escapeHtml(row.result.brand)} · ` : ""}
                           ${escapeHtml(formatSize(row.result.size, row.result.sizeUnit))}
                           ${row.result.notes ? ` · ${escapeHtml(row.result.notes)}` : ""}
@@ -837,7 +843,7 @@ function renderComparisonSection(comparisonView) {
   const activeStoreLogo = getStoreLogoFilename(activeStore.store.id);
   const activeStoreStatusCopy = activeStore.complete
     ? "Cobertura completa do cabaz nesta loja."
-    : `${activeStore.missingCount} ${activeStore.missingCount === 1 ? "produto em falta" : "produtos em falta"} nesta loja.`;
+    : `${activeStore.notPricedCount} ${activeStore.notPricedCount === 1 ? "produto fora do total" : "produtos fora do total"} nesta loja.`;
 
   return `
     <section class="panel-card comparison-panel">
@@ -856,8 +862,8 @@ function renderComparisonSection(comparisonView) {
             const logoFilename = getStoreLogoFilename(entry.store.id);
             const isActive = entry.store.id === comparisonView.activeStoreId;
             const tabStatus =
-              entry.missingCount > 0
-                ? `${entry.missingCount} ${entry.missingCount === 1 ? "em falta" : "em falta"}`
+              entry.notPricedCount > 0
+                ? `${entry.notPricedCount} ${entry.notPricedCount === 1 ? "fora do total" : "fora do total"}`
                 : "Cobertura completa";
 
             return `
@@ -912,6 +918,9 @@ function renderComparisonSection(comparisonView) {
           <span class="comparison-pill comparison-pill-equivalent">
             ${escapeHtml(String(activeStore.equivalentCount))} ${activeStore.equivalentCount === 1 ? "equivalente" : "equivalentes"}
           </span>
+          <span class="comparison-pill comparison-pill-alternative">
+            ${escapeHtml(String(activeStore.alternativeCount))} ${activeStore.alternativeCount === 1 ? "alternativa" : "alternativas"}
+          </span>
           <span class="comparison-pill comparison-pill-missing">
             ${escapeHtml(String(activeStore.missingCount))} ${activeStore.missingCount === 1 ? "em falta" : "em falta"}
           </span>
@@ -924,26 +933,44 @@ function renderComparisonSection(comparisonView) {
               const image = row.result?.image || row.referenceResult?.image || "";
               const imageAlt = row.result ? resultName : referenceName;
               const isEquivalent = row.matchType === "equivalent";
+              const isAlternative = row.matchType === "alternative";
               const isExact = row.matchType === "exact";
               const usesReferenceImage = !row.result && Boolean(row.referenceResult?.image);
               const lineClass = row.result
                 ? isEquivalent
                   ? "comparison-line-equivalent"
-                  : "comparison-line-exact"
+                  : isAlternative
+                    ? "comparison-line-alternative"
+                    : "comparison-line-exact"
                 : "comparison-line-missing";
               const statusClass = row.result
                 ? isEquivalent
                   ? "comparison-status-equivalent"
-                  : "comparison-status-exact"
+                  : isAlternative
+                    ? "comparison-status-alternative"
+                    : "comparison-status-exact"
                 : "comparison-status-missing";
-              const statusLabel = row.result ? (isEquivalent ? "Equivalente" : "Exato") : "Em falta";
+              const statusLabel = row.result
+                ? isEquivalent
+                  ? "Equivalente"
+                  : isAlternative
+                    ? "Alternativa"
+                    : "Exato"
+                : "Em falta";
               const statusHint = row.result
                 ? isEquivalent
-                  ? "Produto alternativo do mesmo grupo de comparação."
-                  : "Mesmo produto canónico encontrado nesta loja."
+                  ? row.matchRule?.reason || "Produto alternativo do mesmo grupo de comparação."
+                  : isAlternative
+                    ? row.matchRule?.reason || "Alternativa controlada; não entra no total do cabaz."
+                    : "Mesmo produto canónico encontrado nesta loja."
                 : usesReferenceImage
                   ? "Imagem do produto no cabaz; sem oferta publicada nesta loja."
                   : "Sem oferta publicada para este produto ou equivalente nesta loja.";
+              const subtotalLabel = row.lineTotal == null
+                ? row.result
+                  ? "Fora do total"
+                  : "—"
+                : formatCurrency(row.lineTotal);
 
               return `
                 <article class="comparison-line ${lineClass}">
@@ -978,7 +1005,7 @@ function renderComparisonSection(comparisonView) {
                   </div>
                   <div class="comparison-line-total">
                     <span>Subtotal</span>
-                    <strong>${row.lineTotal == null ? "—" : formatCurrency(row.lineTotal)}</strong>
+                    <strong>${escapeHtml(subtotalLabel)}</strong>
                   </div>
                   <div class="comparison-line-status">
                     <span class="${statusClass}">

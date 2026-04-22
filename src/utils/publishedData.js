@@ -105,6 +105,31 @@ export function mapPublishedOffers(offers) {
     }));
 }
 
+export function mapPublishedEquivalenceRules(rules) {
+  if (!Array.isArray(rules)) {
+    return [];
+  }
+
+  return rules
+    .filter(
+      (rule) =>
+        isPlainObject(rule) &&
+        rule.active !== false &&
+        rule.sourceProductId &&
+        rule.targetProductId &&
+        ["equivalent", "alternative", "blocked"].includes(String(rule.relation || "").trim())
+    )
+    .map((rule) => ({
+      id: String(rule.ruleId || `${rule.sourceProductId}__${rule.targetProductId}`).trim(),
+      sourceProductId: String(rule.sourceProductId).trim(),
+      targetProductId: String(rule.targetProductId).trim(),
+      relation: String(rule.relation).trim(),
+      bidirectional: rule.bidirectional !== false,
+      confidenceScore: toNumberOrNull(rule.confidenceScore) ?? 0.5,
+      reason: String(rule.reason || "").trim()
+    }));
+}
+
 export async function loadPublishedData(baseUrl) {
   const fetchJson = async (path) => {
     const response = await fetch(`${baseUrl}${path}`);
@@ -116,17 +141,19 @@ export async function loadPublishedData(baseUrl) {
     return response.json();
   };
 
-  const [metadata, stores, catalogProducts, offers] = await Promise.all([
+  const [metadata, stores, catalogProducts, offers, equivalenceRules] = await Promise.all([
     fetchJson("data/metadata.json"),
     fetchJson("data/stores.json"),
     fetchJson("data/catalog-products.json"),
-    fetchJson("data/offers.json")
+    fetchJson("data/offers.json"),
+    fetchJson("data/equivalence-rules.json")
   ]);
 
   return {
     metadata: isPlainObject(metadata) ? metadata : null,
     stores: mapPublishedStores(stores),
     catalogProducts: mapPublishedCatalogProducts(catalogProducts),
-    offers: mapPublishedOffers(offers)
+    offers: mapPublishedOffers(offers),
+    equivalenceRules: mapPublishedEquivalenceRules(equivalenceRules)
   };
 }

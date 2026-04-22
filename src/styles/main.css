@@ -1582,6 +1582,11 @@ textarea {
   color: #9a651c;
 }
 
+.comparison-pill-alternative {
+  background: #eef4ff;
+  color: #41628f;
+}
+
 .comparison-pill-missing {
   background: #fff1ef;
   color: var(--danger);
@@ -1614,6 +1619,11 @@ textarea {
 .comparison-line-equivalent {
   border-color: rgba(202, 143, 45, 0.28);
   background: #fffdf8;
+}
+
+.comparison-line-alternative {
+  border-color: rgba(65, 98, 143, 0.24);
+  background: #fbfdff;
 }
 
 .comparison-line-media {
@@ -1712,6 +1722,11 @@ textarea {
 .comparison-status-equivalent {
   background: #fff7e8;
   color: #9a651c;
+}
+
+.comparison-status-alternative {
+  background: #eef4ff;
+  color: #41628f;
 }
 
 .comparison-status-missing {

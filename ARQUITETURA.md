@@ -135,6 +135,23 @@ Agrupadores de comparação entre variantes equivalentes:
 - `categoryId`
 - `rules`
 
+### `equivalence-rules.json`
+
+Regras controladas entre produtos canónicos que não devem ser agrupados automaticamente:
+
+- `sourceProductId`
+- `targetProductId`
+- `relation`: `equivalent`, `alternative` ou `blocked`
+- `bidirectional`
+- `confidenceScore`
+- `reason`
+
+Interpretação atual:
+
+- `equivalent`: substitui o produto em falta e entra no total
+- `alternative`: é mostrado como sugestão, mas fica fora do total
+- `blocked`: impede correspondência entre os produtos
+
 ### `offers.json`
 
 Ofertas concretas publicadas para consumo da app:
@@ -338,9 +355,9 @@ Comportamento atual:
 - ordena os separadores por total do cabaz, do mais barato para o mais caro
 - mostra os produtos do cabaz dentro do separador da loja selecionada
 - calcula preço, quantidade e subtotal por item
-- assinala produtos encontrados, equivalentes ou em falta
-- apresenta contadores e etiquetas visuais para `Exato`, `Equivalente` e `Em falta`
-- apresenta uma lista de validação manual das equivalências detetadas
+- assinala produtos exatos, equivalentes, alternativas ou em falta
+- apresenta contadores e etiquetas visuais para `Exato`, `Equivalente`, `Alternativa` e `Em falta`
+- apresenta uma lista de validação manual das correspondências controladas detetadas
 - guarda localmente a decisão por equivalência (`Aprovada` ou `A rever`) em `localStorage`
 
 Nesta fase piloto existem duas insígnias publicadas: Continente Bom Dia Armação de Pêra e Pingo Doce Armação de Pêra. As ofertas continuam a ser importadas manualmente, mas ambas já apontam para lojas físicas piloto no concelho de Silves.

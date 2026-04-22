@@ -13,6 +13,7 @@ public/data/
   store-locations.json
   catalog-products.json
   comparison-groups.json
+  equivalence-rules.json
   offers.json
   codigos_postais_portugal.txt
 ```
@@ -90,6 +91,27 @@ Campos principais:
 - `label`: nome legível do grupo
 - `categoryId`: categoria normalizada
 - `rules`: notas ou regras de comparação
+
+## `equivalence-rules.json`
+
+Regras explícitas para controlar correspondências entre produtos que não pertencem ao mesmo produto canónico.
+
+Campos principais:
+
+- `ruleId`: identificador estável da regra
+- `sourceProductId`: produto de origem
+- `targetProductId`: produto de destino
+- `relation`: tipo de relação (`equivalent`, `alternative` ou `blocked`)
+- `bidirectional`: indica se a regra vale nos dois sentidos
+- `confidenceScore`: confiança manual da regra
+- `reason`: justificação curta apresentada na validação
+- `active`: indica se a regra está ativa
+
+Regras de interpretação na app:
+
+- `equivalent`: entra no total do cabaz quando não existe produto exato na loja
+- `alternative`: aparece como sugestão, mas fica fora do total do cabaz
+- `blocked`: impede que dois produtos sejam tratados como correspondência
 
 ## `offers.json`
 

@@ -1,0 +1,62 @@
+[
+  {
+    "ruleId": "arroz-basmati-cacarola-500g__arroz-basmati-pingo-doce-1kg",
+    "sourceProductId": "arroz-basmati-cacarola-500g",
+    "targetProductId": "arroz-basmati-pingo-doce-1kg",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.82,
+    "reason": "Mesmo tipo de arroz, mas marca e formato diferentes. Deve aparecer como alternativa, sem entrar no total do cabaz.",
+    "active": true
+  },
+  {
+    "ruleId": "arroz-carolino-caravela-continente-1kg__arroz-carolino-bom-sucesso-1kg",
+    "sourceProductId": "arroz-carolino-caravela-continente-1kg",
+    "targetProductId": "arroz-carolino-bom-sucesso-1kg",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.86,
+    "reason": "Mesmo tipo e formato, mas marca própria e marca nacional. Mantido como alternativa controlada.",
+    "active": true
+  },
+  {
+    "ruleId": "douradinhos-peixe-840g-30un__douradinhos-peixe-iglo-420g",
+    "sourceProductId": "douradinhos-peixe-840g-30un",
+    "targetProductId": "douradinhos-peixe-iglo-420g",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.9,
+    "reason": "Mesmo produto e marca normalizada, mas embalagem de tamanho diferente. Comparável pelo preço unitário, não equivalente no total.",
+    "active": true
+  },
+  {
+    "ruleId": "capsulas-cafe-delta-q-int-10-100un__capsulas-cafe-delta-q-qalidus-80un",
+    "sourceProductId": "capsulas-cafe-delta-q-int-10-100un",
+    "targetProductId": "capsulas-cafe-delta-q-qalidus-80un",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.84,
+    "reason": "Mesmo universo de produto e marca, mas pack e intensidade comercial diferentes. Deve ser alternativa.",
+    "active": true
+  },
+  {
+    "ruleId": "lombos-bacalhau-ultracongelado-550g-2un__lombos-bacalhau-congelados-pingo-doce-800g",
+    "sourceProductId": "lombos-bacalhau-ultracongelado-550g-2un",
+    "targetProductId": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.76,
+    "reason": "Produto semelhante, mas marca, cura e formato diferentes. Útil como alternativa, não como equivalente direto.",
+    "active": true
+  },
+  {
+    "ruleId": "massa-esparguete-milaneza-1kg__massa-esparguete-nacional-725g",
+    "sourceProductId": "massa-esparguete-milaneza-1kg",
+    "targetProductId": "massa-esparguete-nacional-725g",
+    "relation": "alternative",
+    "bidirectional": true,
+    "confidenceScore": 0.8,
+    "reason": "Mesmo tipo de massa, mas marca e formato diferentes. Deve ser mostrada como alternativa.",
+    "active": true
+  }
+]

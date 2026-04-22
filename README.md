@@ -81,7 +81,7 @@ Notas:
 
 - `Categorias`: explorar produtos por categoria quando existir ingestão automática de dados reais
 - `Marcas`: explorar produtos por marca quando existir ingestão automática de dados reais
-- `Comparação`: afinar regras de equivalência quando existirem mais produtos e lojas reais
+- `Comparação`: expandir regras de equivalência e alternativas à medida que existirem mais produtos e lojas reais
 
 ## Estado do produto
 
@@ -119,7 +119,10 @@ O frontend lê diretamente os ficheiros em `public/data/`:
 - `store-locations.json`
 - `catalog-products.json`
 - `comparison-groups.json`
+- `equivalence-rules.json`
 - `offers.json`
+
+O ficheiro `equivalence-rules.json` controla casos em que produtos semelhantes não devem ser comparados automaticamente: `equivalent` entra no total, `alternative` aparece como sugestão fora do total e `blocked` impede a correspondência.
 
 Campos relevantes por oferta em `offers.json`:
 
