@@ -11,18 +11,5 @@
     "lng": -8.3624628,
     "active": true,
     "notes": "Loja piloto confirmada pelo utilizador. Coordenadas extraidas do link Google Maps fornecido pelo utilizador."
-  },
-  {
-    "locationId": "pingo-doce-armacao-de-pera",
-    "storeId": "pingo-doce",
-    "name": "Pingo Doce Armação de Pêra",
-    "address": "Urbanização Vila Nova II, Lugar Da Torre C1",
-    "postalCode": "8365-184",
-    "locality": "Armação de Pêra",
-    "municipality": "Silves",
-    "lat": 37.106772611822535,
-    "lng": -8.359752053451286,
-    "active": true,
-    "notes": "Loja piloto confirmada pelo utilizador através de morada e coordenadas."
   }
 ]
