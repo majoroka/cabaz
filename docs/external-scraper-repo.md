@@ -150,6 +150,8 @@ Este exemplo é intencionalmente conceptual. Quando criarmos o repositório real
 
 ## Intervenção manual necessária
 
+O passo-a-passo operacional está documentado em [setup-cabaz-data.md](./setup-cabaz-data.md).
+
 Quando avançarmos para o repositório real, o utilizador deve:
 
 1. Criar no GitHub um novo repositório, por exemplo `cabaz-data` ou `cabaz-scraper`.

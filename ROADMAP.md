@@ -330,6 +330,7 @@ Preparar o contrato e a validação local para um scraper externo gerar dados se
 - [x] workflow `Validate Data` para validar PRs que alterem `public/data/`
 - [x] validação dos dados publicada também no workflow de deploy
 - [x] template copiável para o futuro repositório `cabaz-data` em `examples/external-scraper-repo/`
+- [x] guia operacional para criação do repositório `cabaz-data`
 
 ### Intervenção necessária do utilizador
 
