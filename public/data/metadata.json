@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-23T14:10:34.768Z",
+  "generatedAt": "2026-04-23T14:39:50.351Z",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "pilot_copied_from_cabaz",
+  "publicationStatus": "scraper_mvp_continente_2_products",
   "storesPublished": 2,
   "storeLocationsPublished": 2,
   "offersPublished": 40,
@@ -13,13 +13,15 @@
   "postalCodesPilotPublished": 224,
   "notes": [
     "Publicacao piloto gerada pelo repositorio cabaz-data.",
-    "Nesta fase ainda nao existe scraping real; os dados sao copiados de cabaz/public/data para testar o fluxo."
+    "MVP de scraping real: recolha automatica de 2 produtos do Continente.",
+    "Os restantes produtos continuam preservados a partir da base atual de cabaz/public/data ate haver coletores adicionais."
   ],
   "sources": [
     {
       "storeId": "continente",
-      "status": "manual_real_published",
-      "lastUpdated": "2026-04-19T23:00:00+01:00"
+      "status": "scraper_mvp",
+      "lastUpdated": "2026-04-23T14:39:50.351Z",
+      "productsScraped": 2
     },
     {
       "storeId": "pingo-doce",
