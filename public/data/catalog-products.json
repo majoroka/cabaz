@@ -253,5 +253,86 @@
       "peito frango 1kg"
     ],
     "active": true
+  },
+  {
+    "productId": "arroz-basmati-pingo-doce-1kg",
+    "canonicalName": "Arroz basmati Pingo Doce 1kg",
+    "comparisonGroup": "arroz-basmati-pingo-doce-1kg",
+    "categoryId": "mercearia",
+    "brand": "Pingo Doce",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "basmati",
+      "pingo",
+      "doce"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "carolino",
+      "integral"
+    ],
+    "aliases": [
+      "arroz basmati pingo doce",
+      "pingo doce basmati 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "douradinhos-peixe-iglo-420g",
+    "canonicalName": "Douradinhos de peixe Iglo 420g",
+    "comparisonGroup": "douradinhos-peixe-iglo-420g",
+    "categoryId": "congelados",
+    "brand": "Iglo",
+    "isPrivateLabel": false,
+    "size": 420,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "douradinhos",
+      "peixe",
+      "iglo"
+    ],
+    "blockedTokens": [
+      "frango",
+      "nuggets"
+    ],
+    "aliases": [
+      "douradinhos de peixe congelados capitao iglo",
+      "douradinhos de peixe iglo 420g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-uht-meio-gordo-pingo-doce-1l",
+    "canonicalName": "Leite UHT meio-gordo Pingo Doce 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-marca-propria-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Pingo Doce",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "uht",
+      "meio",
+      "gordo",
+      "pingo",
+      "doce"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "fresco"
+    ],
+    "aliases": [
+      "leite uht meio gordo pingo doce",
+      "leite meio gordo pingo doce 1l"
+    ],
+    "active": true
   }
 ]

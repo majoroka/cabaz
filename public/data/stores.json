@@ -1,5 +1,12 @@
 [
   {
+    "storeId": "pingo-doce",
+    "name": "Pingo Doce",
+    "website": "https://www.pingodoce.pt",
+    "logo": "./lojas/pingodoce.png",
+    "active": true
+  },
+  {
     "storeId": "continente",
     "name": "Continente",
     "website": "https://www.continente.pt",

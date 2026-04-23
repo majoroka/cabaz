@@ -18,7 +18,7 @@
     "notes": "emb. 500 gr",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:48.710Z"
+    "lastUpdated": "2026-04-23T18:49:34.292Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-uht-meio-gordo-continente-1l",
@@ -39,7 +39,7 @@
     "notes": "emb. 1 lt",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:49.143Z"
+    "lastUpdated": "2026-04-23T18:49:34.785Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-banana-1kg",
@@ -60,7 +60,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:49.644Z"
+    "lastUpdated": "2026-04-23T18:49:35.194Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-bolachas-maria-800g-4un",
@@ -81,7 +81,7 @@
     "notes": "emb. 800 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:50.122Z"
+    "lastUpdated": "2026-04-23T18:49:35.622Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-ovos-ar-livre-classe-ml-continente-12un",
@@ -102,7 +102,7 @@
     "notes": "emb. 12 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:50.631Z"
+    "lastUpdated": "2026-04-23T18:49:36.064Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-abrilhantador-maquina-loica-1l",
@@ -123,7 +123,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:51.119Z"
+    "lastUpdated": "2026-04-23T18:49:36.539Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-arroz-carolino-caravela-continente-1kg",
@@ -144,7 +144,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:51.590Z"
+    "lastUpdated": "2026-04-23T18:49:36.942Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-capsulas-cafe-delta-q-int-10-100un",
@@ -165,7 +165,7 @@
     "notes": "emb. 100 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:52.119Z"
+    "lastUpdated": "2026-04-23T18:49:37.460Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-douradinhos-peixe-840g-30un",
@@ -186,7 +186,7 @@
     "notes": "emb. 840 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:52.630Z"
+    "lastUpdated": "2026-04-23T18:49:37.906Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-peito-frango-vacuo-1kg",
@@ -207,6 +207,111 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T18:19:53.087Z"
+    "lastUpdated": "2026-04-23T18:49:38.307Z"
+  },
+  {
+    "offerId": "pingo-doce-armacao-de-pera-banana-1kg",
+    "storeId": "pingo-doce",
+    "locationId": "pingo-doce-armacao-de-pera",
+    "productId": "banana-1kg",
+    "scrapedName": "Banana Importada",
+    "brand": "Nossa Fruta e Legumes",
+    "categoryId": "fruta_legumes",
+    "price": 1.29,
+    "size": 1,
+    "sizeUnit": "kg",
+    "unitPrice": 1.29,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.pingodoce.pt/home/produtos/frutas-e-vegetais/frutas/fruta-da-epoca/banana-importada-nossa-fruta-e-legumes-43218.html?",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw1196a051/images/large/43218_d2f66a2c2c29a23ea2dd73c9d752a988.png",
+    "notes": "0.2 Kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T18:49:38.855Z"
+  },
+  {
+    "offerId": "pingo-doce-armacao-de-pera-arroz-basmati-pingo-doce-1kg",
+    "storeId": "pingo-doce",
+    "locationId": "pingo-doce-armacao-de-pera",
+    "productId": "arroz-basmati-pingo-doce-1kg",
+    "scrapedName": "Arroz Basmati",
+    "brand": "Pingo Doce",
+    "categoryId": "mercearia",
+    "price": 1.99,
+    "size": 1,
+    "sizeUnit": "kg",
+    "unitPrice": 1.99,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.pingodoce.pt/home/produtos/mercearia/arroz-massa-e-leguminosas/arroz/arroz-basmati-pingo-doce-651101.html?",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dwa4511aa5/images/large/651101_a04370455f4a1deddb4ab4f9ae27d0e2.png",
+    "notes": "1 Kg | 1,99 €/Kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T18:49:39.281Z"
+  },
+  {
+    "offerId": "pingo-doce-armacao-de-pera-douradinhos-peixe-iglo-420g",
+    "storeId": "pingo-doce",
+    "locationId": "pingo-doce-armacao-de-pera",
+    "productId": "douradinhos-peixe-iglo-420g",
+    "scrapedName": "Douradinhos de Peixe Congelados",
+    "brand": "Iglo",
+    "categoryId": "congelados",
+    "price": 4.99,
+    "size": 420,
+    "sizeUnit": "g",
+    "unitPrice": 11.88,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.pingodoce.pt/home/produtos/congelados/refeicoes-e-salgados/douradinhos-e-panados-de-peixe/douradinhos-de-peixe-congelados-capitao-iglo-815243.html?",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw7bc4e5b9/images/large/815243_641881191857058ef983fa34ddcb9365.png",
+    "notes": "0.42 Kg | 11,88 €/Kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T18:49:39.723Z"
+  },
+  {
+    "offerId": "pingo-doce-armacao-de-pera-leite-uht-meio-gordo-pingo-doce-1l",
+    "storeId": "pingo-doce",
+    "locationId": "pingo-doce-armacao-de-pera",
+    "productId": "leite-uht-meio-gordo-pingo-doce-1l",
+    "scrapedName": "Leite UHT Meio Gordo",
+    "brand": "Pingo Doce",
+    "categoryId": "lacteos_ovos",
+    "price": 0.86,
+    "size": 1,
+    "sizeUnit": "L",
+    "unitPrice": 0.86,
+    "unit": "L",
+    "currency": "EUR",
+    "url": "https://www.pingodoce.pt/home/produtos/leite-e-bebidas-vegetais%E2%80%8B/leite/leite-meio-gordo-e-gordo%E2%80%8B/leite-uht-meio-gordo-pingo-doce-48150.html?",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dwd945913a/images/large/48150_1_caf5b3c16439abbb06c0f2c93717a573.png",
+    "notes": "1 L | 0,86 €/L",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T18:49:40.122Z"
+  },
+  {
+    "offerId": "pingo-doce-armacao-de-pera-peito-frango-vacuo-1kg",
+    "storeId": "pingo-doce",
+    "locationId": "pingo-doce-armacao-de-pera",
+    "productId": "peito-frango-vacuo-1kg",
+    "scrapedName": "Peito de Frango Embalado",
+    "brand": "Pingo Doce",
+    "categoryId": "talho",
+    "price": 6.59,
+    "size": 1,
+    "sizeUnit": "kg",
+    "unitPrice": 6.59,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.pingodoce.pt/home/produtos/talho/aves/frango/peito-de-frango-embalado-pingo-doce-465789.html?",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw0e45585e/images/large/465789_0ccb62ebca09dfa7f155b59332cad2eb.png",
+    "notes": "0.6 Kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T18:49:40.509Z"
   }
 ]
