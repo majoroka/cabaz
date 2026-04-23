@@ -126,5 +126,132 @@
       "ovos ar livre continente 12 un"
     ],
     "active": true
+  },
+  {
+    "productId": "abrilhantador-maquina-loica-1l",
+    "canonicalName": "Abrilhantador máquina loiça Continente 1L",
+    "comparisonGroup": "abrilhantador-maquina-loica-1l",
+    "categoryId": "limpeza_casa",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "abrilhantador",
+      "maquina",
+      "loica",
+      "continente"
+    ],
+    "blockedTokens": [
+      "detergente",
+      "sal"
+    ],
+    "aliases": [
+      "abrilhantador maquina loica power continente",
+      "abrilhantador continente 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-carolino-caravela-continente-1kg",
+    "canonicalName": "Arroz carolino Caravela Continente 1kg",
+    "comparisonGroup": "arroz-carolino-caravela-continente-1kg",
+    "categoryId": "mercearia",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "carolino",
+      "caravela",
+      "continente"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz carolino caravela continente",
+      "caravela continente 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "capsulas-cafe-delta-q-int-10-100un",
+    "canonicalName": "Cápsulas Delta Q Qalidus Int 10 (100 un)",
+    "comparisonGroup": "capsulas-cafe-delta-q-int-10-100un",
+    "categoryId": "bebidas",
+    "brand": "Delta Q",
+    "isPrivateLabel": false,
+    "size": 100,
+    "sizeUnit": "un",
+    "packCount": 100,
+    "requiredTokens": [
+      "capsulas",
+      "cafe",
+      "delta",
+      "qalidus"
+    ],
+    "blockedTokens": [
+      "descafeinado"
+    ],
+    "aliases": [
+      "capsulas de cafe qalidus int 10 delta q",
+      "delta q qalidus 100 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "douradinhos-peixe-840g-30un",
+    "canonicalName": "Douradinhos de peixe 840g (30 un)",
+    "comparisonGroup": "douradinhos-peixe-840g-30un",
+    "categoryId": "congelados",
+    "brand": "Iglo",
+    "isPrivateLabel": false,
+    "size": 840,
+    "sizeUnit": "g",
+    "packCount": 30,
+    "requiredTokens": [
+      "douradinhos",
+      "peixe"
+    ],
+    "blockedTokens": [
+      "frango",
+      "nuggets",
+      "pescada"
+    ],
+    "aliases": [
+      "douradinhos de peixe capitao iglo",
+      "douradinhos peixe 840g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "peito-frango-vacuo-1kg",
+    "canonicalName": "Peito de frango embalado 1kg",
+    "comparisonGroup": "peito-frango-vacuo-1kg",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "peito",
+      "frango"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "peito de frango embalado",
+      "peito de frango em vacuo",
+      "peito frango 1kg"
+    ],
+    "active": true
   }
 ]
