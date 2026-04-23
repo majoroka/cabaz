@@ -20,5 +20,38 @@
       "packCount": 1
     },
     "active": true
+  },
+  {
+    "comparisonGroupId": "banana-1kg",
+    "label": "Banana 1kg",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "bolachas-maria-800g-4un",
+    "label": "Bolachas Maria Continente 800g (4 un)",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 800,
+      "sizeUnit": "g",
+      "packCount": 4
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "ovos-ar-livre-classe-ml-12un",
+    "label": "Ovos de ar livre classe M/L Continente (12 un)",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 12,
+      "sizeUnit": "un",
+      "packCount": 12
+    },
+    "active": true
   }
 ]
