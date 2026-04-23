@@ -1,27 +1,27 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-23T15:22:20.933Z",
+  "generatedAt": "2026-04-23T18:19:53.087Z",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "scraper_mvp_continente_5_products",
+  "publicationStatus": "scraper_mvp_continente_10_products",
   "storesPublished": 1,
   "storeLocationsPublished": 1,
-  "offersPublished": 5,
-  "catalogProductsPublished": 5,
-  "comparisonGroupsPublished": 5,
+  "offersPublished": 10,
+  "catalogProductsPublished": 10,
+  "comparisonGroupsPublished": 10,
   "equivalenceRulesPublished": 0,
   "postalCodesPilotPublished": 224,
   "notes": [
     "Publicacao piloto gerada pelo repositorio cabaz-data.",
-    "MVP de scraping real: recolha automatica de 5 produtos do Continente.",
-    "Dataset limitado a 1 loja e 5 produtos para validar o fluxo antes de expandir."
+    "MVP de scraping real: recolha automatica de 10 produtos do Continente.",
+    "Dataset limitado a 1 loja e 10 produtos para validar o fluxo antes de expandir."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-23T15:22:20.933Z",
-      "productsScraped": 5
+      "lastUpdated": "2026-04-23T18:19:53.087Z",
+      "productsScraped": 10
     }
   ]
 }

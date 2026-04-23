@@ -53,5 +53,60 @@
       "packCount": 12
     },
     "active": true
+  },
+  {
+    "comparisonGroupId": "abrilhantador-maquina-loica-1l",
+    "label": "Abrilhantador máquina loiça Continente 1L",
+    "categoryId": "limpeza_casa",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-carolino-caravela-continente-1kg",
+    "label": "Arroz carolino Caravela Continente 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "capsulas-cafe-delta-q-int-10-100un",
+    "label": "Cápsulas Delta Q Qalidus Int 10 (100 un)",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 100,
+      "sizeUnit": "un",
+      "packCount": 100
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "douradinhos-peixe-840g-30un",
+    "label": "Douradinhos de peixe 840g (30 un)",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 840,
+      "sizeUnit": "g",
+      "packCount": 30
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "peito-frango-vacuo-1kg",
+    "label": "Peito de frango embalado 1kg",
+    "categoryId": "talho",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
   }
 ]
