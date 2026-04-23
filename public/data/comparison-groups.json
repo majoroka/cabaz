@@ -110,6 +110,61 @@
     "active": true
   },
   {
+    "comparisonGroupId": "arroz-carolino-campo-largo-1kg",
+    "label": "Arroz Carolino Campo Largo 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "leite-meio-gordo-pack-milbona-8l",
+    "label": "Leite meio-gordo Milbona Pack 8x1L",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 8,
+      "sizeUnit": "L",
+      "packCount": 8
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "aros-cebola-mcennedy-450g",
+    "label": "Aros de cebola McEnnedy 450g",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 450,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "asas-frango-mcennedy-750g",
+    "label": "Asas de frango McEnnedy 750g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 750,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "batata-conservacao-vermelha-3kg",
+    "label": "Batata de conservação vermelha 3kg",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 3,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "arroz-basmati-pingo-doce-1kg",
     "label": "Arroz basmati Pingo Doce 1kg",
     "categoryId": "mercearia",

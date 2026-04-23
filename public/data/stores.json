@@ -1,5 +1,12 @@
 [
   {
+    "storeId": "lidl",
+    "name": "Lidl",
+    "website": "https://www.lidl.pt",
+    "logo": "./lojas/lidl.png",
+    "active": true
+  },
+  {
     "storeId": "pingo-doce",
     "name": "Pingo Doce",
     "website": "https://www.pingodoce.pt",
