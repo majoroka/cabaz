@@ -51,5 +51,80 @@
       "leite meio gordo continente 1l"
     ],
     "active": true
+  },
+  {
+    "productId": "banana-1kg",
+    "canonicalName": "Banana 1kg",
+    "comparisonGroup": "banana-1kg",
+    "categoryId": "fruta_legumes",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "banana"
+    ],
+    "blockedTokens": [
+      "madura",
+      "bio"
+    ],
+    "aliases": [
+      "banana",
+      "banana 1kg",
+      "banana importada"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-maria-800g-4un",
+    "canonicalName": "Bolachas Maria Continente 800g (4 un)",
+    "comparisonGroup": "bolachas-maria-800g-4un",
+    "categoryId": "snacks_doces",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "bolachas",
+      "maria",
+      "continente"
+    ],
+    "blockedTokens": [
+      "chocolate",
+      "torrada"
+    ],
+    "aliases": [
+      "bolachas maria continente",
+      "bolacha maria continente 800g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-ar-livre-classe-ml-continente-12un",
+    "canonicalName": "Ovos de ar livre classe M/L Continente (12 un)",
+    "comparisonGroup": "ovos-ar-livre-classe-ml-12un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "ovos",
+      "ar",
+      "livre",
+      "continente"
+    ],
+    "blockedTokens": [
+      "duzia",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos de ar livre classe ml continente",
+      "ovos ar livre continente 12 un"
+    ],
+    "active": true
   }
 ]
