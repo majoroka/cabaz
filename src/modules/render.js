@@ -1276,6 +1276,8 @@ function renderMainSection(viewModel) {
 }
 
 export function renderApp({ state, viewModel }) {
+  const basketItemCount = viewModel.summary?.basketItemCount ?? state.basket.length ?? 0;
+
   return `
     <div class="app-shell">
       <aside class="app-nav" aria-label="Navegação principal">
@@ -1292,7 +1294,14 @@ export function renderApp({ state, viewModel }) {
                 data-action="set-section"
                 data-section="${escapeHtml(item.id)}"
               >
-                ${escapeHtml(item.label)}
+                <span>${escapeHtml(item.label)}</span>
+                ${
+                  item.id === "cabaz"
+                    ? `<span class="nav-badge" aria-label="${escapeHtml(
+                        `${basketItemCount} ${basketItemCount === 1 ? "produto no cabaz" : "produtos no cabaz"}`
+                      )}">${escapeHtml(String(basketItemCount))}</span>`
+                    : ""
+                }
               </button>
             `
           ).join("")}

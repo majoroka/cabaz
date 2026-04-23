@@ -1105,7 +1105,6 @@ export function createApp(rootElement) {
     }
 
     const catalogProduct = state.catalogProducts.find((entry) => entry.id === result.basketItemId) || null;
-    const productName = catalogProduct?.name || result.matchedName;
     const normalizedQuantity = Math.max(1, Number.parseInt(String(quantity || "1"), 10) || 1);
     const existingIndex = state.basket.findIndex((entry) => entry.id === result.basketItemId);
 
@@ -1119,21 +1118,20 @@ export function createApp(rootElement) {
         preferredBrand: existingItem.preferredBrand || result.brand || catalogProduct?.preferredBrand || "",
         notes: existingItem.notes || result.notes || ""
       });
-      setNotice(`Quantidade atualizada para "${productName}".`);
     } else {
       state.basket.unshift({
         id: result.basketItemId,
-        name: productName,
+        name: catalogProduct?.name || result.matchedName,
         quantity: normalizedQuantity,
         preferredStore: result.store,
         category: normalizeCategoryId(catalogProduct?.category || "sem_categoria"),
         preferredBrand: result.brand || catalogProduct?.preferredBrand || "",
         notes: result.notes || ""
       });
-      setNotice(`Item "${productName}" adicionado ao cabaz.`);
     }
 
     persistJson(STORAGE_KEYS.basket, state.basket);
+    clearMessages();
     render();
   }
 

@@ -109,6 +109,8 @@ button:disabled,
 .nav-link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
   min-height: 46px;
   padding: 0 18px;
@@ -127,6 +129,26 @@ button:disabled,
     transform 0.18s ease;
 }
 
+.nav-link span:first-child {
+  min-width: 0;
+}
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(63, 167, 129, 0.12);
+  color: var(--accent-strong);
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
 .nav-link:hover {
   transform: translateX(2px);
   background: var(--surface-muted);
@@ -136,6 +158,10 @@ button:disabled,
 .nav-link-active {
   background: var(--accent-soft);
   color: var(--accent-strong);
+}
+
+.nav-link-active .nav-badge {
+  background: rgba(63, 167, 129, 0.22);
 }
 
 .app-main {
@@ -2073,6 +2099,13 @@ textarea {
   .nav-link {
     min-height: 38px;
     white-space: nowrap;
+  }
+
+  .nav-badge {
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 0.78rem;
   }
 
   .hero {
