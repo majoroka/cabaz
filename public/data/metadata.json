@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-21T00:00:00+01:00",
+  "generatedAt": "2026-04-23T14:10:34.768Z",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "manual_real_v3_two_stores",
+  "publicationStatus": "pilot_copied_from_cabaz",
   "storesPublished": 2,
   "storeLocationsPublished": 2,
   "offersPublished": 40,
@@ -12,13 +12,8 @@
   "equivalenceRulesPublished": 6,
   "postalCodesPilotPublished": 224,
   "notes": [
-    "Publicacao manual real consolidada com base no ficheiro 20produtos-2lojas.csv fornecido pelo utilizador.",
-    "Continente mantem os 20 produtos piloto ja publicados; Pingo Doce foi acrescentado como segunda insígnia piloto.",
-    "Pingo Doce associado a loja fisica piloto em Armacao de Pera, no concelho de Silves.",
-    "Codigos postais piloto publicados para o prefixo 8365, evitando carregar a base nacional durante a escrita.",
-    "Iglo e Capitao Iglo foram normalizados como a mesma marca: Iglo.",
-    "Equivalencias controladas publicadas para distinguir equivalente, alternativa e produto em falta.",
-    "Produtos do Pingo Doce sem equivalencia segura foram criados como produtos canonicos proprios para evitar comparacoes erradas."
+    "Publicacao piloto gerada pelo repositorio cabaz-data.",
+    "Nesta fase ainda nao existe scraping real; os dados sao copiados de cabaz/public/data para testar o fluxo."
   ],
   "sources": [
     {
