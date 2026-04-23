@@ -54,6 +54,17 @@ a {
   text-decoration: none;
 }
 
+a[href],
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
@@ -1032,6 +1043,7 @@ textarea {
   background: linear-gradient(135deg, #3d9a81 0%, #2f7e6b 100%);
   color: #ffffff;
   box-shadow: 0 12px 28px rgba(47, 126, 107, 0.24);
+  cursor: pointer;
 }
 
 .catalog-add-button span {
