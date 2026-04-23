@@ -1,32 +1,38 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-23T19:59:14.164Z",
+  "generatedAt": "2026-04-23T20:34:35.110Z",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "scraper_mvp_2_stores_20_products",
-  "storesPublished": 2,
-  "storeLocationsPublished": 2,
-  "offersPublished": 20,
-  "catalogProductsPublished": 18,
-  "comparisonGroupsPublished": 16,
+  "publicationStatus": "scraper_mvp_3_stores_25_products",
+  "storesPublished": 3,
+  "storeLocationsPublished": 3,
+  "offersPublished": 25,
+  "catalogProductsPublished": 23,
+  "comparisonGroupsPublished": 21,
   "equivalenceRulesPublished": 0,
   "postalCodesPilotPublished": 224,
   "notes": [
     "Publicacao piloto gerada pelo repositorio cabaz-data.",
-    "MVP de scraping real: recolha automatica de 20 produtos em 2 lojas.",
-    "Dataset limitado a 2 lojas e 20 produtos para validar o fluxo antes de expandir."
+    "MVP de scraping real: recolha automatica de 25 produtos em 3 lojas.",
+    "Dataset limitado a 3 lojas e 25 produtos para validar o fluxo antes de expandir."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-23T19:59:14.164Z",
+      "lastUpdated": "2026-04-23T20:34:35.110Z",
       "productsScraped": 10
+    },
+    {
+      "storeId": "lidl",
+      "status": "scraper_mvp",
+      "lastUpdated": "2026-04-23T20:34:35.110Z",
+      "productsScraped": 5
     },
     {
       "storeId": "pingo-doce",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-23T19:59:14.164Z",
+      "lastUpdated": "2026-04-23T20:34:35.110Z",
       "productsScraped": 10
     }
   ]

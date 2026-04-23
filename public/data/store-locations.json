@@ -1,5 +1,18 @@
 [
   {
+    "locationId": "lidl-armacao-de-pera",
+    "storeId": "lidl",
+    "name": "Lidl Armação de Pêra",
+    "address": "Avenida General Humberto Delgado 2",
+    "postalCode": "8365-138",
+    "locality": "Armação de Pêra",
+    "municipality": "Silves",
+    "lat": 37.10399,
+    "lng": -8.36293,
+    "active": true,
+    "notes": "Loja piloto confirmada pelo payload público oficial do Lidl para a pesquisa de loja em Silves."
+  },
+  {
     "locationId": "pingo-doce-armacao-de-pera",
     "storeId": "pingo-doce",
     "name": "Pingo Doce Armação de Pêra",

@@ -255,6 +255,134 @@
     "active": true
   },
   {
+    "productId": "arroz-carolino-campo-largo-1kg",
+    "canonicalName": "Arroz Carolino Campo Largo 1kg",
+    "comparisonGroup": "arroz-carolino-campo-largo-1kg",
+    "categoryId": "mercearia",
+    "brand": "Campo Largo",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "carolino",
+      "campo",
+      "largo"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz carolino campo largo",
+      "campo largo carolino 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-pack-milbona-8l",
+    "canonicalName": "Leite meio-gordo Milbona Pack 8x1L",
+    "comparisonGroup": "leite-meio-gordo-pack-milbona-8l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Milbona",
+    "isPrivateLabel": true,
+    "size": 8,
+    "sizeUnit": "L",
+    "packCount": 8,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "milbona"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "proteina"
+    ],
+    "aliases": [
+      "leite meio gordo pack milbona",
+      "milbona leite meio gordo 8x1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "aros-cebola-mcennedy-450g",
+    "canonicalName": "Aros de cebola McEnnedy 450g",
+    "comparisonGroup": "aros-cebola-mcennedy-450g",
+    "categoryId": "snacks_doces",
+    "brand": "McEnnedy",
+    "isPrivateLabel": true,
+    "size": 450,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "aros",
+      "cebola",
+      "mcennedy"
+    ],
+    "blockedTokens": [
+      "batata"
+    ],
+    "aliases": [
+      "aros de cebola mcennedy",
+      "argolas cebola mcennedy 450g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "asas-frango-mcennedy-750g",
+    "canonicalName": "Asas de frango McEnnedy 750g",
+    "comparisonGroup": "asas-frango-mcennedy-750g",
+    "categoryId": "congelados",
+    "brand": "McEnnedy",
+    "isPrivateLabel": true,
+    "size": 750,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "asas",
+      "frango",
+      "mcennedy"
+    ],
+    "blockedTokens": [
+      "cordon",
+      "bife",
+      "hamburguer"
+    ],
+    "aliases": [
+      "asas de frango mcennedy",
+      "mcennedy asas frango 750g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "batata-conservacao-vermelha-3kg",
+    "canonicalName": "Batata de conservação vermelha 3kg",
+    "comparisonGroup": "batata-conservacao-vermelha-3kg",
+    "categoryId": "fruta_legumes",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 3,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "batata",
+      "vermelha"
+    ],
+    "blockedTokens": [
+      "doce",
+      "frita"
+    ],
+    "aliases": [
+      "batata de conservacao vermelha",
+      "batata vermelha 3kg"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-basmati-pingo-doce-1kg",
     "canonicalName": "Arroz basmati Pingo Doce 1kg",
     "comparisonGroup": "arroz-basmati-pingo-doce-1kg",

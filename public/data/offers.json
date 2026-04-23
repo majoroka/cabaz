@@ -18,7 +18,7 @@
     "notes": "emb. 500 gr",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:03.270Z"
+    "lastUpdated": "2026-04-23T20:34:24.207Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-uht-meio-gordo-continente-1l",
@@ -39,7 +39,7 @@
     "notes": "emb. 1 lt",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:03.858Z"
+    "lastUpdated": "2026-04-23T20:34:24.773Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-banana-1kg",
@@ -60,7 +60,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:04.458Z"
+    "lastUpdated": "2026-04-23T20:34:25.275Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-bolachas-maria-800g-4un",
@@ -81,7 +81,7 @@
     "notes": "emb. 800 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:05.092Z"
+    "lastUpdated": "2026-04-23T20:34:25.771Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-ovos-ar-livre-classe-ml-continente-12un",
@@ -102,7 +102,7 @@
     "notes": "emb. 12 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:05.807Z"
+    "lastUpdated": "2026-04-23T20:34:26.301Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-abrilhantador-maquina-loica-1l",
@@ -123,7 +123,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:06.377Z"
+    "lastUpdated": "2026-04-23T20:34:26.838Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-arroz-carolino-caravela-continente-1kg",
@@ -144,7 +144,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:07.023Z"
+    "lastUpdated": "2026-04-23T20:34:27.341Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-capsulas-cafe-delta-q-int-10-100un",
@@ -165,7 +165,7 @@
     "notes": "emb. 100 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:07.983Z"
+    "lastUpdated": "2026-04-23T20:34:27.878Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-douradinhos-peixe-840g-30un",
@@ -186,7 +186,7 @@
     "notes": "emb. 840 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:08.598Z"
+    "lastUpdated": "2026-04-23T20:34:28.381Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-peito-frango-vacuo-1kg",
@@ -207,7 +207,112 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:09.175Z"
+    "lastUpdated": "2026-04-23T20:34:28.923Z"
+  },
+  {
+    "offerId": "lidl-armacao-de-pera-arroz-carolino-campo-largo-1kg",
+    "storeId": "lidl",
+    "locationId": "lidl-armacao-de-pera",
+    "productId": "arroz-carolino-campo-largo-1kg",
+    "scrapedName": "Arroz Carolino",
+    "brand": "CAMPO LARGO",
+    "categoryId": "mercearia",
+    "price": 0.89,
+    "size": 1,
+    "sizeUnit": "kg",
+    "unitPrice": 0.89,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.lidl.pt/p/campo-largo-arroz-carolino/p10045015",
+    "image": "https://imgproxy-retcat.assets.schwarz/zV2BIf9hWqal85Bx_ApfCX_uMlEpeADQMAN8olIkVU4/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50LzRDM0FFOTI5NDgyODJDNEVBMDNDQ0I3Rj/hGRDg2M0Y3NDVFNjQyQUYxNDU4QTE2ODU3NzA5RDU3NTk2QzU2OEQucG5n.png",
+    "notes": "Emb. 1 kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T20:34:29.560Z"
+  },
+  {
+    "offerId": "lidl-armacao-de-pera-leite-meio-gordo-pack-milbona-8l",
+    "storeId": "lidl",
+    "locationId": "lidl-armacao-de-pera",
+    "productId": "leite-meio-gordo-pack-milbona-8l",
+    "scrapedName": "Leite Meio Gordo Pack",
+    "brand": "MILBONA",
+    "categoryId": "lacteos_ovos",
+    "price": 6.15,
+    "size": 8,
+    "sizeUnit": "L",
+    "unitPrice": 0.77,
+    "unit": "L",
+    "currency": "EUR",
+    "url": "https://www.lidl.pt/p/milbona-leite-meio-gordo-pack/p10045023",
+    "image": "https://imgproxy-retcat.assets.schwarz/0XcA7x8fBIRH2VQ7EKHZqlP-qvIckO7Bq29ZvGqwz5Y/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50LzhCODNDMUYwNzUxRkFGRDk3RjE1M0NEN0/M0RTIxRUI5Q0Y4QTVBMDdGRUE1Mzg5REUyNzhGNUQ1QkY1OEQ3NEMucG5n.png",
+    "notes": "Pack 8x1 L",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T20:34:29.705Z"
+  },
+  {
+    "offerId": "lidl-armacao-de-pera-aros-cebola-mcennedy-450g",
+    "storeId": "lidl",
+    "locationId": "lidl-armacao-de-pera",
+    "productId": "aros-cebola-mcennedy-450g",
+    "scrapedName": "Aros de Cebola",
+    "brand": "MCENNEDY",
+    "categoryId": "snacks_doces",
+    "price": 1.69,
+    "size": 450,
+    "sizeUnit": "g",
+    "unitPrice": 3.76,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.lidl.pt/p/mcennedy-aros-de-cebola/p10045115",
+    "image": "https://imgproxy-retcat.assets.schwarz/fqjQ2ZttGb9u9FwuZYpEhCs6qg3k4fjl9CW1KPaowi4/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50L0VDMzlBNTc5RjMwMTNBQkEyRTdGREJENT/NENENCMzYyQkZDRDJEOERDQUQ0QUNGQUVENEY4MEYyN0ZENkZERDMucG5n.png",
+    "notes": "Emb. 450 g",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T20:34:29.845Z"
+  },
+  {
+    "offerId": "lidl-armacao-de-pera-asas-frango-mcennedy-750g",
+    "storeId": "lidl",
+    "locationId": "lidl-armacao-de-pera",
+    "productId": "asas-frango-mcennedy-750g",
+    "scrapedName": "Asas de Frango",
+    "brand": "MCENNEDY",
+    "categoryId": "congelados",
+    "price": 4.99,
+    "size": 750,
+    "sizeUnit": "g",
+    "unitPrice": 6.65,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.lidl.pt/p/mcennedy-asas-de-frango/p10045113",
+    "image": "https://imgproxy-retcat.assets.schwarz/5Ay-a7n9cn058F987OdEPIdYwaGm3wvhPkS20qP104Q/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50LzM4OEVCNEZEQzczRUNEMjg5MjVGMjE4RD/EzMEE0MDQ1N0IyMzVGREQ4N0Y3M0JGMTk5RDQwOEM4MTBCNjVFOTkucG5n.png",
+    "notes": "Cada emb. 750 g",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T20:34:29.983Z"
+  },
+  {
+    "offerId": "lidl-armacao-de-pera-batata-conservacao-vermelha-3kg",
+    "storeId": "lidl",
+    "locationId": "lidl-armacao-de-pera",
+    "productId": "batata-conservacao-vermelha-3kg",
+    "scrapedName": "Batata de Conservação Vermelha",
+    "brand": "",
+    "categoryId": "fruta_legumes",
+    "price": 2.49,
+    "size": 3,
+    "sizeUnit": "kg",
+    "unitPrice": 0.83,
+    "unit": "kg",
+    "currency": "EUR",
+    "url": "https://www.lidl.pt/p/batata-de-conservacao-vermelha/p10044947",
+    "image": "https://imgproxy-retcat.assets.schwarz/wAoBzxyTcSgt9ncp3ikdmPnl0l6i9baOV2J4ek0_J9o/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50LzBCOThEOUE1RkZBQkJERjBDRDg2MjU3Rj/M2Mjk5QUFFODZGOUFCMTFEMjQ3QjFCRjc3NDhBNUZCM0YyMEEyRjEucG5n.png",
+    "notes": "Emb. 3 kg",
+    "inStock": true,
+    "confidenceScore": 1,
+    "lastUpdated": "2026-04-23T20:34:30.125Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-banana-1kg",
@@ -228,7 +333,7 @@
     "notes": "0.2 Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:09.713Z"
+    "lastUpdated": "2026-04-23T20:34:30.926Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-arroz-basmati-pingo-doce-1kg",
@@ -249,7 +354,7 @@
     "notes": "1 Kg | 1,99 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:10.260Z"
+    "lastUpdated": "2026-04-23T20:34:31.346Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-douradinhos-peixe-iglo-420g",
@@ -270,7 +375,7 @@
     "notes": "0.42 Kg | 11,88 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:10.771Z"
+    "lastUpdated": "2026-04-23T20:34:31.830Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-leite-uht-meio-gordo-pingo-doce-1l",
@@ -291,7 +396,7 @@
     "notes": "1 L | 0,86 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:11.248Z"
+    "lastUpdated": "2026-04-23T20:34:32.306Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-peito-frango-vacuo-1kg",
@@ -312,7 +417,7 @@
     "notes": "0.6 Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:11.750Z"
+    "lastUpdated": "2026-04-23T20:34:32.767Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-arroz-agulha-cigala-1kg",
@@ -333,7 +438,7 @@
     "notes": "1 Kg | 1,38 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:12.173Z"
+    "lastUpdated": "2026-04-23T20:34:33.229Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-arroz-carolino-bom-sucesso-1kg",
@@ -354,7 +459,7 @@
     "notes": "1 Kg | 1,59 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:12.711Z"
+    "lastUpdated": "2026-04-23T20:34:33.644Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-capsulas-cafe-delta-q-qalidus-80un",
@@ -375,7 +480,7 @@
     "notes": "80 Un | 0,36 €/Un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:13.189Z"
+    "lastUpdated": "2026-04-23T20:34:34.098Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-ovos-ar-livre-classe-ml-matinados-12un",
@@ -396,7 +501,7 @@
     "notes": "12 Un | 0,33 €/Un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:13.654Z"
+    "lastUpdated": "2026-04-23T20:34:34.574Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-lombos-bacalhau-congelados-pingo-doce-800g",
@@ -417,6 +522,6 @@
     "notes": "0.8 Kg | 24,99 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-23T19:59:14.164Z"
+    "lastUpdated": "2026-04-23T20:34:35.110Z"
   }
 ]
