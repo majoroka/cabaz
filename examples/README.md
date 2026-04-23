@@ -5,6 +5,7 @@ Esta pasta contém exemplos de apoio à publicação manual de dados reais. A in
 Ficheiros incluídos:
 
 - `published/offers.continente-bom-dia-armacao-de-pera.template.json`
+- `external-scraper-repo/`, template para o futuro repositório separado do scraper
 
 Num fluxo futuro, um scraper local poderá gerar ficheiros publicados para `public/data/`. A app limita-se a ler esses JSON estáticos sem backend.
 

@@ -1,0 +1,12 @@
+{
+  "name": "cabaz-data",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "scrape": "node src/scrape.js",
+    "validate:output": "node src/publish/validate-output.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

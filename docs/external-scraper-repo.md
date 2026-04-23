@@ -37,6 +37,14 @@ cabaz
 
 ## Estrutura sugerida para `cabaz-data`
 
+Existe um template copiável em:
+
+```text
+examples/external-scraper-repo/
+```
+
+Esse template inclui `package.json`, workflow GitHub Actions, estrutura de pastas e scripts placeholder seguros.
+
 ```text
 .
 ├── .github/workflows/

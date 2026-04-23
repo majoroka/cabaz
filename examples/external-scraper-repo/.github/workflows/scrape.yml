@@ -1,0 +1,71 @@
+name: Atualizar dados do Cabaz
+
+on:
+  workflow_dispatch:
+  # Ativar apenas depois do primeiro fluxo manual estar validado.
+  # schedule:
+  #   - cron: "0 6 * * *"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout scraper
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run scraper
+        run: npm run scrape
+
+      - name: Validate scraper output
+        run: npm run validate:output
+
+      - name: Checkout Cabaz frontend
+        uses: actions/checkout@v5
+        with:
+          repository: mariocabano/cabaz
+          token: ${{ secrets.CABAZ_DATA_PR_TOKEN }}
+          path: cabaz
+
+      - name: Copy published data
+        run: cp data/published/*.json cabaz/public/data/
+
+      - name: Validate in Cabaz
+        working-directory: cabaz
+        run: |
+          npm ci
+          npm run validate:data
+          npm run build
+
+      - name: Open pull request
+        working-directory: cabaz
+        env:
+          GH_TOKEN: ${{ secrets.CABAZ_DATA_PR_TOKEN }}
+        run: |
+          BRANCH_NAME="data/update-$(date -u +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/*.json
+          git diff --cached --quiet && echo "Sem alterações nos dados publicados." && exit 0
+          git commit -m "Atualiza dados publicados"
+          git push --set-upstream origin "$BRANCH_NAME"
+          gh pr create \
+            --title "Atualiza dados publicados" \
+            --body "Atualização automática gerada pelo scraper." \
+            --base main \
+            --head "$BRANCH_NAME"
