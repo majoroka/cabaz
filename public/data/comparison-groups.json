@@ -108,5 +108,27 @@
       "packCount": 1
     },
     "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-basmati-pingo-doce-1kg",
+    "label": "Arroz basmati Pingo Doce 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "douradinhos-peixe-iglo-420g",
+    "label": "Douradinhos de peixe Iglo 420g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 420,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
   }
 ]
