@@ -130,5 +130,49 @@
       "packCount": 1
     },
     "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-agulha-cigala-1kg",
+    "label": "Arroz agulha Cigala 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-carolino-bom-sucesso-1kg",
+    "label": "Arroz carolino Bom Sucesso 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "capsulas-cafe-delta-q-qalidus-80un",
+    "label": "Cápsulas Delta Q Qalidus 80 un",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 80,
+      "sizeUnit": "un",
+      "packCount": 80
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "label": "Lombos de bacalhau congelados Pingo Doce 800g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 800,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
   }
 ]

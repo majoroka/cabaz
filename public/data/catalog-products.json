@@ -334,5 +334,133 @@
       "leite meio gordo pingo doce 1l"
     ],
     "active": true
+  },
+  {
+    "productId": "arroz-agulha-cigala-1kg",
+    "canonicalName": "Arroz agulha Cigala 1kg",
+    "comparisonGroup": "arroz-agulha-cigala-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "integral",
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha cigala",
+      "cigala agulha 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-carolino-bom-sucesso-1kg",
+    "canonicalName": "Arroz carolino Bom Sucesso 1kg",
+    "comparisonGroup": "arroz-carolino-bom-sucesso-1kg",
+    "categoryId": "mercearia",
+    "brand": "Bom Sucesso",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "carolino",
+      "bom",
+      "sucesso"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz carolino bom sucesso",
+      "bom sucesso carolino 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "capsulas-cafe-delta-q-qalidus-80un",
+    "canonicalName": "Cápsulas Delta Q Qalidus 80 un",
+    "comparisonGroup": "capsulas-cafe-delta-q-qalidus-80un",
+    "categoryId": "bebidas",
+    "brand": "Delta Q",
+    "isPrivateLabel": false,
+    "size": 80,
+    "sizeUnit": "un",
+    "packCount": 80,
+    "requiredTokens": [
+      "capsulas",
+      "cafe",
+      "delta",
+      "qalidus"
+    ],
+    "blockedTokens": [
+      "descafeinado"
+    ],
+    "aliases": [
+      "capsulas de cafe qalidus pack delta q",
+      "delta q qalidus 80 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-ar-livre-classe-ml-matinados-12un",
+    "canonicalName": "Ovos de ar livre classe M/L Matinados (12 un)",
+    "comparisonGroup": "ovos-ar-livre-classe-ml-12un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Matinados",
+    "isPrivateLabel": false,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "ovos",
+      "ar",
+      "livre",
+      "matinados"
+    ],
+    "blockedTokens": [
+      "solo",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos de ar livre classe ml matinados 12 un",
+      "ovos matinados ar livre 12"
+    ],
+    "active": true
+  },
+  {
+    "productId": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "canonicalName": "Lombos de bacalhau congelados Pingo Doce 800g",
+    "comparisonGroup": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "categoryId": "congelados",
+    "brand": "Pingo Doce",
+    "isPrivateLabel": true,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "lombos",
+      "bacalhau",
+      "congelados"
+    ],
+    "blockedTokens": [
+      "desfiado"
+    ],
+    "aliases": [
+      "lombos de bacalhau congelados pingo doce",
+      "bacalhau pingo doce 800g"
+    ],
+    "active": true
   }
 ]
