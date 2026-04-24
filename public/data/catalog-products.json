@@ -383,6 +383,135 @@
     "active": true
   },
   {
+    "productId": "pepsi-zero-acucar-lima-1l",
+    "canonicalName": "Pepsi Zero Açúcar Lima 1L",
+    "comparisonGroup": "pepsi-zero-acucar-lima-1l",
+    "categoryId": "bebidas",
+    "brand": "Pepsi",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "pepsi",
+      "zero",
+      "lima"
+    ],
+    "blockedTokens": [
+      "max",
+      "regular"
+    ],
+    "aliases": [
+      "pepsi zero acucar lima 1l",
+      "pepsi zero lima 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "mini-argolas-batata-mcennedy-300g",
+    "canonicalName": "Mini argolas de batata McEnnedy 300g",
+    "comparisonGroup": "mini-argolas-batata-mcennedy-300g",
+    "categoryId": "congelados",
+    "brand": "McEnnedy",
+    "isPrivateLabel": true,
+    "size": 300,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "mini",
+      "argolas",
+      "batata",
+      "mcennedy"
+    ],
+    "blockedTokens": [
+      "cebola",
+      "waffles"
+    ],
+    "aliases": [
+      "mini argolas de batata mcennedy",
+      "argolas batata mcennedy 300g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "manteiga-com-sal-gresso-250g",
+    "canonicalName": "Manteiga com sal Gresso 250g",
+    "comparisonGroup": "manteiga-com-sal-gresso-250g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Gresso",
+    "isPrivateLabel": true,
+    "size": 250,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "manteiga",
+      "sal",
+      "gresso"
+    ],
+    "blockedTokens": [
+      "sem",
+      "margarina"
+    ],
+    "aliases": [
+      "manteiga com sal gresso",
+      "gresso manteiga com sal 250g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "muesli-frutos-sementes-crownfield-750g",
+    "canonicalName": "Muesli de frutos e sementes Crownfield 750g",
+    "comparisonGroup": "muesli-frutos-sementes-crownfield-750g",
+    "categoryId": "mercearia",
+    "brand": "Crownfield",
+    "isPrivateLabel": true,
+    "size": 750,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "muesli",
+      "frutos",
+      "sementes",
+      "crownfield"
+    ],
+    "blockedTokens": [
+      "chocolate",
+      "protein"
+    ],
+    "aliases": [
+      "muesli de frutos e sementes crownfield",
+      "crownfield muesli 750g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "capsulas-cafe-delta-q-qharisma-mythiq-10un",
+    "canonicalName": "Cápsulas de café Delta Q Qharisma/Mythiq 10 un",
+    "comparisonGroup": "capsulas-cafe-delta-q-qharisma-mythiq-10un",
+    "categoryId": "bebidas",
+    "brand": "Delta Q",
+    "isPrivateLabel": false,
+    "size": 10,
+    "sizeUnit": "un",
+    "packCount": 10,
+    "requiredTokens": [
+      "capsulas",
+      "cafe",
+      "delta",
+      "qharisma"
+    ],
+    "blockedTokens": [
+      "descafeinado",
+      "dolce",
+      "nespresso"
+    ],
+    "aliases": [
+      "capsulas de cafe delta q qharisma mythiq 10 un",
+      "delta q qharisma mythiq 10"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-basmati-pingo-doce-1kg",
     "canonicalName": "Arroz basmati Pingo Doce 1kg",
     "comparisonGroup": "arroz-basmati-pingo-doce-1kg",
