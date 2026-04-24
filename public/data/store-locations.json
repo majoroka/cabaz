@@ -13,6 +13,19 @@
     "notes": "Loja piloto ALDI no Algarve com morada confirmada pelo comunicado oficial de abertura do Parchal; coordenadas aproximadas a partir de referência pública para a mesma morada."
   },
   {
+    "locationId": "auchan-lagoa",
+    "storeId": "auchan",
+    "name": "Auchan Lagoa",
+    "address": "EN 125, Quinta da Bem Posta",
+    "postalCode": "8400-701",
+    "locality": "Lagoa",
+    "municipality": "Lagoa",
+    "lat": 37.1367,
+    "lng": -8.4648,
+    "active": true,
+    "notes": "Loja piloto Auchan no Algarve com morada oficial e coordenadas publicas extraidas do link de direcoes da pagina oficial da loja."
+  },
+  {
     "locationId": "lidl-armacao-de-pera",
     "storeId": "lidl",
     "name": "Lidl Armação de Pêra",

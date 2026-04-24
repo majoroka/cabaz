@@ -496,6 +496,263 @@
     "active": true
   },
   {
+    "productId": "arroz-agulha-cigala-1kg",
+    "canonicalName": "Arroz agulha Cigala 1kg",
+    "comparisonGroup": "arroz-agulha-cigala-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "integral",
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha cigala",
+      "cigala agulha 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-agulha-bom-sucesso-1kg",
+    "canonicalName": "Arroz Agulha Bom Sucesso 1kg",
+    "comparisonGroup": "arroz-agulha-bom-sucesso-1kg",
+    "categoryId": "mercearia",
+    "brand": "Bom Sucesso",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "bom",
+      "sucesso"
+    ],
+    "blockedTokens": [
+      "carolino",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz agulha bom sucesso 1kg",
+      "bom sucesso agulha 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-basmati-cigala-brajma-1kg",
+    "canonicalName": "Arroz Basmati Cigala Brajma 1kg",
+    "comparisonGroup": "arroz-basmati-cigala-brajma-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "basmati",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "carolino",
+      "integral"
+    ],
+    "aliases": [
+      "arroz basmati cigala brajma 1kg",
+      "cigala brajma 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "pao-queijo-auchan-alho-oregaos-sem-gluten-300g",
+    "canonicalName": "Pão de Queijo Auchan Alho e Orégãos sem Glúten 300g",
+    "comparisonGroup": "pao-queijo-auchan-alho-oregaos-sem-gluten-300g",
+    "categoryId": "congelados",
+    "brand": "Auchan",
+    "isPrivateLabel": true,
+    "size": 300,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "pao",
+      "queijo",
+      "auchan",
+      "alho",
+      "oregaos"
+    ],
+    "blockedTokens": [
+      "broa"
+    ],
+    "aliases": [
+      "pao de queijo auchan alho e oregaos 300g",
+      "pao queijo auchan sem gluten 300g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "abacate-auchan-pedacos-450g",
+    "canonicalName": "Abacate Auchan em Pedaços 450g",
+    "comparisonGroup": "abacate-auchan-pedacos-450g",
+    "categoryId": "congelados",
+    "brand": "Auchan",
+    "isPrivateLabel": true,
+    "size": 450,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "abacate",
+      "auchan",
+      "pedacos"
+    ],
+    "blockedTokens": [
+      "guacamole"
+    ],
+    "aliases": [
+      "abacate auchan em pedacos 450g",
+      "abacate congelado auchan 450g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-yoggi-liquido-morango-8x160g",
+    "canonicalName": "Iogurte Yoggi Líquido Morango 8x160g",
+    "comparisonGroup": "iogurte-yoggi-liquido-morango-8x160g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Yoggi",
+    "isPrivateLabel": false,
+    "size": 1280,
+    "sizeUnit": "g",
+    "packCount": 8,
+    "requiredTokens": [
+      "iogurte",
+      "yoggi",
+      "liquido",
+      "morango"
+    ],
+    "blockedTokens": [
+      "natural"
+    ],
+    "aliases": [
+      "iogurte yoggi liquido morango 8x160g",
+      "yoggi morango 8x160g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "vinho-tinto-monte-ravasqueira-superior-075l",
+    "canonicalName": "Vinho Tinto Monte da Ravasqueira Superior Alentejano 0.75L",
+    "comparisonGroup": "vinho-tinto-monte-ravasqueira-superior-075l",
+    "categoryId": "bebidas",
+    "brand": "Monte Ravasqueira",
+    "isPrivateLabel": false,
+    "size": 0.75,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "vinho",
+      "tinto",
+      "monte",
+      "ravasqueira",
+      "superior"
+    ],
+    "blockedTokens": [
+      "branco"
+    ],
+    "aliases": [
+      "vinho tinto monte da ravasqueira superior 0.75l",
+      "monte ravasqueira superior 0.75l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "racao-gato-ultima-esterilizado-frango-25kg",
+    "canonicalName": "Ração para Gato Ultima Esterilizado Frango 2.5kg",
+    "comparisonGroup": "racao-gato-ultima-esterilizado-frango-25kg",
+    "categoryId": "animais",
+    "brand": "Ultima",
+    "isPrivateLabel": false,
+    "size": 2.5,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "racao",
+      "gato",
+      "ultima",
+      "esterilizado",
+      "frango"
+    ],
+    "blockedTokens": [
+      "cao"
+    ],
+    "aliases": [
+      "racao para gato ultima esterilizado frango 2.5kg",
+      "ultima esterilizado frango 2.5kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "areia-aglomerante-bribon-multi-gatos-10l",
+    "canonicalName": "Areia Aglomerante Bribon Multi Gatos 10L",
+    "comparisonGroup": "areia-aglomerante-bribon-multi-gatos-10l",
+    "categoryId": "animais",
+    "brand": "Bribon",
+    "isPrivateLabel": false,
+    "size": 10,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "areia",
+      "aglomerante",
+      "bribon",
+      "gatos"
+    ],
+    "blockedTokens": [
+      "cao"
+    ],
+    "aliases": [
+      "areia aglomerante bribon multi gatos 10l",
+      "bribon 10l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "curado-ervas-provence-yogan-bio-vegan-110g",
+    "canonicalName": "Curado Ervas Provence Yogan Bio Vegan 110g",
+    "comparisonGroup": "curado-ervas-provence-yogan-bio-vegan-110g",
+    "categoryId": "bio_saudavel",
+    "brand": "Yogan",
+    "isPrivateLabel": false,
+    "size": 110,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "curado",
+      "ervas",
+      "provence",
+      "yogan",
+      "vegan"
+    ],
+    "blockedTokens": [
+      "iogurte"
+    ],
+    "aliases": [
+      "curado ervas provence yogan bio vegan 110g",
+      "yogan vegan 110g"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-carolino-campo-largo-1kg",
     "canonicalName": "Arroz Carolino Campo Largo 1kg",
     "comparisonGroup": "arroz-carolino-campo-largo-1kg",
@@ -830,32 +1087,6 @@
     "aliases": [
       "leite uht meio gordo pingo doce",
       "leite meio gordo pingo doce 1l"
-    ],
-    "active": true
-  },
-  {
-    "productId": "arroz-agulha-cigala-1kg",
-    "canonicalName": "Arroz agulha Cigala 1kg",
-    "comparisonGroup": "arroz-agulha-cigala-1kg",
-    "categoryId": "mercearia",
-    "brand": "Cigala",
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": [
-      "arroz",
-      "agulha",
-      "cigala"
-    ],
-    "blockedTokens": [
-      "integral",
-      "basmati",
-      "carolino"
-    ],
-    "aliases": [
-      "arroz agulha cigala",
-      "cigala agulha 1kg"
     ],
     "active": true
   },
