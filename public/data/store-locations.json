@@ -1,5 +1,18 @@
 [
   {
+    "locationId": "aldi-parchal",
+    "storeId": "aldi",
+    "name": "ALDI Parchal",
+    "address": "Rua Infante de Sagres 6",
+    "postalCode": "8400-623",
+    "locality": "Parchal",
+    "municipality": "Lagoa",
+    "lat": 37.138151837906,
+    "lng": -8.5175974375461,
+    "active": true,
+    "notes": "Loja piloto ALDI no Algarve com morada confirmada pelo comunicado oficial de abertura do Parchal; coordenadas aproximadas a partir de referência pública para a mesma morada."
+  },
+  {
     "locationId": "lidl-armacao-de-pera",
     "storeId": "lidl",
     "name": "Lidl Armação de Pêra",

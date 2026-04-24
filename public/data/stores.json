@@ -1,5 +1,12 @@
 [
   {
+    "storeId": "aldi",
+    "name": "ALDI",
+    "website": "https://www.aldi.pt",
+    "logo": "./lojas/aldi.png",
+    "active": true
+  },
+  {
     "storeId": "lidl",
     "name": "Lidl",
     "website": "https://www.lidl.pt",
