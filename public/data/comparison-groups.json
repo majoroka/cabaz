@@ -220,6 +220,116 @@
     "active": true
   },
   {
+    "comparisonGroupId": "arroz-agulha-cigala-1kg",
+    "label": "Arroz agulha Cigala 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-agulha-bom-sucesso-1kg",
+    "label": "Arroz Agulha Bom Sucesso 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "arroz-basmati-cigala-brajma-1kg",
+    "label": "Arroz Basmati Cigala Brajma 1kg",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "pao-queijo-auchan-alho-oregaos-sem-gluten-300g",
+    "label": "Pão de Queijo Auchan Alho e Orégãos sem Glúten 300g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 300,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "abacate-auchan-pedacos-450g",
+    "label": "Abacate Auchan em Pedaços 450g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 450,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "iogurte-yoggi-liquido-morango-8x160g",
+    "label": "Iogurte Yoggi Líquido Morango 8x160g",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 1280,
+      "sizeUnit": "g",
+      "packCount": 8
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "vinho-tinto-monte-ravasqueira-superior-075l",
+    "label": "Vinho Tinto Monte da Ravasqueira Superior Alentejano 0.75L",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 0.75,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "racao-gato-ultima-esterilizado-frango-25kg",
+    "label": "Ração para Gato Ultima Esterilizado Frango 2.5kg",
+    "categoryId": "animais",
+    "rules": {
+      "size": 2.5,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "areia-aglomerante-bribon-multi-gatos-10l",
+    "label": "Areia Aglomerante Bribon Multi Gatos 10L",
+    "categoryId": "animais",
+    "rules": {
+      "size": 10,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "curado-ervas-provence-yogan-bio-vegan-110g",
+    "label": "Curado Ervas Provence Yogan Bio Vegan 110g",
+    "categoryId": "bio_saudavel",
+    "rules": {
+      "size": 110,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "arroz-carolino-campo-largo-1kg",
     "label": "Arroz Carolino Campo Largo 1kg",
     "categoryId": "mercearia",
@@ -347,17 +457,6 @@
     "rules": {
       "size": 420,
       "sizeUnit": "g",
-      "packCount": 1
-    },
-    "active": true
-  },
-  {
-    "comparisonGroupId": "arroz-agulha-cigala-1kg",
-    "label": "Arroz agulha Cigala 1kg",
-    "categoryId": "mercearia",
-    "rules": {
-      "size": 1,
-      "sizeUnit": "kg",
       "packCount": 1
     },
     "active": true

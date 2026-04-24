@@ -1,44 +1,50 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-24T13:32:31.057Z",
+  "generatedAt": "2026-04-24T13:52:11.871Z",
   "currency": "EUR",
   "country": "PT",
-  "publicationStatus": "scraper_mvp_4_stores_40_products",
-  "storesPublished": 4,
-  "storeLocationsPublished": 4,
-  "offersPublished": 40,
-  "catalogProductsPublished": 38,
-  "comparisonGroupsPublished": 36,
+  "publicationStatus": "scraper_mvp_5_stores_50_products",
+  "storesPublished": 5,
+  "storeLocationsPublished": 5,
+  "offersPublished": 50,
+  "catalogProductsPublished": 47,
+  "comparisonGroupsPublished": 45,
   "equivalenceRulesPublished": 0,
   "postalCodesPilotPublished": 224,
   "notes": [
     "Publicacao piloto gerada pelo repositorio cabaz-data.",
-    "MVP de scraping real: recolha automatica de 40 produtos em 4 lojas.",
-    "Dataset limitado a 4 lojas e 40 produtos para validar o fluxo antes de expandir."
+    "MVP de scraping real: recolha automatica de 50 produtos em 5 lojas.",
+    "Dataset limitado a 5 lojas e 50 produtos para validar o fluxo antes de expandir."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T13:32:31.057Z",
+      "lastUpdated": "2026-04-24T13:52:11.871Z",
       "productsScraped": 10
     },
     {
       "storeId": "aldi",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T13:32:31.057Z",
+      "lastUpdated": "2026-04-24T13:52:11.871Z",
+      "productsScraped": 10
+    },
+    {
+      "storeId": "auchan",
+      "status": "scraper_mvp",
+      "lastUpdated": "2026-04-24T13:52:11.871Z",
       "productsScraped": 10
     },
     {
       "storeId": "lidl",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T13:32:31.057Z",
+      "lastUpdated": "2026-04-24T13:52:11.871Z",
       "productsScraped": 10
     },
     {
       "storeId": "pingo-doce",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T13:32:31.057Z",
+      "lastUpdated": "2026-04-24T13:52:11.871Z",
       "productsScraped": 10
     }
   ]

@@ -7,6 +7,13 @@
     "active": true
   },
   {
+    "storeId": "auchan",
+    "name": "Auchan",
+    "website": "https://www.auchan.pt",
+    "logo": "./lojas/auchan.png",
+    "active": true
+  },
+  {
     "storeId": "lidl",
     "name": "Lidl",
     "website": "https://www.lidl.pt",
