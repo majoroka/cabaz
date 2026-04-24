@@ -255,6 +255,247 @@
     "active": true
   },
   {
+    "productId": "abacate-maturado-300g",
+    "canonicalName": "Abacate Maturado 300g",
+    "comparisonGroup": "abacate-maturado-300g",
+    "categoryId": "fruta_legumes",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 300,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "abacate",
+      "maturado"
+    ],
+    "blockedTokens": [
+      "guacamole"
+    ],
+    "aliases": [
+      "abacate maturado 300g",
+      "abacate 300g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "laranja-nacional-3kg",
+    "canonicalName": "Laranja Nacional 3kg",
+    "comparisonGroup": "laranja-nacional-3kg",
+    "categoryId": "fruta_legumes",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 3,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "laranja",
+      "nacional"
+    ],
+    "blockedTokens": [
+      "sumo"
+    ],
+    "aliases": [
+      "laranja nacional 3kg",
+      "laranja 3kg saco"
+    ],
+    "active": true
+  },
+  {
+    "productId": "queijo-austriaco-fatias-milsani-150g",
+    "canonicalName": "Queijo Austríaco em Fatias MILSANI 150g",
+    "comparisonGroup": "queijo-austriaco-fatias-milsani-150g",
+    "categoryId": "lacteos_ovos",
+    "brand": "MILSANI",
+    "isPrivateLabel": true,
+    "size": 150,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "queijo",
+      "austriaco",
+      "fatias",
+      "milsani"
+    ],
+    "blockedTokens": [
+      "ralado",
+      "fresco"
+    ],
+    "aliases": [
+      "queijo austriaco em fatias milsani 150g",
+      "queijo austriaco milsani 150g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "salsichas-nuremberga-howe-600g",
+    "canonicalName": "Salsichas da Nuremberga HoWe 600g",
+    "comparisonGroup": "salsichas-nuremberga-howe-600g",
+    "categoryId": "charcutaria_queijos",
+    "brand": "HoWe",
+    "isPrivateLabel": false,
+    "size": 600,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "salsichas",
+      "nuremberga",
+      "howe"
+    ],
+    "blockedTokens": [
+      "frankfurt"
+    ],
+    "aliases": [
+      "salsichas da nuremberga howe 600g",
+      "salsichas nuremberga howe"
+    ],
+    "active": true
+  },
+  {
+    "productId": "espadilhas-fumadas-golden-seafood-112g",
+    "canonicalName": "Espadilhas Fumadas GOLDEN SEAFOOD 112g",
+    "comparisonGroup": "espadilhas-fumadas-golden-seafood-112g",
+    "categoryId": "mercearia",
+    "brand": "GOLDEN SEAFOOD",
+    "isPrivateLabel": true,
+    "size": 112,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "espadilhas",
+      "fumadas"
+    ],
+    "blockedTokens": [
+      "atum",
+      "sardinha"
+    ],
+    "aliases": [
+      "espadilhas fumadas golden seafood 112g",
+      "espadilhas fumadas 112g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-belgas-amendoa-biscotto-100g",
+    "canonicalName": "Bolachas Belgas com Amêndoa BISCOTTO 100g",
+    "comparisonGroup": "bolachas-belgas-amendoa-biscotto-100g",
+    "categoryId": "snacks_doces",
+    "brand": "BISCOTTO",
+    "isPrivateLabel": true,
+    "size": 100,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolachas",
+      "belgas",
+      "amendoa"
+    ],
+    "blockedTokens": [
+      "chocolate"
+    ],
+    "aliases": [
+      "bolachas belgas com amendoa biscotto 100g",
+      "bolachas belgas amendoa 100g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "caixa-bombons-dia-mae-choceur-165g",
+    "canonicalName": "Caixa de Bombons Dia da Mãe CHOCEUR 165g",
+    "comparisonGroup": "caixa-bombons-dia-mae-choceur-165g",
+    "categoryId": "snacks_doces",
+    "brand": "CHOCEUR",
+    "isPrivateLabel": true,
+    "size": 165,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "caixa",
+      "bombons",
+      "mae"
+    ],
+    "blockedTokens": [
+      "cookie"
+    ],
+    "aliases": [
+      "caixa de bombons dia da mae choceur 165g",
+      "bombons dia da mae 165g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-butter-cookies-dan-cake-340g",
+    "canonicalName": "Bolachas Butter Cookies Dan Cake 340g",
+    "comparisonGroup": "bolachas-butter-cookies-dan-cake-340g",
+    "categoryId": "snacks_doces",
+    "brand": "Dan Cake",
+    "isPrivateLabel": false,
+    "size": 340,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolachas",
+      "butter",
+      "cookies"
+    ],
+    "blockedTokens": [
+      "amendoa"
+    ],
+    "aliases": [
+      "bolachas butter cookies dan cake 340g",
+      "butter cookies 340g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bombons-coco-raffaello-80g",
+    "canonicalName": "Bombons de Coco com Recheio de Coco e Amêndoa RAFFAELLO 80g",
+    "comparisonGroup": "bombons-coco-raffaello-80g",
+    "categoryId": "snacks_doces",
+    "brand": "RAFFAELLO",
+    "isPrivateLabel": false,
+    "size": 80,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bombons",
+      "coco",
+      "raffaello"
+    ],
+    "blockedTokens": [
+      "cookie"
+    ],
+    "aliases": [
+      "bombons de coco raffaello 80g",
+      "raffaello 80g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "cereais-mini-pillows-pistacio-golden-bridge-175g",
+    "canonicalName": "Cereais Mini Pillows com Recheio de Pistácio Golden Bridge 175g",
+    "comparisonGroup": "cereais-mini-pillows-pistacio-golden-bridge-175g",
+    "categoryId": "mercearia",
+    "brand": "Golden Bridge",
+    "isPrivateLabel": true,
+    "size": 175,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "cereais",
+      "mini",
+      "pillows",
+      "pistacio"
+    ],
+    "blockedTokens": [
+      "granola"
+    ],
+    "aliases": [
+      "cereais mini pillows pistacio golden bridge 175g",
+      "mini pillows pistacio 175g"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-carolino-campo-largo-1kg",
     "canonicalName": "Arroz Carolino Campo Largo 1kg",
     "comparisonGroup": "arroz-carolino-campo-largo-1kg",

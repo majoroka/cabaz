@@ -110,6 +110,116 @@
     "active": true
   },
   {
+    "comparisonGroupId": "abacate-maturado-300g",
+    "label": "Abacate Maturado 300g",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 300,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "laranja-nacional-3kg",
+    "label": "Laranja Nacional 3kg",
+    "categoryId": "fruta_legumes",
+    "rules": {
+      "size": 3,
+      "sizeUnit": "kg",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "queijo-austriaco-fatias-milsani-150g",
+    "label": "Queijo Austríaco em Fatias MILSANI 150g",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 150,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "salsichas-nuremberga-howe-600g",
+    "label": "Salsichas da Nuremberga HoWe 600g",
+    "categoryId": "charcutaria_queijos",
+    "rules": {
+      "size": 600,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "espadilhas-fumadas-golden-seafood-112g",
+    "label": "Espadilhas Fumadas GOLDEN SEAFOOD 112g",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 112,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "bolachas-belgas-amendoa-biscotto-100g",
+    "label": "Bolachas Belgas com Amêndoa BISCOTTO 100g",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 100,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "caixa-bombons-dia-mae-choceur-165g",
+    "label": "Caixa de Bombons Dia da Mãe CHOCEUR 165g",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 165,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "bolachas-butter-cookies-dan-cake-340g",
+    "label": "Bolachas Butter Cookies Dan Cake 340g",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 340,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "bombons-coco-raffaello-80g",
+    "label": "Bombons de Coco com Recheio de Coco e Amêndoa RAFFAELLO 80g",
+    "categoryId": "snacks_doces",
+    "rules": {
+      "size": 80,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "cereais-mini-pillows-pistacio-golden-bridge-175g",
+    "label": "Cereais Mini Pillows com Recheio de Pistácio Golden Bridge 175g",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 175,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "arroz-carolino-campo-largo-1kg",
     "label": "Arroz Carolino Campo Largo 1kg",
     "categoryId": "mercearia",
