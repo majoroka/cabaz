@@ -1,5 +1,57 @@
 [
   {
+    "productId": "abrilhantador-maquina-loica-1l",
+    "canonicalName": "Abrilhantador máquina loiça Continente 1L",
+    "comparisonGroup": "abrilhantador-maquina-loica-1l",
+    "categoryId": "limpeza_casa",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "abrilhantador",
+      "maquina",
+      "loica",
+      "continente"
+    ],
+    "blockedTokens": [
+      "detergente",
+      "sal"
+    ],
+    "aliases": [
+      "abrilhantador maquina loica power continente",
+      "abrilhantador continente 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-agulha-integral-cigala-1kg",
+    "canonicalName": "Arroz agulha integral Cigala 1kg",
+    "comparisonGroup": "arroz-agulha-integral-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "integral",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha integral cigala 1kg",
+      "cigala integral 1kg"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-basmati-cacarola-500g",
     "canonicalName": "Arroz basmati Caçarola 500g",
     "comparisonGroup": "arroz-basmati-cacarola-500g",
@@ -25,30 +77,54 @@
     "active": true
   },
   {
-    "productId": "leite-uht-meio-gordo-continente-1l",
-    "canonicalName": "Leite UHT meio-gordo Continente 1L",
-    "comparisonGroup": "leite-uht-meio-gordo-marca-propria-1l",
-    "categoryId": "lacteos_ovos",
+    "productId": "arroz-carolino-caravela-continente-1kg",
+    "canonicalName": "Arroz carolino Caravela Continente 1kg",
+    "comparisonGroup": "arroz-carolino-caravela-continente-1kg",
+    "categoryId": "mercearia",
     "brand": "Continente",
     "isPrivateLabel": true,
     "size": 1,
-    "sizeUnit": "L",
+    "sizeUnit": "kg",
     "packCount": 1,
     "requiredTokens": [
-      "leite",
-      "uht",
-      "meio",
-      "gordo",
+      "arroz",
+      "carolino",
+      "caravela",
       "continente"
     ],
     "blockedTokens": [
-      "magro",
-      "inteiro",
-      "fresco"
+      "agulha",
+      "basmati",
+      "integral"
     ],
     "aliases": [
-      "leite uht meio gordo continente",
-      "leite meio gordo continente 1l"
+      "arroz carolino caravela continente",
+      "caravela continente 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-em-azeite-continente-120g",
+    "canonicalName": "Atum em azeite Continente 120g",
+    "comparisonGroup": "atum-em-azeite-120g",
+    "categoryId": "mercearia",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 120,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "atum",
+      "azeite",
+      "continente"
+    ],
+    "blockedTokens": [
+      "natural",
+      "picante"
+    ],
+    "aliases": [
+      "atum azeite continente 120g",
+      "atum em azeite continente"
     ],
     "active": true
   },
@@ -102,85 +178,6 @@
     "active": true
   },
   {
-    "productId": "ovos-ar-livre-classe-ml-continente-12un",
-    "canonicalName": "Ovos de ar livre classe M/L Continente (12 un)",
-    "comparisonGroup": "ovos-ar-livre-classe-ml-12un",
-    "categoryId": "lacteos_ovos",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 12,
-    "sizeUnit": "un",
-    "packCount": 12,
-    "requiredTokens": [
-      "ovos",
-      "ar",
-      "livre",
-      "continente"
-    ],
-    "blockedTokens": [
-      "duzia",
-      "codorniz"
-    ],
-    "aliases": [
-      "ovos de ar livre classe ml continente",
-      "ovos ar livre continente 12 un"
-    ],
-    "active": true
-  },
-  {
-    "productId": "abrilhantador-maquina-loica-1l",
-    "canonicalName": "Abrilhantador máquina loiça Continente 1L",
-    "comparisonGroup": "abrilhantador-maquina-loica-1l",
-    "categoryId": "limpeza_casa",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 1,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": [
-      "abrilhantador",
-      "maquina",
-      "loica",
-      "continente"
-    ],
-    "blockedTokens": [
-      "detergente",
-      "sal"
-    ],
-    "aliases": [
-      "abrilhantador maquina loica power continente",
-      "abrilhantador continente 1l"
-    ],
-    "active": true
-  },
-  {
-    "productId": "arroz-carolino-caravela-continente-1kg",
-    "canonicalName": "Arroz carolino Caravela Continente 1kg",
-    "comparisonGroup": "arroz-carolino-caravela-continente-1kg",
-    "categoryId": "mercearia",
-    "brand": "Continente",
-    "isPrivateLabel": true,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": [
-      "arroz",
-      "carolino",
-      "caravela",
-      "continente"
-    ],
-    "blockedTokens": [
-      "agulha",
-      "basmati",
-      "integral"
-    ],
-    "aliases": [
-      "arroz carolino caravela continente",
-      "caravela continente 1kg"
-    ],
-    "active": true
-  },
-  {
     "productId": "capsulas-cafe-delta-q-int-10-100un",
     "canonicalName": "Cápsulas Delta Q Qalidus Int 10 (100 un)",
     "comparisonGroup": "capsulas-cafe-delta-q-int-10-100un",
@@ -206,6 +203,33 @@
     "active": true
   },
   {
+    "productId": "detergente-maquina-loica-quantum-finish-105doses",
+    "canonicalName": "Detergente máquina loiça Quantum Finish 105 doses",
+    "comparisonGroup": "detergente-maquina-loica-capsulas-100-doses",
+    "categoryId": "limpeza_casa",
+    "brand": "Finish",
+    "isPrivateLabel": false,
+    "size": 105,
+    "sizeUnit": "un",
+    "packCount": 105,
+    "requiredTokens": [
+      "detergente",
+      "maquina",
+      "loica",
+      "quantum",
+      "finish"
+    ],
+    "blockedTokens": [
+      "abrilhantador",
+      "sal"
+    ],
+    "aliases": [
+      "finish quantum 105 doses",
+      "pastilhas quantum finish"
+    ],
+    "active": true
+  },
+  {
     "productId": "douradinhos-peixe-840g-30un",
     "canonicalName": "Douradinhos de peixe 840g (30 un)",
     "comparisonGroup": "douradinhos-peixe-840g-30un",
@@ -227,6 +251,246 @@
     "aliases": [
       "douradinhos de peixe capitao iglo",
       "douradinhos peixe 840g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-yoggi-liquido-morango-4x160g",
+    "canonicalName": "Iogurte Yoggi líquido morango 4x160g",
+    "comparisonGroup": "iogurte-liquido-morango-4x160g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Yoggi",
+    "isPrivateLabel": false,
+    "size": 640,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "iogurte",
+      "liquido",
+      "morango",
+      "yoggi"
+    ],
+    "blockedTokens": [
+      "banana",
+      "frutos",
+      "sem",
+      "lactose"
+    ],
+    "aliases": [
+      "yoggi liquido morango 4x160g",
+      "iogurte yoggi morango"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-pastagem-terra-nostra-meio-gordo-1l",
+    "canonicalName": "Leite de pastagem meio-gordo Terra Nostra 1L",
+    "comparisonGroup": "leite-pastagem-terra-nostra-meio-gordo-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Terra Nostra",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "terra",
+      "nostra",
+      "meio",
+      "gordo"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "sem",
+      "lactose"
+    ],
+    "aliases": [
+      "leite terra nostra meio gordo 1l",
+      "leite de pastagem terra nostra"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-uht-meio-gordo-continente-1l",
+    "canonicalName": "Leite UHT meio-gordo Continente 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-marca-propria-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "uht",
+      "meio",
+      "gordo",
+      "continente"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "fresco"
+    ],
+    "aliases": [
+      "leite uht meio gordo continente",
+      "leite meio gordo continente 1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-uht-meio-gordo-mimosa-1l",
+    "canonicalName": "Leite UHT meio-gordo Mimosa 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-mimosa-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Mimosa",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "mimosa"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "chocolate"
+    ],
+    "aliases": [
+      "leite mimosa meio gordo 1l",
+      "leite uht meio gordo mimosa"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-uht-meio-gordo-nova-acores-1l",
+    "canonicalName": "Leite UHT meio-gordo Nova Açores 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-nova-acores-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Nova Açores",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "nova",
+      "acores"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "sem",
+      "lactose"
+    ],
+    "aliases": [
+      "leite nova acores meio gordo 1l",
+      "leite uht meio gordo nova acores"
+    ],
+    "active": true
+  },
+  {
+    "productId": "lombos-bacalhau-riberalves-550g",
+    "canonicalName": "Lombos de bacalhau Riberalves 550g",
+    "comparisonGroup": "lombos-bacalhau-550g",
+    "categoryId": "congelados",
+    "brand": "Riberalves",
+    "isPrivateLabel": false,
+    "size": 550,
+    "sizeUnit": "g",
+    "packCount": 2,
+    "requiredTokens": [
+      "lombos",
+      "bacalhau",
+      "riberalves"
+    ],
+    "blockedTokens": [
+      "postas",
+      "desfiado"
+    ],
+    "aliases": [
+      "lombos de bacalhau riberalves 550g",
+      "bacalhau riberalves 2x275g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "manteiga-com-sal-mimosa-250g",
+    "canonicalName": "Manteiga com sal Mimosa 250g",
+    "comparisonGroup": "manteiga-com-sal-250g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Mimosa",
+    "isPrivateLabel": false,
+    "size": 250,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "manteiga",
+      "sal",
+      "mimosa"
+    ],
+    "blockedTokens": [
+      "magra"
+    ],
+    "aliases": [
+      "manteiga mimosa 250g",
+      "manteiga com sal mimosa"
+    ],
+    "active": true
+  },
+  {
+    "productId": "metade-abacaxi-super-sweet-1un",
+    "canonicalName": "Metade abacaxi Super Sweet",
+    "comparisonGroup": "abacaxi-fresco-1un",
+    "categoryId": "fruta_legumes",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "un",
+    "packCount": 1,
+    "requiredTokens": [
+      "abacaxi",
+      "super",
+      "sweet"
+    ],
+    "blockedTokens": [
+      "sumo"
+    ],
+    "aliases": [
+      "metade abacaxi super sweet",
+      "abacaxi continente"
+    ],
+    "active": true
+  },
+  {
+    "productId": "ovos-ar-livre-classe-ml-continente-12un",
+    "canonicalName": "Ovos de ar livre classe M/L Continente (12 un)",
+    "comparisonGroup": "ovos-ar-livre-classe-ml-12un",
+    "categoryId": "lacteos_ovos",
+    "brand": "Continente",
+    "isPrivateLabel": true,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
+    "requiredTokens": [
+      "ovos",
+      "ar",
+      "livre",
+      "continente"
+    ],
+    "blockedTokens": [
+      "duzia",
+      "codorniz"
+    ],
+    "aliases": [
+      "ovos de ar livre classe ml continente",
+      "ovos ar livre continente 12 un"
     ],
     "active": true
   },
@@ -278,6 +542,301 @@
     "active": true
   },
   {
+    "productId": "areia-aglomerante-cachet-6l",
+    "canonicalName": "Areia aglomerante CACHET 6L",
+    "comparisonGroup": "areia-aglomerante-gato-6l",
+    "categoryId": "animais",
+    "brand": "CACHET",
+    "isPrivateLabel": true,
+    "size": 6,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "areia",
+      "aglomerante",
+      "cachet"
+    ],
+    "blockedTokens": [
+      "silica"
+    ],
+    "aliases": [
+      "areia aglomerante cachet 6l",
+      "areia gato cachet"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-agulha-bon-ri-1kg",
+    "canonicalName": "Arroz agulha BON-RI 1kg",
+    "comparisonGroup": "arroz-agulha-1kg",
+    "categoryId": "mercearia",
+    "brand": "BON-RI",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "bon",
+      "ri"
+    ],
+    "blockedTokens": [
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha bon ri 1kg",
+      "bon ri agulha"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-basmati-bon-ri-1kg",
+    "canonicalName": "Arroz basmati BON-RI 1kg",
+    "comparisonGroup": "arroz-basmati-1kg",
+    "categoryId": "mercearia",
+    "brand": "BON-RI",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "basmati",
+      "bon",
+      "ri"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz basmati bon ri 1kg",
+      "bon ri basmati"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-posta-azeite-tesouros-mar-120g",
+    "canonicalName": "Atum posta em azeite Tesouros do Mar 120g",
+    "comparisonGroup": "atum-em-azeite-120g",
+    "categoryId": "mercearia",
+    "brand": "Tesouros do Mar",
+    "isPrivateLabel": true,
+    "size": 120,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "atum",
+      "azeite"
+    ],
+    "blockedTokens": [
+      "natural"
+    ],
+    "aliases": [
+      "atum posta azeite tesouros do mar",
+      "atum azeite aldi 120g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-belgas-amendoa-biscotto-100g",
+    "canonicalName": "Bolachas Belgas com Amêndoa BISCOTTO 100g",
+    "comparisonGroup": "bolachas-belgas-amendoa-biscotto-100g",
+    "categoryId": "snacks_doces",
+    "brand": "BISCOTTO",
+    "isPrivateLabel": true,
+    "size": 100,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolachas",
+      "belgas",
+      "amendoa"
+    ],
+    "blockedTokens": [
+      "chocolate"
+    ],
+    "aliases": [
+      "bolachas belgas com amendoa biscotto 100g",
+      "bolachas belgas amendoa 100g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-butter-cookies-dan-cake-340g",
+    "canonicalName": "Bolachas Butter Cookies Dan Cake 340g",
+    "comparisonGroup": "bolachas-butter-cookies-dan-cake-340g",
+    "categoryId": "snacks_doces",
+    "brand": "Dan Cake",
+    "isPrivateLabel": false,
+    "size": 340,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bolachas",
+      "butter",
+      "cookies"
+    ],
+    "blockedTokens": [
+      "amendoa"
+    ],
+    "aliases": [
+      "bolachas butter cookies dan cake 340g",
+      "butter cookies 340g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolachas-maria-biscotto-800g",
+    "canonicalName": "Bolachas Maria BISCOTTO 800g",
+    "comparisonGroup": "bolachas-maria-800g-4un",
+    "categoryId": "snacks_doces",
+    "brand": "BISCOTTO",
+    "isPrivateLabel": true,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "bolachas",
+      "maria",
+      "biscotto"
+    ],
+    "blockedTokens": [
+      "digestiva",
+      "chocolate"
+    ],
+    "aliases": [
+      "bolachas maria biscotto 800g",
+      "biscotto maria 4x200g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bombons-coco-raffaello-80g",
+    "canonicalName": "Bombons de Coco com Recheio de Coco e Amêndoa RAFFAELLO 80g",
+    "comparisonGroup": "bombons-coco-raffaello-80g",
+    "categoryId": "snacks_doces",
+    "brand": "RAFFAELLO",
+    "isPrivateLabel": false,
+    "size": 80,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "bombons",
+      "coco",
+      "raffaello"
+    ],
+    "blockedTokens": [
+      "cookie"
+    ],
+    "aliases": [
+      "bombons de coco raffaello 80g",
+      "raffaello 80g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "caixa-bombons-dia-mae-choceur-165g",
+    "canonicalName": "Caixa de Bombons Dia da Mãe CHOCEUR 165g",
+    "comparisonGroup": "caixa-bombons-dia-mae-choceur-165g",
+    "categoryId": "snacks_doces",
+    "brand": "CHOCEUR",
+    "isPrivateLabel": true,
+    "size": 165,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "caixa",
+      "bombons",
+      "mae"
+    ],
+    "blockedTokens": [
+      "cookie"
+    ],
+    "aliases": [
+      "caixa de bombons dia da mae choceur 165g",
+      "bombons dia da mae 165g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "cereais-mini-pillows-pistacio-golden-bridge-175g",
+    "canonicalName": "Cereais Mini Pillows com Recheio de Pistácio Golden Bridge 175g",
+    "comparisonGroup": "cereais-mini-pillows-pistacio-golden-bridge-175g",
+    "categoryId": "mercearia",
+    "brand": "Golden Bridge",
+    "isPrivateLabel": true,
+    "size": 175,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "cereais",
+      "mini",
+      "pillows",
+      "pistacio"
+    ],
+    "blockedTokens": [
+      "granola"
+    ],
+    "aliases": [
+      "cereais mini pillows pistacio golden bridge 175g",
+      "mini pillows pistacio 175g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "espadilhas-fumadas-golden-seafood-112g",
+    "canonicalName": "Espadilhas Fumadas GOLDEN SEAFOOD 112g",
+    "comparisonGroup": "espadilhas-fumadas-golden-seafood-112g",
+    "categoryId": "mercearia",
+    "brand": "GOLDEN SEAFOOD",
+    "isPrivateLabel": true,
+    "size": 112,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "espadilhas",
+      "fumadas"
+    ],
+    "blockedTokens": [
+      "atum",
+      "sardinha"
+    ],
+    "aliases": [
+      "espadilhas fumadas golden seafood 112g",
+      "espadilhas fumadas 112g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-liquido-morango-milsani-4x170g",
+    "canonicalName": "Iogurte líquido de morango MILSANI 4x170g",
+    "comparisonGroup": "iogurte-liquido-morango-4x170g",
+    "categoryId": "lacteos_ovos",
+    "brand": "MILSANI",
+    "isPrivateLabel": true,
+    "size": 680,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "iogurte",
+      "liquido",
+      "morango",
+      "milsani"
+    ],
+    "blockedTokens": [
+      "bifidus",
+      "banana"
+    ],
+    "aliases": [
+      "iogurte milsani morango 4x170g",
+      "milsani liquido morango"
+    ],
+    "active": true
+  },
+  {
     "productId": "laranja-nacional-3kg",
     "canonicalName": "Laranja Nacional 3kg",
     "comparisonGroup": "laranja-nacional-3kg",
@@ -297,6 +856,79 @@
     "aliases": [
       "laranja nacional 3kg",
       "laranja 3kg saco"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-milsani-1l",
+    "canonicalName": "Leite meio-gordo MILSANI 1L",
+    "comparisonGroup": "leite-meio-gordo-milsani-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "MILSANI",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "milsani"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro"
+    ],
+    "aliases": [
+      "leite milsani meio gordo 1l",
+      "milsani leite meio gordo"
+    ],
+    "active": true
+  },
+  {
+    "productId": "manteiga-com-sal-milsani-250g",
+    "canonicalName": "Manteiga com sal MILSANI 250g",
+    "comparisonGroup": "manteiga-com-sal-250g",
+    "categoryId": "lacteos_ovos",
+    "brand": "MILSANI",
+    "isPrivateLabel": true,
+    "size": 250,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "manteiga",
+      "sal",
+      "milsani"
+    ],
+    "blockedTokens": [
+      "magra"
+    ],
+    "aliases": [
+      "manteiga milsani 250g",
+      "manteiga com sal milsani"
+    ],
+    "active": true
+  },
+  {
+    "productId": "peito-frango-aldi-700g",
+    "canonicalName": "Peito de frango ALDI 700g",
+    "comparisonGroup": "peito-frango-700g",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 700,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "peito",
+      "frango"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "peito de frango aldi 700g",
+      "peito frango aldi"
     ],
     "active": true
   },
@@ -327,6 +959,30 @@
     "active": true
   },
   {
+    "productId": "alimento-seco-para-gato-aldi-2kg",
+    "canonicalName": "Alimento seco para gato ALDI 2kg",
+    "comparisonGroup": "racao-gato-seco-2kg",
+    "categoryId": "animais",
+    "brand": "ALDI",
+    "isPrivateLabel": true,
+    "size": 2,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "alimento",
+      "seco",
+      "gato"
+    ],
+    "blockedTokens": [
+      "cao"
+    ],
+    "aliases": [
+      "alimento seco para gato aldi 2kg",
+      "racao gato aldi 2kg"
+    ],
+    "active": true
+  },
+  {
     "productId": "salsichas-nuremberga-howe-600g",
     "canonicalName": "Salsichas da Nuremberga HoWe 600g",
     "comparisonGroup": "salsichas-nuremberga-howe-600g",
@@ -351,173 +1007,51 @@
     "active": true
   },
   {
-    "productId": "espadilhas-fumadas-golden-seafood-112g",
-    "canonicalName": "Espadilhas Fumadas GOLDEN SEAFOOD 112g",
-    "comparisonGroup": "espadilhas-fumadas-golden-seafood-112g",
-    "categoryId": "mercearia",
-    "brand": "GOLDEN SEAFOOD",
+    "productId": "abacate-auchan-pedacos-450g",
+    "canonicalName": "Abacate Auchan em Pedaços 450g",
+    "comparisonGroup": "abacate-auchan-pedacos-450g",
+    "categoryId": "congelados",
+    "brand": "Auchan",
     "isPrivateLabel": true,
-    "size": 112,
+    "size": 450,
     "sizeUnit": "g",
     "packCount": 1,
     "requiredTokens": [
-      "espadilhas",
-      "fumadas"
+      "abacate",
+      "auchan",
+      "pedacos"
     ],
     "blockedTokens": [
-      "atum",
-      "sardinha"
+      "guacamole"
     ],
     "aliases": [
-      "espadilhas fumadas golden seafood 112g",
-      "espadilhas fumadas 112g"
+      "abacate auchan em pedacos 450g",
+      "abacate congelado auchan 450g"
     ],
     "active": true
   },
   {
-    "productId": "bolachas-belgas-amendoa-biscotto-100g",
-    "canonicalName": "Bolachas Belgas com Amêndoa BISCOTTO 100g",
-    "comparisonGroup": "bolachas-belgas-amendoa-biscotto-100g",
-    "categoryId": "snacks_doces",
-    "brand": "BISCOTTO",
-    "isPrivateLabel": true,
-    "size": 100,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "bolachas",
-      "belgas",
-      "amendoa"
-    ],
-    "blockedTokens": [
-      "chocolate"
-    ],
-    "aliases": [
-      "bolachas belgas com amendoa biscotto 100g",
-      "bolachas belgas amendoa 100g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "caixa-bombons-dia-mae-choceur-165g",
-    "canonicalName": "Caixa de Bombons Dia da Mãe CHOCEUR 165g",
-    "comparisonGroup": "caixa-bombons-dia-mae-choceur-165g",
-    "categoryId": "snacks_doces",
-    "brand": "CHOCEUR",
-    "isPrivateLabel": true,
-    "size": 165,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "caixa",
-      "bombons",
-      "mae"
-    ],
-    "blockedTokens": [
-      "cookie"
-    ],
-    "aliases": [
-      "caixa de bombons dia da mae choceur 165g",
-      "bombons dia da mae 165g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "bolachas-butter-cookies-dan-cake-340g",
-    "canonicalName": "Bolachas Butter Cookies Dan Cake 340g",
-    "comparisonGroup": "bolachas-butter-cookies-dan-cake-340g",
-    "categoryId": "snacks_doces",
-    "brand": "Dan Cake",
+    "productId": "areia-aglomerante-bribon-multi-gatos-10l",
+    "canonicalName": "Areia Aglomerante Bribon Multi Gatos 10L",
+    "comparisonGroup": "areia-aglomerante-bribon-multi-gatos-10l",
+    "categoryId": "animais",
+    "brand": "Bribon",
     "isPrivateLabel": false,
-    "size": 340,
-    "sizeUnit": "g",
+    "size": 10,
+    "sizeUnit": "L",
     "packCount": 1,
     "requiredTokens": [
-      "bolachas",
-      "butter",
-      "cookies"
+      "areia",
+      "aglomerante",
+      "bribon",
+      "gatos"
     ],
     "blockedTokens": [
-      "amendoa"
+      "cao"
     ],
     "aliases": [
-      "bolachas butter cookies dan cake 340g",
-      "butter cookies 340g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "bombons-coco-raffaello-80g",
-    "canonicalName": "Bombons de Coco com Recheio de Coco e Amêndoa RAFFAELLO 80g",
-    "comparisonGroup": "bombons-coco-raffaello-80g",
-    "categoryId": "snacks_doces",
-    "brand": "RAFFAELLO",
-    "isPrivateLabel": false,
-    "size": 80,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "bombons",
-      "coco",
-      "raffaello"
-    ],
-    "blockedTokens": [
-      "cookie"
-    ],
-    "aliases": [
-      "bombons de coco raffaello 80g",
-      "raffaello 80g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "cereais-mini-pillows-pistacio-golden-bridge-175g",
-    "canonicalName": "Cereais Mini Pillows com Recheio de Pistácio Golden Bridge 175g",
-    "comparisonGroup": "cereais-mini-pillows-pistacio-golden-bridge-175g",
-    "categoryId": "mercearia",
-    "brand": "Golden Bridge",
-    "isPrivateLabel": true,
-    "size": 175,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "cereais",
-      "mini",
-      "pillows",
-      "pistacio"
-    ],
-    "blockedTokens": [
-      "granola"
-    ],
-    "aliases": [
-      "cereais mini pillows pistacio golden bridge 175g",
-      "mini pillows pistacio 175g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "arroz-agulha-cigala-1kg",
-    "canonicalName": "Arroz agulha Cigala 1kg",
-    "comparisonGroup": "arroz-agulha-cigala-1kg",
-    "categoryId": "mercearia",
-    "brand": "Cigala",
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "kg",
-    "packCount": 1,
-    "requiredTokens": [
-      "arroz",
-      "agulha",
-      "cigala"
-    ],
-    "blockedTokens": [
-      "integral",
-      "basmati",
-      "carolino"
-    ],
-    "aliases": [
-      "arroz agulha cigala",
-      "cigala agulha 1kg"
+      "areia aglomerante bribon multi gatos 10l",
+      "bribon 10l"
     ],
     "active": true
   },
@@ -549,6 +1083,32 @@
     "active": true
   },
   {
+    "productId": "arroz-agulha-cigala-1kg",
+    "canonicalName": "Arroz agulha Cigala 1kg",
+    "comparisonGroup": "arroz-agulha-cigala-1kg",
+    "categoryId": "mercearia",
+    "brand": "Cigala",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "agulha",
+      "cigala"
+    ],
+    "blockedTokens": [
+      "integral",
+      "basmati",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz agulha cigala",
+      "cigala agulha 1kg"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-basmati-cigala-brajma-1kg",
     "canonicalName": "Arroz Basmati Cigala Brajma 1kg",
     "comparisonGroup": "arroz-basmati-cigala-brajma-1kg",
@@ -571,6 +1131,209 @@
     "aliases": [
       "arroz basmati cigala brajma 1kg",
       "cigala brajma 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-em-azeite-tenorio-120-78g",
+    "canonicalName": "Filetes de atum em azeite Tenório 120g",
+    "comparisonGroup": "atum-em-azeite-120g",
+    "categoryId": "mercearia",
+    "brand": "Tenório",
+    "isPrivateLabel": false,
+    "size": 120,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "atum",
+      "azeite",
+      "tenorio"
+    ],
+    "blockedTokens": [
+      "natural",
+      "alcaparras"
+    ],
+    "aliases": [
+      "filetes de atum em azeite tenorio",
+      "atum tenorio 120g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bolacha-gullon-maria-leche-800g",
+    "canonicalName": "Bolacha Gullón Maria Leche 800g",
+    "comparisonGroup": "bolachas-maria-800g-4un",
+    "categoryId": "snacks_doces",
+    "brand": "Gullón",
+    "isPrivateLabel": false,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 4,
+    "requiredTokens": [
+      "bolacha",
+      "maria",
+      "gullon"
+    ],
+    "blockedTokens": [
+      "digestiva",
+      "chocolate"
+    ],
+    "aliases": [
+      "gullon maria leche 4x200g",
+      "bolacha maria gullon 800g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "curado-ervas-provence-yogan-bio-vegan-110g",
+    "canonicalName": "Curado Ervas Provence Yogan Bio Vegan 110g",
+    "comparisonGroup": "curado-ervas-provence-yogan-bio-vegan-110g",
+    "categoryId": "bio_saudavel",
+    "brand": "Yogan",
+    "isPrivateLabel": false,
+    "size": 110,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "curado",
+      "ervas",
+      "provence",
+      "yogan",
+      "vegan"
+    ],
+    "blockedTokens": [
+      "iogurte"
+    ],
+    "aliases": [
+      "curado ervas provence yogan bio vegan 110g",
+      "yogan vegan 110g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-auchan-liquido-morango-1kg",
+    "canonicalName": "Iogurte Auchan líquido morango 1kg",
+    "comparisonGroup": "iogurte-liquido-morango-1kg",
+    "categoryId": "lacteos_ovos",
+    "brand": "Auchan",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "iogurte",
+      "liquido",
+      "morango",
+      "auchan"
+    ],
+    "blockedTokens": [
+      "magro",
+      "sem",
+      "lactose"
+    ],
+    "aliases": [
+      "iogurte auchan morango 1kg",
+      "auchan liquido morango"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-yoggi-liquido-morango-8x160g",
+    "canonicalName": "Iogurte Yoggi Líquido Morango 8x160g",
+    "comparisonGroup": "iogurte-yoggi-liquido-morango-8x160g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Yoggi",
+    "isPrivateLabel": false,
+    "size": 1280,
+    "sizeUnit": "g",
+    "packCount": 8,
+    "requiredTokens": [
+      "iogurte",
+      "yoggi",
+      "liquido",
+      "morango"
+    ],
+    "blockedTokens": [
+      "natural"
+    ],
+    "aliases": [
+      "iogurte yoggi liquido morango 8x160g",
+      "yoggi morango 8x160g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-milhafre-pastagem-meio-gordo-1l",
+    "canonicalName": "Leite Milhafre pastagem meio-gordo 1L",
+    "comparisonGroup": "leite-milhafre-pastagem-meio-gordo-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Milhafre",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "milhafre",
+      "meio",
+      "gordo"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro"
+    ],
+    "aliases": [
+      "leite milhafre meio gordo 1l",
+      "milhafre pastagem meio gordo"
+    ],
+    "active": true
+  },
+  {
+    "productId": "manteiga-com-sal-gresso-250g",
+    "canonicalName": "Manteiga com sal Gresso 250g",
+    "comparisonGroup": "manteiga-com-sal-gresso-250g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Gresso",
+    "isPrivateLabel": true,
+    "size": 250,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "manteiga",
+      "sal",
+      "gresso"
+    ],
+    "blockedTokens": [
+      "sem",
+      "margarina"
+    ],
+    "aliases": [
+      "manteiga com sal gresso",
+      "gresso manteiga com sal 250g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "manteiga-com-sal-primor-250g",
+    "canonicalName": "Manteiga com sal Primor 250g",
+    "comparisonGroup": "manteiga-com-sal-250g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Primor",
+    "isPrivateLabel": false,
+    "size": 250,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "manteiga",
+      "sal",
+      "primor"
+    ],
+    "blockedTokens": [
+      "magra"
+    ],
+    "aliases": [
+      "manteiga primor 250g",
+      "manteiga com sal primor"
     ],
     "active": true
   },
@@ -601,77 +1364,26 @@
     "active": true
   },
   {
-    "productId": "abacate-auchan-pedacos-450g",
-    "canonicalName": "Abacate Auchan em Pedaços 450g",
-    "comparisonGroup": "abacate-auchan-pedacos-450g",
-    "categoryId": "congelados",
-    "brand": "Auchan",
-    "isPrivateLabel": true,
-    "size": 450,
-    "sizeUnit": "g",
+    "productId": "peito-frango-granel-kg",
+    "canonicalName": "Peito de frango granel kg",
+    "comparisonGroup": "peito-frango-kg",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
     "packCount": 1,
     "requiredTokens": [
-      "abacate",
-      "auchan",
-      "pedacos"
+      "peito",
+      "frango"
     ],
     "blockedTokens": [
-      "guacamole"
+      "peru",
+      "fiambre"
     ],
     "aliases": [
-      "abacate auchan em pedacos 450g",
-      "abacate congelado auchan 450g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "iogurte-yoggi-liquido-morango-8x160g",
-    "canonicalName": "Iogurte Yoggi Líquido Morango 8x160g",
-    "comparisonGroup": "iogurte-yoggi-liquido-morango-8x160g",
-    "categoryId": "lacteos_ovos",
-    "brand": "Yoggi",
-    "isPrivateLabel": false,
-    "size": 1280,
-    "sizeUnit": "g",
-    "packCount": 8,
-    "requiredTokens": [
-      "iogurte",
-      "yoggi",
-      "liquido",
-      "morango"
-    ],
-    "blockedTokens": [
-      "natural"
-    ],
-    "aliases": [
-      "iogurte yoggi liquido morango 8x160g",
-      "yoggi morango 8x160g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "vinho-tinto-monte-ravasqueira-superior-075l",
-    "canonicalName": "Vinho Tinto Monte da Ravasqueira Superior Alentejano 0.75L",
-    "comparisonGroup": "vinho-tinto-monte-ravasqueira-superior-075l",
-    "categoryId": "bebidas",
-    "brand": "Monte Ravasqueira",
-    "isPrivateLabel": false,
-    "size": 0.75,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": [
-      "vinho",
-      "tinto",
-      "monte",
-      "ravasqueira",
-      "superior"
-    ],
-    "blockedTokens": [
-      "branco"
-    ],
-    "aliases": [
-      "vinho tinto monte da ravasqueira superior 0.75l",
-      "monte ravasqueira superior 0.75l"
+      "peito de frango auchan kg",
+      "peito frango granel kg"
     ],
     "active": true
   },
@@ -702,53 +1414,102 @@
     "active": true
   },
   {
-    "productId": "areia-aglomerante-bribon-multi-gatos-10l",
-    "canonicalName": "Areia Aglomerante Bribon Multi Gatos 10L",
-    "comparisonGroup": "areia-aglomerante-bribon-multi-gatos-10l",
-    "categoryId": "animais",
-    "brand": "Bribon",
+    "productId": "vinho-tinto-monte-ravasqueira-superior-075l",
+    "canonicalName": "Vinho Tinto Monte da Ravasqueira Superior Alentejano 0.75L",
+    "comparisonGroup": "vinho-tinto-monte-ravasqueira-superior-075l",
+    "categoryId": "bebidas",
+    "brand": "Monte Ravasqueira",
     "isPrivateLabel": false,
-    "size": 10,
+    "size": 0.75,
     "sizeUnit": "L",
     "packCount": 1,
     "requiredTokens": [
-      "areia",
-      "aglomerante",
-      "bribon",
-      "gatos"
+      "vinho",
+      "tinto",
+      "monte",
+      "ravasqueira",
+      "superior"
     ],
     "blockedTokens": [
-      "cao"
+      "branco"
     ],
     "aliases": [
-      "areia aglomerante bribon multi gatos 10l",
-      "bribon 10l"
+      "vinho tinto monte da ravasqueira superior 0.75l",
+      "monte ravasqueira superior 0.75l"
     ],
     "active": true
   },
   {
-    "productId": "curado-ervas-provence-yogan-bio-vegan-110g",
-    "canonicalName": "Curado Ervas Provence Yogan Bio Vegan 110g",
-    "comparisonGroup": "curado-ervas-provence-yogan-bio-vegan-110g",
-    "categoryId": "bio_saudavel",
-    "brand": "Yogan",
-    "isPrivateLabel": false,
-    "size": 110,
+    "productId": "aros-cebola-mcennedy-450g",
+    "canonicalName": "Aros de cebola McEnnedy 450g",
+    "comparisonGroup": "aros-cebola-mcennedy-450g",
+    "categoryId": "snacks_doces",
+    "brand": "McEnnedy",
+    "isPrivateLabel": true,
+    "size": 450,
     "sizeUnit": "g",
     "packCount": 1,
     "requiredTokens": [
-      "curado",
-      "ervas",
-      "provence",
-      "yogan",
-      "vegan"
+      "aros",
+      "cebola",
+      "mcennedy"
     ],
     "blockedTokens": [
-      "iogurte"
+      "batata"
     ],
     "aliases": [
-      "curado ervas provence yogan bio vegan 110g",
-      "yogan vegan 110g"
+      "aros de cebola mcennedy",
+      "argolas cebola mcennedy 450g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-basmati-campo-largo-2kg",
+    "canonicalName": "Arroz basmati Campo Largo XXL 2kg",
+    "comparisonGroup": "arroz-basmati-2kg",
+    "categoryId": "mercearia",
+    "brand": "Campo Largo",
+    "isPrivateLabel": true,
+    "size": 2,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "basmati",
+      "campo",
+      "largo"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "carolino"
+    ],
+    "aliases": [
+      "arroz basmati campo largo 2kg",
+      "campo largo basmati xxl"
+    ],
+    "active": true
+  },
+  {
+    "productId": "frango-de-churrasco-temperado-lidl-kg",
+    "canonicalName": "Frango de churrasco temperado Lidl kg",
+    "comparisonGroup": "frango-temperado-kg",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "frango",
+      "churrasco",
+      "temperado"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "frango churrasco temperado lidl",
+      "frango temperado kg"
     ],
     "active": true
   },
@@ -780,57 +1541,6 @@
     "active": true
   },
   {
-    "productId": "leite-meio-gordo-pack-milbona-8l",
-    "canonicalName": "Leite meio-gordo Milbona Pack 8x1L",
-    "comparisonGroup": "leite-meio-gordo-pack-milbona-8l",
-    "categoryId": "lacteos_ovos",
-    "brand": "Milbona",
-    "isPrivateLabel": true,
-    "size": 8,
-    "sizeUnit": "L",
-    "packCount": 8,
-    "requiredTokens": [
-      "leite",
-      "meio",
-      "gordo",
-      "milbona"
-    ],
-    "blockedTokens": [
-      "magro",
-      "inteiro",
-      "proteina"
-    ],
-    "aliases": [
-      "leite meio gordo pack milbona",
-      "milbona leite meio gordo 8x1l"
-    ],
-    "active": true
-  },
-  {
-    "productId": "aros-cebola-mcennedy-450g",
-    "canonicalName": "Aros de cebola McEnnedy 450g",
-    "comparisonGroup": "aros-cebola-mcennedy-450g",
-    "categoryId": "snacks_doces",
-    "brand": "McEnnedy",
-    "isPrivateLabel": true,
-    "size": 450,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "aros",
-      "cebola",
-      "mcennedy"
-    ],
-    "blockedTokens": [
-      "batata"
-    ],
-    "aliases": [
-      "aros de cebola mcennedy",
-      "argolas cebola mcennedy 450g"
-    ],
-    "active": true
-  },
-  {
     "productId": "asas-frango-mcennedy-750g",
     "canonicalName": "Asas de frango McEnnedy 750g",
     "comparisonGroup": "asas-frango-mcennedy-750g",
@@ -853,6 +1563,55 @@
     "aliases": [
       "asas de frango mcennedy",
       "mcennedy asas frango 750g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-em-oleo-vegetal-lidl-120g",
+    "canonicalName": "Atum em óleo vegetal Lidl 120g",
+    "comparisonGroup": "atum-em-oleo-120g",
+    "categoryId": "mercearia",
+    "brand": "",
+    "isPrivateLabel": true,
+    "size": 120,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "atum",
+      "oleo",
+      "vegetal"
+    ],
+    "blockedTokens": [
+      "natural"
+    ],
+    "aliases": [
+      "atum em oleo vegetal lidl 120g",
+      "atum vegetal lidl"
+    ],
+    "active": true
+  },
+  {
+    "productId": "atum-em-oleo-vegetal-ramirez-120g",
+    "canonicalName": "Atum em óleo vegetal Ramirez 120g",
+    "comparisonGroup": "atum-em-oleo-120g",
+    "categoryId": "mercearia",
+    "brand": "Ramirez",
+    "isPrivateLabel": false,
+    "size": 120,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "atum",
+      "oleo",
+      "vegetal",
+      "ramirez"
+    ],
+    "blockedTokens": [
+      "natural"
+    ],
+    "aliases": [
+      "atum ramirez oleo vegetal 120g",
+      "ramirez atum oleo vegetal"
     ],
     "active": true
   },
@@ -881,104 +1640,27 @@
     "active": true
   },
   {
-    "productId": "pepsi-zero-acucar-lima-1l",
-    "canonicalName": "Pepsi Zero Açúcar Lima 1L",
-    "comparisonGroup": "pepsi-zero-acucar-lima-1l",
-    "categoryId": "bebidas",
-    "brand": "Pepsi",
-    "isPrivateLabel": false,
-    "size": 1,
-    "sizeUnit": "L",
-    "packCount": 1,
-    "requiredTokens": [
-      "pepsi",
-      "zero",
-      "lima"
-    ],
-    "blockedTokens": [
-      "max",
-      "regular"
-    ],
-    "aliases": [
-      "pepsi zero acucar lima 1l",
-      "pepsi zero lima 1l"
-    ],
-    "active": true
-  },
-  {
-    "productId": "mini-argolas-batata-mcennedy-300g",
-    "canonicalName": "Mini argolas de batata McEnnedy 300g",
-    "comparisonGroup": "mini-argolas-batata-mcennedy-300g",
-    "categoryId": "congelados",
-    "brand": "McEnnedy",
+    "productId": "bolachas-tostadas-sondey-300g",
+    "canonicalName": "Bolachas tostadas Sondey 300g",
+    "comparisonGroup": "bolachas-tostadas-300g",
+    "categoryId": "snacks_doces",
+    "brand": "Sondey",
     "isPrivateLabel": true,
     "size": 300,
     "sizeUnit": "g",
     "packCount": 1,
     "requiredTokens": [
-      "mini",
-      "argolas",
-      "batata",
-      "mcennedy"
+      "bolachas",
+      "tostadas",
+      "sondey"
     ],
     "blockedTokens": [
-      "cebola",
-      "waffles"
+      "maria",
+      "chocolate"
     ],
     "aliases": [
-      "mini argolas de batata mcennedy",
-      "argolas batata mcennedy 300g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "manteiga-com-sal-gresso-250g",
-    "canonicalName": "Manteiga com sal Gresso 250g",
-    "comparisonGroup": "manteiga-com-sal-gresso-250g",
-    "categoryId": "lacteos_ovos",
-    "brand": "Gresso",
-    "isPrivateLabel": true,
-    "size": 250,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "manteiga",
-      "sal",
-      "gresso"
-    ],
-    "blockedTokens": [
-      "sem",
-      "margarina"
-    ],
-    "aliases": [
-      "manteiga com sal gresso",
-      "gresso manteiga com sal 250g"
-    ],
-    "active": true
-  },
-  {
-    "productId": "muesli-frutos-sementes-crownfield-750g",
-    "canonicalName": "Muesli de frutos e sementes Crownfield 750g",
-    "comparisonGroup": "muesli-frutos-sementes-crownfield-750g",
-    "categoryId": "mercearia",
-    "brand": "Crownfield",
-    "isPrivateLabel": true,
-    "size": 750,
-    "sizeUnit": "g",
-    "packCount": 1,
-    "requiredTokens": [
-      "muesli",
-      "frutos",
-      "sementes",
-      "crownfield"
-    ],
-    "blockedTokens": [
-      "chocolate",
-      "protein"
-    ],
-    "aliases": [
-      "muesli de frutos e sementes crownfield",
-      "crownfield muesli 750g"
+      "bolachas tostadas sondey 300g",
+      "sondey tostadas"
     ],
     "active": true
   },
@@ -1010,6 +1692,237 @@
     "active": true
   },
   {
+    "productId": "iogurte-liquido-frutos-silvestres-milbona-1kg",
+    "canonicalName": "Iogurte líquido frutos silvestres Milbona 1kg",
+    "comparisonGroup": "iogurte-liquido-frutos-silvestres-1kg",
+    "categoryId": "lacteos_ovos",
+    "brand": "Milbona",
+    "isPrivateLabel": true,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "iogurte",
+      "liquido",
+      "frutos",
+      "silvestres",
+      "milbona"
+    ],
+    "blockedTokens": [
+      "morango",
+      "banana"
+    ],
+    "aliases": [
+      "milbona iogurte liquido frutos silvestres 1kg",
+      "iogurte liquido milbona 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "iogurte-natural-acucarado-milbona-500g",
+    "canonicalName": "Iogurte natural açucarado Milbona 500g",
+    "comparisonGroup": "iogurte-natural-acucarado-500g",
+    "categoryId": "lacteos_ovos",
+    "brand": "Milbona",
+    "isPrivateLabel": true,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "iogurte",
+      "natural",
+      "acucarado",
+      "milbona"
+    ],
+    "blockedTokens": [
+      "grego",
+      "liquido"
+    ],
+    "aliases": [
+      "iogurte natural acucarado milbona 500g",
+      "milbona iogurte natural"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-pack-milbona-8l",
+    "canonicalName": "Leite meio-gordo Milbona Pack 8x1L",
+    "comparisonGroup": "leite-meio-gordo-pack-milbona-8l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Milbona",
+    "isPrivateLabel": true,
+    "size": 8,
+    "sizeUnit": "L",
+    "packCount": 8,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "milbona"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro",
+      "proteina"
+    ],
+    "aliases": [
+      "leite meio gordo pack milbona",
+      "milbona leite meio gordo 8x1l"
+    ],
+    "active": true
+  },
+  {
+    "productId": "leite-meio-gordo-mimosa-1l",
+    "canonicalName": "Leite meio-gordo Mimosa 1L",
+    "comparisonGroup": "leite-uht-meio-gordo-mimosa-1l",
+    "categoryId": "lacteos_ovos",
+    "brand": "Mimosa",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "leite",
+      "meio",
+      "gordo",
+      "mimosa"
+    ],
+    "blockedTokens": [
+      "magro",
+      "inteiro"
+    ],
+    "aliases": [
+      "leite mimosa meio gordo 1l",
+      "mimosa leite meio gordo"
+    ],
+    "active": true
+  },
+  {
+    "productId": "bife-frango-marinado-alho-salsa-kg",
+    "canonicalName": "Bife de frango marinado alho e salsa kg",
+    "comparisonGroup": "bife-frango-marinado-kg",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "bife",
+      "frango",
+      "marinado"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "bife frango marinado alho salsa",
+      "frango marinado kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "mini-argolas-batata-mcennedy-300g",
+    "canonicalName": "Mini argolas de batata McEnnedy 300g",
+    "comparisonGroup": "mini-argolas-batata-mcennedy-300g",
+    "categoryId": "congelados",
+    "brand": "McEnnedy",
+    "isPrivateLabel": true,
+    "size": 300,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "mini",
+      "argolas",
+      "batata",
+      "mcennedy"
+    ],
+    "blockedTokens": [
+      "cebola",
+      "waffles"
+    ],
+    "aliases": [
+      "mini argolas de batata mcennedy",
+      "argolas batata mcennedy 300g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "muesli-frutos-sementes-crownfield-750g",
+    "canonicalName": "Muesli de frutos e sementes Crownfield 750g",
+    "comparisonGroup": "muesli-frutos-sementes-crownfield-750g",
+    "categoryId": "mercearia",
+    "brand": "Crownfield",
+    "isPrivateLabel": true,
+    "size": 750,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "muesli",
+      "frutos",
+      "sementes",
+      "crownfield"
+    ],
+    "blockedTokens": [
+      "chocolate",
+      "protein"
+    ],
+    "aliases": [
+      "muesli de frutos e sementes crownfield",
+      "crownfield muesli 750g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "peitos-frango-vacuo-lidl-kg",
+    "canonicalName": "Peitos de frango em vácuo Lidl kg",
+    "comparisonGroup": "peito-frango-kg",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "peitos",
+      "frango",
+      "vacuo"
+    ],
+    "blockedTokens": [
+      "peru"
+    ],
+    "aliases": [
+      "peitos de frango em vacuo lidl",
+      "peito frango vacuo lidl"
+    ],
+    "active": true
+  },
+  {
+    "productId": "pepsi-zero-acucar-lima-1l",
+    "canonicalName": "Pepsi Zero Açúcar Lima 1L",
+    "comparisonGroup": "pepsi-zero-acucar-lima-1l",
+    "categoryId": "bebidas",
+    "brand": "Pepsi",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "pepsi",
+      "zero",
+      "lima"
+    ],
+    "blockedTokens": [
+      "max",
+      "regular"
+    ],
+    "aliases": [
+      "pepsi zero acucar lima 1l",
+      "pepsi zero lima 1l"
+    ],
+    "active": true
+  },
+  {
     "productId": "arroz-basmati-pingo-doce-1kg",
     "canonicalName": "Arroz basmati Pingo Doce 1kg",
     "comparisonGroup": "arroz-basmati-pingo-doce-1kg",
@@ -1033,6 +1946,131 @@
     "aliases": [
       "arroz basmati pingo doce",
       "pingo doce basmati 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "arroz-carolino-bom-sucesso-1kg",
+    "canonicalName": "Arroz carolino Bom Sucesso 1kg",
+    "comparisonGroup": "arroz-carolino-bom-sucesso-1kg",
+    "categoryId": "mercearia",
+    "brand": "Bom Sucesso",
+    "isPrivateLabel": false,
+    "size": 1,
+    "sizeUnit": "kg",
+    "packCount": 1,
+    "requiredTokens": [
+      "arroz",
+      "carolino",
+      "bom",
+      "sucesso"
+    ],
+    "blockedTokens": [
+      "agulha",
+      "basmati",
+      "integral"
+    ],
+    "aliases": [
+      "arroz carolino bom sucesso",
+      "bom sucesso carolino 1kg"
+    ],
+    "active": true
+  },
+  {
+    "productId": "capsulas-cafe-delta-q-qalidus-80un",
+    "canonicalName": "Cápsulas Delta Q Qalidus 80 un",
+    "comparisonGroup": "capsulas-cafe-delta-q-qalidus-80un",
+    "categoryId": "bebidas",
+    "brand": "Delta Q",
+    "isPrivateLabel": false,
+    "size": 80,
+    "sizeUnit": "un",
+    "packCount": 80,
+    "requiredTokens": [
+      "capsulas",
+      "cafe",
+      "delta",
+      "qalidus"
+    ],
+    "blockedTokens": [
+      "descafeinado"
+    ],
+    "aliases": [
+      "capsulas de cafe qalidus pack delta q",
+      "delta q qalidus 80 un"
+    ],
+    "active": true
+  },
+  {
+    "productId": "champo-anticaspa-linic-610ml",
+    "canonicalName": "Champô anticaspa Linic Men 610ml",
+    "comparisonGroup": "champo-anticaspa-600ml",
+    "categoryId": "higiene_beleza",
+    "brand": "Linic Men",
+    "isPrivateLabel": false,
+    "size": 0.61,
+    "sizeUnit": "L",
+    "packCount": 1,
+    "requiredTokens": [
+      "champo",
+      "anticaspa",
+      "linic"
+    ],
+    "blockedTokens": [
+      "condicionador"
+    ],
+    "aliases": [
+      "champo linic men 610ml",
+      "linic anticaspa"
+    ],
+    "active": true
+  },
+  {
+    "productId": "costeleta-cachaco-porco-600g",
+    "canonicalName": "Costeleta do cachaço de porco 600g",
+    "comparisonGroup": "costeleta-cachaco-porco-600g",
+    "categoryId": "talho",
+    "brand": "",
+    "isPrivateLabel": false,
+    "size": 600,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "costeleta",
+      "cachaco",
+      "porco"
+    ],
+    "blockedTokens": [
+      "frango"
+    ],
+    "aliases": [
+      "costeleta cachaço de porco",
+      "costeleta porco 600g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "detergente-maquina-roupa-liquido-skip-76doses",
+    "canonicalName": "Detergente máquina roupa líquido Skip 76 doses",
+    "comparisonGroup": "detergente-maquina-roupa-70-doses",
+    "categoryId": "limpeza_casa",
+    "brand": "Skip",
+    "isPrivateLabel": false,
+    "size": 76,
+    "sizeUnit": "un",
+    "packCount": 76,
+    "requiredTokens": [
+      "detergente",
+      "roupa",
+      "skip",
+      "active"
+    ],
+    "blockedTokens": [
+      "amaciador"
+    ],
+    "aliases": [
+      "skip liquido 76 doses",
+      "detergente roupa skip 76 doses"
     ],
     "active": true
   },
@@ -1091,54 +2129,74 @@
     "active": true
   },
   {
-    "productId": "arroz-carolino-bom-sucesso-1kg",
-    "canonicalName": "Arroz carolino Bom Sucesso 1kg",
-    "comparisonGroup": "arroz-carolino-bom-sucesso-1kg",
+    "productId": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "canonicalName": "Lombos de bacalhau congelados Pingo Doce 800g",
+    "comparisonGroup": "lombos-bacalhau-congelados-pingo-doce-800g",
+    "categoryId": "congelados",
+    "brand": "Pingo Doce",
+    "isPrivateLabel": true,
+    "size": 800,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "lombos",
+      "bacalhau",
+      "congelados"
+    ],
+    "blockedTokens": [
+      "desfiado"
+    ],
+    "aliases": [
+      "lombos de bacalhau congelados pingo doce",
+      "bacalhau pingo doce 800g"
+    ],
+    "active": true
+  },
+  {
+    "productId": "massa-esparguete-milaneza-500g",
+    "canonicalName": "Massa esparguete Milaneza 500g",
+    "comparisonGroup": "massa-esparguete-500g",
     "categoryId": "mercearia",
-    "brand": "Bom Sucesso",
+    "brand": "Milaneza",
+    "isPrivateLabel": false,
+    "size": 500,
+    "sizeUnit": "g",
+    "packCount": 1,
+    "requiredTokens": [
+      "massa",
+      "esparguete",
+      "milaneza"
+    ],
+    "blockedTokens": [
+      "integral"
+    ],
+    "aliases": [
+      "esparguete milaneza 500g",
+      "massa milaneza"
+    ],
+    "active": true
+  },
+  {
+    "productId": "massa-esparguete-nacional-1kg",
+    "canonicalName": "Massa esparguete Nacional 1kg",
+    "comparisonGroup": "massa-esparguete-1kg",
+    "categoryId": "mercearia",
+    "brand": "Nacional",
     "isPrivateLabel": false,
     "size": 1,
     "sizeUnit": "kg",
     "packCount": 1,
     "requiredTokens": [
-      "arroz",
-      "carolino",
-      "bom",
-      "sucesso"
+      "massa",
+      "esparguete",
+      "nacional"
     ],
     "blockedTokens": [
-      "agulha",
-      "basmati",
       "integral"
     ],
     "aliases": [
-      "arroz carolino bom sucesso",
-      "bom sucesso carolino 1kg"
-    ],
-    "active": true
-  },
-  {
-    "productId": "capsulas-cafe-delta-q-qalidus-80un",
-    "canonicalName": "Cápsulas Delta Q Qalidus 80 un",
-    "comparisonGroup": "capsulas-cafe-delta-q-qalidus-80un",
-    "categoryId": "bebidas",
-    "brand": "Delta Q",
-    "isPrivateLabel": false,
-    "size": 80,
-    "sizeUnit": "un",
-    "packCount": 80,
-    "requiredTokens": [
-      "capsulas",
-      "cafe",
-      "delta",
-      "qalidus"
-    ],
-    "blockedTokens": [
-      "descafeinado"
-    ],
-    "aliases": [
-      "capsulas de cafe qalidus pack delta q",
-      "delta q qalidus 80 un"
+      "esparguete nacional 1kg",
+      "massa nacional"
     ],
     "active": true
   },
@@ -1169,26 +2227,28 @@
     "active": true
   },
   {
-    "productId": "lombos-bacalhau-congelados-pingo-doce-800g",
-    "canonicalName": "Lombos de bacalhau congelados Pingo Doce 800g",
-    "comparisonGroup": "lombos-bacalhau-congelados-pingo-doce-800g",
-    "categoryId": "congelados",
+    "productId": "ovos-solo-classe-l-pingo-doce-12un",
+    "canonicalName": "Ovos de solo classe L Pingo Doce (12 un)",
+    "comparisonGroup": "ovos-solo-classe-l-12un",
+    "categoryId": "lacteos_ovos",
     "brand": "Pingo Doce",
     "isPrivateLabel": true,
-    "size": 800,
-    "sizeUnit": "g",
-    "packCount": 1,
+    "size": 12,
+    "sizeUnit": "un",
+    "packCount": 12,
     "requiredTokens": [
-      "lombos",
-      "bacalhau",
-      "congelados"
+      "ovos",
+      "solo",
+      "classe",
+      "pingo",
+      "doce"
     ],
     "blockedTokens": [
-      "desfiado"
+      "codorniz"
     ],
     "aliases": [
-      "lombos de bacalhau congelados pingo doce",
-      "bacalhau pingo doce 800g"
+      "ovos de solo classe l pingo doce",
+      "ovos pingo doce 12 un"
     ],
     "active": true
   }
