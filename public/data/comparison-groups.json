@@ -165,6 +165,61 @@
     "active": true
   },
   {
+    "comparisonGroupId": "pepsi-zero-acucar-lima-1l",
+    "label": "Pepsi Zero Açúcar Lima 1L",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 1,
+      "sizeUnit": "L",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "mini-argolas-batata-mcennedy-300g",
+    "label": "Mini argolas de batata McEnnedy 300g",
+    "categoryId": "congelados",
+    "rules": {
+      "size": 300,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "manteiga-com-sal-gresso-250g",
+    "label": "Manteiga com sal Gresso 250g",
+    "categoryId": "lacteos_ovos",
+    "rules": {
+      "size": 250,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "muesli-frutos-sementes-crownfield-750g",
+    "label": "Muesli de frutos e sementes Crownfield 750g",
+    "categoryId": "mercearia",
+    "rules": {
+      "size": 750,
+      "sizeUnit": "g",
+      "packCount": 1
+    },
+    "active": true
+  },
+  {
+    "comparisonGroupId": "capsulas-cafe-delta-q-qharisma-mythiq-10un",
+    "label": "Cápsulas de café Delta Q Qharisma/Mythiq 10 un",
+    "categoryId": "bebidas",
+    "rules": {
+      "size": 10,
+      "sizeUnit": "un",
+      "packCount": 10
+    },
+    "active": true
+  },
+  {
     "comparisonGroupId": "arroz-basmati-pingo-doce-1kg",
     "label": "Arroz basmati Pingo Doce 1kg",
     "categoryId": "mercearia",
