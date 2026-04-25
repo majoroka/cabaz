@@ -836,15 +836,19 @@ function renderEquivalenceReviewSection(comparisonView) {
                           ${escapeHtml(statusLabel)}
                         </span>
                         <div>
-                          <button
-                            type="button"
-                            class="button button-small"
-                            data-action="set-equivalence-review"
-                            data-review-id="${escapeHtml(row.id)}"
-                            data-review-status="approved"
-                          >
-                            Aprovar
-                          </button>
+                          ${
+                            row.status !== "approved"
+                              ? `<button
+                                  type="button"
+                                  class="button button-small"
+                                  data-action="set-equivalence-review"
+                                  data-review-id="${escapeHtml(row.id)}"
+                                  data-review-status="approved"
+                                >
+                                  Aprovar
+                                </button>`
+                              : ""
+                          }
                           <button
                             type="button"
                             class="button button-small button-secondary"

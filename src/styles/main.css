@@ -1835,11 +1835,12 @@ textarea {
 .comparison-review-lines {
   display: grid;
   gap: 10px;
+  padding-right: 18px;
 }
 
 .comparison-review-line {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.35fr) 118px 220px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.35fr) 132px 190px;
   align-items: start;
   gap: 18px;
   padding: 15px 16px;
@@ -1953,14 +1954,14 @@ textarea {
 .comparison-review-actions {
   display: grid;
   justify-items: end;
-  gap: 10px;
+  align-content: start;
+  gap: 8px;
 }
 
 .comparison-review-actions > div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 7px;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
 }
 
 .comparison-review-status {
@@ -1971,6 +1972,21 @@ textarea {
   border-radius: 999px;
   font-size: 0.76rem;
   font-weight: 900;
+}
+
+.comparison-review-confidence {
+  align-self: center;
+  align-content: center;
+  min-height: 100%;
+  gap: 4px;
+}
+
+.comparison-review-actions .button {
+  width: 158px;
+  min-height: 32px;
+  padding: 0.48rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
 .comparison-review-status-pending {
@@ -2055,6 +2071,10 @@ textarea {
 
   .comparison-review-actions {
     grid-area: actions;
+  }
+
+  .comparison-review-lines {
+    padding-right: 0;
   }
 
   .comparison-review-side-shell {
@@ -2309,7 +2329,7 @@ textarea {
   }
 
   .comparison-review-actions > div {
-    justify-content: flex-start;
+    justify-items: start;
   }
 
   .comparison-review-side-price {
