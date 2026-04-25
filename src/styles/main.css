@@ -1839,7 +1839,7 @@ textarea {
 
 .comparison-review-line {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr) 108px 118px 220px;
+  grid-template-columns: minmax(0, 1.15fr) 116px minmax(0, 1.15fr) 116px 118px 220px;
   align-items: start;
   gap: 18px;
   padding: 15px 16px;
@@ -2016,10 +2016,10 @@ textarea {
   }
 
   .comparison-review-line {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 108px 118px;
+    grid-template-columns: minmax(0, 1fr) 108px minmax(0, 1fr) 108px 118px;
     grid-template-areas:
-      "reference candidate price confidence"
-      "actions actions actions actions";
+      "reference referencePrice candidate candidatePrice confidence"
+      "actions actions actions actions actions";
   }
 
   .comparison-review-product-reference {
@@ -2031,7 +2031,15 @@ textarea {
   }
 
   .comparison-review-price {
-    grid-area: price;
+    grid-area: candidatePrice;
+  }
+
+  .comparison-review-reference-price {
+    grid-area: referencePrice;
+  }
+
+  .comparison-review-price {
+    grid-area: candidatePrice;
   }
 
   .comparison-review-confidence {
@@ -2251,8 +2259,9 @@ textarea {
     grid-template-columns: 1fr;
     grid-template-areas:
       "reference"
+      "referencePrice"
       "candidate"
-      "price"
+      "candidatePrice"
       "confidence"
       "actions";
     align-items: start;

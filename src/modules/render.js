@@ -741,6 +741,9 @@ function renderEquivalenceReviewSection(comparisonView) {
                     row.referenceResult?.size || row.resultProduct?.size || null,
                     row.referenceResult?.sizeUnit || row.resultProduct?.sizeUnit || null
                   );
+                  const referencePrice = row.referenceResult?.price ?? null;
+                  const referenceUnitPrice = row.referenceResult?.unitPrice ?? null;
+                  const referenceUnit = row.referenceResult?.unit ?? "";
                   const candidateBrand = row.result.brand || "";
                   const candidateSize = formatSize(row.result.size, row.result.sizeUnit);
 
@@ -811,8 +814,13 @@ function renderEquivalenceReviewSection(comparisonView) {
                           </div>
                         </div>
                       </div>
+                      <div class="comparison-review-meta comparison-review-reference-price">
+                        <span>Preço cabaz</span>
+                        <strong>${referencePrice == null ? "—" : formatCurrency(referencePrice)}</strong>
+                        <small>${escapeHtml(referenceUnitPrice == null ? "Sem preço base" : formatUnitPrice(referenceUnitPrice, referenceUnit))}</small>
+                      </div>
                       <div class="comparison-review-meta comparison-review-price">
-                        <span>Preço</span>
+                        <span>Preço candidato</span>
                         <strong>${formatCurrency(row.result.price)}</strong>
                         <small>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</small>
                       </div>
