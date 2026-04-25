@@ -1854,13 +1854,18 @@ textarea {
   gap: 5px;
 }
 
-.comparison-review-side span,
-.comparison-review-meta span {
+.comparison-review-side > span,
+.comparison-review-meta > span {
   color: var(--text-faint);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.comparison-review-side > span {
+  font-size: 0.82rem;
+  letter-spacing: 0.09em;
 }
 
 .comparison-review-side strong,
@@ -1934,8 +1939,9 @@ textarea {
 
 .comparison-review-side-price {
   align-self: stretch;
-  padding-left: 14px;
-  border-left: 1px solid rgba(17, 34, 68, 0.08);
+  align-content: center;
+  padding-right: 14px;
+  border-right: 1px solid rgba(17, 34, 68, 0.08);
 }
 
 .comparison-review-store-logo {
@@ -2054,6 +2060,13 @@ textarea {
   .comparison-review-side-shell {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .comparison-review-side-price {
+    padding-right: 0;
+    padding-top: 10px;
+    border-right: 0;
+    border-top: 1px solid rgba(17, 34, 68, 0.08);
   }
 
   .comparison-review-product-shell {
@@ -2300,9 +2313,9 @@ textarea {
   }
 
   .comparison-review-side-price {
-    padding-left: 0;
+    padding-right: 0;
     padding-top: 10px;
-    border-left: 0;
+    border-right: 0;
     border-top: 1px solid rgba(17, 34, 68, 0.08);
   }
 

@@ -782,7 +782,6 @@ function renderEquivalenceReviewSection(comparisonView) {
                             </div>
                           </div>
                           <div class="comparison-review-meta comparison-review-side-price">
-                            <span>Preço cabaz</span>
                             <strong>${referencePrice == null ? "—" : formatCurrency(referencePrice)}</strong>
                             <small>${escapeHtml(referenceUnitPrice == null ? "Sem preço base" : formatUnitPrice(referenceUnitPrice, referenceUnit))}</small>
                           </div>
@@ -822,7 +821,6 @@ function renderEquivalenceReviewSection(comparisonView) {
                             </div>
                           </div>
                           <div class="comparison-review-meta comparison-review-side-price">
-                            <span>Preço candidato</span>
                             <strong>${formatCurrency(row.result.price)}</strong>
                             <small>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</small>
                           </div>
