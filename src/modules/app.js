@@ -826,6 +826,18 @@ function getViewModel(state) {
       .filter((row) => ["equivalent", "alternative"].includes(row.matchType) && row.result)
       .map((row) => {
         const resultProduct = state.catalogProducts.find((product) => product.id === row.result.basketItemId) || null;
+        const referenceResult =
+          state.results.find(
+            (result) => row.item.preferredStore && result.store === row.item.preferredStore && result.basketItemId === row.item.id
+          ) ||
+          state.results.find((result) => result.basketItemId === row.item.id) ||
+          null;
+        const referenceStoreId = referenceResult?.store || row.item.preferredStore || "";
+        const referenceStore =
+          state.stores.find((store) => store.id === referenceStoreId) || {
+            id: referenceStoreId,
+            name: referenceStoreId || "Loja original"
+          };
         const reviewId = getEquivalenceReviewId({
           itemId: row.item.id,
           storeId: entry.store.id,
@@ -841,6 +853,8 @@ function getViewModel(state) {
           item: row.item,
           result: row.result,
           resultProduct,
+          referenceResult,
+          referenceStore,
           matchType: row.matchType,
           matchRule: row.matchRule,
           countsForTotal: row.countsForTotal,

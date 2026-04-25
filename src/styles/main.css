@@ -1839,8 +1839,8 @@ textarea {
 
 .comparison-review-line {
   display: grid;
-  grid-template-columns: minmax(190px, 1.1fr) 112px minmax(250px, 1.4fr) 108px 118px 220px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr) 108px 118px 220px;
+  align-items: start;
   gap: 18px;
   padding: 15px 16px;
   border: 1px solid rgba(202, 143, 45, 0.26);
@@ -1848,15 +1848,13 @@ textarea {
   background: #fffdf8;
 }
 
-.comparison-review-main,
-.comparison-review-offer,
+.comparison-review-product,
 .comparison-review-meta {
   display: grid;
   gap: 5px;
 }
 
-.comparison-review-main span,
-.comparison-review-offer span,
+.comparison-review-product span,
 .comparison-review-meta span {
   color: var(--text-faint);
   font-size: 0.72rem;
@@ -1865,27 +1863,66 @@ textarea {
   text-transform: uppercase;
 }
 
-.comparison-review-main strong,
-.comparison-review-offer strong,
+.comparison-review-product strong,
 .comparison-review-meta strong {
   line-height: 1.25;
 }
 
-.comparison-review-main small,
-.comparison-review-offer small,
+.comparison-review-product small,
 .comparison-review-meta small {
   color: var(--text-soft);
   line-height: 1.4;
 }
 
-.comparison-review-store {
+.comparison-review-product-shell {
+  display: grid;
+  grid-template-columns: 84px 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 116px;
+}
+
+.comparison-review-product-store {
   display: grid;
   justify-items: center;
   gap: 8px;
   color: var(--text-soft);
   font-size: 0.78rem;
   text-align: center;
-  text-transform: lowercase;
+}
+
+.comparison-review-product-store small {
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.comparison-review-product-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.comparison-review-product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.comparison-review-product-media span {
+  padding: 0 10px;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.comparison-review-product-copy {
+  display: grid;
+  gap: 6px;
 }
 
 .comparison-review-store-logo {
@@ -1979,22 +2016,18 @@ textarea {
   }
 
   .comparison-review-line {
-    grid-template-columns: minmax(180px, 1fr) 92px minmax(220px, 1.2fr) 108px 118px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 108px 118px;
     grid-template-areas:
-      "main store offer price confidence"
-      "main store offer actions actions";
+      "reference candidate price confidence"
+      "actions actions actions actions";
   }
 
-  .comparison-review-main {
-    grid-area: main;
+  .comparison-review-product-reference {
+    grid-area: reference;
   }
 
-  .comparison-review-store {
-    grid-area: store;
-  }
-
-  .comparison-review-offer {
-    grid-area: offer;
+  .comparison-review-product-candidate {
+    grid-area: candidate;
   }
 
   .comparison-review-price {
@@ -2007,6 +2040,16 @@ textarea {
 
   .comparison-review-actions {
     grid-area: actions;
+  }
+
+  .comparison-review-product-shell {
+    grid-template-columns: 72px 80px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .comparison-review-product-media {
+    width: 80px;
+    height: 80px;
   }
 
   .shopping-list-line {
@@ -2205,12 +2248,30 @@ textarea {
   }
 
   .comparison-review-line {
-    grid-template-columns: 80px minmax(0, 1fr) 120px;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "store main price"
-      "store offer confidence"
-      "store actions actions";
+      "reference"
+      "candidate"
+      "price"
+      "confidence"
+      "actions";
     align-items: start;
+  }
+
+  .comparison-review-product-shell {
+    grid-template-columns: 64px 72px minmax(0, 1fr);
+    gap: 12px;
+    min-height: auto;
+  }
+
+  .comparison-review-product-store {
+    font-size: 0.72rem;
+  }
+
+  .comparison-review-product-media {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
   }
 
   .comparison-review-actions {

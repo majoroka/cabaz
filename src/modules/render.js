@@ -704,7 +704,7 @@ function renderEquivalenceReviewSection(comparisonView) {
         <div>
           <p class="eyebrow">Validação</p>
           <h3>Correspondências a validar</h3>
-          <p>Confirme manualmente os produtos usados como equivalente ou alternativa quando a loja não tem o produto exato.</p>
+          <p>Confirme manualmente se os seguintes produtos podem ser considerados como equivalentes, uma vez que o produto exato não foi encontrado noutras lojas.</p>
         </div>
         <div class="comparison-review-counts" aria-label="Resumo da validação de equivalências">
           <span>${escapeHtml(String(reviews.summary.pending))} por validar</span>
@@ -729,37 +729,87 @@ function renderEquivalenceReviewSection(comparisonView) {
                     typeof row.matchRule?.confidenceScore === "number"
                       ? `${Math.round(row.matchRule.confidenceScore * 100)}%`
                       : typeof row.result.confidenceScore === "number"
-                        ? `${Math.round(row.result.confidenceScore * 100)}%`
+                      ? `${Math.round(row.result.confidenceScore * 100)}%`
                       : "n/d";
+                  const referenceImage = row.referenceResult?.image || "";
+                  const referenceStore = row.referenceStore || {
+                    id: row.item.preferredStore || "",
+                    name: row.item.preferredStore || "Loja original"
+                  };
+                  const referenceBrand = row.item.preferredBrand || row.referenceResult?.brand || "";
+                  const referenceSize = formatSize(
+                    row.referenceResult?.size || row.resultProduct?.size || null,
+                    row.referenceResult?.sizeUnit || row.resultProduct?.sizeUnit || null
+                  );
+                  const candidateBrand = row.result.brand || "";
+                  const candidateSize = formatSize(row.result.size, row.result.sizeUnit);
 
                   return `
                     <article class="comparison-review-line">
-                      <div class="comparison-review-main">
+                      <div class="comparison-review-product comparison-review-product-reference">
                         <span>Produto no cabaz</span>
-                        <strong>${escapeHtml(row.item.name)}</strong>
-                        <small>
-                          ${escapeHtml(getCategoryName(row.item.category))}
-                          ${row.item.preferredBrand ? ` · ${escapeHtml(row.item.preferredBrand)}` : ""}
-                        </small>
+                        <div class="comparison-review-product-shell">
+                          <div class="comparison-review-product-store">
+                            ${renderStoreLogo({
+                              store: referenceStore,
+                              className: "comparison-review-store-logo"
+                            })}
+                            <small>${escapeHtml(referenceStore.name)}</small>
+                          </div>
+                          <div class="comparison-review-product-media">
+                            ${
+                              referenceImage
+                                ? `<img src="${escapeHtml(referenceImage)}" alt="${escapeHtml(row.item.name)}" loading="lazy" referrerpolicy="no-referrer" />`
+                                : `<span>Sem imagem</span>`
+                            }
+                          </div>
+                          <div class="comparison-review-product-copy">
+                            <strong>${escapeHtml(row.item.name)}</strong>
+                            <small>
+                              ${escapeHtml(getCategoryName(row.item.category))}
+                              ${referenceBrand ? ` · ${escapeHtml(referenceBrand)}` : ""}
+                              ${referenceSize ? ` · ${escapeHtml(referenceSize)}` : ""}
+                            </small>
+                            ${
+                              row.item.notes
+                                ? `<small>${escapeHtml(row.item.notes)}</small>`
+                                : ""
+                            }
+                          </div>
+                        </div>
                       </div>
-                      <div class="comparison-review-store">
-                        ${renderStoreLogo({
-                          store: row.store,
-                          className: "comparison-review-store-logo"
-                        })}
-                        <span>${escapeHtml(row.store.name)}</span>
-                      </div>
-                      <div class="comparison-review-offer">
-                        <span>Produto usado</span>
-                        <strong>${escapeHtml(row.result.matchedName)}</strong>
-                        <small>
-                          ${escapeHtml(relationLabel)}
-                          ${row.countsForTotal ? " · entra no total" : " · fora do total"}
-                          ·
-                          ${row.result.brand ? `${escapeHtml(row.result.brand)} · ` : ""}
-                          ${escapeHtml(formatSize(row.result.size, row.result.sizeUnit))}
-                          ${row.result.notes ? ` · ${escapeHtml(row.result.notes)}` : ""}
-                        </small>
+                      <div class="comparison-review-product comparison-review-product-candidate">
+                        <span>Produto candidato</span>
+                        <div class="comparison-review-product-shell">
+                          <div class="comparison-review-product-store">
+                            ${renderStoreLogo({
+                              store: row.store,
+                              className: "comparison-review-store-logo"
+                            })}
+                            <small>${escapeHtml(row.store.name)}</small>
+                          </div>
+                          <div class="comparison-review-product-media">
+                            ${
+                              row.result?.image
+                                ? `<img src="${escapeHtml(row.result.image)}" alt="${escapeHtml(row.result.matchedName)}" loading="lazy" referrerpolicy="no-referrer" />`
+                                : `<span>Sem imagem</span>`
+                            }
+                          </div>
+                          <div class="comparison-review-product-copy">
+                            <strong>${escapeHtml(row.result.matchedName)}</strong>
+                            <small>
+                              ${escapeHtml(relationLabel)}
+                              ${row.countsForTotal ? " · entra no total" : " · fora do total"}
+                              ${candidateBrand ? ` · ${escapeHtml(candidateBrand)}` : ""}
+                              ${candidateSize ? ` · ${escapeHtml(candidateSize)}` : ""}
+                            </small>
+                            ${
+                              row.result.notes
+                                ? `<small>${escapeHtml(row.result.notes)}</small>`
+                                : ""
+                            }
+                          </div>
+                        </div>
                       </div>
                       <div class="comparison-review-meta comparison-review-price">
                         <span>Preço</span>
