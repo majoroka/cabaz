@@ -1839,7 +1839,7 @@ textarea {
 
 .comparison-review-line {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) 116px minmax(0, 1.15fr) 116px 118px 220px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.35fr) 118px 220px;
   align-items: start;
   gap: 18px;
   padding: 15px 16px;
@@ -1848,13 +1848,13 @@ textarea {
   background: #fffdf8;
 }
 
-.comparison-review-product,
+.comparison-review-side,
 .comparison-review-meta {
   display: grid;
   gap: 5px;
 }
 
-.comparison-review-product span,
+.comparison-review-side span,
 .comparison-review-meta span {
   color: var(--text-faint);
   font-size: 0.72rem;
@@ -1863,15 +1863,22 @@ textarea {
   text-transform: uppercase;
 }
 
-.comparison-review-product strong,
+.comparison-review-side strong,
 .comparison-review-meta strong {
   line-height: 1.25;
 }
 
-.comparison-review-product small,
+.comparison-review-side small,
 .comparison-review-meta small {
   color: var(--text-soft);
   line-height: 1.4;
+}
+
+.comparison-review-side-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 116px;
+  align-items: start;
+  gap: 16px;
 }
 
 .comparison-review-product-shell {
@@ -1923,6 +1930,12 @@ textarea {
 .comparison-review-product-copy {
   display: grid;
   gap: 6px;
+}
+
+.comparison-review-side-price {
+  align-self: stretch;
+  padding-left: 14px;
+  border-left: 1px solid rgba(17, 34, 68, 0.08);
 }
 
 .comparison-review-store-logo {
@@ -2016,30 +2029,18 @@ textarea {
   }
 
   .comparison-review-line {
-    grid-template-columns: minmax(0, 1fr) 108px minmax(0, 1fr) 108px 118px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 118px;
     grid-template-areas:
-      "reference referencePrice candidate candidatePrice confidence"
-      "actions actions actions actions actions";
+      "reference candidate confidence"
+      "actions actions actions";
   }
 
-  .comparison-review-product-reference {
+  .comparison-review-side-reference {
     grid-area: reference;
   }
 
-  .comparison-review-product-candidate {
+  .comparison-review-side-candidate {
     grid-area: candidate;
-  }
-
-  .comparison-review-price {
-    grid-area: candidatePrice;
-  }
-
-  .comparison-review-reference-price {
-    grid-area: referencePrice;
-  }
-
-  .comparison-review-price {
-    grid-area: candidatePrice;
   }
 
   .comparison-review-confidence {
@@ -2048,6 +2049,11 @@ textarea {
 
   .comparison-review-actions {
     grid-area: actions;
+  }
+
+  .comparison-review-side-shell {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .comparison-review-product-shell {
@@ -2259,12 +2265,14 @@ textarea {
     grid-template-columns: 1fr;
     grid-template-areas:
       "reference"
-      "referencePrice"
       "candidate"
-      "candidatePrice"
       "confidence"
       "actions";
     align-items: start;
+  }
+
+  .comparison-review-side-shell {
+    grid-template-columns: 1fr;
   }
 
   .comparison-review-product-shell {
@@ -2289,6 +2297,13 @@ textarea {
 
   .comparison-review-actions > div {
     justify-content: flex-start;
+  }
+
+  .comparison-review-side-price {
+    padding-left: 0;
+    padding-top: 10px;
+    border-left: 0;
+    border-top: 1px solid rgba(17, 34, 68, 0.08);
   }
 
   .shopping-list-summary {

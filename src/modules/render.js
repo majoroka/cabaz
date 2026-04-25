@@ -749,80 +749,84 @@ function renderEquivalenceReviewSection(comparisonView) {
 
                   return `
                     <article class="comparison-review-line">
-                      <div class="comparison-review-product comparison-review-product-reference">
+                      <div class="comparison-review-side comparison-review-side-reference">
                         <span>Produto no cabaz</span>
-                        <div class="comparison-review-product-shell">
-                          <div class="comparison-review-product-store">
-                            ${renderStoreLogo({
-                              store: referenceStore,
-                              className: "comparison-review-store-logo"
-                            })}
-                            <small>${escapeHtml(referenceStore.name)}</small>
+                        <div class="comparison-review-side-shell">
+                          <div class="comparison-review-product-shell">
+                            <div class="comparison-review-product-store">
+                              ${renderStoreLogo({
+                                store: referenceStore,
+                                className: "comparison-review-store-logo"
+                              })}
+                              <small>${escapeHtml(referenceStore.name)}</small>
+                            </div>
+                            <div class="comparison-review-product-media">
+                              ${
+                                referenceImage
+                                  ? `<img src="${escapeHtml(referenceImage)}" alt="${escapeHtml(row.item.name)}" loading="lazy" referrerpolicy="no-referrer" />`
+                                  : `<span>Sem imagem</span>`
+                              }
+                            </div>
+                            <div class="comparison-review-product-copy">
+                              <strong>${escapeHtml(row.item.name)}</strong>
+                              <small>
+                                ${escapeHtml(getCategoryName(row.item.category))}
+                                ${referenceBrand ? ` · ${escapeHtml(referenceBrand)}` : ""}
+                                ${referenceSize ? ` · ${escapeHtml(referenceSize)}` : ""}
+                              </small>
+                              ${
+                                row.item.notes
+                                  ? `<small>${escapeHtml(row.item.notes)}</small>`
+                                  : ""
+                              }
+                            </div>
                           </div>
-                          <div class="comparison-review-product-media">
-                            ${
-                              referenceImage
-                                ? `<img src="${escapeHtml(referenceImage)}" alt="${escapeHtml(row.item.name)}" loading="lazy" referrerpolicy="no-referrer" />`
-                                : `<span>Sem imagem</span>`
-                            }
-                          </div>
-                          <div class="comparison-review-product-copy">
-                            <strong>${escapeHtml(row.item.name)}</strong>
-                            <small>
-                              ${escapeHtml(getCategoryName(row.item.category))}
-                              ${referenceBrand ? ` · ${escapeHtml(referenceBrand)}` : ""}
-                              ${referenceSize ? ` · ${escapeHtml(referenceSize)}` : ""}
-                            </small>
-                            ${
-                              row.item.notes
-                                ? `<small>${escapeHtml(row.item.notes)}</small>`
-                                : ""
-                            }
+                          <div class="comparison-review-meta comparison-review-side-price">
+                            <span>Preço cabaz</span>
+                            <strong>${referencePrice == null ? "—" : formatCurrency(referencePrice)}</strong>
+                            <small>${escapeHtml(referenceUnitPrice == null ? "Sem preço base" : formatUnitPrice(referenceUnitPrice, referenceUnit))}</small>
                           </div>
                         </div>
                       </div>
-                      <div class="comparison-review-product comparison-review-product-candidate">
+                      <div class="comparison-review-side comparison-review-side-candidate">
                         <span>Produto candidato</span>
-                        <div class="comparison-review-product-shell">
-                          <div class="comparison-review-product-store">
-                            ${renderStoreLogo({
-                              store: row.store,
-                              className: "comparison-review-store-logo"
-                            })}
-                            <small>${escapeHtml(row.store.name)}</small>
+                        <div class="comparison-review-side-shell">
+                          <div class="comparison-review-product-shell">
+                            <div class="comparison-review-product-store">
+                              ${renderStoreLogo({
+                                store: row.store,
+                                className: "comparison-review-store-logo"
+                              })}
+                              <small>${escapeHtml(row.store.name)}</small>
+                            </div>
+                            <div class="comparison-review-product-media">
+                              ${
+                                row.result?.image
+                                  ? `<img src="${escapeHtml(row.result.image)}" alt="${escapeHtml(row.result.matchedName)}" loading="lazy" referrerpolicy="no-referrer" />`
+                                  : `<span>Sem imagem</span>`
+                              }
+                            </div>
+                            <div class="comparison-review-product-copy">
+                              <strong>${escapeHtml(row.result.matchedName)}</strong>
+                              <small>
+                                ${escapeHtml(relationLabel)}
+                                ${row.countsForTotal ? " · entra no total" : " · fora do total"}
+                                ${candidateBrand ? ` · ${escapeHtml(candidateBrand)}` : ""}
+                                ${candidateSize ? ` · ${escapeHtml(candidateSize)}` : ""}
+                              </small>
+                              ${
+                                row.result.notes
+                                  ? `<small>${escapeHtml(row.result.notes)}</small>`
+                                  : ""
+                              }
+                            </div>
                           </div>
-                          <div class="comparison-review-product-media">
-                            ${
-                              row.result?.image
-                                ? `<img src="${escapeHtml(row.result.image)}" alt="${escapeHtml(row.result.matchedName)}" loading="lazy" referrerpolicy="no-referrer" />`
-                                : `<span>Sem imagem</span>`
-                            }
-                          </div>
-                          <div class="comparison-review-product-copy">
-                            <strong>${escapeHtml(row.result.matchedName)}</strong>
-                            <small>
-                              ${escapeHtml(relationLabel)}
-                              ${row.countsForTotal ? " · entra no total" : " · fora do total"}
-                              ${candidateBrand ? ` · ${escapeHtml(candidateBrand)}` : ""}
-                              ${candidateSize ? ` · ${escapeHtml(candidateSize)}` : ""}
-                            </small>
-                            ${
-                              row.result.notes
-                                ? `<small>${escapeHtml(row.result.notes)}</small>`
-                                : ""
-                            }
+                          <div class="comparison-review-meta comparison-review-side-price">
+                            <span>Preço candidato</span>
+                            <strong>${formatCurrency(row.result.price)}</strong>
+                            <small>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</small>
                           </div>
                         </div>
-                      </div>
-                      <div class="comparison-review-meta comparison-review-reference-price">
-                        <span>Preço cabaz</span>
-                        <strong>${referencePrice == null ? "—" : formatCurrency(referencePrice)}</strong>
-                        <small>${escapeHtml(referenceUnitPrice == null ? "Sem preço base" : formatUnitPrice(referenceUnitPrice, referenceUnit))}</small>
-                      </div>
-                      <div class="comparison-review-meta comparison-review-price">
-                        <span>Preço candidato</span>
-                        <strong>${formatCurrency(row.result.price)}</strong>
-                        <small>${escapeHtml(formatUnitPrice(row.result.unitPrice, row.result.unit))}</small>
                       </div>
                       <div class="comparison-review-meta comparison-review-confidence">
                         <span>Confiança</span>
