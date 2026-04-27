@@ -680,6 +680,26 @@ textarea {
   flex: 0 0 auto;
 }
 
+.summary-card-store .summary-store-value {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  max-width: calc(100% - 118px);
+  margin-top: 0.78rem;
+}
+
+.summary-card-store .summary-store-value span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.18;
+}
+
+.summary-card-store p {
+  max-width: calc(100% - 96px);
+}
+
 .summary-card p {
   max-width: 18rem;
   margin: 0;

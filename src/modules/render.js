@@ -191,7 +191,7 @@ function renderSummaryCards(summary) {
       ${cards
         .map(
           (card, index) => `
-            <article class="summary-card ${index === cards.length - 1 ? "summary-card-featured" : ""}">
+            <article class="summary-card ${card.id === "cheapest-store" ? "summary-card-store" : ""} ${index === cards.length - 1 ? "summary-card-featured" : ""}">
               <span class="summary-label">${escapeHtml(card.label)}</span>
               ${renderSummaryCardIcon(card)}
               ${renderSummaryCardValue(card)}
