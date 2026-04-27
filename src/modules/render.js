@@ -695,7 +695,7 @@ function renderFavoritesSection(favoritesView) {
 function renderEquivalenceReviewSection(comparisonView) {
   const reviews = comparisonView.equivalenceReviews || {
     rows: [],
-    summary: { total: 0, pending: 0, approved: 0, needsReview: 0 }
+    summary: { total: 0, pending: 0, approved: 0, acceptedAlternatives: 0, ignoredAlternatives: 0, needsReview: 0 }
   };
 
   return `
@@ -704,17 +704,18 @@ function renderEquivalenceReviewSection(comparisonView) {
         <div>
           <p class="eyebrow">Validação</p>
           <h3>Correspondências a validar</h3>
-          <p>Confirme manualmente se os seguintes produtos podem ser considerados como equivalentes, uma vez que o produto exato não foi encontrado noutras lojas.</p>
+          <p>Confirme manualmente equivalentes e, quando fizer sentido, aceite alternativas para que passem a contar no total dessa loja.</p>
         </div>
-        <div class="comparison-review-counts" aria-label="Resumo da validação de equivalências">
+        <div class="comparison-review-counts" aria-label="Resumo da validação de correspondências">
           <span>${escapeHtml(String(reviews.summary.pending))} por validar</span>
           <span>${escapeHtml(String(reviews.summary.approved))} aprovadas</span>
+          <span>${escapeHtml(String(reviews.summary.acceptedAlternatives))} alternativas aceites</span>
           <span>${escapeHtml(String(reviews.summary.needsReview))} a rever</span>
         </div>
       </div>
       ${
         reviews.rows.length === 0
-          ? `<p class="empty-state">Sem correspondências controladas no cabaz atual. Os produtos estão como exatos ou em falta.</p>`
+          ? `<p class="empty-state">Sem equivalentes ou alternativas pendentes no cabaz atual. Os produtos estão como exatos ou em falta.</p>`
           : `<div class="comparison-review-lines">
               ${reviews.rows
                 .map((row) => {
@@ -722,6 +723,10 @@ function renderEquivalenceReviewSection(comparisonView) {
                   const statusLabel =
                     row.status === "approved"
                       ? "Aprovada"
+                      : row.status === "alternative_accepted"
+                        ? "Aceite"
+                        : row.status === "alternative_ignored"
+                          ? "Ignorada"
                       : row.status === "needs_review"
                         ? "A rever"
                         : "Por validar";
@@ -837,27 +842,56 @@ function renderEquivalenceReviewSection(comparisonView) {
                         </span>
                         <div>
                           ${
-                            row.status !== "approved"
-                              ? `<button
+                            row.matchType === "equivalent"
+                              ? `${
+                                  row.status !== "approved"
+                                    ? `<button
+                                        type="button"
+                                        class="button button-small"
+                                        data-action="set-equivalence-review"
+                                        data-review-id="${escapeHtml(row.id)}"
+                                        data-review-status="approved"
+                                      >
+                                        Aprovar
+                                      </button>`
+                                    : ""
+                                }
+                                <button
                                   type="button"
-                                  class="button button-small"
+                                  class="button button-small button-secondary"
                                   data-action="set-equivalence-review"
                                   data-review-id="${escapeHtml(row.id)}"
-                                  data-review-status="approved"
+                                  data-review-status="needs_review"
                                 >
-                                  Aprovar
+                                  Rever
                                 </button>`
-                              : ""
+                              : `${
+                                  row.status !== "alternative_accepted"
+                                    ? `<button
+                                        type="button"
+                                        class="button button-small"
+                                        data-action="set-equivalence-review"
+                                        data-review-id="${escapeHtml(row.id)}"
+                                        data-review-status="alternative_accepted"
+                                      >
+                                        Aceitar
+                                      </button>`
+                                    : ""
+                                }
+                                ${
+                                  row.status !== "alternative_ignored"
+                                    ? `<button
+                                        type="button"
+                                        class="button button-small button-secondary"
+                                        data-action="set-equivalence-review"
+                                        data-review-id="${escapeHtml(row.id)}"
+                                        data-review-status="alternative_ignored"
+                                      >
+                                        Ignorar
+                                      </button>`
+                                    : ""
+                                }`
                           }
-                          <button
-                            type="button"
-                            class="button button-small button-secondary"
-                            data-action="set-equivalence-review"
-                            data-review-id="${escapeHtml(row.id)}"
-                            data-review-status="needs_review"
-                          >
-                            Rever
-                          </button>
                           ${
                             row.status !== "pending"
                               ? `<button
@@ -1068,7 +1102,9 @@ function renderComparisonSection(comparisonView) {
                     ? row.matchRule?.reason || "Equivalente aprovado; entra no total do cabaz."
                     : row.matchRule?.reason || "Equivalente encontrado, mas ainda aguarda validação manual."
                   : isAlternative
-                    ? row.matchRule?.reason || "Alternativa controlada; não entra no total do cabaz."
+                    ? row.countsForTotal
+                      ? row.matchRule?.reason || "Alternativa aceite manualmente; entra no total desta loja."
+                      : row.matchRule?.reason || "Alternativa disponível; não entra no total enquanto não for aceite."
                     : "Mesmo produto canónico encontrado nesta loja."
                 : usesReferenceImage
                   ? "Imagem do produto no cabaz; sem oferta publicada nesta loja."

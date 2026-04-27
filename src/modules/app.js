@@ -788,7 +788,7 @@ function loadStoredEquivalenceReviews() {
 
           const status = String(review.status || "").trim();
 
-          if (!["approved", "needs_review"].includes(status)) {
+          if (!["approved", "needs_review", "alternative_accepted", "alternative_ignored"].includes(status)) {
             return null;
           }
 
@@ -1250,7 +1250,7 @@ function getViewModel(state) {
           ? state.catalogProducts.find((entry) => entry.id === match.result.basketItemId) || null
           : null;
         const reviewId =
-          match.result && match.matchType === "equivalent"
+          match.result && ["equivalent", "alternative"].includes(match.matchType)
             ? getEquivalenceReviewId({
                 itemId: item.id,
                 storeId: store.id,
@@ -1258,7 +1258,12 @@ function getViewModel(state) {
               })
             : "";
         const review = reviewId ? state.equivalenceReviews[reviewId] || null : null;
-        const countsForTotal = match.matchType === "equivalent" ? review?.status === "approved" : match.countsForTotal;
+        const countsForTotal =
+          match.matchType === "equivalent"
+            ? review?.status === "approved"
+            : match.matchType === "alternative"
+              ? review?.status === "alternative_accepted"
+              : match.countsForTotal;
         const referenceResult =
           state.results.find((result) => item.preferredStore && result.store === item.preferredStore && result.basketItemId === item.id) ||
           state.results.find((result) => result.basketItemId === item.id) ||
@@ -1334,7 +1339,7 @@ function getViewModel(state) {
     });
   const equivalenceReviewRows = comparisonStores.flatMap((entry) =>
     entry.rows
-      .filter((row) => row.matchType === "equivalent" && row.result)
+      .filter((row) => ["equivalent", "alternative"].includes(row.matchType) && row.result)
       .map((row) => {
         const resultProduct = state.catalogProducts.find((product) => product.id === row.result.basketItemId) || null;
         const referenceResult =
@@ -1378,6 +1383,8 @@ function getViewModel(state) {
     total: equivalenceReviewRows.length,
     pending: equivalenceReviewRows.filter((row) => row.status === "pending").length,
     approved: equivalenceReviewRows.filter((row) => row.status === "approved").length,
+    acceptedAlternatives: equivalenceReviewRows.filter((row) => row.status === "alternative_accepted").length,
+    ignoredAlternatives: equivalenceReviewRows.filter((row) => row.status === "alternative_ignored").length,
     needsReview: equivalenceReviewRows.filter((row) => row.status === "needs_review").length
   };
   const activeComparisonStore =
@@ -1748,7 +1755,7 @@ export function createApp(rootElement) {
       return;
     }
 
-    if (!["approved", "needs_review"].includes(status)) {
+    if (!["approved", "needs_review", "alternative_accepted", "alternative_ignored"].includes(status)) {
       return;
     }
 
@@ -1761,7 +1768,15 @@ export function createApp(rootElement) {
     };
 
     persistJson(STORAGE_KEYS.equivalenceReviews, state.equivalenceReviews);
-    setNotice(status === "approved" ? "Equivalência aprovada." : "Equivalência marcada para revisão.");
+    setNotice(
+      status === "approved"
+        ? "Equivalência aprovada."
+        : status === "needs_review"
+          ? "Equivalência marcada para revisão."
+          : status === "alternative_accepted"
+            ? "Alternativa aceite e adicionada ao total da loja."
+            : "Alternativa marcada como ignorada."
+    );
     render();
   }
 

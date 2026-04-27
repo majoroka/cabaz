@@ -174,8 +174,9 @@ Ordem de decisão recomendada:
 #### `alternativa`
 
 - automático
-- nunca entra no total
+- não entra no total automaticamente
 - produto relacionado, mas com diferença relevante de marca, formato, variante ou tamanho
+- pode entrar no total se o utilizador a aceitar manualmente para essa loja
 
 #### `em_falta`
 
@@ -389,7 +390,7 @@ Nunca considerar `exato` ou `equivalente` quando existir pelo menos um destes co
 
 - `exato`: entra automaticamente no total
 - `equivalente`: só entra no total quando for aprovado manualmente
-- `alternativa`: pode ser mostrado, mas fica sempre fora do total
+- `alternativa`: pode ser mostrada e entra no total apenas quando for aceite manualmente
 - `em_falta`: não entra no total e deve reduzir a confiança global da loja
 
 ## Produtos piloto: regras recomendadas

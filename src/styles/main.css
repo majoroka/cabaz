@@ -2004,6 +2004,16 @@ textarea {
   color: #9a651c;
 }
 
+.comparison-review-status-alternative_accepted {
+  background: #e8f4ef;
+  color: #2f7f3a;
+}
+
+.comparison-review-status-alternative_ignored {
+  background: #f4f6f8;
+  color: var(--text-soft);
+}
+
 .status-tag {
   padding: 0.35rem 0.6rem;
   border-radius: 999px;

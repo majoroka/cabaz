@@ -234,6 +234,7 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] lista de validação manual para equivalências detetadas no cabaz
 - [x] definição documental das regras de `exato`, `equivalente`, `alternativa` e `em falta`
 - [x] aplicação inicial da matriz objetiva de comparação à lógica automática do frontend
+- [x] aceitação manual de alternativas com impacto controlado no total da loja
 - [ ] normalização fina de equivalências entre formatos, marcas próprias e tamanhos diferentes
 
 ### Intervenção necessária do utilizador
