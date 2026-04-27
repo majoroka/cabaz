@@ -1176,6 +1176,14 @@ textarea {
   margin: 0;
 }
 
+.basket-heading-main h2 {
+  font-weight: 500;
+}
+
+.basket-heading-main h2 strong {
+  font-weight: 800;
+}
+
 .basket-clear-button {
   width: auto;
   min-width: 0;

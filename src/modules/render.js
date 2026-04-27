@@ -313,7 +313,7 @@ function renderBasketSection(basketView) {
       <div class="section-heading basket-heading">
         <div class="basket-heading-main">
           <p class="eyebrow">Cabaz</p>
-          <h2>${escapeHtml(String(basketView.itemCount))} produtos adicionados</h2>
+          <h2><strong>${escapeHtml(String(basketView.itemCount))}</strong> produtos adicionados</h2>
         </div>
         <button type="button" class="button button-danger button-small basket-clear-button" data-action="clear-basket">
           Esvaziar cabaz
