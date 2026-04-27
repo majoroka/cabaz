@@ -1290,6 +1290,12 @@ function getViewModel(state) {
       const equivalentCount = rows.filter((row) => row.matchType === "equivalent").length;
       const alternativeCount = rows.filter((row) => row.matchType === "alternative").length;
       const missingCount = rows.filter((row) => row.matchType === "missing").length;
+      const approvedEquivalentCount = rows.filter(
+        (row) => row.matchType === "equivalent" && row.reviewStatus === "approved" && row.countsForTotal
+      ).length;
+      const acceptedAlternativeCount = rows.filter(
+        (row) => row.matchType === "alternative" && row.reviewStatus === "alternative_accepted" && row.countsForTotal
+      ).length;
       const total = foundRows.reduce((sum, row) => sum + (row.lineTotal || 0), 0);
 
       return {
@@ -1303,6 +1309,8 @@ function getViewModel(state) {
         equivalentCount,
         alternativeCount,
         missingCount,
+        approvedEquivalentCount,
+        acceptedAlternativeCount,
         notPricedCount: rows.length - foundRows.length,
         itemCount: rows.length,
         complete: rows.length > 0 && foundRows.length === rows.length

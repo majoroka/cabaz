@@ -963,6 +963,16 @@ function renderComparisonSection(comparisonView) {
   const activeStoreStatusCopy = activeStore.complete
     ? "Cobertura completa do cabaz nesta loja."
     : `${activeStore.notPricedCount} ${activeStore.notPricedCount === 1 ? "produto fora do total" : "produtos fora do total"} nesta loja.`;
+  const manualIncludedParts = [
+    activeStore.approvedEquivalentCount > 0
+      ? `${activeStore.approvedEquivalentCount} ${activeStore.approvedEquivalentCount === 1 ? "equivalente aprovado" : "equivalentes aprovados"}`
+      : "",
+    activeStore.acceptedAlternativeCount > 0
+      ? `${activeStore.acceptedAlternativeCount} ${activeStore.acceptedAlternativeCount === 1 ? "alternativa aceite" : "alternativas aceites"}`
+      : ""
+  ].filter(Boolean);
+  const manualIncludedCopy =
+    manualIncludedParts.length > 0 ? `Inclui ${manualIncludedParts.join(" e ")} no total.` : "";
   const proximityCopy =
     comparisonView.sortMode === "distance" && comparisonView.locationReference
       ? `Lojas ordenadas por proximidade a ${comparisonView.locationReference.label}.`
@@ -1042,6 +1052,11 @@ function renderComparisonSection(comparisonView) {
             <span>Total do cabaz</span>
             <strong>${activeStore.total == null ? "—" : formatCurrency(activeStore.total)}</strong>
             <small>${activeStoreDistance ? `${escapeHtml(activeStoreDistance)} · ` : ""}${escapeHtml(activeStoreStatusCopy)}</small>
+            ${
+              manualIncludedCopy
+                ? `<em class="comparison-store-total-note">${escapeHtml(manualIncludedCopy)}</em>`
+                : ""
+            }
           </div>
         </div>
         <div class="comparison-match-summary" aria-label="Resumo de correspondências">
@@ -1058,6 +1073,11 @@ function renderComparisonSection(comparisonView) {
             ${escapeHtml(String(activeStore.missingCount))} ${activeStore.missingCount === 1 ? "em falta" : "em falta"}
           </span>
         </div>
+        ${
+          manualIncludedCopy
+            ? `<p class="comparison-match-note">${escapeHtml(manualIncludedCopy)}</p>`
+            : ""
+        }
         <div class="comparison-lines">
           ${activeStore.rows
             .map((row) => {
