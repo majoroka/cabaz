@@ -1064,7 +1064,9 @@ function renderComparisonSection(comparisonView) {
                 : "Em falta";
               const statusHint = row.result
                 ? isEquivalent
-                  ? row.matchRule?.reason || "Produto alternativo do mesmo grupo de comparação."
+                  ? row.countsForTotal
+                    ? row.matchRule?.reason || "Equivalente aprovado; entra no total do cabaz."
+                    : row.matchRule?.reason || "Equivalente encontrado, mas ainda aguarda validação manual."
                   : isAlternative
                     ? row.matchRule?.reason || "Alternativa controlada; não entra no total do cabaz."
                     : "Mesmo produto canónico encontrado nesta loja."

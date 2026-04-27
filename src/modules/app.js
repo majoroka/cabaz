@@ -128,6 +128,485 @@ function sortResultMatchesByPrice(matches) {
   return [...matches].sort((left, right) => left.result.price - right.result.price);
 }
 
+function normalizeUnitForComparison(unit) {
+  const normalized = normalizeSearchText(unit);
+
+  if (!normalized) {
+    return "";
+  }
+
+  if (["kg", "quilo", "quilos"].includes(normalized)) {
+    return "kg";
+  }
+
+  if (["g", "gr", "grama", "gramas"].includes(normalized)) {
+    return "g";
+  }
+
+  if (["l", "lt", "litro", "litros"].includes(normalized)) {
+    return "l";
+  }
+
+  if (["ml", "mililitro", "mililitros"].includes(normalized)) {
+    return "ml";
+  }
+
+  if (["un", "uni", "unidade", "unidades"].includes(normalized)) {
+    return "un";
+  }
+
+  return normalized;
+}
+
+function getComparableSize(size, unit) {
+  const numericSize = Number(size);
+  const normalizedUnit = normalizeUnitForComparison(unit);
+
+  if (!Number.isFinite(numericSize) || numericSize <= 0 || !normalizedUnit) {
+    return null;
+  }
+
+  if (normalizedUnit === "kg") {
+    return { family: "weight", value: numericSize * 1000 };
+  }
+
+  if (normalizedUnit === "g") {
+    return { family: "weight", value: numericSize };
+  }
+
+  if (normalizedUnit === "l") {
+    return { family: "volume", value: numericSize * 1000 };
+  }
+
+  if (normalizedUnit === "ml") {
+    return { family: "volume", value: numericSize };
+  }
+
+  if (normalizedUnit === "un") {
+    return { family: "count", value: numericSize };
+  }
+
+  return { family: normalizedUnit, value: numericSize };
+}
+
+function getRelativeSizeDifference(leftSize, leftUnit, rightSize, rightUnit) {
+  const leftComparable = getComparableSize(leftSize, leftUnit);
+  const rightComparable = getComparableSize(rightSize, rightUnit);
+
+  if (!leftComparable || !rightComparable || leftComparable.family !== rightComparable.family) {
+    return null;
+  }
+
+  if (leftComparable.value <= 0 || rightComparable.value <= 0) {
+    return null;
+  }
+
+  return Math.abs(leftComparable.value - rightComparable.value) / leftComparable.value;
+}
+
+function normalizeBrandForComparison(value) {
+  const normalized = normalizeSearchText(value);
+
+  if (!normalized) {
+    return "";
+  }
+
+  const aliases = {
+    "capitao iglo": "iglo"
+  };
+
+  return aliases[normalized] || normalized;
+}
+
+function buildProductTokenSet(product) {
+  const values = [
+    product?.name,
+    product?.preferredBrand,
+    ...(Array.isArray(product?.aliases) ? product.aliases : []),
+    ...(Array.isArray(product?.requiredTokens) ? product.requiredTokens : [])
+  ];
+
+  return new Set(
+    values
+      .flatMap((value) => buildCanonicalSearchTokens(value))
+      .filter(Boolean)
+  );
+}
+
+function productHasToken(tokenSet, token) {
+  return tokenSet.has(normalizeSearchText(token));
+}
+
+function productHasAnyToken(tokenSet, tokens) {
+  return tokens.some((token) => productHasToken(tokenSet, token));
+}
+
+function detectProductFamily(product, tokenSet) {
+  if (productHasToken(tokenSet, "leite")) {
+    return "leite";
+  }
+
+  if (productHasToken(tokenSet, "arroz")) {
+    return "arroz";
+  }
+
+  if (productHasToken(tokenSet, "atum")) {
+    return "atum";
+  }
+
+  if (productHasAnyToken(tokenSet, ["ovo", "ovos"])) {
+    return "ovos";
+  }
+
+  if (productHasToken(tokenSet, "frango")) {
+    return "frango";
+  }
+
+  if (productHasAnyToken(tokenSet, ["bolacha", "bolachas"])) {
+    return "bolachas";
+  }
+
+  if (productHasAnyToken(tokenSet, ["iogurte", "iogurtes"])) {
+    return "iogurte";
+  }
+
+  if (productHasToken(tokenSet, "manteiga")) {
+    return "manteiga";
+  }
+
+  return product?.comparisonGroup || product?.category || "generic";
+}
+
+function detectMilkType(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["sem", "lactose"])) {
+    return "sem_lactose";
+  }
+
+  if (productHasToken(tokenSet, "magro")) {
+    return "magro";
+  }
+
+  if (productHasAnyToken(tokenSet, ["meio", "gordo", "meio-gordo"])) {
+    return "meio_gordo";
+  }
+
+  if (productHasAnyToken(tokenSet, ["inteiro", "gordo"])) {
+    return "gordo";
+  }
+
+  return "";
+}
+
+function detectRiceType(tokenSet) {
+  if (productHasToken(tokenSet, "basmati")) {
+    return "basmati";
+  }
+
+  if (productHasToken(tokenSet, "carolino")) {
+    return "carolino";
+  }
+
+  if (productHasToken(tokenSet, "agulha")) {
+    return "agulha";
+  }
+
+  return "";
+}
+
+function detectTunaMedium(tokenSet) {
+  if (productHasToken(tokenSet, "azeite")) {
+    return "azeite";
+  }
+
+  if (productHasAnyToken(tokenSet, ["oleo", "óleo"])) {
+    return "oleo";
+  }
+
+  if (productHasAnyToken(tokenSet, ["agua", "água", "natural"])) {
+    return "agua";
+  }
+
+  return "";
+}
+
+function detectEggType(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["bio", "biologico", "biológicos"])) {
+    return "bio";
+  }
+
+  if (productHasAnyToken(tokenSet, ["ar", "livre"])) {
+    return "ar_livre";
+  }
+
+  if (productHasToken(tokenSet, "solo")) {
+    return "solo";
+  }
+
+  return "";
+}
+
+function detectChickenCut(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["peito", "peitos"])) {
+    return "peito";
+  }
+
+  if (productHasAnyToken(tokenSet, ["asa", "asas"])) {
+    return "asas";
+  }
+
+  if (productHasAnyToken(tokenSet, ["bife", "bifes"])) {
+    return "bife";
+  }
+
+  return "";
+}
+
+function detectChickenPresentation(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["marinado", "marinada", "temperado", "temperada"])) {
+    return "temperado";
+  }
+
+  if (productHasAnyToken(tokenSet, ["vacuo", "vácuo"])) {
+    return "vacuo";
+  }
+
+  if (productHasAnyToken(tokenSet, ["embalado", "embalada"])) {
+    return "embalado";
+  }
+
+  return "";
+}
+
+function detectCookieType(tokenSet) {
+  if (productHasToken(tokenSet, "maria")) {
+    return "maria";
+  }
+
+  if (productHasToken(tokenSet, "digestive")) {
+    return "digestive";
+  }
+
+  if (productHasAnyToken(tokenSet, ["tostada", "tostadas"])) {
+    return "tostada";
+  }
+
+  return "";
+}
+
+function detectYogurtFormat(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["liquido", "líquido"])) {
+    return "liquido";
+  }
+
+  if (productHasAnyToken(tokenSet, ["natural", "cremoso"])) {
+    return "solido";
+  }
+
+  return "";
+}
+
+function detectYogurtFlavor(tokenSet) {
+  if (productHasToken(tokenSet, "morango")) {
+    return "morango";
+  }
+
+  if (productHasAnyToken(tokenSet, ["silvestres", "frutos"])) {
+    return "frutos_silvestres";
+  }
+
+  if (productHasToken(tokenSet, "natural")) {
+    return "natural";
+  }
+
+  return "";
+}
+
+function detectButterVariant(tokenSet) {
+  if (productHasAnyToken(tokenSet, ["sem", "sal"])) {
+    return "sem_sal";
+  }
+
+  if (productHasAnyToken(tokenSet, ["com", "sal"])) {
+    return "com_sal";
+  }
+
+  return "";
+}
+
+function buildProductProfile(product) {
+  const tokenSet = buildProductTokenSet(product);
+  const family = detectProductFamily(product, tokenSet);
+
+  return {
+    family,
+    tokenSet,
+    brand: normalizeBrandForComparison(product?.preferredBrand),
+    category: String(product?.category || "").trim(),
+    size: product?.size ?? null,
+    sizeUnit: product?.sizeUnit ?? null,
+    packCount: product?.packCount ?? null,
+    isPrivateLabel: product?.isPrivateLabel === true,
+    blockedTokens: Array.isArray(product?.blockedTokens)
+      ? product.blockedTokens.map((token) => normalizeSearchText(token)).filter(Boolean)
+      : [],
+    milkType: family === "leite" ? detectMilkType(tokenSet) : "",
+    riceType: family === "arroz" ? detectRiceType(tokenSet) : "",
+    tunaMedium: family === "atum" ? detectTunaMedium(tokenSet) : "",
+    eggType: family === "ovos" ? detectEggType(tokenSet) : "",
+    chickenCut: family === "frango" ? detectChickenCut(tokenSet) : "",
+    chickenPresentation: family === "frango" ? detectChickenPresentation(tokenSet) : "",
+    cookieType: family === "bolachas" ? detectCookieType(tokenSet) : "",
+    yogurtFormat: family === "iogurte" ? detectYogurtFormat(tokenSet) : "",
+    yogurtFlavor: family === "iogurte" ? detectYogurtFlavor(tokenSet) : "",
+    butterVariant: family === "manteiga" ? detectButterVariant(tokenSet) : ""
+  };
+}
+
+function hasBlockedTokenConflict(sourceProfile, targetProfile) {
+  return (
+    sourceProfile.blockedTokens.some((token) => targetProfile.tokenSet.has(token)) ||
+    targetProfile.blockedTokens.some((token) => sourceProfile.tokenSet.has(token))
+  );
+}
+
+function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
+  const sourceProfile = buildProductProfile(sourceProduct);
+  const targetProfile = buildProductProfile(targetProduct);
+
+  if (!sourceProduct || !targetProduct || sourceProfile.category !== targetProfile.category) {
+    return null;
+  }
+
+  if (hasBlockedTokenConflict(sourceProfile, targetProfile)) {
+    return "alternative";
+  }
+
+  const sizeDifference = getRelativeSizeDifference(
+    sourceProfile.size,
+    sourceProfile.sizeUnit,
+    targetProfile.size,
+    targetProfile.sizeUnit
+  );
+  const comparableSize = sizeDifference !== null;
+  const privateLabelBrandMismatch =
+    sourceProfile.brand !== targetProfile.brand && (sourceProfile.isPrivateLabel || targetProfile.isPrivateLabel);
+  const samePackCount =
+    sourceProfile.packCount == null ||
+    targetProfile.packCount == null ||
+    sourceProfile.packCount === targetProfile.packCount;
+
+  if (!samePackCount) {
+    return "alternative";
+  }
+
+  switch (sourceProfile.family) {
+    case "leite":
+      if (sourceProfile.milkType && targetProfile.milkType && sourceProfile.milkType !== targetProfile.milkType) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference === 0 ? "equivalent" : "alternative";
+
+    case "arroz":
+      if (sourceProfile.riceType && targetProfile.riceType && sourceProfile.riceType !== targetProfile.riceType) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
+
+    case "atum":
+      if (sourceProfile.tunaMedium && targetProfile.tunaMedium && sourceProfile.tunaMedium !== targetProfile.tunaMedium) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
+
+    case "ovos":
+      if (sourceProfile.eggType && targetProfile.eggType && sourceProfile.eggType !== targetProfile.eggType) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference === 0 ? "equivalent" : "alternative";
+
+    case "frango":
+      if (sourceProfile.chickenCut && targetProfile.chickenCut && sourceProfile.chickenCut !== targetProfile.chickenCut) {
+        return "alternative";
+      }
+
+      if (
+        sourceProfile.chickenPresentation &&
+        targetProfile.chickenPresentation &&
+        sourceProfile.chickenPresentation !== targetProfile.chickenPresentation
+      ) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
+
+    case "bolachas":
+      if (sourceProfile.cookieType && targetProfile.cookieType && sourceProfile.cookieType !== targetProfile.cookieType) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
+
+    case "iogurte":
+      if (sourceProfile.yogurtFormat && targetProfile.yogurtFormat && sourceProfile.yogurtFormat !== targetProfile.yogurtFormat) {
+        return "alternative";
+      }
+
+      if (sourceProfile.yogurtFlavor && targetProfile.yogurtFlavor && sourceProfile.yogurtFlavor !== targetProfile.yogurtFlavor) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
+
+    case "manteiga":
+      if (sourceProfile.butterVariant && targetProfile.butterVariant && sourceProfile.butterVariant !== targetProfile.butterVariant) {
+        return "alternative";
+      }
+
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      return comparableSize && sizeDifference === 0 ? "equivalent" : "alternative";
+
+    default:
+      if (privateLabelBrandMismatch) {
+        return "alternative";
+      }
+
+      if (!comparableSize) {
+        return sourceProfile.brand && targetProfile.brand && sourceProfile.brand === targetProfile.brand
+          ? "equivalent"
+          : "alternative";
+      }
+
+      return sizeDifference <= 0.1 ? "equivalent" : "alternative";
+  }
+}
+
 function findBestResultForBasketItemInStore(item, storeId, results, catalogProducts, equivalenceRules) {
   const availableResults = results.filter((result) => result.store === storeId && result.inStock !== false);
   const exactResults = availableResults.filter((result) => result.basketItemId === item.id);
@@ -137,7 +616,8 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
       result: [...exactResults].sort((left, right) => left.price - right.price)[0],
       matchType: "exact",
       matchRule: null,
-      countsForTotal: true
+      countsForTotal: true,
+      requiresReview: false
     };
   }
 
@@ -148,7 +628,8 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
       result: null,
       matchType: "missing",
       matchRule: null,
-      countsForTotal: false
+      countsForTotal: false,
+      requiresReview: false
     };
   }
 
@@ -162,16 +643,6 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
 
     return resultProduct?.comparisonGroup === catalogProduct.comparisonGroup && !blockedProductIds.has(result.basketItemId);
   });
-
-  if (equivalentResults.length > 0) {
-    return {
-      result: [...equivalentResults].sort((left, right) => left.price - right.price)[0],
-      matchType: "equivalent",
-      matchRule: null,
-      countsForTotal: true
-    };
-  }
-
   const controlledMatches = availableResults
     .map((result) => ({
       result,
@@ -187,7 +658,8 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
       result: match.result,
       matchType: "equivalent",
       matchRule: match.rule,
-      countsForTotal: true
+      countsForTotal: false,
+      requiresReview: true
     };
   }
 
@@ -200,7 +672,45 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
       result: match.result,
       matchType: "alternative",
       matchRule: match.rule,
-      countsForTotal: false
+      countsForTotal: false,
+      requiresReview: false
+    };
+  }
+
+  const automaticEquivalentMatches = equivalentResults
+    .map((result) => ({
+      result,
+      matchType: evaluateAutomaticEquivalentMatch(
+        catalogProduct,
+        catalogProducts.find((entry) => entry.id === result.basketItemId) || null
+      )
+    }))
+    .filter((match) => match.matchType);
+  const automaticEquivalents = automaticEquivalentMatches.filter((match) => match.matchType === "equivalent");
+
+  if (automaticEquivalents.length > 0) {
+    const match = sortResultMatchesByPrice(automaticEquivalents)[0];
+
+    return {
+      result: match.result,
+      matchType: "equivalent",
+      matchRule: null,
+      countsForTotal: false,
+      requiresReview: true
+    };
+  }
+
+  const automaticAlternatives = automaticEquivalentMatches.filter((match) => match.matchType === "alternative");
+
+  if (automaticAlternatives.length > 0) {
+    const match = sortResultMatchesByPrice(automaticAlternatives)[0];
+
+    return {
+      result: match.result,
+      matchType: "alternative",
+      matchRule: null,
+      countsForTotal: false,
+      requiresReview: false
     };
   }
 
@@ -208,7 +718,8 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
     result: null,
     matchType: "missing",
     matchRule: null,
-    countsForTotal: false
+    countsForTotal: false,
+    requiresReview: false
   };
 }
 
@@ -751,6 +1262,16 @@ function getViewModel(state) {
         const resultCatalogProduct = match.result
           ? state.catalogProducts.find((entry) => entry.id === match.result.basketItemId) || null
           : null;
+        const reviewId =
+          match.result && match.matchType === "equivalent"
+            ? getEquivalenceReviewId({
+                itemId: item.id,
+                storeId: store.id,
+                resultProductId: match.result.basketItemId
+              })
+            : "";
+        const review = reviewId ? state.equivalenceReviews[reviewId] || null : null;
+        const countsForTotal = match.matchType === "equivalent" ? review?.status === "approved" : match.countsForTotal;
         const referenceResult =
           state.results.find((result) => item.preferredStore && result.store === item.preferredStore && result.basketItemId === item.id) ||
           state.results.find((result) => result.basketItemId === item.id) ||
@@ -765,8 +1286,11 @@ function getViewModel(state) {
           referenceResult,
           matchType: match.matchType,
           matchRule: match.matchRule,
-          countsForTotal: match.countsForTotal,
-          lineTotal: match.countsForTotal && match.result ? match.result.price * quantity : null
+          requiresReview: match.requiresReview,
+          reviewId,
+          reviewStatus: review?.status || "pending",
+          countsForTotal,
+          lineTotal: countsForTotal && match.result ? match.result.price * quantity : null
         };
       });
       const foundRows = rows.filter((row) => row.countsForTotal);
@@ -823,7 +1347,7 @@ function getViewModel(state) {
     });
   const equivalenceReviewRows = comparisonStores.flatMap((entry) =>
     entry.rows
-      .filter((row) => ["equivalent", "alternative"].includes(row.matchType) && row.result)
+      .filter((row) => row.matchType === "equivalent" && row.result)
       .map((row) => {
         const resultProduct = state.catalogProducts.find((product) => product.id === row.result.basketItemId) || null;
         const referenceResult =
@@ -838,7 +1362,7 @@ function getViewModel(state) {
             id: referenceStoreId,
             name: referenceStoreId || "Loja original"
           };
-        const reviewId = getEquivalenceReviewId({
+        const reviewId = row.reviewId || getEquivalenceReviewId({
           itemId: row.item.id,
           storeId: entry.store.id,
           resultProductId: row.result.basketItemId

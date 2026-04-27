@@ -105,7 +105,20 @@ export function mapPublishedCatalogProducts(products) {
       category: String(product.categoryId || "sem_categoria").trim(),
       preferredBrand: String(product.brand || "").trim(),
       notes: "",
-      comparisonGroup: String(product.comparisonGroup || "").trim()
+      comparisonGroup: String(product.comparisonGroup || "").trim(),
+      size: toNumberOrNull(product.size),
+      sizeUnit: product.sizeUnit ? String(product.sizeUnit).trim() : null,
+      packCount: toNumberOrNull(product.packCount),
+      aliases: Array.isArray(product.aliases)
+        ? product.aliases.map((alias) => String(alias || "").trim()).filter(Boolean)
+        : [],
+      requiredTokens: Array.isArray(product.requiredTokens)
+        ? product.requiredTokens.map((token) => String(token || "").trim()).filter(Boolean)
+        : [],
+      blockedTokens: Array.isArray(product.blockedTokens)
+        ? product.blockedTokens.map((token) => String(token || "").trim()).filter(Boolean)
+        : [],
+      isPrivateLabel: product.isPrivateLabel === true
     }));
 }
 
