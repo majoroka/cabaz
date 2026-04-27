@@ -481,6 +481,14 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
     return "alternative";
   }
 
+  if (
+    sourceProfile.family !== targetProfile.family &&
+    sourceProfile.family !== "generic" &&
+    targetProfile.family !== "generic"
+  ) {
+    return null;
+  }
+
   const sizeDifference = getRelativeSizeDifference(
     sourceProfile.size,
     sourceProfile.sizeUnit,
@@ -488,8 +496,6 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
     targetProfile.sizeUnit
   );
   const comparableSize = sizeDifference !== null;
-  const privateLabelBrandMismatch =
-    sourceProfile.brand !== targetProfile.brand && (sourceProfile.isPrivateLabel || targetProfile.isPrivateLabel);
   const samePackCount =
     sourceProfile.packCount == null ||
     targetProfile.packCount == null ||
@@ -505,10 +511,6 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
         return "alternative";
       }
 
-      if (privateLabelBrandMismatch) {
-        return "alternative";
-      }
-
       return comparableSize && sizeDifference === 0 ? "equivalent" : "alternative";
 
     case "arroz":
@@ -516,18 +518,10 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
         return "alternative";
       }
 
-      if (privateLabelBrandMismatch) {
-        return "alternative";
-      }
-
       return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
 
     case "atum":
       if (sourceProfile.tunaMedium && targetProfile.tunaMedium && sourceProfile.tunaMedium !== targetProfile.tunaMedium) {
-        return "alternative";
-      }
-
-      if (privateLabelBrandMismatch) {
         return "alternative";
       }
 
@@ -560,10 +554,6 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
         return "alternative";
       }
 
-      if (privateLabelBrandMismatch) {
-        return "alternative";
-      }
-
       return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
 
     case "iogurte":
@@ -575,10 +565,6 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
         return "alternative";
       }
 
-      if (privateLabelBrandMismatch) {
-        return "alternative";
-      }
-
       return comparableSize && sizeDifference <= 0.1 ? "equivalent" : "alternative";
 
     case "manteiga":
@@ -586,13 +572,18 @@ function evaluateAutomaticEquivalentMatch(sourceProduct, targetProduct) {
         return "alternative";
       }
 
-      if (privateLabelBrandMismatch) {
-        return "alternative";
-      }
-
       return comparableSize && sizeDifference === 0 ? "equivalent" : "alternative";
 
     default:
+      if (sourceProfile.family === "generic" && targetProfile.family === "generic") {
+        if (sourceProduct.comparisonGroup && targetProduct.comparisonGroup && sourceProduct.comparisonGroup !== targetProduct.comparisonGroup) {
+          return null;
+        }
+      }
+
+      const privateLabelBrandMismatch =
+        sourceProfile.brand !== targetProfile.brand && (sourceProfile.isPrivateLabel || targetProfile.isPrivateLabel);
+
       if (privateLabelBrandMismatch) {
         return "alternative";
       }
@@ -638,11 +629,7 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
       .filter((result) => getEquivalenceRuleForPair(item.id, result.basketItemId, equivalenceRules)?.relation === "blocked")
       .map((result) => result.basketItemId)
   );
-  const equivalentResults = availableResults.filter((result) => {
-    const resultProduct = catalogProducts.find((entry) => entry.id === result.basketItemId);
-
-    return resultProduct?.comparisonGroup === catalogProduct.comparisonGroup && !blockedProductIds.has(result.basketItemId);
-  });
+  const automaticCandidateResults = availableResults.filter((result) => !blockedProductIds.has(result.basketItemId));
   const controlledMatches = availableResults
     .map((result) => ({
       result,
@@ -677,7 +664,7 @@ function findBestResultForBasketItemInStore(item, storeId, results, catalogProdu
     };
   }
 
-  const automaticEquivalentMatches = equivalentResults
+  const automaticEquivalentMatches = automaticCandidateResults
     .map((result) => ({
       result,
       matchType: evaluateAutomaticEquivalentMatch(
