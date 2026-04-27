@@ -84,26 +84,26 @@ button:disabled,
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 34px;
+  gap: 13px;
+  margin-bottom: 38px;
   padding: 0 2px;
   color: #3269a8;
-  font-size: 1.08rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 1.24rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .brand-mark {
   display: block;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
   object-fit: contain;
 }
 
 .nav-list {
   display: grid;
-  gap: 9px;
+  gap: 0;
 }
 
 .nav-link {
@@ -112,14 +112,14 @@ button:disabled,
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 46px;
+  min-height: 60px;
   padding: 0 18px;
   border: 0;
   border-radius: 12px;
   background: transparent;
   color: #4b5668;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 0.98rem;
+  font-weight: 500;
   font-family: inherit;
   text-align: left;
   cursor: pointer;
@@ -127,6 +127,10 @@ button:disabled,
     background 0.18s ease,
     color 0.18s ease,
     transform 0.18s ease;
+}
+
+.nav-link + .nav-link {
+  box-shadow: inset 0 1px 0 rgba(216, 226, 237, 0.72);
 }
 
 .nav-link span:first-child {
@@ -144,7 +148,7 @@ button:disabled,
   background: rgba(63, 167, 129, 0.12);
   color: var(--accent-strong);
   font-size: 0.84rem;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -158,6 +162,8 @@ button:disabled,
 .nav-link-active {
   background: var(--accent-soft);
   color: var(--accent-strong);
+  font-weight: 600;
+  box-shadow: none;
 }
 
 .nav-link-active .nav-badge {
@@ -2200,7 +2206,8 @@ textarea {
   }
 
   .brand {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-size: 1.16rem;
   }
 
   .nav-list {
@@ -2213,6 +2220,11 @@ textarea {
   .nav-link {
     min-height: 38px;
     white-space: nowrap;
+    font-size: 0.92rem;
+  }
+
+  .nav-link + .nav-link {
+    box-shadow: none;
   }
 
   .nav-badge {
