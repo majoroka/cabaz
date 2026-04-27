@@ -578,7 +578,7 @@ textarea {
   justify-content: center;
   align-items: center;
   min-height: 42px;
-  font-weight: 800;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -2093,7 +2093,7 @@ textarea {
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent-strong);
-  font-weight: 800;
+  font-weight: 500;
   font-size: 0.74rem;
 }
 
