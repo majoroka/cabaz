@@ -100,6 +100,7 @@ export function getSummaryCards(summary) {
       id: "cheapest-store",
       label: "Loja mais barata",
       value: cheapestStore?.store.name || "—",
+      store: cheapestStore?.store || null,
       copy:
         basketItemCount === 0
           ? "Será calculada quando existir um cabaz ativo."
@@ -134,6 +135,54 @@ export function getSummaryCards(summary) {
   ];
 }
 
+function renderSummaryCardIcon(card) {
+  const icons = {
+    "basket-items": `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 5h2l2.4 10.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 8H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="10" cy="19" r="1.6" fill="currentColor"/>
+        <circle cx="17" cy="19" r="1.6" fill="currentColor"/>
+      </svg>
+    `,
+    "cheapest-store": `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 9.5 6.3 5h11.4L19 9.5v8.2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M9 18.7v-4.8h6v4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.8 9.5h14.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    `,
+    "cheapest-total": `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14.8 6.3c-.8-.6-1.8-.9-3-.9-2.2 0-3.8 1.1-3.8 2.8 0 1.5 1.2 2.3 3.5 2.8 2.4.5 3.4 1.1 3.4 2.6 0 1.6-1.5 2.8-3.8 2.8-1.4 0-2.7-.4-3.8-1.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M12 4v15.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    `,
+    "store-spread": `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 7h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="m12 4 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 17H9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="m12 14-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  };
+
+  return `<span class="summary-card-icon summary-card-icon-${escapeHtml(card.id)}">${icons[card.id] || ""}</span>`;
+}
+
+function renderSummaryCardValue(card) {
+  if (card.id === "cheapest-store" && card.store) {
+    return `
+      <div class="summary-store-value" data-summary-value="${escapeHtml(card.id)}">
+        ${renderStoreLogo({ store: card.store, className: "summary-store-logo" })}
+        <span>${escapeHtml(card.value)}</span>
+      </div>
+    `;
+  }
+
+  return `<strong data-summary-value="${escapeHtml(card.id)}">${escapeHtml(card.value)}</strong>`;
+}
+
 function renderSummaryCards(summary) {
   const cards = getSummaryCards(summary);
 
@@ -144,7 +193,8 @@ function renderSummaryCards(summary) {
           (card, index) => `
             <article class="summary-card ${index === cards.length - 1 ? "summary-card-featured" : ""}">
               <span class="summary-label">${escapeHtml(card.label)}</span>
-              <strong data-summary-value="${escapeHtml(card.id)}">${escapeHtml(card.value)}</strong>
+              ${renderSummaryCardIcon(card)}
+              ${renderSummaryCardValue(card)}
               <p data-summary-copy="${escapeHtml(card.id)}">${escapeHtml(card.copy)}</p>
             </article>
           `

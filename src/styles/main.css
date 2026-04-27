@@ -630,17 +630,23 @@ textarea {
   min-height: 150px;
 }
 
-.summary-card::after {
-  content: "";
+.summary-card-icon {
   position: absolute;
   right: 24px;
   top: 28px;
   width: 58px;
   height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at center, rgba(62, 145, 133, 0.28) 0 18%, transparent 19%),
-    var(--accent-soft);
+  background: var(--accent-soft);
+  color: rgba(62, 145, 133, 0.72);
+}
+
+.summary-card-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .summary-card strong {
@@ -649,6 +655,29 @@ textarea {
   margin: 0.5rem 0 0.35rem;
   font-size: clamp(1.5rem, 2vw, 1.8rem);
   letter-spacing: -0.045em;
+}
+
+.summary-store-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100% - 74px);
+  margin: 0.55rem 0 0.45rem;
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.summary-store-value span {
+  min-width: 0;
+}
+
+.summary-store-logo {
+  width: 40px;
+  height: 28px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .summary-card p {
@@ -667,14 +696,19 @@ textarea {
 }
 
 .summary-card-featured::after {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02)),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.11) 0 2px, transparent 2px 18px);
+  content: none;
 }
 
 .summary-card-featured p,
 .summary-card-featured .summary-label {
   color: rgba(255, 255, 255, 0.74);
+}
+
+.summary-card-featured .summary-card-icon {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02)),
+    rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.76);
 }
 
 .catalog-panel {
