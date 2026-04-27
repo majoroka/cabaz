@@ -139,6 +139,259 @@ Critério:
 - `pack 3` não deve casar com `pack 4`
 - `750mL` não deve casar com `500mL`
 
+## Matriz objetiva de comparação
+
+Esta matriz aplica-se à lógica de comparação no frontend e à validação manual de equivalências.
+
+Ordem de decisão recomendada:
+
+1. tentar `exato`
+2. se falhar, tentar `equivalente`
+3. se falhar, mostrar `alternativa`
+4. se nada servir, marcar `em_falta`
+
+### Regras transversais
+
+#### `exato`
+
+- automático
+- entra no total
+- mesma categoria
+- mesmo tipo de produto
+- mesma marca, quando a marca é relevante
+- mesmo tamanho ou diferença residual
+- mesma unidade
+
+#### `equivalente`
+
+- exige validação manual nesta fase
+- só entra no total depois de aprovado
+- mesma categoria
+- mesmo tipo de produto
+- pode ter marca diferente
+- pode ter pequena diferença de tamanho, mas controlada
+
+#### `alternativa`
+
+- automático
+- nunca entra no total
+- produto relacionado, mas com diferença relevante de marca, formato, variante ou tamanho
+
+#### `em_falta`
+
+- automático
+- não entra no total
+- usado quando não existe produto exato nem equivalente plausível
+
+### Regras de bloqueio
+
+Nunca considerar `exato` ou `equivalente` quando existir pelo menos um destes conflitos:
+
+- categoria incompatível
+- unidade incompatível
+- variante contraditória
+- diferença de tamanho grande
+- pack incompatível
+- forma comercial diferente com impacto real no uso do produto
+
+## Matriz por tipo de produto
+
+### Leite
+
+#### `exato`
+
+- mesma marca
+- mesmo tipo: `meio-gordo`, `magro`, `gordo`, `sem lactose`
+- mesmo volume
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo tipo de leite
+- mesmo volume
+
+#### `alternativa`
+
+- volume diferente
+- tipo diferente
+
+#### `em_falta`
+
+- não existe leite comparável
+
+### Arroz
+
+#### `exato`
+
+- mesma marca
+- mesmo tipo: `agulha`, `carolino`, `basmati`
+- mesmo peso
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo tipo de arroz
+- peso igual ou diferença até `10%`
+
+#### `alternativa`
+
+- tipo de arroz diferente
+- peso muito diferente
+
+#### `em_falta`
+
+- não existe arroz do mesmo tipo
+
+### Atum
+
+#### `exato`
+
+- mesma marca
+- mesmo meio: `azeite`, `óleo`, `água`
+- mesmo peso drenado ou muito próximo
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo meio
+- peso semelhante até `10%`
+
+#### `alternativa`
+
+- meio diferente
+- lata individual vs. pack
+
+#### `em_falta`
+
+- não existe atum comparável
+
+### Ovos
+
+#### `exato`
+
+- mesma marca
+- mesma tipologia: `ar livre`, `solo`, `biológicos`
+- mesma classe, quando existir
+- mesmo número de ovos
+
+#### `equivalente`
+
+- marcas diferentes
+- mesma tipologia
+- mesmo número de ovos
+
+#### `alternativa`
+
+- `6` vs. `12`
+- `ar livre` vs. `solo`
+- classe muito diferente
+
+#### `em_falta`
+
+- não existem ovos da mesma tipologia
+
+### Frango
+
+#### `exato`
+
+- mesmo corte: `peito`, `asas`, `bife`
+- mesma apresentação: `embalado`, `vácuo`, `temperado`
+- peso semelhante até `5%`
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo corte
+- mesma apresentação base
+- peso até `10%`
+
+#### `alternativa`
+
+- corte diferente
+- natural vs. marinado/temperado
+
+#### `em_falta`
+
+- não existe o mesmo corte
+
+### Bolachas
+
+#### `exato`
+
+- mesma marca
+- mesmo tipo: `Maria`, `digestive`, `tostada`
+- mesmo peso total
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo tipo
+- mesmo peso ou diferença até `10%`
+
+#### `alternativa`
+
+- sabor ou variante diferente
+- pack com peso total muito diferente
+
+#### `em_falta`
+
+- não existe bolacha do mesmo tipo
+
+### Iogurtes
+
+#### `exato`
+
+- mesma marca
+- mesmo sabor
+- mesmo formato: `líquido` vs. `sólido`
+- mesmo pack/peso
+
+#### `equivalente`
+
+- marcas diferentes
+- mesmo sabor
+- mesmo formato
+- pack semelhante
+
+#### `alternativa`
+
+- `líquido` vs. `sólido`
+- sabor diferente
+
+#### `em_falta`
+
+- não existe iogurte comparável
+
+### Manteiga
+
+#### `exato`
+
+- mesma marca
+- mesma variante: `com sal`, `sem sal`
+- mesmo peso
+
+#### `equivalente`
+
+- marcas diferentes
+- mesma variante
+- mesmo peso
+
+#### `alternativa`
+
+- `com sal` vs. `sem sal`
+- margarina vs. manteiga
+
+#### `em_falta`
+
+- não existe produto comparável
+
+## Política inicial para a UI de comparação
+
+- `exato`: entra automaticamente no total
+- `equivalente`: só entra no total quando for aprovado manualmente
+- `alternativa`: pode ser mostrado, mas fica sempre fora do total
+- `em_falta`: não entra no total e deve reduzir a confiança global da loja
+
 ## Produtos piloto: regras recomendadas
 
 ## 1. `leite-meio-gordo-1l`

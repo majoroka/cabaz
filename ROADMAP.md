@@ -161,6 +161,7 @@ Definir como uma oferta scraped é associada a um produto canónico.
 - [x] proposta inicial de política de revisão manual
 - [x] validação final das regras gerais
 - [x] validação final das regras dos 10 produtos piloto
+- [x] matriz objetiva de comparação por tipo de produto
 
 ### Intervenção necessária do utilizador
 
@@ -231,6 +232,7 @@ Transformar a ação de adicionar produtos num cabaz utilizável e persistente, 
 - [x] indicação visual de produtos exatos, equivalentes e em falta
 - [x] tratamento de produtos sem preço disponível em lojas alternativas
 - [x] lista de validação manual para equivalências detetadas no cabaz
+- [x] definição documental das regras de `exato`, `equivalente`, `alternativa` e `em falta`
 - [ ] normalização fina de equivalências entre formatos, marcas próprias e tamanhos diferentes
 
 ### Intervenção necessária do utilizador
