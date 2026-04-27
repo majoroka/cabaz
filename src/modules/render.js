@@ -153,8 +153,10 @@ function renderSummaryCardIcon(card) {
     `,
     "cheapest-total": `
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14.8 6.3c-.8-.6-1.8-.9-3-.9-2.2 0-3.8 1.1-3.8 2.8 0 1.5 1.2 2.3 3.5 2.8 2.4.5 3.4 1.1 3.4 2.6 0 1.6-1.5 2.8-3.8 2.8-1.4 0-2.7-.4-3.8-1.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M12 4v15.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M16.5 6.7a5.3 5.3 0 0 0-3.2-1c-2.4 0-4.3 1.2-5.3 3.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M6.6 10.2h8.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M6.6 13.8h8.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M8 16c1 1.8 2.8 2.9 5 2.9 1.2 0 2.4-.3 3.5-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
     `,
     "store-spread": `
