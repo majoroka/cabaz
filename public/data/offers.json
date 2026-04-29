@@ -18,7 +18,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:04.558Z"
+    "lastUpdated": "2026-04-29T16:49:07.514Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-arroz-agulha-integral-cigala-1kg",
@@ -28,10 +28,10 @@
     "scrapedName": "Arroz Agulha Integral Cigala",
     "brand": "Cigala",
     "categoryId": "mercearia",
-    "price": 1.59,
+    "price": 1.29,
     "size": 1,
     "sizeUnit": "kg",
-    "unitPrice": 1.59,
+    "unitPrice": 1.29,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/arroz-agulha-integral-cigala-cigala-7406754.html",
@@ -39,7 +39,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:05.033Z"
+    "lastUpdated": "2026-04-29T16:49:08.315Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-arroz-basmati-cacarola-500g",
@@ -60,7 +60,7 @@
     "notes": "emb. 500 gr",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:05.580Z"
+    "lastUpdated": "2026-04-29T16:49:13.553Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-arroz-carolino-caravela-continente-1kg",
@@ -70,10 +70,10 @@
     "scrapedName": "Arroz Carolino Caravela Continente",
     "brand": "Continente",
     "categoryId": "mercearia",
-    "price": 1.15,
+    "price": 1.39,
     "size": 1,
     "sizeUnit": "kg",
-    "unitPrice": 1.15,
+    "unitPrice": 1.39,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/arroz-carolino-caravela-continente-continente-8385342.html",
@@ -81,7 +81,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:06.027Z"
+    "lastUpdated": "2026-04-29T16:49:14.303Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-atum-em-azeite-continente-120g",
@@ -102,7 +102,7 @@
     "notes": "emb. 120 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:06.478Z"
+    "lastUpdated": "2026-04-29T16:49:14.892Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-banana-1kg",
@@ -123,7 +123,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:06.957Z"
+    "lastUpdated": "2026-04-29T16:49:15.525Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-bolachas-maria-800g-4un",
@@ -144,7 +144,7 @@
     "notes": "emb. 800 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:07.464Z"
+    "lastUpdated": "2026-04-29T16:49:16.129Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-capsulas-cafe-delta-q-int-10-100un",
@@ -154,10 +154,10 @@
     "scrapedName": "Cápsulas de Café Qalidus Int 10 Delta Q",
     "brand": "Delta Q",
     "categoryId": "bebidas",
-    "price": 27.99,
+    "price": 31.99,
     "size": 100,
     "sizeUnit": "un",
-    "unitPrice": 0.3,
+    "unitPrice": 0.34,
     "unit": "un",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/capsulas-de-cafe-qalidus-int-10-delta-q-delta-q-8082167.html",
@@ -165,7 +165,7 @@
     "notes": "emb. 100 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:07.943Z"
+    "lastUpdated": "2026-04-29T16:49:16.681Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-detergente-maquina-loica-quantum-finish-105doses",
@@ -186,7 +186,7 @@
     "notes": "emb. 105 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:08.422Z"
+    "lastUpdated": "2026-04-29T16:49:17.284Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-douradinhos-peixe-840g-30un",
@@ -207,7 +207,7 @@
     "notes": "emb. 840 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:08.955Z"
+    "lastUpdated": "2026-04-29T16:49:17.932Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-iogurte-yoggi-liquido-morango-4x160g",
@@ -217,10 +217,10 @@
     "scrapedName": "Iogurte Líquido Morango Yoggi",
     "brand": "Yoggi",
     "categoryId": "lacteos_ovos",
-    "price": 3.19,
+    "price": 3.89,
     "size": 640,
     "sizeUnit": "g",
-    "unitPrice": 2.49,
+    "unitPrice": 3.04,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/iogurte-liquido-morango-yoggi-yoggi-6078857.html",
@@ -228,7 +228,7 @@
     "notes": "emb. 640 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:09.435Z"
+    "lastUpdated": "2026-04-29T16:49:18.523Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-pastagem-terra-nostra-meio-gordo-1l",
@@ -245,11 +245,11 @@
     "unit": "L",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/leite-meio-gordo-pastagem-terra-nostra-terra-nostra-5816596.html",
-    "image": "https://www.continente.pt/dw/image/v2/BDVS_PRD/on/demandware.static/-/Sites-col-master-catalog/default/dw419dfa6e/images/col/581/5816596-frente.jpg",
+    "image": "https://www.continente.pt/dw/image/v2/BDVS_PRD/on/demandware.static/-/Sites-col-master-catalog/default/dwd6301fa5/images/col/581/5816596-frente.png",
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:09.901Z"
+    "lastUpdated": "2026-04-29T16:49:19.163Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-uht-meio-gordo-continente-1l",
@@ -270,7 +270,7 @@
     "notes": "emb. 1 lt",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:10.370Z"
+    "lastUpdated": "2026-04-29T16:49:19.707Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-uht-meio-gordo-mimosa-1l",
@@ -291,7 +291,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:10.767Z"
+    "lastUpdated": "2026-04-29T16:49:20.283Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-leite-uht-meio-gordo-nova-acores-1l",
@@ -301,10 +301,10 @@
     "scrapedName": "Leite UHT Meio Gordo Nova Açores",
     "brand": "Nova Açores",
     "categoryId": "lacteos_ovos",
-    "price": 0.98,
+    "price": 0.88,
     "size": 1,
     "sizeUnit": "L",
-    "unitPrice": 0.98,
+    "unitPrice": 0.88,
     "unit": "L",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/leite-uht-meio-gordo-nova-acores-nova-acores-5995504.html",
@@ -312,7 +312,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:11.244Z"
+    "lastUpdated": "2026-04-29T16:49:20.922Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-lombos-bacalhau-riberalves-550g",
@@ -333,7 +333,7 @@
     "notes": "emb. 550 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:11.719Z"
+    "lastUpdated": "2026-04-29T16:49:21.466Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-manteiga-com-sal-mimosa-250g",
@@ -343,10 +343,10 @@
     "scrapedName": "Manteiga com Sal Mimosa",
     "brand": "Mimosa",
     "categoryId": "lacteos_ovos",
-    "price": 2.19,
+    "price": 2.44,
     "size": 250,
     "sizeUnit": "g",
-    "unitPrice": 8.76,
+    "unitPrice": 9.76,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/manteiga-com-sal-mimosa-mimosa-2211084.html",
@@ -354,7 +354,7 @@
     "notes": "emb. 250 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:12.163Z"
+    "lastUpdated": "2026-04-29T16:49:22.061Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-metade-abacaxi-super-sweet-1un",
@@ -364,10 +364,10 @@
     "scrapedName": "Metade Abacaxi Super Sweet Continente",
     "brand": "Continente",
     "categoryId": "fruta_legumes",
-    "price": 2.19,
+    "price": 1.69,
     "size": 1,
     "sizeUnit": "un",
-    "unitPrice": 2.19,
+    "unitPrice": 1.69,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.continente.pt/produto/metade-abacaxi-super-sweet-continente-continente-6898853.html",
@@ -375,7 +375,7 @@
     "notes": "emb. 1 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:12.639Z"
+    "lastUpdated": "2026-04-29T16:49:22.620Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-ovos-ar-livre-classe-ml-continente-12un",
@@ -396,7 +396,7 @@
     "notes": "emb. 12 un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:13.119Z"
+    "lastUpdated": "2026-04-29T16:49:23.219Z"
   },
   {
     "offerId": "continente-bom-dia-armacao-de-pera-peito-frango-vacuo-1kg",
@@ -417,7 +417,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:13.684Z"
+    "lastUpdated": "2026-04-29T16:49:23.732Z"
   },
   {
     "offerId": "aldi-parchal-abacate-maturado-300g",
@@ -459,7 +459,7 @@
     "notes": "6 l unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:15.237Z"
+    "lastUpdated": "2026-04-29T16:49:25.697Z"
   },
   {
     "offerId": "aldi-parchal-arroz-agulha-bon-ri-1kg",
@@ -480,7 +480,7 @@
     "notes": "1 kg unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:16.041Z"
+    "lastUpdated": "2026-04-29T16:49:26.410Z"
   },
   {
     "offerId": "aldi-parchal-arroz-basmati-bon-ri-1kg",
@@ -501,7 +501,7 @@
     "notes": "1 kg unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:16.604Z"
+    "lastUpdated": "2026-04-29T16:49:26.640Z"
   },
   {
     "offerId": "aldi-parchal-atum-posta-azeite-tesouros-mar-120g",
@@ -511,10 +511,10 @@
     "scrapedName": "Atum Posta em Azeite",
     "brand": "Tesouros do Mar®",
     "categoryId": "mercearia",
-    "price": 1.09,
+    "price": 1.12,
     "size": 120,
     "sizeUnit": "g",
-    "unitPrice": 12.82,
+    "unitPrice": 13.18,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.aldi.pt/produtos/mercearia/conservas/atum-posta-em-azeite-1995-1-0.article.html",
@@ -522,7 +522,7 @@
     "notes": "85 g unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:17.422Z"
+    "lastUpdated": "2026-04-29T16:49:27.261Z"
   },
   {
     "offerId": "aldi-parchal-bolachas-belgas-amendoa-biscotto-100g",
@@ -585,7 +585,7 @@
     "notes": "800 g pack",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:19.631Z"
+    "lastUpdated": "2026-04-29T16:49:29.476Z"
   },
   {
     "offerId": "aldi-parchal-bombons-coco-raffaello-80g",
@@ -690,7 +690,7 @@
     "notes": "680 g pack",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:23.298Z"
+    "lastUpdated": "2026-04-29T16:49:31.381Z"
   },
   {
     "offerId": "aldi-parchal-laranja-nacional-3kg",
@@ -711,7 +711,7 @@
     "notes": "3 kg saco",
     "inStock": false,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:24.025Z"
+    "lastUpdated": "2026-04-29T16:49:31.622Z"
   },
   {
     "offerId": "aldi-parchal-leite-meio-gordo-milsani-1l",
@@ -732,7 +732,7 @@
     "notes": "1 l unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:24.613Z"
+    "lastUpdated": "2026-04-29T16:49:31.852Z"
   },
   {
     "offerId": "aldi-parchal-manteiga-com-sal-milsani-250g",
@@ -753,7 +753,7 @@
     "notes": "250 g unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:25.431Z"
+    "lastUpdated": "2026-04-29T16:49:32.097Z"
   },
   {
     "offerId": "aldi-parchal-peito-frango-aldi-700g",
@@ -816,7 +816,7 @@
     "notes": "2 kg unidade",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:27.538Z"
+    "lastUpdated": "2026-04-29T16:49:33.447Z"
   },
   {
     "offerId": "aldi-parchal-salsichas-nuremberga-howe-600g",
@@ -858,7 +858,7 @@
     "notes": "emb. 450 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:29.154Z"
+    "lastUpdated": "2026-04-29T16:49:34.766Z"
   },
   {
     "offerId": "auchan-lagoa-areia-aglomerante-bribon-multi-gatos-10l",
@@ -879,7 +879,7 @@
     "notes": "emb. 10 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:29.753Z"
+    "lastUpdated": "2026-04-29T16:49:35.475Z"
   },
   {
     "offerId": "auchan-lagoa-arroz-agulha-bom-sucesso-1kg",
@@ -900,7 +900,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:30.344Z"
+    "lastUpdated": "2026-04-29T16:49:36.204Z"
   },
   {
     "offerId": "auchan-lagoa-arroz-agulha-cigala-1kg",
@@ -921,7 +921,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:30.922Z"
+    "lastUpdated": "2026-04-29T16:49:36.936Z"
   },
   {
     "offerId": "auchan-lagoa-arroz-basmati-cigala-brajma-1kg",
@@ -942,7 +942,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:31.626Z"
+    "lastUpdated": "2026-04-29T16:49:37.818Z"
   },
   {
     "offerId": "auchan-lagoa-atum-em-azeite-tenorio-120-78g",
@@ -963,7 +963,7 @@
     "notes": "emb. 120 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:32.241Z"
+    "lastUpdated": "2026-04-29T16:49:39.139Z"
   },
   {
     "offerId": "auchan-lagoa-bolacha-gullon-maria-leche-800g",
@@ -984,7 +984,7 @@
     "notes": "emb. 4 x 200 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:32.836Z"
+    "lastUpdated": "2026-04-29T16:49:39.947Z"
   },
   {
     "offerId": "auchan-lagoa-curado-ervas-provence-yogan-bio-vegan-110g",
@@ -1005,7 +1005,7 @@
     "notes": "emb. 110 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:33.374Z"
+    "lastUpdated": "2026-04-29T16:49:40.607Z"
   },
   {
     "offerId": "auchan-lagoa-iogurte-auchan-liquido-morango-1kg",
@@ -1026,7 +1026,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:33.927Z"
+    "lastUpdated": "2026-04-29T16:49:41.342Z"
   },
   {
     "offerId": "auchan-lagoa-iogurte-yoggi-liquido-morango-4x160g",
@@ -1047,7 +1047,7 @@
     "notes": "emb. 4 x 160 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:34.539Z"
+    "lastUpdated": "2026-04-29T16:49:41.995Z"
   },
   {
     "offerId": "auchan-lagoa-iogurte-yoggi-liquido-morango-8x160g",
@@ -1068,7 +1068,7 @@
     "notes": "emb. 8 x 160 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:35.161Z"
+    "lastUpdated": "2026-04-29T16:49:42.703Z"
   },
   {
     "offerId": "auchan-lagoa-leite-milhafre-pastagem-meio-gordo-1l",
@@ -1089,7 +1089,7 @@
     "notes": "emb. 1 l",
     "inStock": false,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:35.745Z"
+    "lastUpdated": "2026-04-29T16:49:43.471Z"
   },
   {
     "offerId": "auchan-lagoa-leite-uht-meio-gordo-mimosa-1l",
@@ -1110,7 +1110,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:36.366Z"
+    "lastUpdated": "2026-04-29T16:49:44.141Z"
   },
   {
     "offerId": "auchan-lagoa-leite-uht-meio-gordo-nova-acores-1l",
@@ -1131,7 +1131,7 @@
     "notes": "emb. 1 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:36.962Z"
+    "lastUpdated": "2026-04-29T16:49:44.854Z"
   },
   {
     "offerId": "auchan-lagoa-manteiga-com-sal-gresso-250g",
@@ -1152,7 +1152,7 @@
     "notes": "emb. 250 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:37.979Z"
+    "lastUpdated": "2026-04-29T16:49:45.503Z"
   },
   {
     "offerId": "auchan-lagoa-manteiga-com-sal-primor-250g",
@@ -1173,7 +1173,7 @@
     "notes": "emb. 250 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:38.577Z"
+    "lastUpdated": "2026-04-29T16:49:46.290Z"
   },
   {
     "offerId": "auchan-lagoa-pao-queijo-auchan-alho-oregaos-sem-gluten-300g",
@@ -1194,7 +1194,7 @@
     "notes": "emb. 300 g",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:39.175Z"
+    "lastUpdated": "2026-04-29T16:49:47.030Z"
   },
   {
     "offerId": "auchan-lagoa-peito-frango-granel-kg",
@@ -1215,7 +1215,7 @@
     "notes": "emb. 1 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:39.791Z"
+    "lastUpdated": "2026-04-29T16:49:47.845Z"
   },
   {
     "offerId": "auchan-lagoa-racao-gato-ultima-esterilizado-frango-25kg",
@@ -1236,7 +1236,7 @@
     "notes": "emb. 2.5 kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:40.454Z"
+    "lastUpdated": "2026-04-29T16:49:48.538Z"
   },
   {
     "offerId": "auchan-lagoa-vinho-tinto-monte-ravasqueira-superior-075l",
@@ -1257,7 +1257,7 @@
     "notes": "emb. 0.75 l",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:41.058Z"
+    "lastUpdated": "2026-04-29T16:49:49.303Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-aros-cebola-mcennedy-450g",
@@ -1297,9 +1297,9 @@
     "url": "https://www.lidl.pt/p/campo-largo-arroz-basmati-xxl/p10045487",
     "image": "https://imgproxy-retcat.assets.schwarz/ShfTsHnpNdBFw55n0wgWGGDi4E_tD3ZzS5H3rxAEOjU/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvcHQvMS8yNUI3QUZGN0IxOTI0NDk4Njk5NzZFQ0E/5RDdFRUFFNzA4Mjk1MDcyM0MxRjFCM0VBMzc2OUU3N0QwRjgxOTEwLnBuZw.png",
     "notes": "Emb. 2 kg",
-    "inStock": false,
+    "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:41.645Z"
+    "lastUpdated": "2026-04-29T16:49:50.614Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-frango-de-churrasco-temperado-lidl-kg",
@@ -1383,7 +1383,7 @@
     "notes": "Emb. 110 g",
     "inStock": false,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:42.109Z"
+    "lastUpdated": "2026-04-29T16:49:51.589Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-atum-em-oleo-vegetal-ramirez-120g",
@@ -1486,9 +1486,9 @@
     "url": "https://www.lidl.pt/p/milbona-iogurte-liquido-frutos-silvestres/p10045475",
     "image": "https://imgproxy-retcat.assets.schwarz/BqL3bmfsX4B_zA4qyMoG4kh0bHLyC6vuFeh60haOflU/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvaW50LzY2M0QwMkFEMDUzNUMzNzQ0OUI3ODMyMj/VBNjY3NDE4OUY1NTIyMTVDNjY5RDY5MDU2QkFFMkZERUFGRDZDREYucG5n.png",
     "notes": "Emb. 4x170 g",
-    "inStock": false,
+    "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:42.697Z"
+    "lastUpdated": "2026-04-29T16:49:53.185Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-iogurte-natural-acucarado-milbona-500g",
@@ -1570,9 +1570,9 @@
     "url": "https://www.lidl.pt/p/mimosa-leite-meio-gordo/p10045535",
     "image": "https://imgproxy-retcat.assets.schwarz/t7WwArY72eBfvClf8jhmwW32osI7T_u1I0y3EC5GuKs/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvcHQvMS85OEQyNDczQjBEODk3NjhCNDhCMzg1QzB/BMDAzODgyRURDNjJEQzM4MEFFNEI0RkU0REQ0Mzc5NTk3REI0RkI4LnBuZw.png",
     "notes": "Pack 8x1 L",
-    "inStock": false,
+    "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:43.295Z"
+    "lastUpdated": "2026-04-29T16:49:54.249Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-bife-frango-marinado-alho-salsa-kg",
@@ -1654,9 +1654,9 @@
     "url": "https://www.lidl.pt/p/peitos-de-frango-em-vacuo/p10045447",
     "image": "https://imgproxy-retcat.assets.schwarz/rRRane3tEN0Ll1ok6hsvFf60JqMAW_19mMJXFUSzye4/sm:1/exar:1:ce/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvcHQvMS9GQjE5MTNGRkYxN0FBMDE5MzI1NDA1N0J/GRUM0MDdGQUNGQzE3QUNEMjE3MkU0NUQ4NEY1RUEzMEFEM0ZCMzQ2LnBuZw.png",
     "notes": "emb. 1 kg",
-    "inStock": false,
+    "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:43.761Z"
+    "lastUpdated": "2026-04-29T16:49:55.343Z"
   },
   {
     "offerId": "lidl-armacao-de-pera-pepsi-zero-acucar-lima-1l",
@@ -1687,18 +1687,18 @@
     "scrapedName": "Arroz Agulha",
     "brand": "Cigala",
     "categoryId": "mercearia",
-    "price": 1.38,
+    "price": 1.69,
     "size": 1,
     "sizeUnit": "kg",
-    "unitPrice": 1.38,
+    "unitPrice": 1.69,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/mercearia/arroz-massa-e-leguminosas/arroz/arroz-agulha-cigala-623900.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dwedf2fca3/images/large/623900_ae8febfd4fa23295225deb5481eb7987.jpg",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw74318ad4/images/large/623900_ae8febfd4fa23295225deb5481eb7987.jpg",
     "notes": "1 Kg | 1,38 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:44.823Z"
+    "lastUpdated": "2026-04-29T16:49:56.479Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-arroz-basmati-pingo-doce-1kg",
@@ -1719,7 +1719,7 @@
     "notes": "1 Kg | 1,99 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:45.239Z"
+    "lastUpdated": "2026-04-29T16:49:56.939Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-arroz-carolino-bom-sucesso-1kg",
@@ -1740,7 +1740,7 @@
     "notes": "1 Kg | 1,59 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:45.770Z"
+    "lastUpdated": "2026-04-29T16:49:57.604Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-atum-em-azeite-tenorio-120-78g",
@@ -1761,7 +1761,7 @@
     "notes": "0.078 Kg | 40,38 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:46.169Z"
+    "lastUpdated": "2026-04-29T16:49:58.058Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-banana-1kg",
@@ -1782,7 +1782,7 @@
     "notes": "0.2 Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:46.582Z"
+    "lastUpdated": "2026-04-29T16:49:58.586Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-capsulas-cafe-delta-q-qalidus-80un",
@@ -1803,7 +1803,7 @@
     "notes": "80 Un | 0,36 €/Un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:46.996Z"
+    "lastUpdated": "2026-04-29T16:49:59.069Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-champo-anticaspa-linic-610ml",
@@ -1820,11 +1820,11 @@
     "unit": "L",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/higiene-pessoal-e-beleza/homem/cabelo/champo-anticaspa-controlo-oleosidade-linic-men-957597.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw0e5e3a65/images/large/957597_1490f1d35cc6e122339cf8da31c6e054.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw62d42d7d/images/large/957597_1490f1d35cc6e122339cf8da31c6e054.png",
     "notes": "0.61 L | 11,05 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:47.415Z"
+    "lastUpdated": "2026-04-29T16:49:59.547Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-costeleta-cachaco-porco-600g",
@@ -1845,7 +1845,7 @@
     "notes": "0.16 Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:47.838Z"
+    "lastUpdated": "2026-04-29T16:50:00.105Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-detergente-maquina-roupa-liquido-skip-76doses",
@@ -1862,11 +1862,11 @@
     "unit": "un",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/limpeza/roupa/detergentes/detergente-maquina-roupa-liquido-active-clean-skip-960323.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw09c29e73/images/large/960323_2cdcefdefff98faa6239122b3d414f32.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw88e07b57/images/large/960323_2cdcefdefff98faa6239122b3d414f32.png",
     "notes": "76 Dos | 0,17 €/Dos",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:48.296Z"
+    "lastUpdated": "2026-04-29T16:50:00.557Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-douradinhos-peixe-iglo-420g",
@@ -1883,11 +1883,11 @@
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/congelados/refeicoes-e-salgados/douradinhos-e-panados-de-peixe/douradinhos-de-peixe-congelados-capitao-iglo-815243.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw7bc4e5b9/images/large/815243_641881191857058ef983fa34ddcb9365.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw315f2c3d/images/large/815243_641881191857058ef983fa34ddcb9365.png",
     "notes": "0.42 Kg | 11,88 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:48.732Z"
+    "lastUpdated": "2026-04-29T16:50:01.072Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-leite-pastagem-terra-nostra-meio-gordo-1l",
@@ -1908,7 +1908,7 @@
     "notes": "1 L | 1,07 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:49.148Z"
+    "lastUpdated": "2026-04-29T16:50:01.569Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-leite-uht-meio-gordo-mimosa-1l",
@@ -1925,11 +1925,11 @@
     "unit": "L",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/leite-e-bebidas-vegetais%E2%80%8B/leite/leite-meio-gordo-e-gordo%E2%80%8B/leite-uht-meio-gordo-mimosa-41043.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw9c6d895a/images/large/41043_bc1ef4d224ea1980aab65f99e5fa9f5a.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw93d3790c/images/large/41043_bc1ef4d224ea1980aab65f99e5fa9f5a.png",
     "notes": "1 L | 0,9 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:49.528Z"
+    "lastUpdated": "2026-04-29T16:50:02.027Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-leite-uht-meio-gordo-nova-acores-1l",
@@ -1939,18 +1939,18 @@
     "scrapedName": "Leite UHT Meio Gordo",
     "brand": "Nova Açores",
     "categoryId": "lacteos_ovos",
-    "price": 0.88,
+    "price": 0.98,
     "size": 1,
     "sizeUnit": "L",
-    "unitPrice": 0.88,
+    "unitPrice": 0.98,
     "unit": "L",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/leite-e-bebidas-vegetais%E2%80%8B/leite/leite-meio-gordo-e-gordo%E2%80%8B/leite-uht-meio-gordo-nova-acores-834449.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dwb81611d5/images/large/834449_1_30a32b240dc1d4601181f534145fa2eb.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw76088eb3/images/large/834449_1_30a32b240dc1d4601181f534145fa2eb.png",
     "notes": "1 L | 0,88 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:49.907Z"
+    "lastUpdated": "2026-04-29T16:50:02.591Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-leite-uht-meio-gordo-pingo-doce-1l",
@@ -1971,7 +1971,7 @@
     "notes": "1 L | 0,86 €/L",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:50.343Z"
+    "lastUpdated": "2026-04-29T16:50:03.066Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-lombos-bacalhau-congelados-pingo-doce-800g",
@@ -1992,7 +1992,7 @@
     "notes": "0.8 Kg | 24,99 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:50.818Z"
+    "lastUpdated": "2026-04-29T16:50:03.534Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-massa-esparguete-milaneza-500g",
@@ -2009,11 +2009,11 @@
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/mercearia/arroz-massa-e-leguminosas/massa/massa-esparguete-milaneza-849114.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw1f4dff74/images/large/849114_a246abc4fb43527d4e7acf2fc08bb4d7.jpg",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw31945b5d/images/large/849114_a246abc4fb43527d4e7acf2fc08bb4d7.jpg",
     "notes": "1 Kg | 1,46 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:51.239Z"
+    "lastUpdated": "2026-04-29T16:50:04.047Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-massa-esparguete-nacional-1kg",
@@ -2023,18 +2023,18 @@
     "scrapedName": "Massa Esparguete",
     "brand": "Nacional",
     "categoryId": "mercearia",
-    "price": 0.99,
+    "price": 1.37,
     "size": 1,
     "sizeUnit": "kg",
-    "unitPrice": 1.37,
+    "unitPrice": 1.89,
     "unit": "kg",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/mercearia/arroz-massa-e-leguminosas/massa/massa-esparguete-nacional-850741.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw535318c2/images/large/850741_7c04db7df5d47015282356845dfa4386.jpg",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw48453619/images/large/850741_7c04db7df5d47015282356845dfa4386.jpg",
     "notes": "0.725 Kg | 1,37 €/Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:51.658Z"
+    "lastUpdated": "2026-04-29T16:50:04.581Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-ovos-ar-livre-classe-ml-matinados-12un",
@@ -2044,18 +2044,18 @@
     "scrapedName": "Ovos de Ar Livre Classe M/L",
     "brand": "Matinados",
     "categoryId": "lacteos_ovos",
-    "price": 3.99,
+    "price": 4.59,
     "size": 12,
     "sizeUnit": "un",
-    "unitPrice": 0.33,
+    "unitPrice": 0.38,
     "unit": "un",
     "currency": "EUR",
     "url": "https://www.pingodoce.pt/home/produtos/promocoes/poupe-esta-semana/ovos-de-ar-livre-classe-m%2Fl-matinados-895037.html?",
-    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw80eaa767/images/large/895037_5e4fbaa0fdafb633216ea0868329a78e.png",
+    "image": "https://www.pingodoce.pt/on/demandware.static/-/Sites-pingo-doce-master/default/dw0a7523d3/images/large/895037_5e4fbaa0fdafb633216ea0868329a78e.png",
     "notes": "12 Un | 0,33 €/Un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:52.138Z"
+    "lastUpdated": "2026-04-29T16:50:05.266Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-ovos-solo-classe-l-pingo-doce-12un",
@@ -2076,7 +2076,7 @@
     "notes": "12 Un | 0,27 €/Un",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:52.529Z"
+    "lastUpdated": "2026-04-29T16:50:05.752Z"
   },
   {
     "offerId": "pingo-doce-armacao-de-pera-peito-frango-vacuo-1kg",
@@ -2097,6 +2097,6 @@
     "notes": "0.6 Kg",
     "inStock": true,
     "confidenceScore": 1,
-    "lastUpdated": "2026-04-24T22:35:52.924Z"
+    "lastUpdated": "2026-04-29T16:50:06.210Z"
   }
 ]
