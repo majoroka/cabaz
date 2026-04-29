@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-04-24T22:35:52.924Z",
+  "generatedAt": "2026-04-29T16:50:06.210Z",
   "currency": "EUR",
   "country": "PT",
   "publicationStatus": "scraper_mvp_5_stores_100_products",
@@ -14,38 +14,44 @@
   "notes": [
     "Publicacao piloto gerada pelo repositorio cabaz-data.",
     "MVP de scraping real: recolha automatica de 100 produtos em 5 lojas.",
-    "Dataset limitado a 5 lojas e 100 produtos para validar o fluxo antes de expandir."
+    "Dataset limitado a 5 lojas e 100 produtos para validar o fluxo antes de expandir.",
+    "Foram preservadas 25 ofertas anteriores devido a falhas pontuais de scraping."
   ],
   "sources": [
     {
       "storeId": "continente",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T22:35:52.924Z",
-      "productsScraped": 20
+      "lastUpdated": "2026-04-29T16:50:06.210Z",
+      "productsScraped": 20,
+      "productsPreserved": 0
     },
     {
       "storeId": "aldi",
-      "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T22:35:52.924Z",
-      "productsScraped": 20
+      "status": "scraper_mvp_partial_preserve",
+      "lastUpdated": "2026-04-29T16:50:06.210Z",
+      "productsScraped": 20,
+      "productsPreserved": 10
     },
     {
       "storeId": "auchan",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T22:35:52.924Z",
-      "productsScraped": 20
+      "lastUpdated": "2026-04-29T16:50:06.210Z",
+      "productsScraped": 20,
+      "productsPreserved": 0
     },
     {
       "storeId": "lidl",
-      "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T22:35:52.924Z",
-      "productsScraped": 20
+      "status": "scraper_mvp_partial_preserve",
+      "lastUpdated": "2026-04-29T16:50:06.210Z",
+      "productsScraped": 20,
+      "productsPreserved": 15
     },
     {
       "storeId": "pingo-doce",
       "status": "scraper_mvp",
-      "lastUpdated": "2026-04-24T22:35:52.924Z",
-      "productsScraped": 20
+      "lastUpdated": "2026-04-29T16:50:06.210Z",
+      "productsScraped": 20,
+      "productsPreserved": 0
     }
   ]
 }
