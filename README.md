@@ -195,6 +195,7 @@ Template auxiliar:
 - [docs/scraper-contract.md](./docs/scraper-contract.md)
 - [docs/external-scraper-repo.md](./docs/external-scraper-repo.md)
 - [docs/setup-cabaz-data.md](./docs/setup-cabaz-data.md)
+- [docs/automacao-diaria-cabaz-data.md](./docs/automacao-diaria-cabaz-data.md)
 - [docs/data-format.md](./docs/data-format.md)
 
 ## Integração futura com pipeline de dados

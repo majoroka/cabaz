@@ -111,6 +111,23 @@ No repositório `cabaz-data`:
 
 Neste momento, o workflow deve falhar porque o scraper real ainda não está implementado. Isto é esperado e serve como proteção para evitar publicar dados vazios.
 
+## Passo 4B: Ativação posterior da agenda diária
+
+Só depois de o scraper estar estável e de o PR automático já estar validado manualmente, deve ser ativada a agenda.
+
+Recomendação prática inicial:
+
+```text
+0 3 * * *
+```
+
+GitHub Actions usa UTC. Isto corresponde a:
+
+- `04:00` em Portugal continental durante o horário de verão
+- `03:00` em Portugal continental durante o horário de inverno
+
+O plano por fases está em [automacao-diaria-cabaz-data.md](./automacao-diaria-cabaz-data.md).
+
 ## Passo 5: Implementação mínima posterior
 
 Depois do repositório estar criado, o próximo sprint deve implementar apenas:

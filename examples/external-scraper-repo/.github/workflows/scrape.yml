@@ -4,10 +4,14 @@ on:
   workflow_dispatch:
   # Ativar apenas depois do primeiro fluxo manual estar validado.
   # schedule:
-  #   - cron: "0 6 * * *"
+  #   - cron: "0 3 * * *"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: atualizar-dados-cabaz
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -15,6 +19,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout scraper
         uses: actions/checkout@v5

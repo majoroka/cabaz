@@ -83,8 +83,23 @@ O workflow do scraper deve ter:
 
 - `workflow_dispatch`, para execução manual
 - `schedule`, para execução agendada
+- `concurrency`, para evitar execuções sobrepostas
 - permissões mínimas para ler o próprio repo
 - token/segredo para abrir PR no repositório `cabaz`
+
+Recomendação operacional atual:
+
+- começar com `workflow_dispatch`
+- ativar depois agenda diária
+- manter PR automático como destino final desta fase
+
+Se a intenção for correr por volta das `04:00` em Portugal continental, a recomendação prática é usar:
+
+```text
+0 3 * * *
+```
+
+GitHub Actions usa UTC. Isto corresponde a `04:00` locais no verão e `03:00` locais no inverno.
 
 Exemplo conceptual:
 
@@ -94,11 +109,16 @@ name: Atualizar dados do Cabaz
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 3 * * *"
+
+concurrency:
+  group: atualizar-dados-cabaz
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout scraper
         uses: actions/checkout@v5
@@ -151,6 +171,8 @@ Este exemplo é intencionalmente conceptual. Quando criarmos o repositório real
 ## Intervenção manual necessária
 
 O passo-a-passo operacional está documentado em [setup-cabaz-data.md](./setup-cabaz-data.md).
+
+O plano de ativação por fases está documentado em [automacao-diaria-cabaz-data.md](./automacao-diaria-cabaz-data.md).
 
 Quando avançarmos para o repositório real, o utilizador deve:
 

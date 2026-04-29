@@ -389,6 +389,28 @@ Evitar comparações erradas quando os produtos são semelhantes mas não equiva
 - `Alternativa`: regra explícita `alternative`; aparece como sugestão, mas fica fora do total
 - `Em falta`: sem produto exato, equivalente ou alternativa permitida
 
+## Sprint 12: Automação diária assistida do `cabaz-data`
+
+### Objetivo
+
+Passar do fluxo manual atual para execução diária automática do `cabaz-data`, mantendo PR automático para `cabaz` e validação obrigatória antes de publicar.
+
+### Entregáveis
+
+- [x] estratégia de automação diária documentada em `docs/automacao-diaria-cabaz-data.md`
+- [x] janela horária recomendada documentada com nota sobre UTC e horário de verão
+- [x] atualização do template `examples/external-scraper-repo/.github/workflows/scrape.yml`
+- [x] recomendação explícita de manter PR automático em vez de `push` direto
+- [ ] ativar `schedule` no repositório real `cabaz-data`
+- [ ] observar pelo menos 7 dias de estabilidade
+- [ ] decidir se o fluxo fica em PR automático permanente ou se evolui para auto-merge
+
+### Intervenção necessária do utilizador
+
+- ativar a agenda diária no repositório real `cabaz-data`
+- validar os primeiros PRs automáticos abertos por agenda
+- confirmar se a janela escolhida é aceitável durante verão e inverno
+
 ## Fora de âmbito neste repositório
 
 - [ ] backend próprio
